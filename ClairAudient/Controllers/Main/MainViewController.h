@@ -9,5 +9,12 @@
 #import "CommonViewController.h"
 
 @interface MainViewController : CommonViewController
+- (IBAction)showRecordVC:(id)sender;
+- (IBAction)showFoundMusicVC:(id)sender;
+- (IBAction)showMixingMusicVC:(id)sender;
+- (IBAction)showMusicFansVC:(id)sender;
+- (IBAction)showIntegralVC:(id)sender;
+- (IBAction)showAccountVC:(id)sender;
+- (IBAction)showSettingVC:(id)sender;
 
 @end

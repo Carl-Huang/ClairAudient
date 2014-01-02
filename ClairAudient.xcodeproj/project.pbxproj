@@ -7,6 +7,76 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C3164CAD1874555D00301ACA /* FoundMusic_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C691874555D00301ACA /* FoundMusic_@2x.png */; };
+		C3164CAE1874555D00301ACA /* FoundMusic_a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C6A1874555D00301ACA /* FoundMusic_a@2x.png */; };
+		C3164CAF1874555D00301ACA /* FoundMusic_ab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C6B1874555D00301ACA /* FoundMusic_ab@2x.png */; };
+		C3164CB01874555D00301ACA /* FoundMusic_b@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C6C1874555D00301ACA /* FoundMusic_b@2x.png */; };
+		C3164CB11874555D00301ACA /* FoundMusic_c@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C6D1874555D00301ACA /* FoundMusic_c@2x.png */; };
+		C3164CB21874555D00301ACA /* FoundMusic_cd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C6E1874555D00301ACA /* FoundMusic_cd@2x.png */; };
+		C3164CB31874555D00301ACA /* FoundMusic_d@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C6F1874555D00301ACA /* FoundMusic_d@2x.png */; };
+		C3164CB41874555D00301ACA /* FoundMusic_e@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C701874555D00301ACA /* FoundMusic_e@2x.png */; };
+		C3164CB51874555D00301ACA /* FoundMusic_ef@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C711874555D00301ACA /* FoundMusic_ef@2x.png */; };
+		C3164CB61874555D00301ACA /* FoundMusic_f@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C721874555D00301ACA /* FoundMusic_f@2x.png */; };
+		C3164CB71874555D00301ACA /* FoundMusic_fd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C731874555D00301ACA /* FoundMusic_fd@2x.png */; };
+		C3164CB81874555D00301ACA /* FoundMusic_g@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C741874555D00301ACA /* FoundMusic_g@2x.png */; };
+		C3164CB91874555D00301ACA /* FoundMusic_h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C751874555D00301ACA /* FoundMusic_h@2x.png */; };
+		C3164CBA1874555D00301ACA /* FoundMusic_hi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C761874555D00301ACA /* FoundMusic_hi@2x.png */; };
+		C3164CBB1874555D00301ACA /* FoundMusic_i@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C771874555D00301ACA /* FoundMusic_i@2x.png */; };
+		C3164CBC1874555D00301ACA /* FoundMusic_j@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C781874555D00301ACA /* FoundMusic_j@2x.png */; };
+		C3164CBD1874555D00301ACA /* FoundMusic_jk@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C791874555D00301ACA /* FoundMusic_jk@2x.png */; };
+		C3164CBE1874555D00301ACA /* FoundMusic_k@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C7A1874555D00301ACA /* FoundMusic_k@2x.png */; };
+		C3164CBF1874555D00301ACA /* FoundMusic_l@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C7B1874555D00301ACA /* FoundMusic_l@2x.png */; };
+		C3164CC01874555D00301ACA /* FoundMusic_li@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C7C1874555D00301ACA /* FoundMusic_li@2x.png */; };
+		C3164CC11874555D00301ACA /* FoundMusic_lm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C7D1874555D00301ACA /* FoundMusic_lm@2x.png */; };
+		C3164CC21874555D00301ACA /* FoundMusic_m@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C7E1874555D00301ACA /* FoundMusic_m@2x.png */; };
+		C3164CC31874555D00301ACA /* FoundMusic_mn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C7F1874555D00301ACA /* FoundMusic_mn@2x.png */; };
+		C3164CC41874555D00301ACA /* FoundMusic_n@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C801874555D00301ACA /* FoundMusic_n@2x.png */; };
+		C3164CC51874555D00301ACA /* FoundMusic_o@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C811874555D00301ACA /* FoundMusic_o@2x.png */; };
+		C3164CC61874555D00301ACA /* FoundMusic_op@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C821874555D00301ACA /* FoundMusic_op@2x.png */; };
+		C3164CC71874555D00301ACA /* FoundMusic_p@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C831874555D00301ACA /* FoundMusic_p@2x.png */; };
+		C3164CC81874555D00301ACA /* FoundMusic_q@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C841874555D00301ACA /* FoundMusic_q@2x.png */; };
+		C3164CC91874555D00301ACA /* FoundMusic_qw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C851874555D00301ACA /* FoundMusic_qw@2x.png */; };
+		C3164CCA1874555D00301ACA /* FoundMusic_r@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C861874555D00301ACA /* FoundMusic_r@2x.png */; };
+		C3164CCB1874555D00301ACA /* FoundMusic_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C871874555D00301ACA /* FoundMusic_s@2x.png */; };
+		C3164CCC1874555D00301ACA /* FoundMusic_sd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C881874555D00301ACA /* FoundMusic_sd@2x.png */; };
+		C3164CCD1874555D00301ACA /* FoundMusic_sf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C891874555D00301ACA /* FoundMusic_sf@2x.png */; };
+		C3164CCE1874555D00301ACA /* FoundMusic_t@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C8A1874555D00301ACA /* FoundMusic_t@2x.png */; };
+		C3164CCF1874555D00301ACA /* FoundMusic_u@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C8B1874555D00301ACA /* FoundMusic_u@2x.png */; };
+		C3164CD01874555D00301ACA /* FoundMusic_v@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C8C1874555D00301ACA /* FoundMusic_v@2x.png */; };
+		C3164CD11874555D00301ACA /* FoundMusic_w@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C8D1874555D00301ACA /* FoundMusic_w@2x.png */; };
+		C3164CD21874555D00301ACA /* FoundMusic_x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C8E1874555D00301ACA /* FoundMusic_x@2x.png */; };
+		C3164CD31874555D00301ACA /* FoundMusic_y@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C8F1874555D00301ACA /* FoundMusic_y@2x.png */; };
+		C3164CD41874555D00301ACA /* FoundMusic_z@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C901874555D00301ACA /* FoundMusic_z@2x.png */; };
+		C3164CD51874555D00301ACA /* MusicFans_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C921874555D00301ACA /* MusicFans_@2x.png */; };
+		C3164CD61874555D00301ACA /* MusicFans_cv@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C931874555D00301ACA /* MusicFans_cv@2x.png */; };
+		C3164CD71874555D00301ACA /* MusicFans_cvb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C941874555D00301ACA /* MusicFans_cvb@2x.png */; };
+		C3164CD81874555D00301ACA /* MusicFans_eight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C951874555D00301ACA /* MusicFans_eight@2x.png */; };
+		C3164CD91874555D00301ACA /* MusicFans_eleven@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C961874555D00301ACA /* MusicFans_eleven@2x.png */; };
+		C3164CDA1874555D00301ACA /* MusicFans_five@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C971874555D00301ACA /* MusicFans_five@2x.png */; };
+		C3164CDB1874555D00301ACA /* MusicFans_four@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C981874555D00301ACA /* MusicFans_four@2x.png */; };
+		C3164CDC1874555D00301ACA /* MusicFans_gf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C991874555D00301ACA /* MusicFans_gf@2x.png */; };
+		C3164CDD1874555D00301ACA /* MusicFans_gvb @2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C9A1874555D00301ACA /* MusicFans_gvb @2x.png */; };
+		C3164CDE1874555D00301ACA /* MusicFans_hj@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C9B1874555D00301ACA /* MusicFans_hj@2x.png */; };
+		C3164CDF1874555D00301ACA /* MusicFans_ij@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C9C1874555D00301ACA /* MusicFans_ij@2x.png */; };
+		C3164CE01874555D00301ACA /* MusicFans_jka@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C9D1874555D00301ACA /* MusicFans_jka@2x.png */; };
+		C3164CE11874555D00301ACA /* MusicFans_kjk@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C9E1874555D00301ACA /* MusicFans_kjk@2x.png */; };
+		C3164CE21874555D00301ACA /* MusicFans_nine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C9F1874555D00301ACA /* MusicFans_nine@2x.png */; };
+		C3164CE31874555D00301ACA /* MusicFans_one@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164CA01874555D00301ACA /* MusicFans_one@2x.png */; };
+		C3164CE41874555D00301ACA /* MusicFans_sdc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164CA11874555D00301ACA /* MusicFans_sdc@2x.png */; };
+		C3164CE51874555D00301ACA /* MusicFans_sdf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164CA21874555D00301ACA /* MusicFans_sdf@2x.png */; };
+		C3164CE61874555D00301ACA /* MusicFans_seven@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164CA31874555D00301ACA /* MusicFans_seven@2x.png */; };
+		C3164CE71874555D00301ACA /* MusicFans_sfjh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164CA41874555D00301ACA /* MusicFans_sfjh@2x.png */; };
+		C3164CE81874555D00301ACA /* MusicFans_sgh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164CA51874555D00301ACA /* MusicFans_sgh@2x.png */; };
+		C3164CE91874555D00301ACA /* MusicFans_six@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164CA61874555D00301ACA /* MusicFans_six@2x.png */; };
+		C3164CEA1874555D00301ACA /* MusicFans_ten@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164CA71874555D00301ACA /* MusicFans_ten@2x.png */; };
+		C3164CEB1874555D00301ACA /* MusicFans_three@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164CA81874555D00301ACA /* MusicFans_three@2x.png */; };
+		C3164CEC1874555D00301ACA /* MusicFans_twei@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164CA91874555D00301ACA /* MusicFans_twei@2x.png */; };
+		C3164CED1874555D00301ACA /* MusicFans_vbn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164CAA1874555D00301ACA /* MusicFans_vbn@2x.png */; };
+		C3164CEE1874555D00301ACA /* MusicFans_xc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164CAB1874555D00301ACA /* MusicFans_xc@2x.png */; };
+		C3164CEF1874555D00301ACA /* MusicFans_xvd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164CAC1874555D00301ACA /* MusicFans_xvd@2x.png */; };
+		C3164CF11874660100301ACA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3164CF01874660100301ACA /* QuartzCore.framework */; };
+		C3164CF518746ABF00301ACA /* UINavigationBar+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = C3164CF418746ABF00301ACA /* UINavigationBar+Custom.m */; };
+		C3B395C61875519800592C92 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B395C51875519800592C92 /* back@2x.png */; };
 		C3FEAF201871C156008EADAA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FEAF1F1871C156008EADAA /* Foundation.framework */; };
 		C3FEAF221871C156008EADAA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FEAF211871C156008EADAA /* CoreGraphics.framework */; };
 		C3FEAF241871C156008EADAA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FEAF231871C156008EADAA /* UIKit.framework */; };
@@ -200,6 +270,7 @@
 		C3FEB0E11871CAF4008EADAA /* MixingMusicListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FEB0DF1871CAF4008EADAA /* MixingMusicListViewController.xib */; };
 		C3FEB0E51871CB12008EADAA /* FIndSoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FEB0E31871CB12008EADAA /* FIndSoundViewController.m */; };
 		C3FEB0E61871CB12008EADAA /* FIndSoundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FEB0E41871CB12008EADAA /* FIndSoundViewController.xib */; };
+		C3FEB0EB1871D2FC008EADAA /* ControlCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FEB0EA1871D2FC008EADAA /* ControlCenter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -213,6 +284,77 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C3164C691874555D00301ACA /* FoundMusic_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_@2x.png"; sourceTree = "<group>"; };
+		C3164C6A1874555D00301ACA /* FoundMusic_a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_a@2x.png"; sourceTree = "<group>"; };
+		C3164C6B1874555D00301ACA /* FoundMusic_ab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_ab@2x.png"; sourceTree = "<group>"; };
+		C3164C6C1874555D00301ACA /* FoundMusic_b@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_b@2x.png"; sourceTree = "<group>"; };
+		C3164C6D1874555D00301ACA /* FoundMusic_c@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_c@2x.png"; sourceTree = "<group>"; };
+		C3164C6E1874555D00301ACA /* FoundMusic_cd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_cd@2x.png"; sourceTree = "<group>"; };
+		C3164C6F1874555D00301ACA /* FoundMusic_d@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_d@2x.png"; sourceTree = "<group>"; };
+		C3164C701874555D00301ACA /* FoundMusic_e@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_e@2x.png"; sourceTree = "<group>"; };
+		C3164C711874555D00301ACA /* FoundMusic_ef@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_ef@2x.png"; sourceTree = "<group>"; };
+		C3164C721874555D00301ACA /* FoundMusic_f@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_f@2x.png"; sourceTree = "<group>"; };
+		C3164C731874555D00301ACA /* FoundMusic_fd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_fd@2x.png"; sourceTree = "<group>"; };
+		C3164C741874555D00301ACA /* FoundMusic_g@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_g@2x.png"; sourceTree = "<group>"; };
+		C3164C751874555D00301ACA /* FoundMusic_h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_h@2x.png"; sourceTree = "<group>"; };
+		C3164C761874555D00301ACA /* FoundMusic_hi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_hi@2x.png"; sourceTree = "<group>"; };
+		C3164C771874555D00301ACA /* FoundMusic_i@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_i@2x.png"; sourceTree = "<group>"; };
+		C3164C781874555D00301ACA /* FoundMusic_j@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_j@2x.png"; sourceTree = "<group>"; };
+		C3164C791874555D00301ACA /* FoundMusic_jk@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_jk@2x.png"; sourceTree = "<group>"; };
+		C3164C7A1874555D00301ACA /* FoundMusic_k@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_k@2x.png"; sourceTree = "<group>"; };
+		C3164C7B1874555D00301ACA /* FoundMusic_l@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_l@2x.png"; sourceTree = "<group>"; };
+		C3164C7C1874555D00301ACA /* FoundMusic_li@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_li@2x.png"; sourceTree = "<group>"; };
+		C3164C7D1874555D00301ACA /* FoundMusic_lm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_lm@2x.png"; sourceTree = "<group>"; };
+		C3164C7E1874555D00301ACA /* FoundMusic_m@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_m@2x.png"; sourceTree = "<group>"; };
+		C3164C7F1874555D00301ACA /* FoundMusic_mn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_mn@2x.png"; sourceTree = "<group>"; };
+		C3164C801874555D00301ACA /* FoundMusic_n@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_n@2x.png"; sourceTree = "<group>"; };
+		C3164C811874555D00301ACA /* FoundMusic_o@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_o@2x.png"; sourceTree = "<group>"; };
+		C3164C821874555D00301ACA /* FoundMusic_op@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_op@2x.png"; sourceTree = "<group>"; };
+		C3164C831874555D00301ACA /* FoundMusic_p@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_p@2x.png"; sourceTree = "<group>"; };
+		C3164C841874555D00301ACA /* FoundMusic_q@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_q@2x.png"; sourceTree = "<group>"; };
+		C3164C851874555D00301ACA /* FoundMusic_qw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_qw@2x.png"; sourceTree = "<group>"; };
+		C3164C861874555D00301ACA /* FoundMusic_r@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_r@2x.png"; sourceTree = "<group>"; };
+		C3164C871874555D00301ACA /* FoundMusic_s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_s@2x.png"; sourceTree = "<group>"; };
+		C3164C881874555D00301ACA /* FoundMusic_sd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_sd@2x.png"; sourceTree = "<group>"; };
+		C3164C891874555D00301ACA /* FoundMusic_sf@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_sf@2x.png"; sourceTree = "<group>"; };
+		C3164C8A1874555D00301ACA /* FoundMusic_t@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_t@2x.png"; sourceTree = "<group>"; };
+		C3164C8B1874555D00301ACA /* FoundMusic_u@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_u@2x.png"; sourceTree = "<group>"; };
+		C3164C8C1874555D00301ACA /* FoundMusic_v@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_v@2x.png"; sourceTree = "<group>"; };
+		C3164C8D1874555D00301ACA /* FoundMusic_w@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_w@2x.png"; sourceTree = "<group>"; };
+		C3164C8E1874555D00301ACA /* FoundMusic_x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_x@2x.png"; sourceTree = "<group>"; };
+		C3164C8F1874555D00301ACA /* FoundMusic_y@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_y@2x.png"; sourceTree = "<group>"; };
+		C3164C901874555D00301ACA /* FoundMusic_z@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_z@2x.png"; sourceTree = "<group>"; };
+		C3164C921874555D00301ACA /* MusicFans_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_@2x.png"; sourceTree = "<group>"; };
+		C3164C931874555D00301ACA /* MusicFans_cv@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_cv@2x.png"; sourceTree = "<group>"; };
+		C3164C941874555D00301ACA /* MusicFans_cvb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_cvb@2x.png"; sourceTree = "<group>"; };
+		C3164C951874555D00301ACA /* MusicFans_eight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_eight@2x.png"; sourceTree = "<group>"; };
+		C3164C961874555D00301ACA /* MusicFans_eleven@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_eleven@2x.png"; sourceTree = "<group>"; };
+		C3164C971874555D00301ACA /* MusicFans_five@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_five@2x.png"; sourceTree = "<group>"; };
+		C3164C981874555D00301ACA /* MusicFans_four@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_four@2x.png"; sourceTree = "<group>"; };
+		C3164C991874555D00301ACA /* MusicFans_gf@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_gf@2x.png"; sourceTree = "<group>"; };
+		C3164C9A1874555D00301ACA /* MusicFans_gvb @2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_gvb @2x.png"; sourceTree = "<group>"; };
+		C3164C9B1874555D00301ACA /* MusicFans_hj@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_hj@2x.png"; sourceTree = "<group>"; };
+		C3164C9C1874555D00301ACA /* MusicFans_ij@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_ij@2x.png"; sourceTree = "<group>"; };
+		C3164C9D1874555D00301ACA /* MusicFans_jka@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_jka@2x.png"; sourceTree = "<group>"; };
+		C3164C9E1874555D00301ACA /* MusicFans_kjk@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_kjk@2x.png"; sourceTree = "<group>"; };
+		C3164C9F1874555D00301ACA /* MusicFans_nine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_nine@2x.png"; sourceTree = "<group>"; };
+		C3164CA01874555D00301ACA /* MusicFans_one@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_one@2x.png"; sourceTree = "<group>"; };
+		C3164CA11874555D00301ACA /* MusicFans_sdc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_sdc@2x.png"; sourceTree = "<group>"; };
+		C3164CA21874555D00301ACA /* MusicFans_sdf@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_sdf@2x.png"; sourceTree = "<group>"; };
+		C3164CA31874555D00301ACA /* MusicFans_seven@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_seven@2x.png"; sourceTree = "<group>"; };
+		C3164CA41874555D00301ACA /* MusicFans_sfjh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_sfjh@2x.png"; sourceTree = "<group>"; };
+		C3164CA51874555D00301ACA /* MusicFans_sgh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_sgh@2x.png"; sourceTree = "<group>"; };
+		C3164CA61874555D00301ACA /* MusicFans_six@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_six@2x.png"; sourceTree = "<group>"; };
+		C3164CA71874555D00301ACA /* MusicFans_ten@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_ten@2x.png"; sourceTree = "<group>"; };
+		C3164CA81874555D00301ACA /* MusicFans_three@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_three@2x.png"; sourceTree = "<group>"; };
+		C3164CA91874555D00301ACA /* MusicFans_twei@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_twei@2x.png"; sourceTree = "<group>"; };
+		C3164CAA1874555D00301ACA /* MusicFans_vbn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_vbn@2x.png"; sourceTree = "<group>"; };
+		C3164CAB1874555D00301ACA /* MusicFans_xc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_xc@2x.png"; sourceTree = "<group>"; };
+		C3164CAC1874555D00301ACA /* MusicFans_xvd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_xvd@2x.png"; sourceTree = "<group>"; };
+		C3164CF01874660100301ACA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C3164CF318746ABF00301ACA /* UINavigationBar+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Custom.h"; sourceTree = "<group>"; };
+		C3164CF418746ABF00301ACA /* UINavigationBar+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Custom.m"; sourceTree = "<group>"; };
+		C3B395C51875519800592C92 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		C3FEAF1C1871C156008EADAA /* ClairAudient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClairAudient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3FEAF1F1871C156008EADAA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C3FEAF211871C156008EADAA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -431,6 +573,9 @@
 		C3FEB0E21871CB12008EADAA /* FIndSoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIndSoundViewController.h; sourceTree = "<group>"; };
 		C3FEB0E31871CB12008EADAA /* FIndSoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIndSoundViewController.m; sourceTree = "<group>"; };
 		C3FEB0E41871CB12008EADAA /* FIndSoundViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FIndSoundViewController.xib; sourceTree = "<group>"; };
+		C3FEB0E71871D263008EADAA /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		C3FEB0E91871D2FC008EADAA /* ControlCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlCenter.h; sourceTree = "<group>"; };
+		C3FEB0EA1871D2FC008EADAA /* ControlCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlCenter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -438,6 +583,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3164CF11874660100301ACA /* QuartzCore.framework in Frameworks */,
 				C3FEAF221871C156008EADAA /* CoreGraphics.framework in Frameworks */,
 				C3FEAF241871C156008EADAA /* UIKit.framework in Frameworks */,
 				C3FEAF201871C156008EADAA /* Foundation.framework in Frameworks */,
@@ -457,6 +603,96 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C3164C681874555D00301ACA /* foundmusic */ = {
+			isa = PBXGroup;
+			children = (
+				C3164C691874555D00301ACA /* FoundMusic_@2x.png */,
+				C3164C6A1874555D00301ACA /* FoundMusic_a@2x.png */,
+				C3164C6B1874555D00301ACA /* FoundMusic_ab@2x.png */,
+				C3164C6C1874555D00301ACA /* FoundMusic_b@2x.png */,
+				C3164C6D1874555D00301ACA /* FoundMusic_c@2x.png */,
+				C3164C6E1874555D00301ACA /* FoundMusic_cd@2x.png */,
+				C3164C6F1874555D00301ACA /* FoundMusic_d@2x.png */,
+				C3164C701874555D00301ACA /* FoundMusic_e@2x.png */,
+				C3164C711874555D00301ACA /* FoundMusic_ef@2x.png */,
+				C3164C721874555D00301ACA /* FoundMusic_f@2x.png */,
+				C3164C731874555D00301ACA /* FoundMusic_fd@2x.png */,
+				C3164C741874555D00301ACA /* FoundMusic_g@2x.png */,
+				C3164C751874555D00301ACA /* FoundMusic_h@2x.png */,
+				C3164C761874555D00301ACA /* FoundMusic_hi@2x.png */,
+				C3164C771874555D00301ACA /* FoundMusic_i@2x.png */,
+				C3164C781874555D00301ACA /* FoundMusic_j@2x.png */,
+				C3164C791874555D00301ACA /* FoundMusic_jk@2x.png */,
+				C3164C7A1874555D00301ACA /* FoundMusic_k@2x.png */,
+				C3164C7B1874555D00301ACA /* FoundMusic_l@2x.png */,
+				C3164C7C1874555D00301ACA /* FoundMusic_li@2x.png */,
+				C3164C7D1874555D00301ACA /* FoundMusic_lm@2x.png */,
+				C3164C7E1874555D00301ACA /* FoundMusic_m@2x.png */,
+				C3164C7F1874555D00301ACA /* FoundMusic_mn@2x.png */,
+				C3164C801874555D00301ACA /* FoundMusic_n@2x.png */,
+				C3164C811874555D00301ACA /* FoundMusic_o@2x.png */,
+				C3164C821874555D00301ACA /* FoundMusic_op@2x.png */,
+				C3164C831874555D00301ACA /* FoundMusic_p@2x.png */,
+				C3164C841874555D00301ACA /* FoundMusic_q@2x.png */,
+				C3164C851874555D00301ACA /* FoundMusic_qw@2x.png */,
+				C3164C861874555D00301ACA /* FoundMusic_r@2x.png */,
+				C3164C871874555D00301ACA /* FoundMusic_s@2x.png */,
+				C3164C881874555D00301ACA /* FoundMusic_sd@2x.png */,
+				C3164C891874555D00301ACA /* FoundMusic_sf@2x.png */,
+				C3164C8A1874555D00301ACA /* FoundMusic_t@2x.png */,
+				C3164C8B1874555D00301ACA /* FoundMusic_u@2x.png */,
+				C3164C8C1874555D00301ACA /* FoundMusic_v@2x.png */,
+				C3164C8D1874555D00301ACA /* FoundMusic_w@2x.png */,
+				C3164C8E1874555D00301ACA /* FoundMusic_x@2x.png */,
+				C3164C8F1874555D00301ACA /* FoundMusic_y@2x.png */,
+				C3164C901874555D00301ACA /* FoundMusic_z@2x.png */,
+			);
+			path = foundmusic;
+			sourceTree = "<group>";
+		};
+		C3164C911874555D00301ACA /* musicfans */ = {
+			isa = PBXGroup;
+			children = (
+				C3164C921874555D00301ACA /* MusicFans_@2x.png */,
+				C3164C931874555D00301ACA /* MusicFans_cv@2x.png */,
+				C3164C941874555D00301ACA /* MusicFans_cvb@2x.png */,
+				C3164C951874555D00301ACA /* MusicFans_eight@2x.png */,
+				C3164C961874555D00301ACA /* MusicFans_eleven@2x.png */,
+				C3164C971874555D00301ACA /* MusicFans_five@2x.png */,
+				C3164C981874555D00301ACA /* MusicFans_four@2x.png */,
+				C3164C991874555D00301ACA /* MusicFans_gf@2x.png */,
+				C3164C9A1874555D00301ACA /* MusicFans_gvb @2x.png */,
+				C3164C9B1874555D00301ACA /* MusicFans_hj@2x.png */,
+				C3164C9C1874555D00301ACA /* MusicFans_ij@2x.png */,
+				C3164C9D1874555D00301ACA /* MusicFans_jka@2x.png */,
+				C3164C9E1874555D00301ACA /* MusicFans_kjk@2x.png */,
+				C3164C9F1874555D00301ACA /* MusicFans_nine@2x.png */,
+				C3164CA01874555D00301ACA /* MusicFans_one@2x.png */,
+				C3164CA11874555D00301ACA /* MusicFans_sdc@2x.png */,
+				C3164CA21874555D00301ACA /* MusicFans_sdf@2x.png */,
+				C3164CA31874555D00301ACA /* MusicFans_seven@2x.png */,
+				C3164CA41874555D00301ACA /* MusicFans_sfjh@2x.png */,
+				C3164CA51874555D00301ACA /* MusicFans_sgh@2x.png */,
+				C3164CA61874555D00301ACA /* MusicFans_six@2x.png */,
+				C3164CA71874555D00301ACA /* MusicFans_ten@2x.png */,
+				C3164CA81874555D00301ACA /* MusicFans_three@2x.png */,
+				C3164CA91874555D00301ACA /* MusicFans_twei@2x.png */,
+				C3164CAA1874555D00301ACA /* MusicFans_vbn@2x.png */,
+				C3164CAB1874555D00301ACA /* MusicFans_xc@2x.png */,
+				C3164CAC1874555D00301ACA /* MusicFans_xvd@2x.png */,
+			);
+			path = musicfans;
+			sourceTree = "<group>";
+		};
+		C3164CF218746A9A00301ACA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C3164CF318746ABF00301ACA /* UINavigationBar+Custom.h */,
+				C3164CF418746ABF00301ACA /* UINavigationBar+Custom.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		C3FEAF131871C156008EADAA = {
 			isa = PBXGroup;
 			children = (
@@ -479,6 +715,7 @@
 		C3FEAF1E1871C156008EADAA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C3164CF01874660100301ACA /* QuartzCore.framework */,
 				C3FEAF1F1871C156008EADAA /* Foundation.framework */,
 				C3FEAF211871C156008EADAA /* CoreGraphics.framework */,
 				C3FEAF231871C156008EADAA /* UIKit.framework */,
@@ -550,6 +787,8 @@
 		C3FEAF501871C294008EADAA /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				C3164C681874555D00301ACA /* foundmusic */,
+				C3164C911874555D00301ACA /* musicfans */,
 				C3FEAF511871C294008EADAA /* hunyin */,
 				C3FEAF851871C294008EADAA /* main */,
 				C3FEAF8F1871C294008EADAA /* record */,
@@ -562,6 +801,7 @@
 		C3FEAF511871C294008EADAA /* hunyin */ = {
 			isa = PBXGroup;
 			children = (
+				C3B395C51875519800592C92 /* back@2x.png */,
 				C3FEAF521871C294008EADAA /* hunyin_0@2x.png */,
 				C3FEAF531871C294008EADAA /* hunyin_10@2x.png */,
 				C3FEAF541871C294008EADAA /* hunyin_11@2x.png */,
@@ -753,6 +993,9 @@
 		C3FEB08E1871C2A8008EADAA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C3164CF218746A9A00301ACA /* Views */,
+				C3FEB0E81871D2BB008EADAA /* Global */,
+				C3FEB0E71871D263008EADAA /* Constants.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -881,6 +1124,15 @@
 			path = User;
 			sourceTree = "<group>";
 		};
+		C3FEB0E81871D2BB008EADAA /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				C3FEB0E91871D2FC008EADAA /* ControlCenter.h */,
+				C3FEB0EA1871D2FC008EADAA /* ControlCenter.m */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -957,12 +1209,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3FEB0CD1871CA45008EADAA /* LoginViewController.xib in Resources */,
+				C3164CBE1874555D00301ACA /* FoundMusic_k@2x.png in Resources */,
 				C3FEB0711871C294008EADAA /* user_14@2x.png in Resources */,
 				C3FEB0461871C294008EADAA /* record_33@2x.png in Resources */,
 				C3FEAFFB1871C294008EADAA /* hunyin_18@2x.png in Resources */,
 				C3FEB0471871C294008EADAA /* record_34@2x.png in Resources */,
 				C3FEAFF31871C294008EADAA /* hunyin_10@2x.png in Resources */,
 				C3FEB0011871C294008EADAA /* hunyin_23@2x.png in Resources */,
+				C3164CC21874555D00301ACA /* FoundMusic_m@2x.png in Resources */,
 				C3FEB0861871C294008EADAA /* user_5@2x.png in Resources */,
 				C3FEB0851871C294008EADAA /* user_4@2x.png in Resources */,
 				C3FEB00E1871C294008EADAA /* hunyin_36@2x.png in Resources */,
@@ -970,92 +1224,134 @@
 				C3FEB0801871C294008EADAA /* user_29@2x.png in Resources */,
 				C3FEB07A1871C294008EADAA /* user_23@2x.png in Resources */,
 				C3FEB0511871C294008EADAA /* record_6@2x.png in Resources */,
+				C3164CC31874555D00301ACA /* FoundMusic_mn@2x.png in Resources */,
 				C3FEB0251871C294008EADAA /* first_2@2x.png in Resources */,
 				C3FEB0871871C294008EADAA /* user_6@2x.png in Resources */,
 				C3FEB04E1871C294008EADAA /* record_40@2x.png in Resources */,
 				C3FEB0661871C294008EADAA /* setting_5@2x.png in Resources */,
 				C3FEB0371871C294008EADAA /* record_19@2x.png in Resources */,
+				C3164CCD1874555D00301ACA /* FoundMusic_sf@2x.png in Resources */,
 				C3FEB08D1871C294008EADAA /* user_注册.png in Resources */,
+				C3164CCB1874555D00301ACA /* FoundMusic_s@2x.png in Resources */,
 				C3FEB0591871C294008EADAA /* setting_13@2x.png in Resources */,
 				C3FEB0531871C294008EADAA /* record_8@2x.png in Resources */,
 				C3FEB0481871C294008EADAA /* record_35@2x.png in Resources */,
 				C3FEB04A1871C294008EADAA /* record_37@2x.png in Resources */,
+				C3164CED1874555D00301ACA /* MusicFans_vbn@2x.png in Resources */,
 				C3FEB0101871C294008EADAA /* hunyin_38@2x.png in Resources */,
 				C3FEB0271871C294008EADAA /* first_4@2x.png in Resources */,
 				C3FEB0351871C294008EADAA /* record_17@2x.png in Resources */,
 				C3FEB0161871C294008EADAA /* hunyin_43@2x.png in Resources */,
 				C3FEB0551871C294008EADAA /* record_@2x.png in Resources */,
 				C3FEB0641871C294008EADAA /* setting_3@2x.png in Resources */,
+				C3164CE41874555D00301ACA /* MusicFans_sdc@2x.png in Resources */,
 				C3FEB06D1871C294008EADAA /* user_10@2x.png in Resources */,
 				C3FEB07C1871C294008EADAA /* user_25@2x.png in Resources */,
 				C3FEB0781871C294008EADAA /* user_21@2x.png in Resources */,
 				C3FEB0521871C294008EADAA /* record_7@2x.png in Resources */,
+				C3164CB41874555D00301ACA /* FoundMusic_e@2x.png in Resources */,
+				C3164CE81874555D00301ACA /* MusicFans_sgh@2x.png in Resources */,
 				C3FEB05A1871C294008EADAA /* setting_14@2x.png in Resources */,
+				C3164CCF1874555D00301ACA /* FoundMusic_u@2x.png in Resources */,
 				C3FEB0D21871CA5E008EADAA /* SettingViewController.xib in Resources */,
 				C3FEAFFA1871C294008EADAA /* hunyin_17@2x.png in Resources */,
 				C3FEB05E1871C294008EADAA /* setting_18@2x.png in Resources */,
 				C3FEB0171871C294008EADAA /* hunyin_44@2x.png in Resources */,
 				C3FEB03E1871C294008EADAA /* record_26@2x.png in Resources */,
+				C3164CAF1874555D00301ACA /* FoundMusic_ab@2x.png in Resources */,
 				C3FEB0041871C294008EADAA /* hunyin_26@2x.png in Resources */,
 				C3FEB04B1871C294008EADAA /* record_38@2x.png in Resources */,
 				C3FEB0411871C294008EADAA /* record_29@2x.png in Resources */,
 				C3FEB0721871C294008EADAA /* user_15@2x.png in Resources */,
 				C3FEB0061871C294008EADAA /* hunyin_28@2x.png in Resources */,
+				C3164CD91874555D00301ACA /* MusicFans_eleven@2x.png in Resources */,
 				C3FEB0671871C294008EADAA /* setting_6@2x.png in Resources */,
 				C3FEB0231871C294008EADAA /* hunyin_8@2x.png in Resources */,
+				C3164CB61874555D00301ACA /* FoundMusic_f@2x.png in Resources */,
 				C3FEB0691871C294008EADAA /* setting_8@2x.png in Resources */,
 				C3FEB0331871C294008EADAA /* record_15@2x.png in Resources */,
 				C3FEB0841871C294008EADAA /* user_3@2x.png in Resources */,
 				C3FEB0091871C294008EADAA /* hunyin_30@2x.png in Resources */,
 				C3FEB01B1871C294008EADAA /* hunyin_48@2x.png in Resources */,
+				C3164CDA1874555D00301ACA /* MusicFans_five@2x.png in Resources */,
 				C3FEB0311871C294008EADAA /* record_13@2x.png in Resources */,
 				C3FEB02C1871C294008EADAA /* first_9@2x.png in Resources */,
+				C3164CC71874555D00301ACA /* FoundMusic_p@2x.png in Resources */,
 				C3FEAF2A1871C156008EADAA /* InfoPlist.strings in Resources */,
 				C3FEB0201871C294008EADAA /* hunyin_5@2x.png in Resources */,
+				C3164CBA1874555D00301ACA /* FoundMusic_hi@2x.png in Resources */,
+				C3164CB11874555D00301ACA /* FoundMusic_c@2x.png in Resources */,
 				C3FEB0261871C294008EADAA /* first_3@2x.png in Resources */,
+				C3164CBD1874555D00301ACA /* FoundMusic_jk@2x.png in Resources */,
 				C3FEB0501871C294008EADAA /* record_5@2x.png in Resources */,
+				C3164CEE1874555D00301ACA /* MusicFans_xc@2x.png in Resources */,
 				C3FEB08B1871C294008EADAA /* user_@2x.png in Resources */,
+				C3164CC11874555D00301ACA /* FoundMusic_lm@2x.png in Resources */,
 				C3FEB00C1871C294008EADAA /* hunyin_33@2x.png in Resources */,
+				C3B395C61875519800592C92 /* back@2x.png in Resources */,
 				C3FEB03B1871C294008EADAA /* record_23@2x.png in Resources */,
+				C3164CC51874555D00301ACA /* FoundMusic_o@2x.png in Resources */,
+				C3164CCA1874555D00301ACA /* FoundMusic_r@2x.png in Resources */,
 				C3FEB05D1871C294008EADAA /* setting_17@2x.png in Resources */,
 				C3FEB02A1871C294008EADAA /* first_7@2x.png in Resources */,
 				C3FEB04C1871C294008EADAA /* record_39@2x.png in Resources */,
 				C3FEB0081871C294008EADAA /* hunyin_2@2x.png in Resources */,
 				C3FEAFF21871C294008EADAA /* hunyin_0@2x.png in Resources */,
+				C3164CB31874555D00301ACA /* FoundMusic_d@2x.png in Resources */,
 				C3FEB05C1871C294008EADAA /* setting_16@2x.png in Resources */,
+				C3164CB01874555D00301ACA /* FoundMusic_b@2x.png in Resources */,
 				C3FEB0451871C294008EADAA /* record_32@2x.png in Resources */,
 				C3FEB0431871C294008EADAA /* record_30@2x.png in Resources */,
 				C3FEB0C81871CA19008EADAA /* MainViewController.xib in Resources */,
 				C3FEB0421871C294008EADAA /* record_2@2x.png in Resources */,
+				C3164CE11874555D00301ACA /* MusicFans_kjk@2x.png in Resources */,
 				C3FEB0601871C294008EADAA /* setting_21@2x.png in Resources */,
 				C3FEB03C1871C294008EADAA /* record_24@2x.png in Resources */,
 				C3FEB07E1871C294008EADAA /* user_27@2x.png in Resources */,
+				C3164CBB1874555D00301ACA /* FoundMusic_i@2x.png in Resources */,
 				C3FEB06B1871C294008EADAA /* setting_@2x.png in Resources */,
 				C3FEB07B1871C294008EADAA /* user_24@2x.png in Resources */,
 				C3FEB0651871C294008EADAA /* setting_4@2x.png in Resources */,
 				C3FEB07F1871C294008EADAA /* user_28@2x.png in Resources */,
+				C3164CE71874555D00301ACA /* MusicFans_sfjh@2x.png in Resources */,
 				C3FEAFF41871C294008EADAA /* hunyin_11@2x.png in Resources */,
+				C3164CD21874555D00301ACA /* FoundMusic_x@2x.png in Resources */,
 				C3FEB0381871C294008EADAA /* record_20@2x.png in Resources */,
 				C3FEB0731871C294008EADAA /* user_16@2x.png in Resources */,
+				C3164CB71874555D00301ACA /* FoundMusic_fd@2x.png in Resources */,
 				C3FEB01C1871C294008EADAA /* hunyin_49@2x.png in Resources */,
+				C3164CEA1874555D00301ACA /* MusicFans_ten@2x.png in Resources */,
+				C3164CB21874555D00301ACA /* FoundMusic_cd@2x.png in Resources */,
+				C3164CDB1874555D00301ACA /* MusicFans_four@2x.png in Resources */,
+				C3164CDF1874555D00301ACA /* MusicFans_ij@2x.png in Resources */,
+				C3164CEF1874555D00301ACA /* MusicFans_xvd@2x.png in Resources */,
+				C3164CE01874555D00301ACA /* MusicFans_jka@2x.png in Resources */,
 				C3FEB0631871C294008EADAA /* setting_2@2x.png in Resources */,
 				C3FEB0771871C294008EADAA /* user_20@2x.png in Resources */,
+				C3164CAE1874555D00301ACA /* FoundMusic_a@2x.png in Resources */,
 				C3FEB04D1871C294008EADAA /* record_3@2x.png in Resources */,
 				C3FEB07D1871C294008EADAA /* user_26@2x.png in Resources */,
 				C3FEB03D1871C294008EADAA /* record_25@2x.png in Resources */,
 				C3FEB01A1871C294008EADAA /* hunyin_47@2x.png in Resources */,
+				C3164CE51874555D00301ACA /* MusicFans_sdf@2x.png in Resources */,
 				C3FEB0751871C294008EADAA /* user_18@2x.png in Resources */,
 				C3FEB0DC1871CAC5008EADAA /* RecordViewController.xib in Resources */,
+				C3164CB81874555D00301ACA /* FoundMusic_g@2x.png in Resources */,
 				C3FEB08C1871C294008EADAA /* user_注册 高级会员.png in Resources */,
 				C3FEB0611871C294008EADAA /* setting_22@2x.png in Resources */,
+				C3164CD71874555D00301ACA /* MusicFans_cvb@2x.png in Resources */,
 				C3FEB0051871C294008EADAA /* hunyin_27@2x.png in Resources */,
 				C3FEB0621871C294008EADAA /* setting_23@2x.png in Resources */,
 				C3FEB0441871C294008EADAA /* record_31@2x.png in Resources */,
 				C3FEB05B1871C294008EADAA /* setting_15@2x.png in Resources */,
+				C3164CE61874555D00301ACA /* MusicFans_seven@2x.png in Resources */,
 				C3FEB03F1871C294008EADAA /* record_27@2x.png in Resources */,
 				C3FEB0071871C294008EADAA /* hunyin_29@2x.png in Resources */,
+				C3164CEB1874555D00301ACA /* MusicFans_three@2x.png in Resources */,
+				C3164CDE1874555D00301ACA /* MusicFans_hj@2x.png in Resources */,
 				C3FEB0401871C294008EADAA /* record_28@2x.png in Resources */,
 				C3FEB0181871C294008EADAA /* hunyin_45@2x.png in Resources */,
+				C3164CB91874555D00301ACA /* FoundMusic_h@2x.png in Resources */,
 				C3FEB01D1871C294008EADAA /* hunyin_4@2x.png in Resources */,
 				C3FEB02E1871C294008EADAA /* record_10@2x.png in Resources */,
 				C3FEAFF81871C294008EADAA /* hunyin_15@2x.png in Resources */,
@@ -1064,32 +1360,42 @@
 				C3FEB0761871C294008EADAA /* user_19@2x.png in Resources */,
 				C3FEB00F1871C294008EADAA /* hunyin_37@2x.png in Resources */,
 				C3FEB0541871C294008EADAA /* record_9@2x.png in Resources */,
+				C3164CD31874555D00301ACA /* FoundMusic_y@2x.png in Resources */,
 				C3FEB0491871C294008EADAA /* record_36@2x.png in Resources */,
+				C3164CAD1874555D00301ACA /* FoundMusic_@2x.png in Resources */,
 				C3FEB0281871C294008EADAA /* first_5@2x.png in Resources */,
+				C3164CD61874555D00301ACA /* MusicFans_cv@2x.png in Resources */,
 				C3FEB0361871C294008EADAA /* record_18@2x.png in Resources */,
 				C3FEB0341871C294008EADAA /* record_16@2x.png in Resources */,
 				C3FEAFF61871C294008EADAA /* hunyin_13@2x.png in Resources */,
 				C3FEB0881871C294008EADAA /* user_7@2x.png in Resources */,
+				C3164CE91874555D00301ACA /* MusicFans_six@2x.png in Resources */,
 				C3FEB05F1871C294008EADAA /* setting_20@2x.png in Resources */,
 				C3FEB08A1871C294008EADAA /* user_9@2x.png in Resources */,
 				C3FEB0121871C294008EADAA /* hunyin_3@2x.png in Resources */,
 				C3FEB0791871C294008EADAA /* user_22@2x.png in Resources */,
+				C3164CC01874555D00301ACA /* FoundMusic_li@2x.png in Resources */,
 				C3FEB0821871C294008EADAA /* user_30@2x.png in Resources */,
 				C3FEB0031871C294008EADAA /* hunyin_25@2x.png in Resources */,
+				C3164CD41874555D00301ACA /* FoundMusic_z@2x.png in Resources */,
 				C3FEB02D1871C294008EADAA /* first_@2x.png in Resources */,
 				C3FEAFF51871C294008EADAA /* hunyin_12@2x.png in Resources */,
 				C3FEB00D1871C294008EADAA /* hunyin_35@2x.png in Resources */,
 				C3FEB0221871C294008EADAA /* hunyin_7@2x.png in Resources */,
+				C3164CC41874555D00301ACA /* FoundMusic_n@2x.png in Resources */,
 				C3FEB00A1871C294008EADAA /* hunyin_31@2x.png in Resources */,
+				C3164CD81874555D00301ACA /* MusicFans_eight@2x.png in Resources */,
 				C3FEAFFF1871C294008EADAA /* hunyin_21@2x.png in Resources */,
 				C3FEB0111871C294008EADAA /* hunyin_39@2x.png in Resources */,
 				C3FEB02F1871C294008EADAA /* record_11@2x.png in Resources */,
 				C3FEB0891871C294008EADAA /* user_8@2x.png in Resources */,
 				C3FEB0241871C294008EADAA /* hunyin_9@2x.png in Resources */,
+				C3164CE21874555D00301ACA /* MusicFans_nine@2x.png in Resources */,
 				C3FEB0E11871CAF4008EADAA /* MixingMusicListViewController.xib in Resources */,
 				C3FEB0291871C294008EADAA /* first_6@2x.png in Resources */,
 				C3FEB0391871C294008EADAA /* record_21@2x.png in Resources */,
 				C3FEB01E1871C294008EADAA /* hunyin_50@2x.png in Resources */,
+				C3164CC81874555D00301ACA /* FoundMusic_q@2x.png in Resources */,
 				C3FEB06A1871C294008EADAA /* setting_9@2x.png in Resources */,
 				C3FEB0151871C294008EADAA /* hunyin_42@2x.png in Resources */,
 				C3FEB0571871C294008EADAA /* setting_11@2x.png in Resources */,
@@ -1097,7 +1403,9 @@
 				C3FEB00B1871C294008EADAA /* hunyin_32@2x.png in Resources */,
 				C3FEB06F1871C294008EADAA /* user_12@2x.png in Resources */,
 				C3FEAFFC1871C294008EADAA /* hunyin_19@2x.png in Resources */,
+				C3164CE31874555D00301ACA /* MusicFans_one@2x.png in Resources */,
 				C3FEAFFE1871C294008EADAA /* hunyin_20@2x.png in Resources */,
+				C3164CBC1874555D00301ACA /* FoundMusic_j@2x.png in Resources */,
 				C3FEB0811871C294008EADAA /* user_2@2x.png in Resources */,
 				C3FEAFF91871C294008EADAA /* hunyin_16@2x.png in Resources */,
 				C3FEB06C1871C294008EADAA /* setting_设置 主题设置.png in Resources */,
@@ -1106,7 +1414,10 @@
 				C3FEB0001871C294008EADAA /* hunyin_22@2x.png in Resources */,
 				C3FEB0D71871CAA2008EADAA /* MusicFansViewController.xib in Resources */,
 				C3FEAF321871C156008EADAA /* Images.xcassets in Resources */,
+				C3164CDC1874555D00301ACA /* MusicFans_gf@2x.png in Resources */,
 				C3FEB0741871C294008EADAA /* user_17@2x.png in Resources */,
+				C3164CBF1874555D00301ACA /* FoundMusic_l@2x.png in Resources */,
+				C3164CEC1874555D00301ACA /* MusicFans_twei@2x.png in Resources */,
 				C3FEB0211871C294008EADAA /* hunyin_6@2x.png in Resources */,
 				C3FEB0141871C294008EADAA /* hunyin_41@2x.png in Resources */,
 				C3FEB06E1871C294008EADAA /* user_11@2x.png in Resources */,
@@ -1114,12 +1425,21 @@
 				C3FEB0561871C294008EADAA /* setting_10@2x.png in Resources */,
 				C3FEB01F1871C294008EADAA /* hunyin_51@2x.png in Resources */,
 				C3FEB0831871C294008EADAA /* user_31@2x.png in Resources */,
+				C3164CC61874555D00301ACA /* FoundMusic_op@2x.png in Resources */,
 				C3FEB03A1871C294008EADAA /* record_22@2x.png in Resources */,
 				C3FEB0E61871CB12008EADAA /* FIndSoundViewController.xib in Resources */,
 				C3FEB0701871C294008EADAA /* user_13@2x.png in Resources */,
+				C3164CCE1874555D00301ACA /* FoundMusic_t@2x.png in Resources */,
+				C3164CDD1874555D00301ACA /* MusicFans_gvb @2x.png in Resources */,
 				C3FEB0321871C294008EADAA /* record_14@2x.png in Resources */,
+				C3164CCC1874555D00301ACA /* FoundMusic_sd@2x.png in Resources */,
+				C3164CD01874555D00301ACA /* FoundMusic_v@2x.png in Resources */,
 				C3FEB0131871C294008EADAA /* hunyin_40@2x.png in Resources */,
 				C3FEB04F1871C294008EADAA /* record_4@2x.png in Resources */,
+				C3164CC91874555D00301ACA /* FoundMusic_qw@2x.png in Resources */,
+				C3164CD11874555D00301ACA /* FoundMusic_w@2x.png in Resources */,
+				C3164CB51874555D00301ACA /* FoundMusic_ef@2x.png in Resources */,
+				C3164CD51874555D00301ACA /* MusicFans_@2x.png in Resources */,
 				C3FEB0191871C294008EADAA /* hunyin_46@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1148,6 +1468,8 @@
 				C3FEB0BB1871C801008EADAA /* UIViewController+BarItem.m in Sources */,
 				C3FEB0D61871CAA2008EADAA /* MusicFansViewController.m in Sources */,
 				C3FEB0B21871C801008EADAA /* CommonViewController.m in Sources */,
+				C3FEB0EB1871D2FC008EADAA /* ControlCenter.m in Sources */,
+				C3164CF518746ABF00301ACA /* UINavigationBar+Custom.m in Sources */,
 				C3FEB0B91871C801008EADAA /* UIColor+Utils.m in Sources */,
 				C3FEB0BC1871C801008EADAA /* VersionManager.m in Sources */,
 				C3FEB0B51871C801008EADAA /* NSDate+Utils.m in Sources */,
@@ -1280,6 +1602,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ClairAudient/ClairAudient-Prefix.pch";
 				INFOPLIST_FILE = "ClairAudient/ClairAudient-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1293,6 +1616,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ClairAudient/ClairAudient-Prefix.pch";
 				INFOPLIST_FILE = "ClairAudient/ClairAudient-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1359,6 +1683,7 @@
 				C3FEAF4A1871C156008EADAA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C3FEAF4B1871C156008EADAA /* Build configuration list for PBXNativeTarget "ClairAudientTests" */ = {
 			isa = XCConfigurationList;
@@ -1367,6 +1692,7 @@
 				C3FEAF4D1871C156008EADAA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

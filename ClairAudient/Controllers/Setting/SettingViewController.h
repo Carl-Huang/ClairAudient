@@ -9,5 +9,8 @@
 #import "CommonViewController.h"
 
 @interface SettingViewController : CommonViewController
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+- (IBAction)pushBack:(id)sender;
+- (IBAction)rightItemAction:(id)sender;
 
 @end
