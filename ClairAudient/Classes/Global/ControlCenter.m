@@ -42,6 +42,11 @@
 
 }
 
++ (void)setNavigationTitleWhiteColor
+{
+    [[UINavigationBar appearance] setTitleTextAttributes:@{UITextAttributeTextColor:[UIColor whiteColor]}];
+}
+
 + (void)showSettingVC
 {
     [[self class] showVC:@"SettingViewController"];
@@ -52,6 +57,20 @@
     [[self class] showVC:@"MixingMusicListViewController"];
 }
 
++ (void)showThemeVC
+{
+    [[self class] showVC:@"ThemeViewController"];
+}
+
++ (void)showHelpVC
+{
+    [[self class] showVC:@"HelpViewController"];
+}
+
++ (void)showAboutScoreVC
+{
+    [[self class] showVC:@"AboutScoreViewController"];
+}
 
 + (void)showVC:(NSString *)vcName
 {

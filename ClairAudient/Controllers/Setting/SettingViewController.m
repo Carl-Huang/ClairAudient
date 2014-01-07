@@ -7,10 +7,10 @@
 //
 
 #import "SettingViewController.h"
-#import "UINavigationBar+Custom.h"
-#import <QuartzCore/QuartzCore.h>
+#import "ControlCenter.h"
 @interface SettingViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong) NSArray * dataSource;
+@property (nonatomic,strong) NSDictionary * imageInfos;
 @end
 
 @implementation SettingViewController
@@ -20,9 +20,11 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _dataSource = @[@"乡音模式",@"关于积分",@"个性主题",@"帮助与反馈",@"退出登陆"];
+        _imageInfos = @{@"乡音模式":@"setting_3",@"关于积分":@"setting_5",@"个性主题":@"setting_6",@"帮助与反馈":@"setting_7",@"退出登陆":@"setting_8"};
     }
     return self;
 }
+
 
 - (void)viewDidLoad
 {
@@ -30,6 +32,7 @@
     [self initUI];
     
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -40,9 +43,23 @@
 #pragma mark - Private Methods
 - (void)initUI
 {
-    
+    [self.navigationController setNavigationBarHidden:NO];
+    [self setLeftCustomBarItem:@"setting_" action:nil imageEdgeInsets:UIEdgeInsetsMake(0, -28, 0, 0)];
+    [self setRightCustomBarItem:@"setting_4" action:nil imageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -28)];
     self.view.backgroundColor = [UIColor whiteColor];
+    self.title = @"设置";
+    if([OSHelper iOS7])
+    {
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"ios7_setting_bar"] forBarMetrics:UIBarMetricsDefault];
+    }
+    else
+    {
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"setting_bar"] forBarMetrics:UIBarMetricsDefault];
+    }
     [_tableView setBackgroundColor:[UIColor clearColor]];
+    
+    
+    
 }
 
 #pragma mark - UIButton Actions
@@ -62,6 +79,11 @@
     return 1;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60.0f;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [_dataSource count];
@@ -76,8 +98,57 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
         [cell setBackgroundColor:[UIColor clearColor]];
         cell.textLabel.textColor = [UIColor whiteColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        UILabel * line = [[UILabel alloc] initWithFrame:CGRectMake(0, 59, cell.bounds.size.width, 1)];
+        line.backgroundColor = [UIColor whiteColor];
+        [cell.contentView addSubview:line];
     }
+    cell.imageView.image = [UIImage imageNamed:[_imageInfos objectForKey: [_dataSource objectAtIndex:indexPath.row]]];
     cell.textLabel.text = [_dataSource objectAtIndex:indexPath.row];
+    UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 26, 26)];
+    imageView.image = [UIImage imageNamed:@"setting_9"];
+    if(indexPath.row == 0)
+    {
+        UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button setFrame:CGRectMake(0, 0, 70, 30)];
+        [button setImage:[UIImage imageNamed:@"setting_10"] forState:UIControlStateNormal];
+        cell.accessoryView = button;
+    }
+    else if(indexPath.row == 1)
+    {
+        cell.accessoryView = imageView;
+    }
+    else if(indexPath.row == 2)
+    {
+        cell.accessoryView = imageView;
+    }
+    else if(indexPath.row == 3)
+    {
+        cell.accessoryView = imageView;
+    }
+    else if (indexPath.row == 4)
+    {
+        cell.accessoryView = nil;
+    }
+    
+    
     return cell;
+}
+
+#pragma mark - UITableVIewDelegate Methods
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(indexPath.row == 1)
+    {
+        [ControlCenter showAboutScoreVC];
+    }
+    else if(indexPath.row == 2)
+    {
+        [ControlCenter showThemeVC];
+    }
+    else if(indexPath.row == 3)
+    {
+        [ControlCenter showHelpVC];
+    }
 }
 @end

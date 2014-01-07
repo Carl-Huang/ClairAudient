@@ -11,13 +11,20 @@
 #import "MainViewController.h"
 #import "SettingViewController.h"
 #import "MixingMusicListViewController.h"
+#import "AboutScoreViewController.h"
+#import "ThemeViewController.h"
+#import "HelpViewController.h"
 @interface ControlCenter : NSObject
 
 + (AppDelegate *)appDelegate;
 + (UIWindow *)keyWindow;
 + (UIWindow *)newWindow;
++ (void)setNavigationTitleWhiteColor;
 + (void)makeKeyAndVisible;
 + (void)showSettingVC;
++ (void)showThemeVC;
++ (void)showHelpVC;
++ (void)showAboutScoreVC;
 + (void)showMixingMusicListVC;
 + (void)showVC:(NSString *)vcName;
 + (MainViewController *)mainViewController;

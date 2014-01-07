@@ -17,7 +17,7 @@
   *  @return void
   */
 - (void)setLeftCustomBarItem:(NSString *)imageName action:(SEL)selector;
-
+- (void)setLeftCustomBarItem:(NSString *)imageName action:(SEL)selector imageEdgeInsets:(UIEdgeInsets)sets;
 
 /*
   *  @desc 设置导航栏的右边按钮
@@ -26,7 +26,7 @@
   *  @return void
   */
 - (void)setRightCustomBarItem:(NSString *)imageName action:(SEL)selector;
-
+- (void)setRightCustomBarItem:(NSString *)imageName action:(SEL)selector imageEdgeInsets:(UIEdgeInsets)sets;
 
 /*
  *  @desc 生成导航栏上面的按钮
@@ -45,6 +45,8 @@
  *  @return UIBarButtonItem
  */
 - (UIBarButtonItem *)customBarItem:(NSString *)imageName action:(SEL)selector size:(CGSize)itemSize;
+
+- (UIBarButtonItem *)customBarItem:(NSString *)imageName action:(SEL)selector size:(CGSize)itemSize imageEdgeInsets:(UIEdgeInsets)sets;
 
 /**
  @desc 返回上一个VIewController

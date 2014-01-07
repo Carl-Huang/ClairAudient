@@ -13,6 +13,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [ControlCenter makeKeyAndVisible];
+    [ControlCenter setNavigationTitleWhiteColor];
     return YES;
 }
 

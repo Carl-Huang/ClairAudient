@@ -76,6 +76,14 @@
 		C3164CEF1874555D00301ACA /* MusicFans_xvd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164CAC1874555D00301ACA /* MusicFans_xvd@2x.png */; };
 		C3164CF11874660100301ACA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3164CF01874660100301ACA /* QuartzCore.framework */; };
 		C3164CF518746ABF00301ACA /* UINavigationBar+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = C3164CF418746ABF00301ACA /* UINavigationBar+Custom.m */; };
+		C3274996187A5E8200CF7A4A /* AboutScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3274994187A5E8200CF7A4A /* AboutScoreViewController.m */; };
+		C3274997187A5E8200CF7A4A /* AboutScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3274995187A5E8200CF7A4A /* AboutScoreViewController.xib */; };
+		C327499B187A5EBD00CF7A4A /* ThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3274999187A5EBD00CF7A4A /* ThemeViewController.m */; };
+		C327499C187A5EBD00CF7A4A /* ThemeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C327499A187A5EBD00CF7A4A /* ThemeViewController.xib */; };
+		C32749A0187A5ED400CF7A4A /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C327499E187A5ED400CF7A4A /* HelpViewController.m */; };
+		C32749A1187A5ED400CF7A4A /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C327499F187A5ED400CF7A4A /* HelpViewController.xib */; };
+		C32749A4187A5FB500CF7A4A /* ios7_setting_bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C32749A2187A5FB500CF7A4A /* ios7_setting_bar@2x.png */; };
+		C32749A5187A5FB500CF7A4A /* setting_bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C32749A3187A5FB500CF7A4A /* setting_bar@2x.png */; };
 		C3B395C61875519800592C92 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B395C51875519800592C92 /* back@2x.png */; };
 		C3FEAF201871C156008EADAA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FEAF1F1871C156008EADAA /* Foundation.framework */; };
 		C3FEAF221871C156008EADAA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FEAF211871C156008EADAA /* CoreGraphics.framework */; };
@@ -354,6 +362,17 @@
 		C3164CF01874660100301ACA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C3164CF318746ABF00301ACA /* UINavigationBar+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Custom.h"; sourceTree = "<group>"; };
 		C3164CF418746ABF00301ACA /* UINavigationBar+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Custom.m"; sourceTree = "<group>"; };
+		C3274993187A5E8200CF7A4A /* AboutScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutScoreViewController.h; sourceTree = "<group>"; };
+		C3274994187A5E8200CF7A4A /* AboutScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutScoreViewController.m; sourceTree = "<group>"; };
+		C3274995187A5E8200CF7A4A /* AboutScoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutScoreViewController.xib; sourceTree = "<group>"; };
+		C3274998187A5EBD00CF7A4A /* ThemeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeViewController.h; sourceTree = "<group>"; };
+		C3274999187A5EBD00CF7A4A /* ThemeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeViewController.m; sourceTree = "<group>"; };
+		C327499A187A5EBD00CF7A4A /* ThemeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThemeViewController.xib; sourceTree = "<group>"; };
+		C327499D187A5ED400CF7A4A /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
+		C327499E187A5ED400CF7A4A /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
+		C327499F187A5ED400CF7A4A /* HelpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpViewController.xib; sourceTree = "<group>"; };
+		C32749A2187A5FB500CF7A4A /* ios7_setting_bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7_setting_bar@2x.png"; sourceTree = "<group>"; };
+		C32749A3187A5FB500CF7A4A /* setting_bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting_bar@2x.png"; sourceTree = "<group>"; };
 		C3B395C51875519800592C92 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		C3FEAF1C1871C156008EADAA /* ClairAudient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClairAudient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3FEAF1F1871C156008EADAA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -923,6 +942,8 @@
 		C3FEAFB81871C294008EADAA /* setting */ = {
 			isa = PBXGroup;
 			children = (
+				C32749A2187A5FB500CF7A4A /* ios7_setting_bar@2x.png */,
+				C32749A3187A5FB500CF7A4A /* setting_bar@2x.png */,
 				C3FEAFB91871C294008EADAA /* setting_10@2x.png */,
 				C3FEAFBA1871C294008EADAA /* setting_11@2x.png */,
 				C3FEAFBB1871C294008EADAA /* setting_12@2x.png */,
@@ -1110,6 +1131,15 @@
 				C3FEB0CE1871CA5E008EADAA /* SettingViewController.h */,
 				C3FEB0CF1871CA5E008EADAA /* SettingViewController.m */,
 				C3FEB0D01871CA5E008EADAA /* SettingViewController.xib */,
+				C3274993187A5E8200CF7A4A /* AboutScoreViewController.h */,
+				C3274994187A5E8200CF7A4A /* AboutScoreViewController.m */,
+				C3274995187A5E8200CF7A4A /* AboutScoreViewController.xib */,
+				C3274998187A5EBD00CF7A4A /* ThemeViewController.h */,
+				C3274999187A5EBD00CF7A4A /* ThemeViewController.m */,
+				C327499A187A5EBD00CF7A4A /* ThemeViewController.xib */,
+				C327499D187A5ED400CF7A4A /* HelpViewController.h */,
+				C327499E187A5ED400CF7A4A /* HelpViewController.m */,
+				C327499F187A5ED400CF7A4A /* HelpViewController.xib */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -1180,6 +1210,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = helloworld;
 				TargetAttributes = {
+					C3FEAF1B1871C156008EADAA = {
+						DevelopmentTeam = Y8CJPVFVEM;
+					};
 					C3FEAF361871C156008EADAA = {
 						TestTargetID = C3FEAF1B1871C156008EADAA;
 					};
@@ -1259,6 +1292,7 @@
 				C3FEB0171871C294008EADAA /* hunyin_44@2x.png in Resources */,
 				C3FEB03E1871C294008EADAA /* record_26@2x.png in Resources */,
 				C3164CAF1874555D00301ACA /* FoundMusic_ab@2x.png in Resources */,
+				C3274997187A5E8200CF7A4A /* AboutScoreViewController.xib in Resources */,
 				C3FEB0041871C294008EADAA /* hunyin_26@2x.png in Resources */,
 				C3FEB04B1871C294008EADAA /* record_38@2x.png in Resources */,
 				C3FEB0411871C294008EADAA /* record_29@2x.png in Resources */,
@@ -1280,6 +1314,7 @@
 				C3FEAF2A1871C156008EADAA /* InfoPlist.strings in Resources */,
 				C3FEB0201871C294008EADAA /* hunyin_5@2x.png in Resources */,
 				C3164CBA1874555D00301ACA /* FoundMusic_hi@2x.png in Resources */,
+				C32749A4187A5FB500CF7A4A /* ios7_setting_bar@2x.png in Resources */,
 				C3164CB11874555D00301ACA /* FoundMusic_c@2x.png in Resources */,
 				C3FEB0261871C294008EADAA /* first_3@2x.png in Resources */,
 				C3164CBD1874555D00301ACA /* FoundMusic_jk@2x.png in Resources */,
@@ -1291,6 +1326,7 @@
 				C3B395C61875519800592C92 /* back@2x.png in Resources */,
 				C3FEB03B1871C294008EADAA /* record_23@2x.png in Resources */,
 				C3164CC51874555D00301ACA /* FoundMusic_o@2x.png in Resources */,
+				C327499C187A5EBD00CF7A4A /* ThemeViewController.xib in Resources */,
 				C3164CCA1874555D00301ACA /* FoundMusic_r@2x.png in Resources */,
 				C3FEB05D1871C294008EADAA /* setting_17@2x.png in Resources */,
 				C3FEB02A1871C294008EADAA /* first_7@2x.png in Resources */,
@@ -1314,6 +1350,7 @@
 				C3FEB0651871C294008EADAA /* setting_4@2x.png in Resources */,
 				C3FEB07F1871C294008EADAA /* user_28@2x.png in Resources */,
 				C3164CE71874555D00301ACA /* MusicFans_sfjh@2x.png in Resources */,
+				C32749A5187A5FB500CF7A4A /* setting_bar@2x.png in Resources */,
 				C3FEAFF41871C294008EADAA /* hunyin_11@2x.png in Resources */,
 				C3164CD21874555D00301ACA /* FoundMusic_x@2x.png in Resources */,
 				C3FEB0381871C294008EADAA /* record_20@2x.png in Resources */,
@@ -1397,6 +1434,7 @@
 				C3FEB01E1871C294008EADAA /* hunyin_50@2x.png in Resources */,
 				C3164CC81874555D00301ACA /* FoundMusic_q@2x.png in Resources */,
 				C3FEB06A1871C294008EADAA /* setting_9@2x.png in Resources */,
+				C32749A1187A5ED400CF7A4A /* HelpViewController.xib in Resources */,
 				C3FEB0151871C294008EADAA /* hunyin_42@2x.png in Resources */,
 				C3FEB0571871C294008EADAA /* setting_11@2x.png in Resources */,
 				C3FEB02B1871C294008EADAA /* first_8@2x.png in Resources */,
@@ -1461,10 +1499,12 @@
 			files = (
 				C3FEAF301871C156008EADAA /* AppDelegate.m in Sources */,
 				C3FEB0BA1871C801008EADAA /* UIImage+Util.m in Sources */,
+				C327499B187A5EBD00CF7A4A /* ThemeViewController.m in Sources */,
 				C3FEAF2C1871C156008EADAA /* main.m in Sources */,
 				C3FEB0B81871C801008EADAA /* OSHelper.m in Sources */,
 				C3FEB0B41871C801008EADAA /* IO.m in Sources */,
 				C3FEB0E51871CB12008EADAA /* FIndSoundViewController.m in Sources */,
+				C3274996187A5E8200CF7A4A /* AboutScoreViewController.m in Sources */,
 				C3FEB0BB1871C801008EADAA /* UIViewController+BarItem.m in Sources */,
 				C3FEB0D61871CAA2008EADAA /* MusicFansViewController.m in Sources */,
 				C3FEB0B21871C801008EADAA /* CommonViewController.m in Sources */,
@@ -1472,6 +1512,7 @@
 				C3164CF518746ABF00301ACA /* UINavigationBar+Custom.m in Sources */,
 				C3FEB0B91871C801008EADAA /* UIColor+Utils.m in Sources */,
 				C3FEB0BC1871C801008EADAA /* VersionManager.m in Sources */,
+				C32749A0187A5ED400CF7A4A /* HelpViewController.m in Sources */,
 				C3FEB0B51871C801008EADAA /* NSDate+Utils.m in Sources */,
 				C3FEB0E01871CAF4008EADAA /* MixingMusicListViewController.m in Sources */,
 				C3FEB0B31871C801008EADAA /* HWConnect.m in Sources */,
@@ -1599,6 +1640,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ClairAudient/ClairAudient-Prefix.pch";
 				INFOPLIST_FILE = "ClairAudient/ClairAudient-Info.plist";
@@ -1613,6 +1655,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ClairAudient/ClairAudient-Prefix.pch";
 				INFOPLIST_FILE = "ClairAudient/ClairAudient-Info.plist";

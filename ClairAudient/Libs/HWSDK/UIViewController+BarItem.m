@@ -15,9 +15,20 @@
     self.navigationItem.leftBarButtonItem = [self customBarItem:imageName action:selector];
 }
 
+- (void)setLeftCustomBarItem:(NSString *)imageName action:(SEL)selector imageEdgeInsets:(UIEdgeInsets)sets
+{
+    self.navigationItem.leftBarButtonItem = [self customBarItem:imageName action:selector size:CGSizeMake(60, 32) imageEdgeInsets:sets];
+}
+
+
 - (void)setRightCustomBarItem:(NSString *)imageName action:(SEL)selector
 {
     self.navigationItem.rightBarButtonItem = [self customBarItem:imageName action:selector];
+}
+
+- (void)setRightCustomBarItem:(NSString *)imageName action:(SEL)selector imageEdgeInsets:(UIEdgeInsets)sets
+{
+    self.navigationItem.rightBarButtonItem = [self customBarItem:imageName action:selector size:CGSizeMake(60, 32) imageEdgeInsets:sets];
 }
 
 - (UIBarButtonItem *)customBarItem:(NSString *)imageName action:(SEL)selector
@@ -31,6 +42,28 @@
     UIButton * barButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [barButton setFrame:CGRectMake(0, 0, itemSize.width, itemSize.height)];
     [barButton setImage:image forState:UIControlStateNormal];
+    //[barButton setImageEdgeInsets:UIEdgeInsetsMake(0, -25, 0, 0)];
+    if(selector)
+    {
+        [barButton addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
+    }
+    else
+    {
+        [barButton addTarget:self action:@selector(pushBack) forControlEvents:UIControlEventTouchUpInside];
+    }
+    UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithCustomView:barButton];
+    barButton = nil;
+    return item;
+}
+
+- (UIBarButtonItem *)customBarItem:(NSString *)imageName action:(SEL)selector size:(CGSize)itemSize imageEdgeInsets:(UIEdgeInsets)sets
+{
+    UIImage * image = [UIImage imageNamed:imageName];
+    UIButton * barButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [barButton setFrame:CGRectMake(0, 0, itemSize.width, itemSize.height)];
+    [barButton setImage:image forState:UIControlStateNormal];
+    //[barButton setImageEdgeInsets:UIEdgeInsetsMake(0, -25, 0, 0)];
+    [barButton setImageEdgeInsets:sets];
     if(selector)
     {
         [barButton addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
