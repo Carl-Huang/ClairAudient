@@ -60,7 +60,7 @@
 
 - (IBAction)showMusicFansVC:(id)sender
 {
-    
+    [ControlCenter showMusicFansVC];
 }
 
 - (IBAction)showIntegralVC:(id)sender

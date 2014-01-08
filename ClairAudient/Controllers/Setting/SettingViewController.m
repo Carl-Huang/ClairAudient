@@ -8,6 +8,7 @@
 
 #import "SettingViewController.h"
 #import "ControlCenter.h"
+#import "UIViewController+CustomBarItemPosition.h"
 @interface SettingViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong) NSArray * dataSource;
 @property (nonatomic,strong) NSDictionary * imageInfos;
@@ -47,18 +48,8 @@
 
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"设置";
-    if([OSHelper iOS7])
-    {
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"ios7_setting_bar"] forBarMetrics:UIBarMetricsDefault];
-        [self setLeftCustomBarItem:@"setting_" action:nil imageEdgeInsets:UIEdgeInsetsMake(0, -28, 0, 0)];
-        [self setRightCustomBarItem:@"setting_4" action:nil imageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -28)];
-    }
-    else
-    {
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"setting_bar"] forBarMetrics:UIBarMetricsDefault];
-        [self setLeftCustomBarItem:@"setting_" action:nil imageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
-        [self setRightCustomBarItem:@"setting_4" action:nil imageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -10)];
-    }
+    [self setLeftAndRightBarItem];
+
     [_tableView setBackgroundColor:[UIColor clearColor]];
     
     
@@ -102,9 +93,9 @@
         [cell setBackgroundColor:[UIColor clearColor]];
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        UILabel * line = [[UILabel alloc] initWithFrame:CGRectMake(0, 59, cell.bounds.size.width, 1)];
-        line.backgroundColor = [UIColor whiteColor];
-        [cell.contentView addSubview:line];
+//        UILabel * line = [[UILabel alloc] initWithFrame:CGRectMake(0, 59, cell.bounds.size.width, 1)];
+//        line.backgroundColor = [UIColor whiteColor];
+//        [cell.contentView addSubview:line];
     }
     cell.imageView.image = [UIImage imageNamed:[_imageInfos objectForKey: [_dataSource objectAtIndex:indexPath.row]]];
     cell.textLabel.text = [_dataSource objectAtIndex:indexPath.row];

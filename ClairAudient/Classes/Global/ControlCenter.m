@@ -72,6 +72,36 @@
     [[self class] showVC:@"AboutScoreViewController"];
 }
 
++ (void)showMusicFansVC
+{
+    [[self class] showVC:@"MusicFansViewController"];
+}
+
++ (void)showIntegralChampionVC
+{
+    [[self class] showVC:@"IntegralChampionViewController"];
+}
+
++ (void)showCatalogRankVC
+{
+    [[self class] showVC:@"CatalogRankViewController"];
+}
+
++ (void)showChampionHomePageVC
+{
+    [[self class] showVC:@"ChampionHomePageViewController"];
+}
+
++ (void)showRecommendSoundVC
+{
+    [[self class] showVC:@"RecommendSoundViewController"];
+}
+
++ (void)showDownloadRankVC
+{
+    [[self class] showVC:@"DownloadRankViewController"];
+}
+
 + (void)showVC:(NSString *)vcName
 {
     AppDelegate * appDelegate = [[self class] appDelegate];

@@ -7,13 +7,13 @@
 //
 
 #import "RecommendSoundViewController.h"
-
+#import "UIViewController+CustomBarItemPosition.h"
 @interface RecommendSoundViewController ()
 
 @end
 
 @implementation RecommendSoundViewController
-
+#pragma mark - Life Cycle
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -26,7 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self initUI];
 }
 
 - (void)didReceiveMemoryWarning
@@ -34,5 +34,18 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)dealloc
+{
+    [self setView:nil];
+}
+
+#pragma mark - Private Methods
+- (void)initUI
+{
+    self.title = @"推荐声音";
+    [self setLeftAndRightBarItem];
+}
+
 
 @end

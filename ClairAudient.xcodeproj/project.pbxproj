@@ -71,7 +71,7 @@
 		C3164CEA1874555D00301ACA /* MusicFans_ten@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164CA71874555D00301ACA /* MusicFans_ten@2x.png */; };
 		C3164CEB1874555D00301ACA /* MusicFans_three@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164CA81874555D00301ACA /* MusicFans_three@2x.png */; };
 		C3164CEC1874555D00301ACA /* MusicFans_twei@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164CA91874555D00301ACA /* MusicFans_twei@2x.png */; };
-		C3164CED1874555D00301ACA /* MusicFans_vbn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164CAA1874555D00301ACA /* MusicFans_vbn@2x.png */; };
+		C3164CED1874555D00301ACA /* MusicFans_two@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164CAA1874555D00301ACA /* MusicFans_two@2x.png */; };
 		C3164CEE1874555D00301ACA /* MusicFans_xc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164CAB1874555D00301ACA /* MusicFans_xc@2x.png */; };
 		C3164CEF1874555D00301ACA /* MusicFans_xvd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164CAC1874555D00301ACA /* MusicFans_xvd@2x.png */; };
 		C3164CF11874660100301ACA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3164CF01874660100301ACA /* QuartzCore.framework */; };
@@ -95,6 +95,14 @@
 		C32749A4187A5FB500CF7A4A /* ios7_setting_bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C32749A2187A5FB500CF7A4A /* ios7_setting_bar@2x.png */; };
 		C32749A5187A5FB500CF7A4A /* setting_bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C32749A3187A5FB500CF7A4A /* setting_bar@2x.png */; };
 		C3B395C61875519800592C92 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B395C51875519800592C92 /* back@2x.png */; };
+		C3D4FCB8187CFD64001A7223 /* UIViewController+CustomBarItemPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D4FCB7187CFD64001A7223 /* UIViewController+CustomBarItemPosition.m */; };
+		C3D4FCBA187D0C3A001A7223 /* CatalogRankSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3D4FCB9187D0C3A001A7223 /* CatalogRankSectionHeader.xib */; };
+		C3D4FCBD187D0DD1001A7223 /* CatalogRankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D4FCBC187D0DD1001A7223 /* CatalogRankCell.m */; };
+		C3D4FCBF187D0DF2001A7223 /* CatalogRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3D4FCBE187D0DF2001A7223 /* CatalogRankCell.xib */; };
+		C3D4FCC1187D6181001A7223 /* IntegralChampionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3D4FCC0187D6181001A7223 /* IntegralChampionCell.xib */; };
+		C3D4FCC4187D6194001A7223 /* IntegralChampionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D4FCC3187D6194001A7223 /* IntegralChampionCell.m */; };
+		C3D4FCC7187D6786001A7223 /* DownloadRankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D4FCC6187D6786001A7223 /* DownloadRankCell.m */; };
+		C3D4FCC9187D679E001A7223 /* DownloadRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3D4FCC8187D679E001A7223 /* DownloadRankCell.xib */; };
 		C3FEAF201871C156008EADAA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FEAF1F1871C156008EADAA /* Foundation.framework */; };
 		C3FEAF221871C156008EADAA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FEAF211871C156008EADAA /* CoreGraphics.framework */; };
 		C3FEAF241871C156008EADAA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FEAF231871C156008EADAA /* UIKit.framework */; };
@@ -366,7 +374,7 @@
 		C3164CA71874555D00301ACA /* MusicFans_ten@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_ten@2x.png"; sourceTree = "<group>"; };
 		C3164CA81874555D00301ACA /* MusicFans_three@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_three@2x.png"; sourceTree = "<group>"; };
 		C3164CA91874555D00301ACA /* MusicFans_twei@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_twei@2x.png"; sourceTree = "<group>"; };
-		C3164CAA1874555D00301ACA /* MusicFans_vbn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_vbn@2x.png"; sourceTree = "<group>"; };
+		C3164CAA1874555D00301ACA /* MusicFans_two@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_two@2x.png"; sourceTree = "<group>"; };
 		C3164CAB1874555D00301ACA /* MusicFans_xc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_xc@2x.png"; sourceTree = "<group>"; };
 		C3164CAC1874555D00301ACA /* MusicFans_xvd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_xvd@2x.png"; sourceTree = "<group>"; };
 		C3164CF01874660100301ACA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -399,6 +407,18 @@
 		C32749A2187A5FB500CF7A4A /* ios7_setting_bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7_setting_bar@2x.png"; sourceTree = "<group>"; };
 		C32749A3187A5FB500CF7A4A /* setting_bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting_bar@2x.png"; sourceTree = "<group>"; };
 		C3B395C51875519800592C92 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
+		C3D4FCB6187CFD64001A7223 /* UIViewController+CustomBarItemPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CustomBarItemPosition.h"; sourceTree = "<group>"; };
+		C3D4FCB7187CFD64001A7223 /* UIViewController+CustomBarItemPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CustomBarItemPosition.m"; sourceTree = "<group>"; };
+		C3D4FCB9187D0C3A001A7223 /* CatalogRankSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CatalogRankSectionHeader.xib; sourceTree = "<group>"; };
+		C3D4FCBB187D0DD1001A7223 /* CatalogRankCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatalogRankCell.h; sourceTree = "<group>"; };
+		C3D4FCBC187D0DD1001A7223 /* CatalogRankCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatalogRankCell.m; sourceTree = "<group>"; };
+		C3D4FCBE187D0DF2001A7223 /* CatalogRankCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CatalogRankCell.xib; sourceTree = "<group>"; };
+		C3D4FCC0187D6181001A7223 /* IntegralChampionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntegralChampionCell.xib; sourceTree = "<group>"; };
+		C3D4FCC2187D6194001A7223 /* IntegralChampionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntegralChampionCell.h; sourceTree = "<group>"; };
+		C3D4FCC3187D6194001A7223 /* IntegralChampionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntegralChampionCell.m; sourceTree = "<group>"; };
+		C3D4FCC5187D6786001A7223 /* DownloadRankCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadRankCell.h; sourceTree = "<group>"; };
+		C3D4FCC6187D6786001A7223 /* DownloadRankCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadRankCell.m; sourceTree = "<group>"; };
+		C3D4FCC8187D679E001A7223 /* DownloadRankCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadRankCell.xib; sourceTree = "<group>"; };
 		C3FEAF1C1871C156008EADAA /* ClairAudient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClairAudient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3FEAF1F1871C156008EADAA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C3FEAF211871C156008EADAA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -721,7 +741,7 @@
 				C3164CA71874555D00301ACA /* MusicFans_ten@2x.png */,
 				C3164CA81874555D00301ACA /* MusicFans_three@2x.png */,
 				C3164CA91874555D00301ACA /* MusicFans_twei@2x.png */,
-				C3164CAA1874555D00301ACA /* MusicFans_vbn@2x.png */,
+				C3164CAA1874555D00301ACA /* MusicFans_two@2x.png */,
 				C3164CAB1874555D00301ACA /* MusicFans_xc@2x.png */,
 				C3164CAC1874555D00301ACA /* MusicFans_xvd@2x.png */,
 			);
@@ -733,6 +753,16 @@
 			children = (
 				C3164CF318746ABF00301ACA /* UINavigationBar+Custom.h */,
 				C3164CF418746ABF00301ACA /* UINavigationBar+Custom.m */,
+				C3D4FCB9187D0C3A001A7223 /* CatalogRankSectionHeader.xib */,
+				C3D4FCBB187D0DD1001A7223 /* CatalogRankCell.h */,
+				C3D4FCBC187D0DD1001A7223 /* CatalogRankCell.m */,
+				C3D4FCBE187D0DF2001A7223 /* CatalogRankCell.xib */,
+				C3D4FCC0187D6181001A7223 /* IntegralChampionCell.xib */,
+				C3D4FCC2187D6194001A7223 /* IntegralChampionCell.h */,
+				C3D4FCC3187D6194001A7223 /* IntegralChampionCell.m */,
+				C3D4FCC5187D6786001A7223 /* DownloadRankCell.h */,
+				C3D4FCC6187D6786001A7223 /* DownloadRankCell.m */,
+				C3D4FCC8187D679E001A7223 /* DownloadRankCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1199,6 +1229,8 @@
 			children = (
 				C3FEB0E91871D2FC008EADAA /* ControlCenter.h */,
 				C3FEB0EA1871D2FC008EADAA /* ControlCenter.m */,
+				C3D4FCB6187CFD64001A7223 /* UIViewController+CustomBarItemPosition.h */,
+				C3D4FCB7187CFD64001A7223 /* UIViewController+CustomBarItemPosition.m */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -1311,7 +1343,7 @@
 				C3FEB0531871C294008EADAA /* record_8@2x.png in Resources */,
 				C3FEB0481871C294008EADAA /* record_35@2x.png in Resources */,
 				C3FEB04A1871C294008EADAA /* record_37@2x.png in Resources */,
-				C3164CED1874555D00301ACA /* MusicFans_vbn@2x.png in Resources */,
+				C3164CED1874555D00301ACA /* MusicFans_two@2x.png in Resources */,
 				C3FEB0101871C294008EADAA /* hunyin_38@2x.png in Resources */,
 				C3FEB0271871C294008EADAA /* first_4@2x.png in Resources */,
 				C3FEB0351871C294008EADAA /* record_17@2x.png in Resources */,
@@ -1344,6 +1376,7 @@
 				C3FEB0231871C294008EADAA /* hunyin_8@2x.png in Resources */,
 				C3164CB61874555D00301ACA /* FoundMusic_f@2x.png in Resources */,
 				C3FEB0691871C294008EADAA /* setting_8@2x.png in Resources */,
+				C3D4FCBF187D0DF2001A7223 /* CatalogRankCell.xib in Resources */,
 				C3FEB0331871C294008EADAA /* record_15@2x.png in Resources */,
 				C3FEB0841871C294008EADAA /* user_3@2x.png in Resources */,
 				C3FEB0091871C294008EADAA /* hunyin_30@2x.png in Resources */,
@@ -1489,10 +1522,12 @@
 				C3164CE31874555D00301ACA /* MusicFans_one@2x.png in Resources */,
 				C3FEAFFE1871C294008EADAA /* hunyin_20@2x.png in Resources */,
 				C3164CBC1874555D00301ACA /* FoundMusic_j@2x.png in Resources */,
+				C3D4FCC9187D679E001A7223 /* DownloadRankCell.xib in Resources */,
 				C3FEB0811871C294008EADAA /* user_2@2x.png in Resources */,
 				C3FEAFF91871C294008EADAA /* hunyin_16@2x.png in Resources */,
 				C3FEB06C1871C294008EADAA /* setting_设置 主题设置.png in Resources */,
 				C3FEB0021871C294008EADAA /* hunyin_24@2x.png in Resources */,
+				C3D4FCBA187D0C3A001A7223 /* CatalogRankSectionHeader.xib in Resources */,
 				C3FEB0681871C294008EADAA /* setting_7@2x.png in Resources */,
 				C3FEB0001871C294008EADAA /* hunyin_22@2x.png in Resources */,
 				C3FEB0D71871CAA2008EADAA /* MusicFansViewController.xib in Resources */,
@@ -1501,6 +1536,7 @@
 				C3FEB0741871C294008EADAA /* user_17@2x.png in Resources */,
 				C3164CBF1874555D00301ACA /* FoundMusic_l@2x.png in Resources */,
 				C3164CEC1874555D00301ACA /* MusicFans_twei@2x.png in Resources */,
+				C3D4FCC1187D6181001A7223 /* IntegralChampionCell.xib in Resources */,
 				C3FEB0211871C294008EADAA /* hunyin_6@2x.png in Resources */,
 				C3FEB0141871C294008EADAA /* hunyin_41@2x.png in Resources */,
 				C3FEB06E1871C294008EADAA /* user_11@2x.png in Resources */,
@@ -1553,11 +1589,14 @@
 				C326CDAC187C5E44006DD97C /* CatalogRankViewController.m in Sources */,
 				C3274996187A5E8200CF7A4A /* AboutScoreViewController.m in Sources */,
 				C3FEB0BB1871C801008EADAA /* UIViewController+BarItem.m in Sources */,
+				C3D4FCC4187D6194001A7223 /* IntegralChampionCell.m in Sources */,
 				C3FEB0D61871CAA2008EADAA /* MusicFansViewController.m in Sources */,
 				C326CDBB187C5EDB006DD97C /* DownloadRankViewController.m in Sources */,
 				C3FEB0B21871C801008EADAA /* CommonViewController.m in Sources */,
+				C3D4FCB8187CFD64001A7223 /* UIViewController+CustomBarItemPosition.m in Sources */,
 				C3FEB0EB1871D2FC008EADAA /* ControlCenter.m in Sources */,
 				C3164CF518746ABF00301ACA /* UINavigationBar+Custom.m in Sources */,
+				C3D4FCBD187D0DD1001A7223 /* CatalogRankCell.m in Sources */,
 				C3FEB0B91871C801008EADAA /* UIColor+Utils.m in Sources */,
 				C3FEB0BC1871C801008EADAA /* VersionManager.m in Sources */,
 				C32749A0187A5ED400CF7A4A /* HelpViewController.m in Sources */,
@@ -1572,6 +1611,7 @@
 				C3FEB0DB1871CAC5008EADAA /* RecordViewController.m in Sources */,
 				C3FEB0CC1871CA45008EADAA /* LoginViewController.m in Sources */,
 				C3FEB0D11871CA5E008EADAA /* SettingViewController.m in Sources */,
+				C3D4FCC7187D6786001A7223 /* DownloadRankCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

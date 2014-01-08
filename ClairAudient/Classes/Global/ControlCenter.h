@@ -14,6 +14,12 @@
 #import "AboutScoreViewController.h"
 #import "ThemeViewController.h"
 #import "HelpViewController.h"
+#import "MusicFansViewController.h"
+#import "IntegralChampionViewController.h"
+#import "CatalogRankViewController.h"
+#import "ChampionHomePageViewController.h"
+#import "RecommendSoundViewController.h"
+#import "DownloadRankViewController.h"
 @interface ControlCenter : NSObject
 
 + (AppDelegate *)appDelegate;
@@ -26,6 +32,12 @@
 + (void)showHelpVC;
 + (void)showAboutScoreVC;
 + (void)showMixingMusicListVC;
++ (void)showMusicFansVC;
++ (void)showIntegralChampionVC;
++ (void)showCatalogRankVC;
++ (void)showRecommendSoundVC;
++ (void)showChampionHomePageVC;
++ (void)showDownloadRankVC;
 + (void)showVC:(NSString *)vcName;
 + (MainViewController *)mainViewController;
 + (UIViewController *)viewControllerWithName:(NSString *)vcName;

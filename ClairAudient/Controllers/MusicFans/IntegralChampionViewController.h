@@ -8,6 +8,7 @@
 
 #import "CommonViewController.h"
 
-@interface IntegralChampionViewController : CommonViewController
+@interface IntegralChampionViewController : CommonViewController<UITableViewDelegate,UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

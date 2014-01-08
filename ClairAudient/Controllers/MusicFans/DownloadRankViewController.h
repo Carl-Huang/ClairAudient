@@ -9,5 +9,6 @@
 #import "CommonViewController.h"
 
 @interface DownloadRankViewController : CommonViewController
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

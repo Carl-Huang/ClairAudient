@@ -8,6 +8,7 @@
 
 #import "CommonViewController.h"
 
-@interface CatalogRankViewController : CommonViewController
+@interface CatalogRankViewController : CommonViewController<UITableViewDataSource,UITableViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end

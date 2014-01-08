@@ -10,4 +10,8 @@
 
 @interface MusicFansViewController : CommonViewController
 
+- (IBAction)showIntegralChampionVC:(id)sender;
+- (IBAction)showCatalogRankVC:(id)sender;
+- (IBAction)showDownloadRankVC:(id)sender;
+- (IBAction)showRecommendSoundVC:(id)sender;
 @end
