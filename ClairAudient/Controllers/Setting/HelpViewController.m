@@ -39,8 +39,16 @@
 - (void)initUI
 {
     self.title = @"帮助与反馈";
-    [self setLeftCustomBarItem:@"setting_" action:nil imageEdgeInsets:UIEdgeInsetsMake(0, -28, 0, 0)];
-    [self setRightCustomBarItem:@"setting_4" action:nil imageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -28)];
+    if([OSHelper iOS7])
+    {
+        [self setLeftCustomBarItem:@"setting_" action:nil imageEdgeInsets:UIEdgeInsetsMake(0, -28, 0, 0)];
+        [self setRightCustomBarItem:@"setting_4" action:nil imageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -28)];
+    }
+    else
+    {
+        [self setLeftCustomBarItem:@"setting_" action:nil imageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
+        [self setRightCustomBarItem:@"setting_4" action:nil imageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -10)];
+    }
 }
 
 @end

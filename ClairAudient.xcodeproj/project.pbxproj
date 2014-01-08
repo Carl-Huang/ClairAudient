@@ -76,6 +76,16 @@
 		C3164CEF1874555D00301ACA /* MusicFans_xvd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164CAC1874555D00301ACA /* MusicFans_xvd@2x.png */; };
 		C3164CF11874660100301ACA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3164CF01874660100301ACA /* QuartzCore.framework */; };
 		C3164CF518746ABF00301ACA /* UINavigationBar+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = C3164CF418746ABF00301ACA /* UINavigationBar+Custom.m */; };
+		C326CDA7187C5E00006DD97C /* IntegralChampionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C326CDA5187C5E00006DD97C /* IntegralChampionViewController.m */; };
+		C326CDA8187C5E00006DD97C /* IntegralChampionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C326CDA6187C5E00006DD97C /* IntegralChampionViewController.xib */; };
+		C326CDAC187C5E44006DD97C /* CatalogRankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C326CDAA187C5E44006DD97C /* CatalogRankViewController.m */; };
+		C326CDAD187C5E44006DD97C /* CatalogRankViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C326CDAB187C5E44006DD97C /* CatalogRankViewController.xib */; };
+		C326CDB1187C5E7B006DD97C /* ChampionHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C326CDAF187C5E7B006DD97C /* ChampionHomePageViewController.m */; };
+		C326CDB2187C5E7B006DD97C /* ChampionHomePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C326CDB0187C5E7B006DD97C /* ChampionHomePageViewController.xib */; };
+		C326CDB6187C5EBD006DD97C /* RecommendSoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C326CDB4187C5EBD006DD97C /* RecommendSoundViewController.m */; };
+		C326CDB7187C5EBD006DD97C /* RecommendSoundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C326CDB5187C5EBD006DD97C /* RecommendSoundViewController.xib */; };
+		C326CDBB187C5EDB006DD97C /* DownloadRankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C326CDB9187C5EDB006DD97C /* DownloadRankViewController.m */; };
+		C326CDBC187C5EDB006DD97C /* DownloadRankViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C326CDBA187C5EDB006DD97C /* DownloadRankViewController.xib */; };
 		C3274996187A5E8200CF7A4A /* AboutScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3274994187A5E8200CF7A4A /* AboutScoreViewController.m */; };
 		C3274997187A5E8200CF7A4A /* AboutScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3274995187A5E8200CF7A4A /* AboutScoreViewController.xib */; };
 		C327499B187A5EBD00CF7A4A /* ThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3274999187A5EBD00CF7A4A /* ThemeViewController.m */; };
@@ -362,6 +372,21 @@
 		C3164CF01874660100301ACA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C3164CF318746ABF00301ACA /* UINavigationBar+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Custom.h"; sourceTree = "<group>"; };
 		C3164CF418746ABF00301ACA /* UINavigationBar+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Custom.m"; sourceTree = "<group>"; };
+		C326CDA4187C5E00006DD97C /* IntegralChampionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntegralChampionViewController.h; sourceTree = "<group>"; };
+		C326CDA5187C5E00006DD97C /* IntegralChampionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntegralChampionViewController.m; sourceTree = "<group>"; };
+		C326CDA6187C5E00006DD97C /* IntegralChampionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntegralChampionViewController.xib; sourceTree = "<group>"; };
+		C326CDA9187C5E44006DD97C /* CatalogRankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatalogRankViewController.h; sourceTree = "<group>"; };
+		C326CDAA187C5E44006DD97C /* CatalogRankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatalogRankViewController.m; sourceTree = "<group>"; };
+		C326CDAB187C5E44006DD97C /* CatalogRankViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CatalogRankViewController.xib; sourceTree = "<group>"; };
+		C326CDAE187C5E7B006DD97C /* ChampionHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChampionHomePageViewController.h; sourceTree = "<group>"; };
+		C326CDAF187C5E7B006DD97C /* ChampionHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChampionHomePageViewController.m; sourceTree = "<group>"; };
+		C326CDB0187C5E7B006DD97C /* ChampionHomePageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChampionHomePageViewController.xib; sourceTree = "<group>"; };
+		C326CDB3187C5EBD006DD97C /* RecommendSoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendSoundViewController.h; sourceTree = "<group>"; };
+		C326CDB4187C5EBD006DD97C /* RecommendSoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendSoundViewController.m; sourceTree = "<group>"; };
+		C326CDB5187C5EBD006DD97C /* RecommendSoundViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendSoundViewController.xib; sourceTree = "<group>"; };
+		C326CDB8187C5EDB006DD97C /* DownloadRankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadRankViewController.h; sourceTree = "<group>"; };
+		C326CDB9187C5EDB006DD97C /* DownloadRankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadRankViewController.m; sourceTree = "<group>"; };
+		C326CDBA187C5EDB006DD97C /* DownloadRankViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadRankViewController.xib; sourceTree = "<group>"; };
 		C3274993187A5E8200CF7A4A /* AboutScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutScoreViewController.h; sourceTree = "<group>"; };
 		C3274994187A5E8200CF7A4A /* AboutScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutScoreViewController.m; sourceTree = "<group>"; };
 		C3274995187A5E8200CF7A4A /* AboutScoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutScoreViewController.xib; sourceTree = "<group>"; };
@@ -1111,6 +1136,21 @@
 				C3FEB0D31871CAA2008EADAA /* MusicFansViewController.h */,
 				C3FEB0D41871CAA2008EADAA /* MusicFansViewController.m */,
 				C3FEB0D51871CAA2008EADAA /* MusicFansViewController.xib */,
+				C326CDA4187C5E00006DD97C /* IntegralChampionViewController.h */,
+				C326CDA5187C5E00006DD97C /* IntegralChampionViewController.m */,
+				C326CDA6187C5E00006DD97C /* IntegralChampionViewController.xib */,
+				C326CDA9187C5E44006DD97C /* CatalogRankViewController.h */,
+				C326CDAA187C5E44006DD97C /* CatalogRankViewController.m */,
+				C326CDAB187C5E44006DD97C /* CatalogRankViewController.xib */,
+				C326CDAE187C5E7B006DD97C /* ChampionHomePageViewController.h */,
+				C326CDAF187C5E7B006DD97C /* ChampionHomePageViewController.m */,
+				C326CDB0187C5E7B006DD97C /* ChampionHomePageViewController.xib */,
+				C326CDB3187C5EBD006DD97C /* RecommendSoundViewController.h */,
+				C326CDB4187C5EBD006DD97C /* RecommendSoundViewController.m */,
+				C326CDB5187C5EBD006DD97C /* RecommendSoundViewController.xib */,
+				C326CDB8187C5EDB006DD97C /* DownloadRankViewController.h */,
+				C326CDB9187C5EDB006DD97C /* DownloadRankViewController.m */,
+				C326CDBA187C5EDB006DD97C /* DownloadRankViewController.xib */,
 			);
 			path = MusicFans;
 			sourceTree = "<group>";
@@ -1261,6 +1301,7 @@
 				C3FEB0251871C294008EADAA /* first_2@2x.png in Resources */,
 				C3FEB0871871C294008EADAA /* user_6@2x.png in Resources */,
 				C3FEB04E1871C294008EADAA /* record_40@2x.png in Resources */,
+				C326CDB2187C5E7B006DD97C /* ChampionHomePageViewController.xib in Resources */,
 				C3FEB0661871C294008EADAA /* setting_5@2x.png in Resources */,
 				C3FEB0371871C294008EADAA /* record_19@2x.png in Resources */,
 				C3164CCD1874555D00301ACA /* FoundMusic_sf@2x.png in Resources */,
@@ -1373,6 +1414,7 @@
 				C3164CE51874555D00301ACA /* MusicFans_sdf@2x.png in Resources */,
 				C3FEB0751871C294008EADAA /* user_18@2x.png in Resources */,
 				C3FEB0DC1871CAC5008EADAA /* RecordViewController.xib in Resources */,
+				C326CDAD187C5E44006DD97C /* CatalogRankViewController.xib in Resources */,
 				C3164CB81874555D00301ACA /* FoundMusic_g@2x.png in Resources */,
 				C3FEB08C1871C294008EADAA /* user_注册 高级会员.png in Resources */,
 				C3FEB0611871C294008EADAA /* setting_22@2x.png in Resources */,
@@ -1380,6 +1422,7 @@
 				C3FEB0051871C294008EADAA /* hunyin_27@2x.png in Resources */,
 				C3FEB0621871C294008EADAA /* setting_23@2x.png in Resources */,
 				C3FEB0441871C294008EADAA /* record_31@2x.png in Resources */,
+				C326CDBC187C5EDB006DD97C /* DownloadRankViewController.xib in Resources */,
 				C3FEB05B1871C294008EADAA /* setting_15@2x.png in Resources */,
 				C3164CE61874555D00301ACA /* MusicFans_seven@2x.png in Resources */,
 				C3FEB03F1871C294008EADAA /* record_27@2x.png in Resources */,
@@ -1412,6 +1455,7 @@
 				C3FEB0121871C294008EADAA /* hunyin_3@2x.png in Resources */,
 				C3FEB0791871C294008EADAA /* user_22@2x.png in Resources */,
 				C3164CC01874555D00301ACA /* FoundMusic_li@2x.png in Resources */,
+				C326CDA8187C5E00006DD97C /* IntegralChampionViewController.xib in Resources */,
 				C3FEB0821871C294008EADAA /* user_30@2x.png in Resources */,
 				C3FEB0031871C294008EADAA /* hunyin_25@2x.png in Resources */,
 				C3164CD41874555D00301ACA /* FoundMusic_z@2x.png in Resources */,
@@ -1432,6 +1476,7 @@
 				C3FEB0291871C294008EADAA /* first_6@2x.png in Resources */,
 				C3FEB0391871C294008EADAA /* record_21@2x.png in Resources */,
 				C3FEB01E1871C294008EADAA /* hunyin_50@2x.png in Resources */,
+				C326CDB7187C5EBD006DD97C /* RecommendSoundViewController.xib in Resources */,
 				C3164CC81874555D00301ACA /* FoundMusic_q@2x.png in Resources */,
 				C3FEB06A1871C294008EADAA /* setting_9@2x.png in Resources */,
 				C32749A1187A5ED400CF7A4A /* HelpViewController.xib in Resources */,
@@ -1501,12 +1546,15 @@
 				C3FEB0BA1871C801008EADAA /* UIImage+Util.m in Sources */,
 				C327499B187A5EBD00CF7A4A /* ThemeViewController.m in Sources */,
 				C3FEAF2C1871C156008EADAA /* main.m in Sources */,
+				C326CDB6187C5EBD006DD97C /* RecommendSoundViewController.m in Sources */,
 				C3FEB0B81871C801008EADAA /* OSHelper.m in Sources */,
 				C3FEB0B41871C801008EADAA /* IO.m in Sources */,
 				C3FEB0E51871CB12008EADAA /* FIndSoundViewController.m in Sources */,
+				C326CDAC187C5E44006DD97C /* CatalogRankViewController.m in Sources */,
 				C3274996187A5E8200CF7A4A /* AboutScoreViewController.m in Sources */,
 				C3FEB0BB1871C801008EADAA /* UIViewController+BarItem.m in Sources */,
 				C3FEB0D61871CAA2008EADAA /* MusicFansViewController.m in Sources */,
+				C326CDBB187C5EDB006DD97C /* DownloadRankViewController.m in Sources */,
 				C3FEB0B21871C801008EADAA /* CommonViewController.m in Sources */,
 				C3FEB0EB1871D2FC008EADAA /* ControlCenter.m in Sources */,
 				C3164CF518746ABF00301ACA /* UINavigationBar+Custom.m in Sources */,
@@ -1514,11 +1562,13 @@
 				C3FEB0BC1871C801008EADAA /* VersionManager.m in Sources */,
 				C32749A0187A5ED400CF7A4A /* HelpViewController.m in Sources */,
 				C3FEB0B51871C801008EADAA /* NSDate+Utils.m in Sources */,
+				C326CDB1187C5E7B006DD97C /* ChampionHomePageViewController.m in Sources */,
 				C3FEB0E01871CAF4008EADAA /* MixingMusicListViewController.m in Sources */,
 				C3FEB0B31871C801008EADAA /* HWConnect.m in Sources */,
 				C3FEB0C71871CA19008EADAA /* MainViewController.m in Sources */,
 				C3FEB0B61871C801008EADAA /* NSString+MD5_32.m in Sources */,
 				C3FEB0B71871C801008EADAA /* NSString+Utils.m in Sources */,
+				C326CDA7187C5E00006DD97C /* IntegralChampionViewController.m in Sources */,
 				C3FEB0DB1871CAC5008EADAA /* RecordViewController.m in Sources */,
 				C3FEB0CC1871CA45008EADAA /* LoginViewController.m in Sources */,
 				C3FEB0D11871CA5E008EADAA /* SettingViewController.m in Sources */,

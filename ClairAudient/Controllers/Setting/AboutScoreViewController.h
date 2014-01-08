@@ -9,5 +9,9 @@
 #import "CommonViewController.h"
 
 @interface AboutScoreViewController : CommonViewController
+@property (weak, nonatomic) IBOutlet UIButton *ruleButton;
+@property (weak, nonatomic) IBOutlet UIButton *changeButton;
+- (IBAction)ruleAction:(id)sender;
+- (IBAction)changeAction:(id)sender;
 
 @end

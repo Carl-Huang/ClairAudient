@@ -38,14 +38,36 @@
 - (void)dealloc
 {
     self.view = nil;
+    _changeButton = nil;
+    _ruleButton = nil;
 }
 
 #pragma mark - Private Methods
 - (void)initUI
 {
     self.title = @"关于积分";
-    [self setLeftCustomBarItem:@"setting_" action:nil imageEdgeInsets:UIEdgeInsetsMake(0, -28, 0, 0)];
-    [self setRightCustomBarItem:@"setting_4" action:nil imageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -28)];
+    if([OSHelper iOS7])
+    {
+        [self setLeftCustomBarItem:@"setting_" action:nil imageEdgeInsets:UIEdgeInsetsMake(0, -28, 0, 0)];
+        [self setRightCustomBarItem:@"setting_4" action:nil imageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -28)];
+    }
+    else
+    {
+        [self setLeftCustomBarItem:@"setting_" action:nil imageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
+        [self setRightCustomBarItem:@"setting_4" action:nil imageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -10)];
+    }
 }
 
+#pragma mark - UIButton Actions
+- (IBAction)ruleAction:(id)sender
+{
+    [_ruleButton setSelected:YES];
+    [_changeButton setSelected:NO];
+}
+
+- (IBAction)changeAction:(id)sender
+{
+    [_ruleButton setSelected:NO];
+    [_changeButton setSelected:YES];
+}
 @end

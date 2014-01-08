@@ -8,12 +8,14 @@
 
 #import "AppDelegate.h"
 #import "ControlCenter.h"
+#import "HWConnect.h"
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [ControlCenter makeKeyAndVisible];
     [ControlCenter setNavigationTitleWhiteColor];
+    [self custonNavigationBar];
     return YES;
 }
 
@@ -42,6 +44,18 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)custonNavigationBar
+{
+    if([OSHelper iOS7])
+    {
+        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"ios7_setting_bar"] forBarMetrics:UIBarMetricsDefault];
+    }
+    else
+    {
+        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"setting_bar"] forBarMetrics:UIBarMetricsDefault];
+    }
 }
 
 @end
