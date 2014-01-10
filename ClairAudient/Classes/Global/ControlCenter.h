@@ -38,6 +38,8 @@
 + (void)showRecommendSoundVC;
 + (void)showChampionHomePageVC;
 + (void)showDownloadRankVC;
++ (void)showFIndSoundVC;
++ (void)showSoundCatalogVC;
 + (void)showVC:(NSString *)vcName;
 + (MainViewController *)mainViewController;
 + (UIViewController *)viewControllerWithName:(NSString *)vcName;

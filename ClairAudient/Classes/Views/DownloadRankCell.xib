@@ -14,8 +14,12 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="changtiao.png" id="f1m-6B-K6g">
+                        <rect key="frame" x="0.0" y="0.0" width="45" height="49"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MusicFans_one.png" id="545-dc-gC4">
-                        <rect key="frame" x="0.0" y="8" width="37" height="34"/>
+                        <rect key="frame" x="4" y="8" width="37" height="34"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ByK-h3-TmW">
@@ -50,5 +54,6 @@
     <resources>
         <image name="MusicFans_jka.png" width="35" height="31"/>
         <image name="MusicFans_one.png" width="28" height="30"/>
+        <image name="changtiao.png" width="49" height="43"/>
     </resources>
 </document>

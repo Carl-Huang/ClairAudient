@@ -94,6 +94,24 @@
 		C32749A1187A5ED400CF7A4A /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C327499F187A5ED400CF7A4A /* HelpViewController.xib */; };
 		C32749A4187A5FB500CF7A4A /* ios7_setting_bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C32749A2187A5FB500CF7A4A /* ios7_setting_bar@2x.png */; };
 		C32749A5187A5FB500CF7A4A /* setting_bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C32749A3187A5FB500CF7A4A /* setting_bar@2x.png */; };
+		C32D4F9E187F8DCD0090730B /* SoundCatalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32D4F9C187F8DCD0090730B /* SoundCatalogViewController.m */; };
+		C32D4F9F187F8DCD0090730B /* SoundCatalogViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32D4F9D187F8DCD0090730B /* SoundCatalogViewController.xib */; };
+		C32D4FA7187F953C0090730B /* TMQuiltView.m in Sources */ = {isa = PBXBuildFile; fileRef = C32D4FA2187F953C0090730B /* TMQuiltView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C32D4FA8187F953C0090730B /* TMQuiltViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C32D4FA4187F953C0090730B /* TMQuiltViewCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C32D4FA9187F953C0090730B /* TMQuiltViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32D4FA6187F953C0090730B /* TMQuiltViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C32D4FAC187F9A470090730B /* TMCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C32D4FAB187F9A470090730B /* TMCustomCell.m */; };
+		C32D4FAE187FA9400090730B /* SoundCatalogSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32D4FAD187FA9400090730B /* SoundCatalogSectionHeader.xib */; };
+		C32D4FB1187FAB320090730B /* SoundCatalogCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C32D4FB0187FAB320090730B /* SoundCatalogCell.m */; };
+		C32D4FB3187FAB4F0090730B /* SoundCatalogCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32D4FB2187FAB4F0090730B /* SoundCatalogCell.xib */; };
+		C32D4FB5187FB05A0090730B /* changtiao@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C32D4FB4187FB05A0090730B /* changtiao@2x.png */; };
+		C351B68D187E35A200630408 /* RecommendSoundSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C351B68C187E35A200630408 /* RecommendSoundSectionHeader.xib */; };
+		C351B690187E37FE00630408 /* RecommendSoundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C351B68F187E37FE00630408 /* RecommendSoundCell.m */; };
+		C351B692187E381900630408 /* RecommendSoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C351B691187E381900630408 /* RecommendSoundCell.xib */; };
+		C351B698187E3E0F00630408 /* dh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C351B693187E3E0F00630408 /* dh@2x.png */; };
+		C351B699187E3E0F00630408 /* fhjh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C351B694187E3E0F00630408 /* fhjh@2x.png */; };
+		C351B69A187E3E0F00630408 /* MusicFans_hkbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C351B695187E3E0F00630408 /* MusicFans_hkbg@2x.png */; };
+		C351B69B187E3E0F00630408 /* sd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C351B696187E3E0F00630408 /* sd@2x.png */; };
+		C351B69C187E3E0F00630408 /* sdf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C351B697187E3E0F00630408 /* sdf@2x.png */; };
 		C3B395C61875519800592C92 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B395C51875519800592C92 /* back@2x.png */; };
 		C3D4FCB8187CFD64001A7223 /* UIViewController+CustomBarItemPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D4FCB7187CFD64001A7223 /* UIViewController+CustomBarItemPosition.m */; };
 		C3D4FCBA187D0C3A001A7223 /* CatalogRankSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3D4FCB9187D0C3A001A7223 /* CatalogRankSectionHeader.xib */; };
@@ -406,6 +424,31 @@
 		C327499F187A5ED400CF7A4A /* HelpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpViewController.xib; sourceTree = "<group>"; };
 		C32749A2187A5FB500CF7A4A /* ios7_setting_bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7_setting_bar@2x.png"; sourceTree = "<group>"; };
 		C32749A3187A5FB500CF7A4A /* setting_bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting_bar@2x.png"; sourceTree = "<group>"; };
+		C32D4F9B187F8DCD0090730B /* SoundCatalogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundCatalogViewController.h; sourceTree = "<group>"; };
+		C32D4F9C187F8DCD0090730B /* SoundCatalogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCatalogViewController.m; sourceTree = "<group>"; };
+		C32D4F9D187F8DCD0090730B /* SoundCatalogViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SoundCatalogViewController.xib; sourceTree = "<group>"; };
+		C32D4FA1187F953C0090730B /* TMQuiltView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMQuiltView.h; sourceTree = "<group>"; };
+		C32D4FA2187F953C0090730B /* TMQuiltView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMQuiltView.m; sourceTree = "<group>"; };
+		C32D4FA3187F953C0090730B /* TMQuiltViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMQuiltViewCell.h; sourceTree = "<group>"; };
+		C32D4FA4187F953C0090730B /* TMQuiltViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMQuiltViewCell.m; sourceTree = "<group>"; };
+		C32D4FA5187F953C0090730B /* TMQuiltViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMQuiltViewController.h; sourceTree = "<group>"; };
+		C32D4FA6187F953C0090730B /* TMQuiltViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMQuiltViewController.m; sourceTree = "<group>"; };
+		C32D4FAA187F9A470090730B /* TMCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMCustomCell.h; sourceTree = "<group>"; };
+		C32D4FAB187F9A470090730B /* TMCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMCustomCell.m; sourceTree = "<group>"; };
+		C32D4FAD187FA9400090730B /* SoundCatalogSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SoundCatalogSectionHeader.xib; sourceTree = "<group>"; };
+		C32D4FAF187FAB320090730B /* SoundCatalogCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundCatalogCell.h; sourceTree = "<group>"; };
+		C32D4FB0187FAB320090730B /* SoundCatalogCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCatalogCell.m; sourceTree = "<group>"; };
+		C32D4FB2187FAB4F0090730B /* SoundCatalogCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SoundCatalogCell.xib; sourceTree = "<group>"; };
+		C32D4FB4187FB05A0090730B /* changtiao@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "changtiao@2x.png"; sourceTree = "<group>"; };
+		C351B68C187E35A200630408 /* RecommendSoundSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendSoundSectionHeader.xib; sourceTree = "<group>"; };
+		C351B68E187E37FE00630408 /* RecommendSoundCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendSoundCell.h; sourceTree = "<group>"; };
+		C351B68F187E37FE00630408 /* RecommendSoundCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendSoundCell.m; sourceTree = "<group>"; };
+		C351B691187E381900630408 /* RecommendSoundCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendSoundCell.xib; sourceTree = "<group>"; };
+		C351B693187E3E0F00630408 /* dh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dh@2x.png"; sourceTree = "<group>"; };
+		C351B694187E3E0F00630408 /* fhjh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fhjh@2x.png"; sourceTree = "<group>"; };
+		C351B695187E3E0F00630408 /* MusicFans_hkbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MusicFans_hkbg@2x.png"; sourceTree = "<group>"; };
+		C351B696187E3E0F00630408 /* sd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sd@2x.png"; sourceTree = "<group>"; };
+		C351B697187E3E0F00630408 /* sdf@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sdf@2x.png"; sourceTree = "<group>"; };
 		C3B395C51875519800592C92 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		C3D4FCB6187CFD64001A7223 /* UIViewController+CustomBarItemPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CustomBarItemPosition.h"; sourceTree = "<group>"; };
 		C3D4FCB7187CFD64001A7223 /* UIViewController+CustomBarItemPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CustomBarItemPosition.m"; sourceTree = "<group>"; };
@@ -670,6 +713,7 @@
 		C3164C681874555D00301ACA /* foundmusic */ = {
 			isa = PBXGroup;
 			children = (
+				C32D4FB4187FB05A0090730B /* changtiao@2x.png */,
 				C3164C691874555D00301ACA /* FoundMusic_@2x.png */,
 				C3164C6A1874555D00301ACA /* FoundMusic_a@2x.png */,
 				C3164C6B1874555D00301ACA /* FoundMusic_ab@2x.png */,
@@ -717,6 +761,11 @@
 		C3164C911874555D00301ACA /* musicfans */ = {
 			isa = PBXGroup;
 			children = (
+				C351B693187E3E0F00630408 /* dh@2x.png */,
+				C351B694187E3E0F00630408 /* fhjh@2x.png */,
+				C351B695187E3E0F00630408 /* MusicFans_hkbg@2x.png */,
+				C351B696187E3E0F00630408 /* sd@2x.png */,
+				C351B697187E3E0F00630408 /* sdf@2x.png */,
 				C3164C921874555D00301ACA /* MusicFans_@2x.png */,
 				C3164C931874555D00301ACA /* MusicFans_cv@2x.png */,
 				C3164C941874555D00301ACA /* MusicFans_cvb@2x.png */,
@@ -763,8 +812,31 @@
 				C3D4FCC5187D6786001A7223 /* DownloadRankCell.h */,
 				C3D4FCC6187D6786001A7223 /* DownloadRankCell.m */,
 				C3D4FCC8187D679E001A7223 /* DownloadRankCell.xib */,
+				C351B68C187E35A200630408 /* RecommendSoundSectionHeader.xib */,
+				C351B68E187E37FE00630408 /* RecommendSoundCell.h */,
+				C351B68F187E37FE00630408 /* RecommendSoundCell.m */,
+				C351B691187E381900630408 /* RecommendSoundCell.xib */,
+				C32D4FAA187F9A470090730B /* TMCustomCell.h */,
+				C32D4FAB187F9A470090730B /* TMCustomCell.m */,
+				C32D4FAD187FA9400090730B /* SoundCatalogSectionHeader.xib */,
+				C32D4FAF187FAB320090730B /* SoundCatalogCell.h */,
+				C32D4FB0187FAB320090730B /* SoundCatalogCell.m */,
+				C32D4FB2187FAB4F0090730B /* SoundCatalogCell.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		C32D4FA0187F953C0090730B /* TMQuiltView */ = {
+			isa = PBXGroup;
+			children = (
+				C32D4FA1187F953C0090730B /* TMQuiltView.h */,
+				C32D4FA2187F953C0090730B /* TMQuiltView.m */,
+				C32D4FA3187F953C0090730B /* TMQuiltViewCell.h */,
+				C32D4FA4187F953C0090730B /* TMQuiltViewCell.m */,
+				C32D4FA5187F953C0090730B /* TMQuiltViewController.h */,
+				C32D4FA6187F953C0090730B /* TMQuiltViewController.m */,
+			);
+			path = TMQuiltView;
 			sourceTree = "<group>";
 		};
 		C3FEAF131871C156008EADAA = {
@@ -1093,6 +1165,7 @@
 		C3FEB0901871C2A8008EADAA /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				C32D4FA0187F953C0090730B /* TMQuiltView */,
 				C3FEB0981871C800008EADAA /* HWSDK */,
 			);
 			path = Libs;
@@ -1136,6 +1209,9 @@
 				C3FEB0E21871CB12008EADAA /* FIndSoundViewController.h */,
 				C3FEB0E31871CB12008EADAA /* FIndSoundViewController.m */,
 				C3FEB0E41871CB12008EADAA /* FIndSoundViewController.xib */,
+				C32D4F9B187F8DCD0090730B /* SoundCatalogViewController.h */,
+				C32D4F9C187F8DCD0090730B /* SoundCatalogViewController.m */,
+				C32D4F9D187F8DCD0090730B /* SoundCatalogViewController.xib */,
 			);
 			path = FindSound;
 			sourceTree = "<group>";
@@ -1373,6 +1449,7 @@
 				C3FEB0061871C294008EADAA /* hunyin_28@2x.png in Resources */,
 				C3164CD91874555D00301ACA /* MusicFans_eleven@2x.png in Resources */,
 				C3FEB0671871C294008EADAA /* setting_6@2x.png in Resources */,
+				C351B69B187E3E0F00630408 /* sd@2x.png in Resources */,
 				C3FEB0231871C294008EADAA /* hunyin_8@2x.png in Resources */,
 				C3164CB61874555D00301ACA /* FoundMusic_f@2x.png in Resources */,
 				C3FEB0691871C294008EADAA /* setting_8@2x.png in Resources */,
@@ -1388,12 +1465,15 @@
 				C3FEAF2A1871C156008EADAA /* InfoPlist.strings in Resources */,
 				C3FEB0201871C294008EADAA /* hunyin_5@2x.png in Resources */,
 				C3164CBA1874555D00301ACA /* FoundMusic_hi@2x.png in Resources */,
+				C351B69C187E3E0F00630408 /* sdf@2x.png in Resources */,
+				C32D4F9F187F8DCD0090730B /* SoundCatalogViewController.xib in Resources */,
 				C32749A4187A5FB500CF7A4A /* ios7_setting_bar@2x.png in Resources */,
 				C3164CB11874555D00301ACA /* FoundMusic_c@2x.png in Resources */,
 				C3FEB0261871C294008EADAA /* first_3@2x.png in Resources */,
 				C3164CBD1874555D00301ACA /* FoundMusic_jk@2x.png in Resources */,
 				C3FEB0501871C294008EADAA /* record_5@2x.png in Resources */,
 				C3164CEE1874555D00301ACA /* MusicFans_xc@2x.png in Resources */,
+				C351B692187E381900630408 /* RecommendSoundCell.xib in Resources */,
 				C3FEB08B1871C294008EADAA /* user_@2x.png in Resources */,
 				C3164CC11874555D00301ACA /* FoundMusic_lm@2x.png in Resources */,
 				C3FEB00C1871C294008EADAA /* hunyin_33@2x.png in Resources */,
@@ -1410,6 +1490,8 @@
 				C3164CB31874555D00301ACA /* FoundMusic_d@2x.png in Resources */,
 				C3FEB05C1871C294008EADAA /* setting_16@2x.png in Resources */,
 				C3164CB01874555D00301ACA /* FoundMusic_b@2x.png in Resources */,
+				C351B68D187E35A200630408 /* RecommendSoundSectionHeader.xib in Resources */,
+				C32D4FB3187FAB4F0090730B /* SoundCatalogCell.xib in Resources */,
 				C3FEB0451871C294008EADAA /* record_32@2x.png in Resources */,
 				C3FEB0431871C294008EADAA /* record_30@2x.png in Resources */,
 				C3FEB0C81871CA19008EADAA /* MainViewController.xib in Resources */,
@@ -1420,6 +1502,7 @@
 				C3FEB07E1871C294008EADAA /* user_27@2x.png in Resources */,
 				C3164CBB1874555D00301ACA /* FoundMusic_i@2x.png in Resources */,
 				C3FEB06B1871C294008EADAA /* setting_@2x.png in Resources */,
+				C32D4FAE187FA9400090730B /* SoundCatalogSectionHeader.xib in Resources */,
 				C3FEB07B1871C294008EADAA /* user_24@2x.png in Resources */,
 				C3FEB0651871C294008EADAA /* setting_4@2x.png in Resources */,
 				C3FEB07F1871C294008EADAA /* user_28@2x.png in Resources */,
@@ -1453,6 +1536,7 @@
 				C3FEB0611871C294008EADAA /* setting_22@2x.png in Resources */,
 				C3164CD71874555D00301ACA /* MusicFans_cvb@2x.png in Resources */,
 				C3FEB0051871C294008EADAA /* hunyin_27@2x.png in Resources */,
+				C351B699187E3E0F00630408 /* fhjh@2x.png in Resources */,
 				C3FEB0621871C294008EADAA /* setting_23@2x.png in Resources */,
 				C3FEB0441871C294008EADAA /* record_31@2x.png in Resources */,
 				C326CDBC187C5EDB006DD97C /* DownloadRankViewController.xib in Resources */,
@@ -1474,6 +1558,7 @@
 				C3FEB00F1871C294008EADAA /* hunyin_37@2x.png in Resources */,
 				C3FEB0541871C294008EADAA /* record_9@2x.png in Resources */,
 				C3164CD31874555D00301ACA /* FoundMusic_y@2x.png in Resources */,
+				C351B69A187E3E0F00630408 /* MusicFans_hkbg@2x.png in Resources */,
 				C3FEB0491871C294008EADAA /* record_36@2x.png in Resources */,
 				C3164CAD1874555D00301ACA /* FoundMusic_@2x.png in Resources */,
 				C3FEB0281871C294008EADAA /* first_5@2x.png in Resources */,
@@ -1483,6 +1568,7 @@
 				C3FEAFF61871C294008EADAA /* hunyin_13@2x.png in Resources */,
 				C3FEB0881871C294008EADAA /* user_7@2x.png in Resources */,
 				C3164CE91874555D00301ACA /* MusicFans_six@2x.png in Resources */,
+				C351B698187E3E0F00630408 /* dh@2x.png in Resources */,
 				C3FEB05F1871C294008EADAA /* setting_20@2x.png in Resources */,
 				C3FEB08A1871C294008EADAA /* user_9@2x.png in Resources */,
 				C3FEB0121871C294008EADAA /* hunyin_3@2x.png in Resources */,
@@ -1552,6 +1638,7 @@
 				C3164CDD1874555D00301ACA /* MusicFans_gvb @2x.png in Resources */,
 				C3FEB0321871C294008EADAA /* record_14@2x.png in Resources */,
 				C3164CCC1874555D00301ACA /* FoundMusic_sd@2x.png in Resources */,
+				C32D4FB5187FB05A0090730B /* changtiao@2x.png in Resources */,
 				C3164CD01874555D00301ACA /* FoundMusic_v@2x.png in Resources */,
 				C3FEB0131871C294008EADAA /* hunyin_40@2x.png in Resources */,
 				C3FEB04F1871C294008EADAA /* record_4@2x.png in Resources */,
@@ -1582,10 +1669,13 @@
 				C3FEB0BA1871C801008EADAA /* UIImage+Util.m in Sources */,
 				C327499B187A5EBD00CF7A4A /* ThemeViewController.m in Sources */,
 				C3FEAF2C1871C156008EADAA /* main.m in Sources */,
+				C351B690187E37FE00630408 /* RecommendSoundCell.m in Sources */,
+				C32D4FAC187F9A470090730B /* TMCustomCell.m in Sources */,
 				C326CDB6187C5EBD006DD97C /* RecommendSoundViewController.m in Sources */,
 				C3FEB0B81871C801008EADAA /* OSHelper.m in Sources */,
 				C3FEB0B41871C801008EADAA /* IO.m in Sources */,
 				C3FEB0E51871CB12008EADAA /* FIndSoundViewController.m in Sources */,
+				C32D4FA8187F953C0090730B /* TMQuiltViewCell.m in Sources */,
 				C326CDAC187C5E44006DD97C /* CatalogRankViewController.m in Sources */,
 				C3274996187A5E8200CF7A4A /* AboutScoreViewController.m in Sources */,
 				C3FEB0BB1871C801008EADAA /* UIViewController+BarItem.m in Sources */,
@@ -1593,9 +1683,11 @@
 				C3FEB0D61871CAA2008EADAA /* MusicFansViewController.m in Sources */,
 				C326CDBB187C5EDB006DD97C /* DownloadRankViewController.m in Sources */,
 				C3FEB0B21871C801008EADAA /* CommonViewController.m in Sources */,
+				C32D4FA9187F953C0090730B /* TMQuiltViewController.m in Sources */,
 				C3D4FCB8187CFD64001A7223 /* UIViewController+CustomBarItemPosition.m in Sources */,
 				C3FEB0EB1871D2FC008EADAA /* ControlCenter.m in Sources */,
 				C3164CF518746ABF00301ACA /* UINavigationBar+Custom.m in Sources */,
+				C32D4FB1187FAB320090730B /* SoundCatalogCell.m in Sources */,
 				C3D4FCBD187D0DD1001A7223 /* CatalogRankCell.m in Sources */,
 				C3FEB0B91871C801008EADAA /* UIColor+Utils.m in Sources */,
 				C3FEB0BC1871C801008EADAA /* VersionManager.m in Sources */,
@@ -1607,10 +1699,12 @@
 				C3FEB0C71871CA19008EADAA /* MainViewController.m in Sources */,
 				C3FEB0B61871C801008EADAA /* NSString+MD5_32.m in Sources */,
 				C3FEB0B71871C801008EADAA /* NSString+Utils.m in Sources */,
+				C32D4F9E187F8DCD0090730B /* SoundCatalogViewController.m in Sources */,
 				C326CDA7187C5E00006DD97C /* IntegralChampionViewController.m in Sources */,
 				C3FEB0DB1871CAC5008EADAA /* RecordViewController.m in Sources */,
 				C3FEB0CC1871CA45008EADAA /* LoginViewController.m in Sources */,
 				C3FEB0D11871CA5E008EADAA /* SettingViewController.m in Sources */,
+				C32D4FA7187F953C0090730B /* TMQuiltView.m in Sources */,
 				C3D4FCC7187D6786001A7223 /* DownloadRankCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

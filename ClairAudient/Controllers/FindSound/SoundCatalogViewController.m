@@ -1,27 +1,27 @@
 //
-//  IntegralChampionViewController.m
+//  SoundCatalogViewController.m
 //  ClairAudient
 //
-//  Created by Carl on 14-1-8.
+//  Created by Carl on 14-1-10.
 //  Copyright (c) 2014年 helloworld. All rights reserved.
 //
 
-#import "IntegralChampionViewController.h"
+#import "SoundCatalogViewController.h"
 #import "UIViewController+CustomBarItemPosition.h"
-#import "IntegralChampionCell.h"
-#import "ControlCenter.h"
-#define Cell_Height 50.0f
-@interface IntegralChampionViewController ()
-@property (nonatomic,strong) NSArray * sortImages;
+#import "SoundCatalogCell.h"
+#define Section_Height 48.0f
+#define Cell_Height 44.0f
+@interface SoundCatalogViewController ()
+
 @end
 
-@implementation IntegralChampionViewController
-#pragma mark - Life Cycle
+@implementation SoundCatalogViewController
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _sortImages = @[@"MusicFans_one",@"MusicFans_two",@"MusicFans_three",@"MusicFans_four",@"MusicFans_five",@"MusicFans_six",@"MusicFans_seven",@"MusicFans_eight",@"MusicFans_nine",@"MusicFans_ten"];
+        // Custom initialization
     }
     return self;
 }
@@ -38,25 +38,22 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)dealloc
-{
-    self.view = nil;
-}
-
 #pragma mark - Private Methods
 - (void)initUI
 {
-    self.title = @"积分冠军";
+    self.title = @"音库";
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self setLeftAndRightBarItem];
     _tableView.backgroundColor = [UIColor clearColor];
-    UINib * nib = [UINib nibWithNibName:@"IntegralChampionCell" bundle:[NSBundle bundleForClass:[IntegralChampionCell class]]];
+    UINib * nib = [UINib nibWithNibName:@"SoundCatalogCell" bundle:[NSBundle bundleForClass:[SoundCatalogCell class]]];
     [_tableView registerNib:nib forCellReuseIdentifier:@"Cell"];
+    
 }
 
 #pragma mark - UITableViewDataSource Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -70,20 +67,29 @@
     return Cell_Height;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return Section_Height;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    NSArray * views = [[NSBundle mainBundle] loadNibNamed:@"SoundCatalogSectionHeader" owner:nil options:nil];
+    UIView * view = [views firstObject];
+    return view;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    IntegralChampionCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    if(indexPath.row <= [_sortImages count] - 1)
-    {
-        cell.sortImageView.image = [UIImage imageNamed:[_sortImages objectAtIndex:indexPath.row]];
-    }
+    SoundCatalogCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     return cell;
 }
 #pragma mark - UITableViewDelegate Methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [ControlCenter showChampionHomePageVC];
+    
 }
+
+
 
 @end

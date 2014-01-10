@@ -50,7 +50,7 @@
 
 - (IBAction)showFoundMusicVC:(id)sender
 {
-    
+    [ControlCenter showFIndSoundVC];
 }
 
 - (IBAction)showMixingMusicVC:(id)sender

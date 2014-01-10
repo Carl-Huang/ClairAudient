@@ -102,6 +102,16 @@
     [[self class] showVC:@"DownloadRankViewController"];
 }
 
++ (void)showFIndSoundVC
+{
+    [[self class] showVC:@"FIndSoundViewController"];
+}
+
++ (void)showSoundCatalogVC
+{
+    [[self class] showVC:@"SoundCatalogViewController"];
+}
+
 + (void)showVC:(NSString *)vcName
 {
     AppDelegate * appDelegate = [[self class] appDelegate];
