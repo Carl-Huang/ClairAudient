@@ -53,6 +53,7 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="downloadCountLabel" destination="nLJ-vV-6mb" id="Wgu-6j-12Y"/>
                 <outlet property="nameLabel" destination="CrC-dr-XbN" id="M5A-PR-al1"/>
