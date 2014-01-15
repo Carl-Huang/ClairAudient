@@ -20,6 +20,19 @@
 #import "ChampionHomePageViewController.h"
 #import "RecommendSoundViewController.h"
 #import "DownloadRankViewController.h"
+#import "LoginViewController.h"
+#import "RegisterViewController.h"
+#import "VipRegisterViewController.h"
+#import "LoginSuccessViewController.h"
+#import "MessageInviteViewController.h"
+#import "UserCenterViewController.h"
+#import "MyDownloadViewController.h"
+#import "PersonalHomePageViewController.h"
+#import "MyProductionViewController.h"
+#import "MyUploadViewController.h"
+#import "ReviewViewController.h"
+#import "UserCenterViewController.h"
+#import "IntegralViewController.h"
 @interface ControlCenter : NSObject
 
 + (AppDelegate *)appDelegate;
@@ -40,6 +53,18 @@
 + (void)showDownloadRankVC;
 + (void)showFIndSoundVC;
 + (void)showSoundCatalogVC;
++ (void)showRegisterVC;
++ (void)showVipRegisterVC;
++ (void)showUserCenterVC;
++ (void)showMyUploadVC;
++ (void)showMyDownloadVC;
++ (void)showLoginSuccessVC;
++ (void)showMyProductionVC;
++ (void)showPersonalHomePageVC;
++ (void)showMessageInviteVC;
++ (void)showReviewVC;
++ (void)showLoginVC;
++ (void)showIntegralVC;
 + (void)showVC:(NSString *)vcName;
 + (MainViewController *)mainViewController;
 + (UIViewController *)viewControllerWithName:(NSString *)vcName;

@@ -1,19 +1,19 @@
 //
-//  LoginViewController.m
+//  RegisterViewController.m
 //  ClairAudient
 //
-//  Created by Carl on 13-12-30.
-//  Copyright (c) 2013年 helloworld. All rights reserved.
+//  Created by Carl on 14-1-12.
+//  Copyright (c) 2014年 helloworld. All rights reserved.
 //
 
-#import "LoginViewController.h"
-#import "ControlCenter.h"
-@interface LoginViewController ()
+#import "RegisterViewController.h"
+
+@interface RegisterViewController ()
 
 @end
 
-@implementation LoginViewController
-#pragma mark - Life Cycle
+@implementation RegisterViewController
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -34,20 +34,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 #pragma mark - Action Methods
+- (IBAction)registerAction:(id)sender
+{
+    
+}
+
 - (IBAction)backAction:(id)sender
 {
     [self popVIewController];
-}
-
-- (IBAction)loginAction:(id)sender
-{
-    [ControlCenter showLoginSuccessVC];
-}
-
-- (IBAction)registerAction:(id)sender
-{
-    [ControlCenter showRegisterVC];
 }
 @end

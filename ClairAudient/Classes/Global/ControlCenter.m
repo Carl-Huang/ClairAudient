@@ -112,6 +112,66 @@
     [[self class] showVC:@"SoundCatalogViewController"];
 }
 
++ (void)showLoginVC
+{
+    [[self class] showVC:@"LoginViewController"];
+}
+
++ (void)showRegisterVC
+{
+    [[self class] showVC:@"RegisterViewController"];
+}
+
++ (void)showVipRegisterVC
+{
+    [[self class] showVC:@"VipRegisterViewController"];
+}
+
++ (void)showLoginSuccessVC
+{
+    [[self class] showVC:@"LoginSuccessViewController"];
+}
+
++ (void)showPersonalHomePageVC
+{
+    [[self class] showVC:@"PersonalHomePageViewController"];
+}
+
++ (void)showUserCenterVC
+{
+    [[self class] showVC:@"UserCenterViewController"];
+}
+
++ (void)showMyUploadVC
+{
+    [[self class] showVC:@"MyUploadViewController"];
+}
+
++ (void)showMyDownloadVC
+{
+    [[self class] showVC:@"MyDownloadViewController"];
+}
+
++ (void)showMyProductionVC
+{
+    [[self class] showVC:@"MyProductionViewController"];
+}
+
++ (void)showMessageInviteVC
+{
+    [[self class] showVC:@"MessageInviteViewController"];
+}
+
++ (void)showReviewVC
+{
+    [[self class] showVC:@"ReviewViewController"];
+}
+
++ (void)showIntegralVC
+{
+    [[self class] showVC:@"IntegralViewController"];
+}
+
 + (void)showVC:(NSString *)vcName
 {
     AppDelegate * appDelegate = [[self class] appDelegate];

@@ -1,18 +1,19 @@
 //
-//  AboutScoreViewController.m
+//  IntegralViewController.m
 //  ClairAudient
 //
-//  Created by Carl on 14-1-6.
+//  Created by Carl on 14-1-13.
 //  Copyright (c) 2014年 helloworld. All rights reserved.
 //
 
-#import "AboutScoreViewController.h"
+#import "IntegralViewController.h"
 #import "UIViewController+CustomBarItemPosition.h"
-@interface AboutScoreViewController ()
+#import "ControlCenter.h"
+@interface IntegralViewController ()
 
 @end
 
-@implementation AboutScoreViewController
+@implementation IntegralViewController
 #pragma mark - Life Cycle
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,14 +38,20 @@
 
 - (void)dealloc
 {
-    self.view = nil;
+    [self setView:nil];
 }
 
 #pragma mark - Private Methods
 - (void)initUI
 {
-    self.title = @"关于积分";
+    self.title = @"积分";
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self setLeftAndRightBarItem];
 }
 
+#pragma mark - Action Methods
+- (IBAction)showAboutScoreVC:(id)sender
+{
+    [ControlCenter showAboutScoreVC];
+}
 @end

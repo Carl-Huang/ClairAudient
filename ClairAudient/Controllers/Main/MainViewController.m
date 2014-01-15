@@ -65,12 +65,12 @@
 
 - (IBAction)showIntegralVC:(id)sender
 {
-    
+    [ControlCenter showIntegralVC];
 }
 
 - (IBAction)showAccountVC:(id)sender
 {
-    
+    [ControlCenter showLoginVC];
 }
 
 - (IBAction)showSettingVC:(id)sender

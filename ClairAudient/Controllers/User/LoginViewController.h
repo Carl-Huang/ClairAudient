@@ -8,6 +8,11 @@
 
 #import "CommonViewController.h"
 
-@interface LoginViewController : CommonViewController
+@interface LoginViewController : CommonViewController<UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UITextField *mobileField;
+- (IBAction)backAction:(id)sender;
+- (IBAction)loginAction:(id)sender;
+- (IBAction)registerAction:(id)sender;
 
 @end
