@@ -8,6 +8,10 @@
 
 #import "CommonViewController.h"
 
-@interface MixingMusicListViewController : CommonViewController
+@interface MixingMusicListViewController : CommonViewController<UITableViewDelegate,UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITextField *searchField;
+@property (weak, nonatomic) IBOutlet UIButton *searchBtn;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+- (IBAction)backAction:(id)sender;
 @end

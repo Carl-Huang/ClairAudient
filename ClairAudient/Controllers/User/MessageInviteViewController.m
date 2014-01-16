@@ -35,4 +35,25 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Action Methods
+- (IBAction)selectFriendAction:(id)sender
+{
+    
+}
+
+- (IBAction)backAction:(id)sender
+{
+    [self popVIewController];
+}
+- (IBAction)selectFirstMsgAction:(id)sender
+{
+    [_msgBtn_1 setSelected:YES];
+    [_msgBtn_2 setSelected:NO];
+}
+
+- (IBAction)selectSectionSectionMsgAction:(id)sender
+{
+    [_msgBtn_1 setSelected:NO];
+    [_msgBtn_2 setSelected:YES];
+}
 @end

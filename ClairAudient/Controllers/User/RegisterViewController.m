@@ -7,7 +7,7 @@
 //
 
 #import "RegisterViewController.h"
-
+#import "ControlCenter.h"
 @interface RegisterViewController ()
 
 @end
@@ -37,11 +37,26 @@
 #pragma mark - Action Methods
 - (IBAction)registerAction:(id)sender
 {
-    
+    if(_vipBtn.selected)
+    {
+        [ControlCenter showVipRegisterVC];
+    }
 }
 
 - (IBAction)backAction:(id)sender
 {
     [self popVIewController];
+}
+
+- (IBAction)selectNormalAction:(id)sender
+{
+    [_normalBtn setSelected:YES];
+    [_vipBtn setSelected:NO];
+}
+
+- (IBAction)selectionVipAction:(id)sender
+{
+    [_normalBtn setSelected:NO];
+    [_vipBtn setSelected:YES];
 }
 @end

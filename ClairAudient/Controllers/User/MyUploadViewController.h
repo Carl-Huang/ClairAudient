@@ -8,6 +8,7 @@
 
 #import "CommonViewController.h"
 
-@interface MyUploadViewController : CommonViewController
+@interface MyUploadViewController : CommonViewController<UITableViewDataSource,UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

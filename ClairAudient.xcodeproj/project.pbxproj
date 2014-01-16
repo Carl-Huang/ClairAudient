@@ -126,6 +126,18 @@
 		C32F40271882886900681953 /* ReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32F40251882886900681953 /* ReviewViewController.xib */; };
 		C32F402B188390A100681953 /* IntegralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32F4029188390A100681953 /* IntegralViewController.m */; };
 		C32F402C188390A100681953 /* IntegralViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32F402A188390A100681953 /* IntegralViewController.xib */; };
+		C3456CE018877077009329D2 /* MyUploadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3456CDF18877077009329D2 /* MyUploadCell.m */; };
+		C3456CE218877089009329D2 /* MyUploadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3456CE118877089009329D2 /* MyUploadCell.xib */; };
+		C3456CE51887753E009329D2 /* MyDownloadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3456CE41887753E009329D2 /* MyDownloadCell.m */; };
+		C3456CE718877609009329D2 /* MyDownloadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3456CE618877609009329D2 /* MyDownloadCell.xib */; };
+		C3456CEA18877A3B009329D2 /* MyProductionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3456CE918877A3B009329D2 /* MyProductionCell.m */; };
+		C3456CEC18877A5A009329D2 /* MyProductionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3456CEB18877A5A009329D2 /* MyProductionCell.xib */; };
+		C3456CEF18877DCF009329D2 /* 2kuanf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3456CED18877DCF009329D2 /* 2kuanf@2x.png */; };
+		C3456CF018877DCF009329D2 /* kuanf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3456CEE18877DCF009329D2 /* kuanf@2x.png */; };
+		C3456CF31887CA1D009329D2 /* MixingMusicListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3456CF21887CA1D009329D2 /* MixingMusicListCell.m */; };
+		C3456CF51887CB2E009329D2 /* MixingMusicListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3456CF41887CB2E009329D2 /* MixingMusicListCell.xib */; };
+		C3456CF91887D2BC009329D2 /* SoundEffectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3456CF71887D2BC009329D2 /* SoundEffectViewController.m */; };
+		C3456CFA1887D2BC009329D2 /* SoundEffectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3456CF81887D2BC009329D2 /* SoundEffectViewController.xib */; };
 		C3486CCC18866B1E00EB7AD0 /* biaotikuang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3486CC618866B1E00EB7AD0 /* biaotikuang@2x.png */; };
 		C3486CCD18866B1E00EB7AD0 /* duihuan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3486CC718866B1E00EB7AD0 /* duihuan@2x.png */; };
 		C3486CCE18866B1E00EB7AD0 /* geren@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3486CC818866B1E00EB7AD0 /* geren@2x.png */; };
@@ -501,6 +513,23 @@
 		C32F4028188390A100681953 /* IntegralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntegralViewController.h; sourceTree = "<group>"; };
 		C32F4029188390A100681953 /* IntegralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntegralViewController.m; sourceTree = "<group>"; };
 		C32F402A188390A100681953 /* IntegralViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntegralViewController.xib; sourceTree = "<group>"; };
+		C3456CDE18877077009329D2 /* MyUploadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUploadCell.h; sourceTree = "<group>"; };
+		C3456CDF18877077009329D2 /* MyUploadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUploadCell.m; sourceTree = "<group>"; };
+		C3456CE118877089009329D2 /* MyUploadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyUploadCell.xib; sourceTree = "<group>"; };
+		C3456CE31887753E009329D2 /* MyDownloadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDownloadCell.h; sourceTree = "<group>"; };
+		C3456CE41887753E009329D2 /* MyDownloadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDownloadCell.m; sourceTree = "<group>"; };
+		C3456CE618877609009329D2 /* MyDownloadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDownloadCell.xib; sourceTree = "<group>"; };
+		C3456CE818877A3B009329D2 /* MyProductionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProductionCell.h; sourceTree = "<group>"; };
+		C3456CE918877A3B009329D2 /* MyProductionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProductionCell.m; sourceTree = "<group>"; };
+		C3456CEB18877A5A009329D2 /* MyProductionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyProductionCell.xib; sourceTree = "<group>"; };
+		C3456CED18877DCF009329D2 /* 2kuanf@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2kuanf@2x.png"; sourceTree = "<group>"; };
+		C3456CEE18877DCF009329D2 /* kuanf@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kuanf@2x.png"; sourceTree = "<group>"; };
+		C3456CF11887CA1D009329D2 /* MixingMusicListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixingMusicListCell.h; sourceTree = "<group>"; };
+		C3456CF21887CA1D009329D2 /* MixingMusicListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixingMusicListCell.m; sourceTree = "<group>"; };
+		C3456CF41887CB2E009329D2 /* MixingMusicListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MixingMusicListCell.xib; sourceTree = "<group>"; };
+		C3456CF61887D2BC009329D2 /* SoundEffectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundEffectViewController.h; sourceTree = "<group>"; };
+		C3456CF71887D2BC009329D2 /* SoundEffectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundEffectViewController.m; sourceTree = "<group>"; };
+		C3456CF81887D2BC009329D2 /* SoundEffectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SoundEffectViewController.xib; sourceTree = "<group>"; };
 		C3486CC618866B1E00EB7AD0 /* biaotikuang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "biaotikuang@2x.png"; sourceTree = "<group>"; };
 		C3486CC718866B1E00EB7AD0 /* duihuan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "duihuan@2x.png"; sourceTree = "<group>"; };
 		C3486CC818866B1E00EB7AD0 /* geren@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "geren@2x.png"; sourceTree = "<group>"; };
@@ -889,6 +918,18 @@
 				C32D4FAF187FAB320090730B /* SoundCatalogCell.h */,
 				C32D4FB0187FAB320090730B /* SoundCatalogCell.m */,
 				C32D4FB2187FAB4F0090730B /* SoundCatalogCell.xib */,
+				C3456CDE18877077009329D2 /* MyUploadCell.h */,
+				C3456CDF18877077009329D2 /* MyUploadCell.m */,
+				C3456CE118877089009329D2 /* MyUploadCell.xib */,
+				C3456CE31887753E009329D2 /* MyDownloadCell.h */,
+				C3456CE41887753E009329D2 /* MyDownloadCell.m */,
+				C3456CE618877609009329D2 /* MyDownloadCell.xib */,
+				C3456CE818877A3B009329D2 /* MyProductionCell.h */,
+				C3456CE918877A3B009329D2 /* MyProductionCell.m */,
+				C3456CEB18877A5A009329D2 /* MyProductionCell.xib */,
+				C3456CF11887CA1D009329D2 /* MixingMusicListCell.h */,
+				C3456CF21887CA1D009329D2 /* MixingMusicListCell.m */,
+				C3456CF41887CB2E009329D2 /* MixingMusicListCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1182,6 +1223,8 @@
 		C3FEAFD01871C294008EADAA /* user */ = {
 			isa = PBXGroup;
 			children = (
+				C3456CED18877DCF009329D2 /* 2kuanf@2x.png */,
+				C3456CEE18877DCF009329D2 /* kuanf@2x.png */,
 				C3FEAFD11871C294008EADAA /* user_10@2x.png */,
 				C3FEAFD21871C294008EADAA /* user_11@2x.png */,
 				C3FEAFD31871C294008EADAA /* user_12@2x.png */,
@@ -1316,6 +1359,9 @@
 				C3FEB0DD1871CAF4008EADAA /* MixingMusicListViewController.h */,
 				C3FEB0DE1871CAF4008EADAA /* MixingMusicListViewController.m */,
 				C3FEB0DF1871CAF4008EADAA /* MixingMusicListViewController.xib */,
+				C3456CF61887D2BC009329D2 /* SoundEffectViewController.h */,
+				C3456CF71887D2BC009329D2 /* SoundEffectViewController.m */,
+				C3456CF81887D2BC009329D2 /* SoundEffectViewController.xib */,
 			);
 			path = Mixing;
 			sourceTree = "<group>";
@@ -1561,6 +1607,7 @@
 				C3FEB03E1871C294008EADAA /* record_26@2x.png in Resources */,
 				C3164CAF1874555D00301ACA /* FoundMusic_ab@2x.png in Resources */,
 				C3274997187A5E8200CF7A4A /* AboutScoreViewController.xib in Resources */,
+				C3456CE718877609009329D2 /* MyDownloadCell.xib in Resources */,
 				C3FEB0041871C294008EADAA /* hunyin_26@2x.png in Resources */,
 				C3FEB04B1871C294008EADAA /* record_38@2x.png in Resources */,
 				C3486CCE18866B1E00EB7AD0 /* geren@2x.png in Resources */,
@@ -1609,6 +1656,7 @@
 				C3FEB04C1871C294008EADAA /* record_39@2x.png in Resources */,
 				C3FEB0081871C294008EADAA /* hunyin_2@2x.png in Resources */,
 				C3FEAFF21871C294008EADAA /* hunyin_0@2x.png in Resources */,
+				C3456CFA1887D2BC009329D2 /* SoundEffectViewController.xib in Resources */,
 				C3164CB31874555D00301ACA /* FoundMusic_d@2x.png in Resources */,
 				C3FEB05C1871C294008EADAA /* setting_16@2x.png in Resources */,
 				C3164CB01874555D00301ACA /* FoundMusic_b@2x.png in Resources */,
@@ -1643,6 +1691,7 @@
 				C3164CEF1874555D00301ACA /* MusicFans_xvd@2x.png in Resources */,
 				C3164CE01874555D00301ACA /* MusicFans_jka@2x.png in Resources */,
 				C3FEB0631871C294008EADAA /* setting_2@2x.png in Resources */,
+				C3456CE218877089009329D2 /* MyUploadCell.xib in Resources */,
 				C3FEB0771871C294008EADAA /* user_20@2x.png in Resources */,
 				C3164CAE1874555D00301ACA /* FoundMusic_a@2x.png in Resources */,
 				C3FEB04D1871C294008EADAA /* record_3@2x.png in Resources */,
@@ -1657,6 +1706,7 @@
 				C3FEB08C1871C294008EADAA /* user_注册 高级会员.png in Resources */,
 				C3486CCF18866B1E00EB7AD0 /* wenhao@2x.png in Resources */,
 				C3FEB0611871C294008EADAA /* setting_22@2x.png in Resources */,
+				C3456CEC18877A5A009329D2 /* MyProductionCell.xib in Resources */,
 				C3164CD71874555D00301ACA /* MusicFans_cvb@2x.png in Resources */,
 				C3FEB0051871C294008EADAA /* hunyin_27@2x.png in Resources */,
 				C351B699187E3E0F00630408 /* fhjh@2x.png in Resources */,
@@ -1733,6 +1783,7 @@
 				C3FEB06F1871C294008EADAA /* user_12@2x.png in Resources */,
 				C3FEAFFC1871C294008EADAA /* hunyin_19@2x.png in Resources */,
 				C3164CE31874555D00301ACA /* MusicFans_one@2x.png in Resources */,
+				C3456CEF18877DCF009329D2 /* 2kuanf@2x.png in Resources */,
 				C3FEAFFE1871C294008EADAA /* hunyin_20@2x.png in Resources */,
 				C3164CBC1874555D00301ACA /* FoundMusic_j@2x.png in Resources */,
 				C3D4FCC9187D679E001A7223 /* DownloadRankCell.xib in Resources */,
@@ -1751,6 +1802,7 @@
 				C3164CBF1874555D00301ACA /* FoundMusic_l@2x.png in Resources */,
 				C32F40131882878600681953 /* MyUploadViewController.xib in Resources */,
 				C3164CEC1874555D00301ACA /* MusicFans_twei@2x.png in Resources */,
+				C3456CF51887CB2E009329D2 /* MixingMusicListCell.xib in Resources */,
 				C3D4FCC1187D6181001A7223 /* IntegralChampionCell.xib in Resources */,
 				C3FEB0211871C294008EADAA /* hunyin_6@2x.png in Resources */,
 				C3FEB0141871C294008EADAA /* hunyin_41@2x.png in Resources */,
@@ -1777,6 +1829,7 @@
 				C3164CD11874555D00301ACA /* FoundMusic_w@2x.png in Resources */,
 				C3164CB51874555D00301ACA /* FoundMusic_ef@2x.png in Resources */,
 				C3164CD51874555D00301ACA /* MusicFans_@2x.png in Resources */,
+				C3456CF018877DCF009329D2 /* kuanf@2x.png in Resources */,
 				C3FEB0191871C294008EADAA /* hunyin_46@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1805,6 +1858,7 @@
 				C32F40121882878600681953 /* MyUploadViewController.m in Sources */,
 				C326CDB6187C5EBD006DD97C /* RecommendSoundViewController.m in Sources */,
 				C3FEB0B81871C801008EADAA /* OSHelper.m in Sources */,
+				C3456CEA18877A3B009329D2 /* MyProductionCell.m in Sources */,
 				C32F400D1882876A00681953 /* UserCenterViewController.m in Sources */,
 				C32F401C188287D300681953 /* PersonalHomePageViewController.m in Sources */,
 				C3FEB0B41871C801008EADAA /* IO.m in Sources */,
@@ -1823,21 +1877,25 @@
 				C3FEB0B21871C801008EADAA /* CommonViewController.m in Sources */,
 				C32D4FA9187F953C0090730B /* TMQuiltViewController.m in Sources */,
 				C3D4FCB8187CFD64001A7223 /* UIViewController+CustomBarItemPosition.m in Sources */,
+				C3456CF91887D2BC009329D2 /* SoundEffectViewController.m in Sources */,
 				C3FEB0EB1871D2FC008EADAA /* ControlCenter.m in Sources */,
 				C3164CF518746ABF00301ACA /* UINavigationBar+Custom.m in Sources */,
 				C32D4FB1187FAB320090730B /* SoundCatalogCell.m in Sources */,
 				C3D4FCBD187D0DD1001A7223 /* CatalogRankCell.m in Sources */,
 				C3FEB0B91871C801008EADAA /* UIColor+Utils.m in Sources */,
 				C32F3FF9188286B500681953 /* RegisterViewController.m in Sources */,
+				C3456CE018877077009329D2 /* MyUploadCell.m in Sources */,
 				C3FEB0BC1871C801008EADAA /* VersionManager.m in Sources */,
 				C32749A0187A5ED400CF7A4A /* HelpViewController.m in Sources */,
 				C3FEB0B51871C801008EADAA /* NSDate+Utils.m in Sources */,
 				C32F40261882886900681953 /* ReviewViewController.m in Sources */,
 				C326CDB1187C5E7B006DD97C /* ChampionHomePageViewController.m in Sources */,
 				C3FEB0E01871CAF4008EADAA /* MixingMusicListViewController.m in Sources */,
+				C3456CF31887CA1D009329D2 /* MixingMusicListCell.m in Sources */,
 				C3FEB0B31871C801008EADAA /* HWConnect.m in Sources */,
 				C3FEB0C71871CA19008EADAA /* MainViewController.m in Sources */,
 				C3FEB0B61871C801008EADAA /* NSString+MD5_32.m in Sources */,
+				C3456CE51887753E009329D2 /* MyDownloadCell.m in Sources */,
 				C3FEB0B71871C801008EADAA /* NSString+Utils.m in Sources */,
 				C32F4021188287EE00681953 /* MyProductionViewController.m in Sources */,
 				C32F4003188286EB00681953 /* LoginSuccessViewController.m in Sources */,

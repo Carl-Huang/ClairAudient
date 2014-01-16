@@ -7,7 +7,9 @@
 //
 
 #import "MixingMusicListViewController.h"
-
+#import "MixingMusicListCell.h"
+#import "ControlCenter.h"
+#define Cell_Height 65.0f
 @interface MixingMusicListViewController ()
 
 @end
@@ -39,6 +41,43 @@
 - (void)initUI
 {
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    _tableView.backgroundColor = [UIColor clearColor];
+    UINib * nib = [UINib nibWithNibName:@"MixingMusicListCell" bundle:[NSBundle bundleForClass:[MixingMusicListCell class]]];
+    [_tableView registerNib:nib forCellReuseIdentifier:@"Cell"];
 }
 
+#pragma mark - UITableViewDataSource Methods
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 10;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return Cell_Height;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MixingMusicListCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    return cell;
+}
+#pragma mark - UITableViewDelegate Methods
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [ControlCenter showSoundEffectVC];
+}
+
+#pragma mark -
+- (IBAction)backAction:(id)sender
+{
+    [self popVIewController];
+}
 @end

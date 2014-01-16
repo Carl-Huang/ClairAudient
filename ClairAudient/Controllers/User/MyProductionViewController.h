@@ -8,6 +8,7 @@
 
 #import "CommonViewController.h"
 
-@interface MyProductionViewController : CommonViewController
+@interface MyProductionViewController : CommonViewController<UITableViewDataSource,UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

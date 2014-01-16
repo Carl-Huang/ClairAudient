@@ -172,6 +172,11 @@
     [[self class] showVC:@"IntegralViewController"];
 }
 
++ (void)showSoundEffectVC
+{
+    [[self class] showVC:@"SoundEffectViewController"];
+}
+
 + (void)showVC:(NSString *)vcName
 {
     AppDelegate * appDelegate = [[self class] appDelegate];

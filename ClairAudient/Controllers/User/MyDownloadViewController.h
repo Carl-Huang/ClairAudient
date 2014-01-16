@@ -8,6 +8,7 @@
 
 #import "CommonViewController.h"
 
-@interface MyDownloadViewController : CommonViewController
+@interface MyDownloadViewController : CommonViewController<UITableViewDelegate,UITableViewDataSource>
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end

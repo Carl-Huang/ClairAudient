@@ -33,6 +33,7 @@
 #import "ReviewViewController.h"
 #import "UserCenterViewController.h"
 #import "IntegralViewController.h"
+#import "SoundEffectViewController.h"
 @interface ControlCenter : NSObject
 
 + (AppDelegate *)appDelegate;
@@ -65,6 +66,7 @@
 + (void)showReviewVC;
 + (void)showLoginVC;
 + (void)showIntegralVC;
++ (void)showSoundEffectVC;
 + (void)showVC:(NSString *)vcName;
 + (MainViewController *)mainViewController;
 + (UIViewController *)viewControllerWithName:(NSString *)vcName;

@@ -7,7 +7,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterViewController">
             <connections>
+                <outlet property="answerField" destination="5Dg-bf-hlg" id="huI-xC-19B"/>
+                <outlet property="emailField" destination="0y7-de-W8t" id="rZI-26-5m6"/>
+                <outlet property="nameField" destination="70R-CK-EIk" id="g4B-O0-xyb"/>
+                <outlet property="normalBtn" destination="IKE-eJ-gRn" id="RtO-Po-IgY"/>
+                <outlet property="pswField" destination="9Kc-3b-mJI" id="ljb-gv-SWr"/>
+                <outlet property="questionField" destination="e9w-Yi-sYI" id="FbJ-tj-cYI"/>
+                <outlet property="repeatPswField" destination="lRM-ZO-UMI" id="Aen-RZ-QAT"/>
                 <outlet property="view" destination="1" id="3"/>
+                <outlet property="vipBtn" destination="Tc1-5f-cXB" id="Rwp-Tf-Beq"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -165,6 +173,9 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <state key="selected" image="user_27.png"/>
+                            <connections>
+                                <action selector="selectNormalAction:" destination="-1" eventType="touchUpInside" id="wAf-Dr-piI"/>
+                            </connections>
                         </button>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="普通会员" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rND-d0-jxb">
                             <rect key="frame" x="125" y="350" width="56" height="21"/>
@@ -181,6 +192,9 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <state key="selected" image="user_27.png"/>
+                            <connections>
+                                <action selector="selectionVipAction:" destination="-1" eventType="touchUpInside" id="aBB-Ns-Qyv"/>
+                            </connections>
                         </button>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="高级会员" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6i5-ZW-H9f">
                             <rect key="frame" x="225" y="350" width="56" height="21"/>

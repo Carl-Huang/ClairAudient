@@ -1,24 +1,26 @@
 //
-//  VipRegisterViewController.m
+//  SoundEffectViewController.m
 //  ClairAudient
 //
-//  Created by Carl on 14-1-12.
+//  Created by Carl on 14-1-16.
 //  Copyright (c) 2014年 helloworld. All rights reserved.
 //
 
-#import "VipRegisterViewController.h"
+#import "SoundEffectViewController.h"
 
-@interface VipRegisterViewController ()
-
+@interface SoundEffectViewController ()
+@property (nonatomic,strong) NSArray * dataSource;
+@property (nonatomic,strong) NSArray * icons;
 @end
 
-@implementation VipRegisterViewController
+@implementation SoundEffectViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _dataSource = @[@"网络链接",@"欢快",@"前奏",@"科幻音效",@"DJ音效",@"电子设备",@"办公音效",@"运动音效",@"卡通音效",@"生活音效",@"节日音效",@"交通音效",@"乐器音效",@"打斗音效",@"战争音效",@"人物音效",@"经典配音",@"配音星库",@"紧张音效"];
+        _icons = @[];
     }
     return self;
 }
@@ -39,17 +41,5 @@
 - (IBAction)backAction:(id)sender
 {
     [self popVIewController];
-}
-
-- (IBAction)selectBoyAction:(id)sender
-{
-    [_boyBtn setSelected:YES];
-    [_girlBtn setSelected:NO];
-}
-
-- (IBAction)selectGirlAction:(id)sender
-{
-    [_boyBtn setSelected:NO];
-    [_girlBtn setSelected:YES];
 }
 @end
