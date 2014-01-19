@@ -34,6 +34,9 @@
 #import "UserCenterViewController.h"
 #import "IntegralViewController.h"
 #import "SoundEffectViewController.h"
+#import "MixingViewController.h"
+#import "RecordViewController.h"
+#import "RecordListViewController.h"
 @interface ControlCenter : NSObject
 
 + (AppDelegate *)appDelegate;
@@ -67,6 +70,9 @@
 + (void)showLoginVC;
 + (void)showIntegralVC;
 + (void)showSoundEffectVC;
++ (void)showMixingVC;
++ (void)showRecordVC;
++ (void)showRecordListVC;
 + (void)showVC:(NSString *)vcName;
 + (MainViewController *)mainViewController;
 + (UIViewController *)viewControllerWithName:(NSString *)vcName;

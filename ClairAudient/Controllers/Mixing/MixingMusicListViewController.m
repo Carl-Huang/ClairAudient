@@ -72,7 +72,8 @@
 #pragma mark - UITableViewDelegate Methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [ControlCenter showSoundEffectVC];
+//    [ControlCenter showSoundEffectVC];
+    [ControlCenter showMixingVC];
 }
 
 #pragma mark -

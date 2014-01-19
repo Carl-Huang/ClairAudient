@@ -177,6 +177,21 @@
     [[self class] showVC:@"SoundEffectViewController"];
 }
 
++ (void)showMixingVC
+{
+    [[self class] showVC:@"MixingViewController"];
+}
+
++ (void)showRecordVC
+{
+    [[self class] showVC:@"RecordViewController"];
+}
+
++ (void)showRecordListVC
+{
+    [[self class] showVC:@"RecordListViewController"];
+}
+
 + (void)showVC:(NSString *)vcName
 {
     AppDelegate * appDelegate = [[self class] appDelegate];

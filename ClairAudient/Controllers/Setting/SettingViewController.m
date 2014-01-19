@@ -64,7 +64,7 @@
 
 - (IBAction)rightItemAction:(id)sender
 {
-    
+
 }
 
 #pragma mark - UITableViewDataSource Methods
