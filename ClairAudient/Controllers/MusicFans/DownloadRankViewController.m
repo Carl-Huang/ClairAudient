@@ -9,9 +9,13 @@
 #import "DownloadRankViewController.h"
 #import "UIViewController+CustomBarItemPosition.h"
 #import "DownloadRankCell.h"
+#import "HttpService.h"
+#import "MBProgressHUD.h"
+#import "Voice.h"
 #define Cell_Height 50.0f
 @interface DownloadRankViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong) NSArray * sortImages;
+@property (nonatomic,strong) NSArray * dataSource;
 @end
 
 @implementation DownloadRankViewController
@@ -21,6 +25,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _sortImages = @[@"MusicFans_one",@"MusicFans_two",@"MusicFans_three",@"MusicFans_four",@"MusicFans_five",@"MusicFans_six",@"MusicFans_seven",@"MusicFans_eight",@"MusicFans_nine",@"MusicFans_ten"];
+        _dataSource = [NSArray array];
+        
     }
     return self;
 }
@@ -50,6 +56,19 @@
     _tableView.backgroundColor = [UIColor clearColor];
     UINib * nib = [UINib nibWithNibName:@"DownloadRankCell" bundle:[NSBundle bundleForClass:[DownloadRankCell class]]];
     [_tableView registerNib:nib forCellReuseIdentifier:@"Cell"];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [[HttpService sharedInstance] findDownloadRankVoiceWithCompletionBlock:^(id object) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if(object)
+        {
+            _dataSource = object;
+            [_tableView reloadData];
+        }
+    } failureBlock:^(NSError *error, NSString *responseString) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        NSLog(@"Request Failure.");
+    }];
 }
 
 
@@ -61,7 +80,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    if([_dataSource count] > 10)
+    {
+        return 10;
+    }
+    return [_dataSource count];
 }
 
 
@@ -78,6 +101,9 @@
     {
         cell.sortImageView.image = [UIImage imageNamed:[_sortImages objectAtIndex:indexPath.row]];
     }
+    Voice * voice = [_dataSource objectAtIndex:indexPath.row];
+    cell.nameLabel.text = voice.vl_name;
+    cell.downloadCountLabel.text = [NSString stringWithFormat:@"下载%@次",voice.download_num];
     return cell;
 }
 #pragma mark - UITableViewDelegate Methods

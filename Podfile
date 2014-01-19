@@ -3,6 +3,7 @@
 
 target "ClairAudient" do
 pod 'AFNetworking', '~> 2.0.3'
+pod 'MBProgressHUD', '~> 0.8'
 end
 
 target "ClairAudientTests" do

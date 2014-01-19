@@ -10,9 +10,13 @@
 #import "UIViewController+CustomBarItemPosition.h"
 #import "IntegralChampionCell.h"
 #import "ControlCenter.h"
+#import "HttpService.h"
+#import "MBProgressHUD.h"
+#import "IntegralRankUser.h"
 #define Cell_Height 50.0f
 @interface IntegralChampionViewController ()
 @property (nonatomic,strong) NSArray * sortImages;
+@property (nonatomic,strong) NSArray * dataSource;
 @end
 
 @implementation IntegralChampionViewController
@@ -22,6 +26,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _sortImages = @[@"MusicFans_one",@"MusicFans_two",@"MusicFans_three",@"MusicFans_four",@"MusicFans_five",@"MusicFans_six",@"MusicFans_seven",@"MusicFans_eight",@"MusicFans_nine",@"MusicFans_ten"];
+        _dataSource = [NSArray array];
     }
     return self;
 }
@@ -51,6 +56,19 @@
     _tableView.backgroundColor = [UIColor clearColor];
     UINib * nib = [UINib nibWithNibName:@"IntegralChampionCell" bundle:[NSBundle bundleForClass:[IntegralChampionCell class]]];
     [_tableView registerNib:nib forCellReuseIdentifier:@"Cell"];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [[HttpService sharedInstance] findIntegralRankUserWithCompletionBlock:^(id object) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if(object)
+        {
+            _dataSource = object;
+            [_tableView reloadData];
+        }
+    } failureBlock:^(NSError *error, NSString *responseString) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        NSLog(@"Request Failure!");
+    }];
 }
 
 #pragma mark - UITableViewDataSource Methods
@@ -61,7 +79,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    if([_dataSource count] > 10)
+    {
+        return 10;
+    }
+    return [_dataSource count];
 }
 
 
@@ -78,6 +100,9 @@
     {
         cell.sortImageView.image = [UIImage imageNamed:[_sortImages objectAtIndex:indexPath.row]];
     }
+    IntegralRankUser * user = [_dataSource objectAtIndex:indexPath.row];
+    cell.nameLabel.text = user.username;
+    cell.integralLabel.text = [user.integral stringByAppendingString:@"分"];
     return cell;
 }
 #pragma mark - UITableViewDelegate Methods

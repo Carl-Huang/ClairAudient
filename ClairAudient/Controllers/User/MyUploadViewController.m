@@ -9,9 +9,12 @@
 #import "MyUploadViewController.h"
 #import "UIViewController+CustomBarItemPosition.h"
 #import "MyUploadCell.h"
+#import "Voice.h"
+#import "HttpService.h"
+#import "MBProgressHUD.h"
 #define Cell_Height 65.0f
 @interface MyUploadViewController ()
-
+@property (nonatomic,strong) NSMutableArray * dataSource;
 @end
 
 @implementation MyUploadViewController
@@ -70,6 +73,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MyUploadCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    [cell.playSlider setThumbImage:[UIImage imageNamed:@"record_20"] forState:UIControlStateNormal];
+    [cell.playSlider setThumbImage:[UIImage imageNamed:@"record_20"] forState:UIControlStateHighlighted];
+    [cell.playSlider setMinimumTrackImage:[UIImage imageNamed:@"record_19"] forState:UIControlStateNormal];
+    [cell.playSlider setMaximumTrackImage:[UIImage imageNamed:@"record_19"] forState:UIControlStateNormal];
     return cell;
 }
 #pragma mark - UITableViewDelegate Methods

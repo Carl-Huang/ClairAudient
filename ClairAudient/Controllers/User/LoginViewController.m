@@ -8,6 +8,8 @@
 
 #import "LoginViewController.h"
 #import "ControlCenter.h"
+#import "HttpService.h"
+#import "MBProgressHUD.h"
 @interface LoginViewController ()
 
 @end
@@ -43,7 +45,41 @@
 
 - (IBAction)loginAction:(id)sender
 {
-    [ControlCenter showLoginSuccessVC];
+    NSString * mobile = [_mobileField text];
+    NSString * pwd = [_passwordField text];
+    if([mobile length] == 0)
+    {
+        [self showAlertViewWithMessage:@"请填写您的手机号码!"];
+        return ;
+    }
+    
+    if([pwd length] == 0)
+    {
+        [self showAlertViewWithMessage:@"请输入您的密码!"];
+        return ;
+    }
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [[HttpService sharedInstance] userLogin:@{@"userName":mobile,@"passWord":pwd} completionBlock:^(NSString *responStr) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [ControlCenter showLoginSuccessVC];
+        
+    } failureBlock:^(NSError *error,NSString * responseString) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if([responseString isEqualToString:@"4"])
+        {
+            [self showAlertViewWithMessage:@"用户名不存在！"];
+        }
+        else if([responseString isEqualToString:@"5"])
+        {
+            [self showAlertViewWithMessage:@"密码不争取！"];
+        }
+        else
+        {
+            [self showAlertViewWithMessage:@"登陆失败，请重试！"];
+        }
+    }];
+    
 }
 
 - (IBAction)registerAction:(id)sender
