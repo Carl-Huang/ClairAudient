@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface BaseModel : NSObject
-
++ (NSDictionary *)toDictionary:(id)object;
++ (id)fromDictionary:(NSDictionary *)info withClass:(Class)cls;
 @end

@@ -10,6 +10,7 @@
 #import "UIViewController+CustomBarItemPosition.h"
 #import "MyUploadCell.h"
 #import "Voice.h"
+#import "User.h"
 #import "HttpService.h"
 #import "MBProgressHUD.h"
 #define Cell_Height 65.0f
@@ -49,6 +50,20 @@
     _tableView.backgroundColor = [UIColor clearColor];
     UINib * nib = [UINib nibWithNibName:@"MyUploadCell" bundle:[NSBundle bundleForClass:[MyUploadCell class]]];
     [_tableView registerNib:nib forCellReuseIdentifier:@"Cell"];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    User * user = [User userFromLocal];
+    [[HttpService sharedInstance] findMyUploadByUser:@{@"userId":user.hw_id} completionBlock:^(id object) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if(object)
+        {
+            _dataSource = object;
+            [_tableView reloadData];
+        }
+    } failureBlock:^(NSError *error, NSString *responseString) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        NSLog(@"Request Failure");
+    }];
 }
 
 
@@ -77,6 +92,8 @@
     [cell.playSlider setThumbImage:[UIImage imageNamed:@"record_20"] forState:UIControlStateHighlighted];
     [cell.playSlider setMinimumTrackImage:[UIImage imageNamed:@"record_19"] forState:UIControlStateNormal];
     [cell.playSlider setMaximumTrackImage:[UIImage imageNamed:@"record_19"] forState:UIControlStateNormal];
+    Voice * voice = [_dataSource objectAtIndex:indexPath.row];
+    cell.nameLabel.text = voice.vl_name;
     return cell;
 }
 #pragma mark - UITableViewDelegate Methods

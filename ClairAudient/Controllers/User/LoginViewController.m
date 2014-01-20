@@ -10,6 +10,7 @@
 #import "ControlCenter.h"
 #import "HttpService.h"
 #import "MBProgressHUD.h"
+#import "User.h"
 @interface LoginViewController ()
 
 @end
@@ -60,9 +61,15 @@
     }
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [[HttpService sharedInstance] userLogin:@{@"userName":mobile,@"passWord":pwd} completionBlock:^(NSString *responStr) {
+    [[HttpService sharedInstance] userLogin:@{@"userName":mobile,@"passWord":pwd} completionBlock:^(id object) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-        [ControlCenter showLoginSuccessVC];
+        
+        if(object)
+        {
+            [User saveToLocal:object];
+            [ControlCenter showLoginSuccessVC];
+        }
+        
         
     } failureBlock:^(NSError *error,NSString * responseString) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];

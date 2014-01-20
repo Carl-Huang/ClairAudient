@@ -23,4 +23,6 @@
 @property (nonatomic,strong) NSString * role;
 @property (nonatomic,strong) NSString * workYears;
 @property (nonatomic,strong) NSString * qq;
++ (void)saveToLocal:(User *)user;
++ (User *)userFromLocal;
 @end
