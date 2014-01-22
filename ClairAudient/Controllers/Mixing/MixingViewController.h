@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *startTime;
 @property (weak, nonatomic) IBOutlet UILabel *endTime;
 
+@property (weak, nonatomic) IBOutlet UIView *timeLabelView;
 
 
 - (IBAction)backAction:(id)sender;

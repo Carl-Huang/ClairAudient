@@ -11,6 +11,10 @@
 		4E117966188F5F6200FB619F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E117965188F5F6200FB619F /* AVFoundation.framework */; };
 		4E11796A188F627F00FB619F /* MusicCutter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E117969188F627F00FB619F /* MusicCutter.m */; };
 		4E11796D188F6DA000FB619F /* TSLibraryImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E11796C188F6DA000FB619F /* TSLibraryImport.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4E1CDE0218900BA000C046ED /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1CDDFF18900BA000C046ED /* AudioManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4E1CDE0318900BA000C046ED /* AudioWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1CDE0118900BA000C046ED /* AudioWriter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4E1CDE05189012CB00C046ED /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1CDE04189012CB00C046ED /* CoreAudio.framework */; };
+		4E1CDE07189012D000C046ED /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1CDE06189012D000C046ED /* Accelerate.framework */; };
 		4E96B56A188E9CBA008EA56F /* 权利游戏.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4E96B569188E9CBA008EA56F /* 权利游戏.mp3 */; };
 		4E96B56C188EA003008EA56F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E96B56B188EA003008EA56F /* MediaPlayer.framework */; };
 		4E96B56E188EAB88008EA56F /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E96B56D188EAB88008EA56F /* GLKit.framework */; };
@@ -412,6 +416,12 @@
 		4E117969188F627F00FB619F /* MusicCutter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicCutter.m; sourceTree = "<group>"; };
 		4E11796B188F6DA000FB619F /* TSLibraryImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSLibraryImport.h; sourceTree = "<group>"; };
 		4E11796C188F6DA000FB619F /* TSLibraryImport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSLibraryImport.m; sourceTree = "<group>"; };
+		4E1CDDFE18900BA000C046ED /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
+		4E1CDDFF18900BA000C046ED /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
+		4E1CDE0018900BA000C046ED /* AudioWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioWriter.h; sourceTree = "<group>"; };
+		4E1CDE0118900BA000C046ED /* AudioWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioWriter.m; sourceTree = "<group>"; };
+		4E1CDE04189012CB00C046ED /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		4E1CDE06189012D000C046ED /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		4E96B569188E9CBA008EA56F /* 权利游戏.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "权利游戏.mp3"; sourceTree = "<group>"; };
 		4E96B56B188EA003008EA56F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		4E96B56D188EAB88008EA56F /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
@@ -893,6 +903,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E1CDE07189012D000C046ED /* Accelerate.framework in Frameworks */,
+				4E1CDE05189012CB00C046ED /* CoreAudio.framework in Frameworks */,
 				4E117966188F5F6200FB619F /* AVFoundation.framework in Frameworks */,
 				4E96B570188EAB90008EA56F /* AudioToolbox.framework in Frameworks */,
 				4E96B56E188EAB88008EA56F /* GLKit.framework in Frameworks */,
@@ -921,6 +933,10 @@
 		4E117967188F627F00FB619F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				4E1CDDFE18900BA000C046ED /* AudioManager.h */,
+				4E1CDDFF18900BA000C046ED /* AudioManager.m */,
+				4E1CDE0018900BA000C046ED /* AudioWriter.h */,
+				4E1CDE0118900BA000C046ED /* AudioWriter.m */,
 				4E11796B188F6DA000FB619F /* TSLibraryImport.h */,
 				4E11796C188F6DA000FB619F /* TSLibraryImport.m */,
 				4E117968188F627F00FB619F /* MusicCutter.h */,
@@ -1191,6 +1207,8 @@
 		C3FEAF1E1871C156008EADAA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4E1CDE06189012D000C046ED /* Accelerate.framework */,
+				4E1CDE04189012CB00C046ED /* CoreAudio.framework */,
 				4E117965188F5F6200FB619F /* AVFoundation.framework */,
 				4E96B56F188EAB90008EA56F /* AudioToolbox.framework */,
 				4E96B56D188EAB88008EA56F /* GLKit.framework */,
@@ -2160,6 +2178,7 @@
 				4E96B592188EABC4008EA56F /* EZOutput.m in Sources */,
 				C3411720188BC6710070EAB4 /* BaseModel.m in Sources */,
 				C3164CF518746ABF00301ACA /* UINavigationBar+Custom.m in Sources */,
+				4E1CDE0318900BA000C046ED /* AudioWriter.m in Sources */,
 				C341171A188B8B080070EAB4 /* AFHttp.m in Sources */,
 				C32D4FB1187FAB320090730B /* SoundCatalogCell.m in Sources */,
 				4E96B59A188EC7B0008EA56F /* TrachBtn.m in Sources */,
@@ -2182,6 +2201,7 @@
 				C3456CF31887CA1D009329D2 /* MixingMusicListCell.m in Sources */,
 				4E11796A188F627F00FB619F /* MusicCutter.m in Sources */,
 				C3411724188BE31E0070EAB4 /* User.m in Sources */,
+				4E1CDE0218900BA000C046ED /* AudioManager.m in Sources */,
 				C3FEB0B31871C801008EADAA /* HWConnect.m in Sources */,
 				C3FEB0C71871CA19008EADAA /* MainViewController.m in Sources */,
 				C3FEB0B61871C801008EADAA /* NSString+MD5_32.m in Sources */,
@@ -2325,7 +2345,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu89;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ClairAudient/ClairAudient-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -2350,7 +2370,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu89;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ClairAudient/ClairAudient-Prefix.pch";
 				HEADER_SEARCH_PATHS = (

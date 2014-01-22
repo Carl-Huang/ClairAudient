@@ -23,9 +23,13 @@
 {
     
     CGFloat     waveLength;
-    NSInteger   musicLength;
+    CGFloat     musicLength;
+    CGFloat     cuttedMusicLength;
     NSString    * edittingMusicFile;
     
+    
+    CGFloat startLocation;
+    CGFloat endLocation;
     BOOL isSimulator;
 }
 
@@ -69,18 +73,10 @@
     {
         edittingMusicFile = [self.musicInfo valueForKey:@"musicURL"];;
     }
-    
-    
-    
-    CGSize  size = self.contentScrollView.contentSize;
-    [self.contentScrollView setContentSize:CGSizeMake(500, size.height)];
-    self.contentScrollView.showsHorizontalScrollIndicator = NO;
     NSURL * fileURL = [NSURL fileURLWithPath:edittingMusicFile];
     [self openFileWithFilePathURL:fileURL];
     
-    /*
-     file:///Users/vedon/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/4A06FF71-431E-4A25-AD77-954A73F71151/ClairAudient.app/%E6%9D%83%E5%88%A9%E6%B8%B8%E6%88%8F.mp3
-     */
+    
     
     //startBtn ,endBtn
     waveLength = 320.0f;
@@ -99,9 +95,11 @@
         }
         rect.origin.x           = offset;
         weakSelf.maskView.frame = rect;
-        weakSelf.cutLength.text = [NSString stringWithFormat:@"%ld",(long)offsetWidth];
         
         CGFloat start = (currentOffsetX * musicLength)/waveLength;
+        startLocation = start;
+        cuttedMusicLength = endLocation - startLocation;
+        weakSelf.cutLength.text = [NSString stringWithFormat:@"%0.2f",cuttedMusicLength];
         weakSelf.startTime.text = [NSString stringWithFormat:@"%0.2f",start];
     }];
  
@@ -116,13 +114,33 @@
              rect.size.width = offsetWidth;
          }
          weakSelf.maskView.frame= rect;
-         weakSelf.cutLength.text = [NSString stringWithFormat:@"%ld",(long)offsetWidth];
          
          CGFloat end = currentOffsetX/waveLength * musicLength;
+         endLocation = end;
+         cuttedMusicLength = endLocation - startLocation;
+         weakSelf.cutLength.text = [NSString stringWithFormat:@"%0.2f",cuttedMusicLength];
          weakSelf.endTime.text = [NSString stringWithFormat:@"%0.2f",end];
     }];
     
+    CGSize  size = self.contentScrollView.contentSize;
+    [self.contentScrollView setContentSize:CGSizeMake(500, size.height)];
+    self.contentScrollView.showsHorizontalScrollIndicator = NO;
+    
     musicLength = [self getMusicLength:[NSURL fileURLWithPath:testFile]];
+    startLocation = 0.0f;
+    endLocation = musicLength;
+    
+    CGFloat timeSlice = musicLength / 6.0;
+    for (int i =0; i< 6; i++) {
+        UILabel * label     = [[UILabel alloc]initWithFrame:CGRectMake(10+(50)*i, 5, 50, 30)];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.textColor     = [UIColor whiteColor];
+        label.font          = [UIFont systemFontOfSize:12];
+        label.text          = [NSString stringWithFormat:@"%0.2f",timeSlice*i];
+        [self.timeLabelView addSubview:label];
+        label               = nil;
+    }
+    self.endTime.text = [NSString stringWithFormat:@"%0.2f",musicLength];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -142,7 +160,7 @@
 {
     AVURLAsset* audioAsset =[AVURLAsset assetWithURL:url];
     CMTime audioDuration = audioAsset.duration;
-    float audioDurationSeconds =CMTimeGetSeconds(audioDuration)/100;
+    float audioDurationSeconds =CMTimeGetSeconds(audioDuration)/100.0f;
     return audioDurationSeconds;
 }
 
@@ -168,6 +186,7 @@
     [MusicCutter cropMusic:edittingMusicFile exportFileName:@"newSong.m4a" withStartTime:self.startTime.text.floatValue*100 endTime:self.endTime.text.floatValue*100 withCompletedBlock:^(AVAssetExportSessionStatus status, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+            [self showAlertViewWithMessage:@"裁剪成功"];
         });
         
     }];
