@@ -10,7 +10,6 @@
 #import "ControlCenter.h"
 #import "HWConnect.h"
 @implementation AppDelegate
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [ControlCenter makeKeyAndVisible];
