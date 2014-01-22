@@ -52,6 +52,7 @@
     __weak RecordViewController * weakSelf = self;
     __block CGFloat dbVal = 0.0f;
     audioManager.inputBlock = ^(float *data, UInt32 numFrames, UInt32 numChannels) {
+        [weakSelf.writer writeNewAudio:data numFrames:numFrames numChannels:numChannels];
         vDSP_vsq(data, 1, data, 1, numFrames*numChannels);
         CGFloat meanVal = 0.0f;
         vDSP_meanv(data, 1, &meanVal, numFrames*numChannels);
@@ -68,9 +69,6 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             NSLog(@"%f",percentage);
         });
-        
-        [weakSelf.writer writeNewAudio:data numFrames:numFrames numChannels:numChannels];
-        
     };
     
     
@@ -122,27 +120,48 @@
     self.clocker.text = @"";
 }
 
+-(void)resetActionView:(BOOL)selected
+{
+    [self.beforeRecordView setHidden:selected];
+    [self.beginRecordView setHidden:!selected];
+}
+
+-(void)timerStop
+{
+    if (counter !=nil) {
+        [counter invalidate];
+        counter = nil;
+    }
+}
+
+-(void)timerStart
+{
+    if (counter == nil) {
+        counter = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(increateTime) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop]addTimer:counter forMode:NSRunLoopCommonModes];
+        
+        [counter fire];
+        
+    }
+}
 
 #pragma mark - Outlet Action
 - (IBAction)startRecordAction:(id)sender {
     [audioManager play];
-    [self.beforeRecordView setHidden:YES];
-    [self.beginRecordView setHidden:NO];
-    
-    [counter invalidate];
-    counter = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(increateTime) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop]addTimer:counter forMode:NSRunLoopCommonModes];
+    [self resetActionView:YES];
+    [self timerStart];
     [self resetClocker];
-    [counter fire];
 }
 - (IBAction)pauseBtnAction:(id)sender {
     UIButton * btn = (UIButton *)sender;
     [btn setSelected:!btn.selected];
     if (btn.selected) {
+        [self timerStop];
         [audioManager pause];
         [self.writer pause];
     }else
     {
+        [self timerStart];
         [audioManager play];
         [self.writer record];
     }
@@ -151,9 +170,16 @@
 - (IBAction)stopRecordAction:(id)sender {
     [audioManager pause];
     [self.writer stop];
+    [self resetActionView:NO];
+    [self timerStop];
+    self.clocker.text = @"00:00:00";
+    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"保存成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alertView show];
+    alertView = nil;
 }
 
 - (IBAction)cancelRecordAction:(id)sender {
+    [self timerStop];
     UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"删除录音" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     [alertView show];
     alertView = nil;
@@ -168,6 +194,9 @@
             break;
         case 1:
             //确定
+            [audioManager pause];
+            [self.writer stop];
+            [self resetActionView:NO];
             break;
         default:
             break;
