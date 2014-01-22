@@ -25,10 +25,14 @@
 @property (weak, nonatomic) IBOutlet TrachBtn *endBtn;
 @property (weak, nonatomic) IBOutlet UIView *maskView;
 @property (weak, nonatomic) IBOutlet UILabel *cutLength;
+@property (weak, nonatomic) IBOutlet UILabel *startTime;
+@property (weak, nonatomic) IBOutlet UILabel *endTime;
 
 
 
 - (IBAction)backAction:(id)sender;
 -(IBAction)seekToFrame:(id)sender;
 - (IBAction)playMusic:(id)sender;
+
+- (IBAction)startCutting:(id)sender;
 @end

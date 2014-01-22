@@ -30,36 +30,35 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    CGPoint  point = [touches.anyObject locationInView:self.locationView];
+    previewOffsetX = point.x - self.frame.size.width/2.0;
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     CGPoint  point = [touches.anyObject locationInView:self.locationView];
-    NSLog(@"Touch Moved:%f",point.x
-          );
-    CGRect rect = self.frame;
-    rect.origin.x = point.x - self.frame.size.width/2.0;
-    self.frame = rect;
     
+    
+    NSInteger X         = point.x + self.frame.size.width/2.0;
+    NSLog(@"Touch Moved:%ld",(long)X);
+    NSLog(@"PreviousOffsetX :%ld",(long)previewOffsetX);
+
+    NSInteger offsetX   = 0;
+    
+    CGRect rect     = self.frame;
+    offsetX = X;
+    NSLog(@"Offset: %ld",(long)offsetX);
+    previewOffsetX  = offsetX;
+    rect.origin.x   = offsetX - self.frame.size.width/2.0;
+    self.frame      = rect;
     
     if (self.block) {
-        self.block(point.x);
+        self.block(offsetX,self.frame.origin.x);
     }
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    CGPoint  point = [touches.anyObject locationInView:self.locationView];
-    NSLog(@"Touch Moved:%f",point.x
-          );
-    CGRect rect = self.frame;
-    rect.origin.x = point.x - self.frame.size.width/2.0;
-    self.frame = rect;
-    
-    
-    if (self.endMoveBlock) {
-        self.endMoveBlock(point.x);
-    }
-
+  
 }
 @end

@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-typedef void(^BtnDidMoveBlock) (NSInteger offset);
-typedef void(^BtnDidEndMoveBlock) (NSInteger offset);
+typedef void(^BtnDidMoveBlock) (NSInteger offset,NSInteger currentOffsetX);
 @interface TrachBtn : UIButton
+{
+    NSInteger previewOffsetX;
+}
 
 @property (strong ,nonatomic) BtnDidMoveBlock  block;
-@property (strong ,nonatomic) BtnDidEndMoveBlock  endMoveBlock;
 @property (weak ,nonatomic) UIView * locationView;
 @end

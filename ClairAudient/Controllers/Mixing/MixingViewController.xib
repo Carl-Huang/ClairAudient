@@ -12,10 +12,12 @@
                 <outlet property="contentScrollView" destination="7cW-io-MH6" id="W8k-Bw-BoJ"/>
                 <outlet property="cutLength" destination="8dG-ws-TRR" id="f8l-yj-w8a"/>
                 <outlet property="endBtn" destination="kOf-57-Kcg" id="suc-vk-dtn"/>
+                <outlet property="endTime" destination="oDy-th-GEo" id="DED-vl-7nv"/>
                 <outlet property="framePositionSlider" destination="cox-un-Pdo" id="KTq-0h-ICb"/>
                 <outlet property="littleTitleLabel" destination="S0p-Vc-5XH" id="GRy-AF-fYi"/>
                 <outlet property="maskView" destination="ET4-49-Szk" id="F0Z-hx-ySi"/>
                 <outlet property="startBtn" destination="zKU-C3-k5g" id="HdL-rP-vJg"/>
+                <outlet property="startTime" destination="pfv-EU-EI9" id="9OD-Y5-0Wg"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -68,7 +70,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tVW-8A-Ir9">
                             <rect key="frame" x="236" y="9" width="35" height="35"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" backgroundImage="hunyin_8@2x.png">
+                            <state key="normal" backgroundImage="hunyin_8.png">
                                 <color key="titleColor" red="0.96306090570000003" green="1" blue="0.88776776219999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -76,18 +78,21 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3rK-lk-JrC">
                             <rect key="frame" x="278" y="9" width="35" height="35"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Ok" backgroundImage="hunyin_7@2x.png">
+                            <state key="normal" backgroundImage="hunyin_7.png">
                                 <color key="titleColor" red="0.96306090570000003" green="1" blue="0.88776776219999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="startCutting:" destination="-1" eventType="touchUpInside" id="sCB-Mo-WCx"/>
+                            </connections>
                         </button>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="7cW-io-MH6">
                             <rect key="frame" x="0.0" y="60" width="320" height="244"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <subviews>
                                 <view contentMode="scaleToFill" id="7EL-Vw-6ID" customClass="EZAudioPlotGL">
-                                    <rect key="frame" x="0.0" y="2" width="320" height="244"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <rect key="frame" x="0.0" y="-10" width="320" height="270"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="cox-un-Pdo">
@@ -146,14 +151,14 @@
                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zKU-C3-k5g" customClass="TrachBtn">
-                                    <rect key="frame" x="-19" y="38" width="46" height="30"/>
+                                    <rect key="frame" x="-17" y="19" width="40" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" backgroundImage="sliderStart.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kOf-57-Kcg" customClass="TrachBtn">
-                                    <rect key="frame" x="293" y="208" width="46" height="30"/>
+                                    <rect key="frame" x="298" y="208" width="40" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" backgroundImage="sliderEnd.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -229,8 +234,8 @@
         <image name="back.png" width="30" height="25"/>
         <image name="hunyin_3.png" width="31" height="27"/>
         <image name="hunyin_6.png" width="320" height="533"/>
-        <image name="hunyin_7@2x.png" width="320" height="533"/>
-        <image name="hunyin_8@2x.png" width="320" height="533"/>
+        <image name="hunyin_7.png" width="38" height="38"/>
+        <image name="hunyin_8.png" width="38" height="38"/>
         <image name="record_.png" width="320" height="59"/>
         <image name="sliderEnd.png" width="147" height="69"/>
         <image name="sliderStart.png" width="147" height="69"/>

@@ -10,10 +10,19 @@
 #import "MixingMusicListCell.h"
 #import "ControlCenter.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import <AVFoundation/AVFoundation.h>
+#import "TSLibraryImport.h"
+#import <AudioToolbox/AudioToolbox.h>
+#import "MBProgressHUD.h"
 #define Cell_Height 65.0f
 @interface MixingMusicListViewController ()
 {
     NSMutableArray * dataSource;
+    
+    //用importTool导出音乐库里面的文件
+    TSLibraryImport* importTool;
+    
+    BOOL isSimulator;
 }
 @end
 
@@ -34,19 +43,23 @@
     [self initUI];
     
     dataSource = [NSMutableArray array];
-    
-#if (TARGET_IPHONE_SIMULATOR)
-    [dataSource addObject: @{@"Title":@"权利游戏",@"Artist":@"vedon",@"Album":@"权利游戏",@"musicTime":@"100",@"musicURL":@"空"}];
+    importTool = [[TSLibraryImport alloc] init];
+#if TARGET_IPHONE_SIMULATOR
+    isSimulator = YES;
+#else
+    isSimulator = NO;
 #endif
-    
-#if (TARGET_OS_IPHONE)
-    [self findArtistList];
-    if ([dataSource count] == 0) {
-        //没有歌曲
-        [self showAlertViewWithMessage:@"本地没有音乐文件"];
+    if (isSimulator) {
+         [dataSource addObject: @{@"Title":@"权利游戏",@"Artist":@"vedon",@"Album":@"权利游戏",@"musicTime":@"100",@"musicURL":@"空"}];
+    }else
+    {
+        [self findArtistList];
+        if ([dataSource count] == 0) {
+            //没有歌曲
+            [self showAlertViewWithMessage:@"本地没有音乐文件"];
+        }
     }
 
-#endif
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,12 +82,31 @@
     UIButton * btn = (UIButton *)sender;
     NSInteger index = btn.tag;
     NSDictionary * musicInfo = [dataSource objectAtIndex:index];
-    MixingViewController * viewController = [[MixingViewController alloc]initWithNibName:@"MixingViewController" bundle:nil];
-    [viewController setMusicInfo:musicInfo];
-    [self.navigationController pushViewController:viewController animated:YES];
-    viewController = nil;
     
-//    [ControlCenter showMixingVC];
+    if (isSimulator) {
+        MixingViewController * viewController = [[MixingViewController alloc]initWithNibName:@"MixingViewController" bundle:nil];
+        [viewController setMusicInfo:musicInfo];
+        [self.navigationController pushViewController:viewController animated:YES];
+        viewController = nil;
+
+    }else
+    {
+        NSURL* assetURL = (NSURL *)[musicInfo valueForKey:@"musicURL"];
+        __weak MixingMusicListViewController * weakSelf = self;
+        [self exportAssetAtURL:assetURL withTitle:musicInfo[@"Title"] completedHandler:^(NSString *path) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSMutableDictionary * tempMusicInfo = [NSMutableDictionary dictionaryWithDictionary:musicInfo];
+                [tempMusicInfo setValue:path forKey:@"musicURL"];
+                MixingViewController * viewController = [[MixingViewController alloc]initWithNibName:@"MixingViewController" bundle:nil];
+                [viewController setMusicInfo:tempMusicInfo];
+                [weakSelf.navigationController pushViewController:viewController animated:YES];
+                viewController = nil;
+            });
+            
+        }];
+
+    }
 }
 
 -(void)findArtistList
@@ -116,6 +148,53 @@
     NSDictionary * musicInfo = @{@"Title":title,@"Artist":artist,@"Album":albumName,@"musicTime":musicTime,@"musicURL":musicURL};
     return musicInfo;
 }
+
+//读取本地音乐文件
+-(NSMutableArray *)readLocalMusicFile
+{
+    NSMutableArray * array = [NSMutableArray array];
+    
+    
+    return array;
+}
+
+- (void)exportAssetAtURL:(NSURL*)assetURL withTitle:(NSString*)title completedHandler:(void (^)(NSString * path))completedBlock
+{
+	
+	NSString* ext = [TSLibraryImport extensionForAssetURL:assetURL];
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    NSString * filePath = [documentsDirectory stringByAppendingPathComponent:title];
+    NSString * localFilePath = [filePath stringByAppendingPathExtension:ext];
+	NSURL* outURL = [[NSURL fileURLWithPath:filePath] URLByAppendingPathExtension:ext];
+	
+    //已经存在就删除
+    [[NSFileManager defaultManager] removeItemAtURL:outURL error:nil];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        [MBProgressHUD showHUDAddedTo: self.view animated:YES];
+        __weak MixingMusicListViewController * weakSelf = self;
+        [importTool importAsset:assetURL toURL:outURL completionBlock:^(TSLibraryImport* import) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+            });
+            if (import.status != AVAssetExportSessionStatusCompleted) {
+                // something went wrong with the import
+                NSLog(@"Error importing: %@", import.error);
+                import = nil;
+                return;
+            }
+            completedBlock (localFilePath);
+        }];
+        
+    }else
+    {
+        //音频文件已经存在
+        completedBlock (localFilePath);
+    }
+}
+
 
 #pragma mark - UITableViewDataSource Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
