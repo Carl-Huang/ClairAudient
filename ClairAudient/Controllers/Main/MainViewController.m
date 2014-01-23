@@ -48,7 +48,8 @@
 #pragma mark - UIButton Actions
 - (IBAction)showRecordVC:(id)sender
 {
-    [ControlCenter showRecordListVC];
+    
+    [ControlCenter showRecordVC];
 }
 
 - (IBAction)showFoundMusicVC:(id)sender

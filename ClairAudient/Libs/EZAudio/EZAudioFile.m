@@ -176,6 +176,7 @@
                      withNumberOfChannels:_clientFormat.mChannelsPerFrame];
       }
     }
+//      free(audioBufferList->mBuffers[0].mData);
   }
 }
 
@@ -226,6 +227,9 @@
                                             &_waveformFrameRate,
                                             bufferList)
                  operation:"Failed to read audio data from audio file"];
+//        OSStatus status = ExtAudioFileRead(_audioFile,
+//                                           &_waveformFrameRate,
+//                                           bufferList);
       bufferSize = bufferList->mBuffers[0].mDataByteSize/sizeof(AudioUnitSampleType);
       eof = _waveformFrameRate == 0;
       _frameIndex += _waveformFrameRate;

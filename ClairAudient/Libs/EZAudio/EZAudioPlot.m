@@ -77,7 +77,7 @@
   
 -(void)initPlot {
 #if TARGET_OS_IPHONE
-  self.backgroundColor = [UIColor blackColor];
+  self.backgroundColor = [UIColor whiteColor];
   self.color           = [UIColor colorWithHue:0 saturation:1.0 brightness:1.0 alpha:1.0];
 #elif TARGET_OS_MAC
   self.backgroundColor = [NSColor blackColor];

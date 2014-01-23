@@ -4,6 +4,13 @@
 //  The contents of this file are implicitly included at the beginning of every source file.
 //
 
+
+
+//数据库处理相关
+#import "CoreData+MagicalRecord.h"
+
+
+
 #import <Availability.h>
 
 #ifndef __IPHONE_3_0
@@ -15,3 +22,5 @@
     #import <Foundation/Foundation.h>
     #import "HWSDK.h"
 #endif
+
+

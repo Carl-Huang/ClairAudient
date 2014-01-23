@@ -10,4 +10,18 @@
 
 @interface RecordViewController : CommonViewController
 
+
+#pragma mark - Outlet Action
+- (IBAction)startRecordAction:(id)sender;
+- (IBAction)pauseBtnAction:(id)sender;
+- (IBAction)stopRecordAction:(id)sender;
+- (IBAction)cancelRecordAction:(id)sender;
+- (IBAction)showRecordFileAction:(id)sender;
+
+#pragma mark - Outlet
+@property (weak, nonatomic) IBOutlet UILabel *clocker;
+@property (weak, nonatomic) IBOutlet UIView *beginRecordView;
+
+@property (weak, nonatomic) IBOutlet UIView *beforeRecordView;
+
 @end

@@ -15,6 +15,8 @@
     [ControlCenter makeKeyAndVisible];
     [ControlCenter setNavigationTitleWhiteColor];
     [self custonNavigationBar];
+    
+     [MagicalRecord setupCoreDataStackWithStoreNamed:@"ClairDataSource.sqlite"];
     return YES;
 }
 
