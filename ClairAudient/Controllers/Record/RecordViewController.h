@@ -16,6 +16,7 @@
 - (IBAction)pauseBtnAction:(id)sender;
 - (IBAction)stopRecordAction:(id)sender;
 - (IBAction)cancelRecordAction:(id)sender;
+- (IBAction)showRecordFileAction:(id)sender;
 
 #pragma mark - Outlet
 @property (weak, nonatomic) IBOutlet UILabel *clocker;

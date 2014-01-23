@@ -109,6 +109,9 @@
                                     <state key="normal" image="record_4.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="showRecordFileAction:" destination="-1" eventType="touchUpInside" id="PdR-Aq-l8x"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

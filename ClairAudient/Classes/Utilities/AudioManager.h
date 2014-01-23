@@ -75,6 +75,7 @@ typedef void (^HWAudioInputBlock)(float *data, UInt32 numFrames, UInt32 numChann
 - (void)play;
 - (void)pause;
 
+- (void)audio_PCMtoMP3WithSourceFile:(NSString *)sourceFile destinationFile:(NSString *)desFile;
 //AudioSession 属性
 - (void)checkSessionProperties;
 - (void)checkAudioSource;

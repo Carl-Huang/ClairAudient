@@ -8,7 +8,15 @@
         <attribute name="makeTime" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="RecordMusicInfo" representedClassName="RecordMusicInfo" syncable="YES">
+        <attribute name="artist" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="length" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="localPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="makeTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="MusicInfo" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="RecordMusicInfo" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

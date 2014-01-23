@@ -7,7 +7,7 @@
 //
 
 #import "RecordListCell.h"
-
+#import "RecordMusicInfo.h"
 @implementation RecordListCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -26,4 +26,33 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)playMusicAction:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(playItem:)]) {
+        [self.delegate playItem:self.musicInfo];
+    }
+}
+
+- (IBAction)shareMusicAction:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(shareItem:)]) {
+        [self.delegate shareItem:self.musicInfo];
+    }
+}
+
+- (IBAction)addToFavoriteAction:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(addToFavorite:)]) {
+        [self.delegate addToFavorite:self.musicInfo];
+    }
+}
+
+- (IBAction)editMusicAction:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(editItem:)]) {
+        [self.delegate editItem:self.musicInfo];
+    }
+}
+
+- (IBAction)deleteMusicAction:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(deleteItem:)]) {
+        [self.delegate deleteItem:self.musicInfo];
+    }
+}
 @end

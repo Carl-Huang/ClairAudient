@@ -18,6 +18,11 @@
 		4E2A13651890BC6300D8CB65 /* ClairDataSource.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A13631890BC6300D8CB65 /* ClairDataSource.xcdatamodeld */; };
 		4E2A136B1890BDEC00D8CB65 /* MusicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A136A1890BDEC00D8CB65 /* MusicInfo.m */; };
 		4E2A13711890BFF600D8CB65 /* PersistentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A13701890BFF600D8CB65 /* PersistentStore.m */; };
+		4E2A137A1891257600D8CB65 /* RecordMusicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A13791891257600D8CB65 /* RecordMusicInfo.m */; };
+		4E2A137E189125DB00D8CB65 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E2A137D189125DB00D8CB65 /* libmp3lame.a */; };
+		4E2A13811891474800D8CB65 /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A13801891474800D8CB65 /* AudioRecorder.m */; };
+		4E2A1384189152F900D8CB65 /* AudioReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A1383189152F900D8CB65 /* AudioReader.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4E2A13871891531C00D8CB65 /* RingBuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A13861891531C00D8CB65 /* RingBuffer.mm */; };
 		4E96B56A188E9CBA008EA56F /* 权利游戏.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4E96B569188E9CBA008EA56F /* 权利游戏.mp3 */; };
 		4E96B56C188EA003008EA56F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E96B56B188EA003008EA56F /* MediaPlayer.framework */; };
 		4E96B56E188EAB88008EA56F /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E96B56D188EAB88008EA56F /* GLKit.framework */; };
@@ -183,7 +188,7 @@
 		C3486CD118866B1E00EB7AD0 /* zhongjian@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3486CCB18866B1E00EB7AD0 /* zhongjian@2x.png */; };
 		C34C33FC188A8038009CD20B /* MixingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C34C33FA188A8038009CD20B /* MixingViewController.m */; };
 		C34C33FD188A8038009CD20B /* MixingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C34C33FB188A8038009CD20B /* MixingViewController.xib */; };
-		C34C3401188AB430009CD20B /* RecordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C34C33FF188AB430009CD20B /* RecordListViewController.m */; };
+		C34C3401188AB430009CD20B /* RecordListViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C34C33FF188AB430009CD20B /* RecordListViewController.mm */; };
 		C34C3402188AB430009CD20B /* RecordListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C34C3400188AB430009CD20B /* RecordListViewController.xib */; };
 		C34C3405188AB967009CD20B /* RecordListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C34C3404188AB967009CD20B /* RecordListCell.m */; };
 		C34C3407188AB975009CD20B /* RecordListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C34C3406188AB975009CD20B /* RecordListCell.xib */; };
@@ -430,6 +435,16 @@
 		4E2A136A1890BDEC00D8CB65 /* MusicInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicInfo.m; sourceTree = "<group>"; };
 		4E2A136F1890BFF600D8CB65 /* PersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentStore.h; sourceTree = "<group>"; };
 		4E2A13701890BFF600D8CB65 /* PersistentStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentStore.m; sourceTree = "<group>"; };
+		4E2A13781891257600D8CB65 /* RecordMusicInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordMusicInfo.h; sourceTree = "<group>"; };
+		4E2A13791891257600D8CB65 /* RecordMusicInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordMusicInfo.m; sourceTree = "<group>"; };
+		4E2A137C189125DB00D8CB65 /* lame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lame.h; sourceTree = "<group>"; };
+		4E2A137D189125DB00D8CB65 /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmp3lame.a; sourceTree = "<group>"; };
+		4E2A137F1891474800D8CB65 /* AudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecorder.h; sourceTree = "<group>"; };
+		4E2A13801891474800D8CB65 /* AudioRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecorder.m; sourceTree = "<group>"; };
+		4E2A1382189152F900D8CB65 /* AudioReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioReader.h; sourceTree = "<group>"; };
+		4E2A1383189152F900D8CB65 /* AudioReader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AudioReader.mm; sourceTree = "<group>"; };
+		4E2A13851891531C00D8CB65 /* RingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RingBuffer.h; sourceTree = "<group>"; };
+		4E2A13861891531C00D8CB65 /* RingBuffer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RingBuffer.mm; sourceTree = "<group>"; };
 		4E96B569188E9CBA008EA56F /* 权利游戏.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "权利游戏.mp3"; sourceTree = "<group>"; };
 		4E96B56B188EA003008EA56F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		4E96B56D188EAB88008EA56F /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
@@ -649,7 +664,7 @@
 		C34C33FA188A8038009CD20B /* MixingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixingViewController.m; sourceTree = "<group>"; };
 		C34C33FB188A8038009CD20B /* MixingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MixingViewController.xib; sourceTree = "<group>"; };
 		C34C33FE188AB430009CD20B /* RecordListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordListViewController.h; sourceTree = "<group>"; };
-		C34C33FF188AB430009CD20B /* RecordListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordListViewController.m; sourceTree = "<group>"; };
+		C34C33FF188AB430009CD20B /* RecordListViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RecordListViewController.mm; sourceTree = "<group>"; };
 		C34C3400188AB430009CD20B /* RecordListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordListViewController.xib; sourceTree = "<group>"; };
 		C34C3403188AB967009CD20B /* RecordListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordListCell.h; sourceTree = "<group>"; };
 		C34C3404188AB967009CD20B /* RecordListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordListCell.m; sourceTree = "<group>"; };
@@ -920,6 +935,7 @@
 				C3164CF11874660100301ACA /* QuartzCore.framework in Frameworks */,
 				C3FEAF221871C156008EADAA /* CoreGraphics.framework in Frameworks */,
 				C3FEAF241871C156008EADAA /* UIKit.framework in Frameworks */,
+				4E2A137E189125DB00D8CB65 /* libmp3lame.a in Frameworks */,
 				C3FEAF201871C156008EADAA /* Foundation.framework in Frameworks */,
 				3A213A19BF144FE19FC80A52 /* libPods-ClairAudient.a in Frameworks */,
 			);
@@ -941,18 +957,34 @@
 		4E117967188F627F00FB619F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				4E2A137B189125DB00D8CB65 /* lame */,
 				4E2A136F1890BFF600D8CB65 /* PersistentStore.h */,
 				4E2A13701890BFF600D8CB65 /* PersistentStore.m */,
 				4E1CDDFE18900BA000C046ED /* AudioManager.h */,
 				4E1CDDFF18900BA000C046ED /* AudioManager.m */,
 				4E1CDE0018900BA000C046ED /* AudioWriter.h */,
 				4E1CDE0118900BA000C046ED /* AudioWriter.m */,
+				4E2A1382189152F900D8CB65 /* AudioReader.h */,
+				4E2A1383189152F900D8CB65 /* AudioReader.mm */,
 				4E11796B188F6DA000FB619F /* TSLibraryImport.h */,
 				4E11796C188F6DA000FB619F /* TSLibraryImport.m */,
 				4E117968188F627F00FB619F /* MusicCutter.h */,
 				4E117969188F627F00FB619F /* MusicCutter.m */,
+				4E2A137F1891474800D8CB65 /* AudioRecorder.h */,
+				4E2A13801891474800D8CB65 /* AudioRecorder.m */,
+				4E2A13851891531C00D8CB65 /* RingBuffer.h */,
+				4E2A13861891531C00D8CB65 /* RingBuffer.mm */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		4E2A137B189125DB00D8CB65 /* lame */ = {
+			isa = PBXGroup;
+			children = (
+				4E2A137C189125DB00D8CB65 /* lame.h */,
+				4E2A137D189125DB00D8CB65 /* libmp3lame.a */,
+			);
+			path = lame;
 			sourceTree = "<group>";
 		};
 		4E96B568188E9CBA008EA56F /* 歌曲 */ = {
@@ -1180,6 +1212,8 @@
 				4E2A13631890BC6300D8CB65 /* ClairDataSource.xcdatamodeld */,
 				4E2A13691890BDEC00D8CB65 /* MusicInfo.h */,
 				4E2A136A1890BDEC00D8CB65 /* MusicInfo.m */,
+				4E2A13781891257600D8CB65 /* RecordMusicInfo.h */,
+				4E2A13791891257600D8CB65 /* RecordMusicInfo.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1651,7 +1685,7 @@
 				C3FEB0D91871CAC5008EADAA /* RecordViewController.m */,
 				C3FEB0DA1871CAC5008EADAA /* RecordViewController.xib */,
 				C34C33FE188AB430009CD20B /* RecordListViewController.h */,
-				C34C33FF188AB430009CD20B /* RecordListViewController.m */,
+				C34C33FF188AB430009CD20B /* RecordListViewController.mm */,
 				C34C3400188AB430009CD20B /* RecordListViewController.xib */,
 				C34C3408188AE6F7009CD20B /* ShareViewController.h */,
 				C34C3409188AE6F7009CD20B /* ShareViewController.m */,
@@ -2168,6 +2202,7 @@
 				C3FEB0E51871CB12008EADAA /* FIndSoundViewController.m in Sources */,
 				C32D4FA8187F953C0090730B /* TMQuiltViewCell.m in Sources */,
 				C32F3FFE188286CE00681953 /* VipRegisterViewController.m in Sources */,
+				4E2A13871891531C00D8CB65 /* RingBuffer.mm in Sources */,
 				C326CDAC187C5E44006DD97C /* CatalogRankViewController.m in Sources */,
 				C34C340B188AE6F7009CD20B /* ShareViewController.m in Sources */,
 				C3274996187A5E8200CF7A4A /* AboutScoreViewController.m in Sources */,
@@ -2193,20 +2228,23 @@
 				4E2A136B1890BDEC00D8CB65 /* MusicInfo.m in Sources */,
 				C3411720188BC6710070EAB4 /* BaseModel.m in Sources */,
 				C3164CF518746ABF00301ACA /* UINavigationBar+Custom.m in Sources */,
+				4E2A1384189152F900D8CB65 /* AudioReader.mm in Sources */,
 				4E1CDE0318900BA000C046ED /* AudioWriter.m in Sources */,
 				C341171A188B8B080070EAB4 /* AFHttp.m in Sources */,
+				4E2A13811891474800D8CB65 /* AudioRecorder.m in Sources */,
 				C32D4FB1187FAB320090730B /* SoundCatalogCell.m in Sources */,
 				4E96B59A188EC7B0008EA56F /* TrachBtn.m in Sources */,
 				4E96B593188EABC4008EA56F /* EZPlot.m in Sources */,
 				C3D4FCBD187D0DD1001A7223 /* CatalogRankCell.m in Sources */,
 				C3FEB0B91871C801008EADAA /* UIColor+Utils.m in Sources */,
+				4E2A137A1891257600D8CB65 /* RecordMusicInfo.m in Sources */,
 				4E96B58E188EABC4008EA56F /* EZAudioPlot.m in Sources */,
 				C32F3FF9188286B500681953 /* RegisterViewController.m in Sources */,
 				C34C33FC188A8038009CD20B /* MixingViewController.m in Sources */,
 				C3456CE018877077009329D2 /* MyUploadCell.m in Sources */,
 				C3FEB0BC1871C801008EADAA /* VersionManager.m in Sources */,
 				C3411730188C2C2B0070EAB4 /* VoiceComment.m in Sources */,
-				C34C3401188AB430009CD20B /* RecordListViewController.m in Sources */,
+				C34C3401188AB430009CD20B /* RecordListViewController.mm in Sources */,
 				C32749A0187A5ED400CF7A4A /* HelpViewController.m in Sources */,
 				C3FEB0B51871C801008EADAA /* NSDate+Utils.m in Sources */,
 				C32F40261882886900681953 /* ReviewViewController.m in Sources */,
@@ -2357,6 +2395,7 @@
 			baseConfigurationReference = F0245F2CBA534CF1802E79A1 /* Pods-ClairAudient.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -2372,6 +2411,10 @@
 				);
 				INFOPLIST_FILE = "ClairAudient/ClairAudient-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/vedon/Documents/GitHub/ClairAudient/ClairAudient/Classes/Utilities/lame,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2382,6 +2425,7 @@
 			baseConfigurationReference = F0245F2CBA534CF1802E79A1 /* Pods-ClairAudient.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -2397,6 +2441,10 @@
 				);
 				INFOPLIST_FILE = "ClairAudient/ClairAudient-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/vedon/Documents/GitHub/ClairAudient/ClairAudient/Classes/Utilities/lame,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
