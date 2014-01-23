@@ -2,7 +2,7 @@
 //  MixingViewController.h
 //  ClairAudient
 //
-//  Created by Carl on 14-1-18.
+//  Created by Vedon on 14-1-18.
 //  Copyright (c) 2014年 helloworld. All rights reserved.
 //
 
@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *endTime;
 
 @property (weak, nonatomic) IBOutlet UIView *timeLabelView;
+@property (weak, nonatomic) IBOutlet UIView *timeLineView;
 
 
 

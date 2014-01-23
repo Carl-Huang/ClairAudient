@@ -176,6 +176,7 @@
                      withNumberOfChannels:_clientFormat.mChannelsPerFrame];
       }
     }
+//      free(audioBufferList->mBuffers[0].mData);
   }
 }
 

@@ -2,12 +2,12 @@
 //  MixingViewController.m
 //  ClairAudient
 //
-//  Created by Carl on 14-1-18.
+//  Created by Vedon on 14-1-18.
 //  Copyright (c) 2014年 helloworld. All rights reserved.
 //
 
 #define testFile [[NSBundle mainBundle] pathForResource:@"权利游戏" ofType:@"mp3"]
-#define ForwartTimeLength 10000
+#define ForwartTimeLength 200000
 
 #import "MixingViewController.h"
 #import "EZOutput.h"
@@ -158,7 +158,7 @@
     currentPositionOfFile = 0.0f;
     
     UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(seekToPosition:)];
-    [self.maskView addGestureRecognizer:tapGesture];
+    [self.timeLineView addGestureRecognizer:tapGesture];
     tapGesture = nil;
     // Do any additional setup after loading the view from its nib.
 }
@@ -195,10 +195,11 @@
 
 -(void)seekToPosition:(UITapGestureRecognizer *)gesture
 {
-    CGPoint point = [gesture locationInView:self.maskView];
-    NSLog(@"%f",point.x);
+    CGPoint point = [gesture locationInView:self.timeLineView];
+    
     [self updateTimeLinePosition:point.x];
     CGFloat position        = point.x / waveLength * totalLengthOfTheFile;
+    NSLog(@"position :%f totalLengthOfTheFile:%f ",position,totalLengthOfTheFile);
     self.currentPositionOfFile   = position;
     [self seekToPostionWithValue:position];
     
@@ -254,11 +255,13 @@
 }
 
 - (IBAction)fastForwardAction:(id)sender {
-    [self seekToPostionWithValue:currentPositionOfFile+ForwartTimeLength];
+    currentPositionOfFile = currentPositionOfFile+ForwartTimeLength;
+    [self seekToPostionWithValue:currentPositionOfFile];
 }
 
 - (IBAction)backForwardAction:(id)sender {
-    [self seekToPostionWithValue:currentPositionOfFile-ForwartTimeLength];
+    currentPositionOfFile = currentPositionOfFile-ForwartTimeLength;
+    [self seekToPostionWithValue:currentPositionOfFile];
 }
 
 

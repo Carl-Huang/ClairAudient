@@ -15,6 +15,9 @@
 		4E1CDE0318900BA000C046ED /* AudioWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1CDE0118900BA000C046ED /* AudioWriter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4E1CDE05189012CB00C046ED /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1CDE04189012CB00C046ED /* CoreAudio.framework */; };
 		4E1CDE07189012D000C046ED /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1CDE06189012D000C046ED /* Accelerate.framework */; };
+		4E2A13651890BC6300D8CB65 /* ClairDataSource.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A13631890BC6300D8CB65 /* ClairDataSource.xcdatamodeld */; };
+		4E2A136B1890BDEC00D8CB65 /* MusicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A136A1890BDEC00D8CB65 /* MusicInfo.m */; };
+		4E2A13711890BFF600D8CB65 /* PersistentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A13701890BFF600D8CB65 /* PersistentStore.m */; };
 		4E96B56A188E9CBA008EA56F /* 权利游戏.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4E96B569188E9CBA008EA56F /* 权利游戏.mp3 */; };
 		4E96B56C188EA003008EA56F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E96B56B188EA003008EA56F /* MediaPlayer.framework */; };
 		4E96B56E188EAB88008EA56F /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E96B56D188EAB88008EA56F /* GLKit.framework */; };
@@ -422,6 +425,11 @@
 		4E1CDE0118900BA000C046ED /* AudioWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioWriter.m; sourceTree = "<group>"; };
 		4E1CDE04189012CB00C046ED /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		4E1CDE06189012D000C046ED /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		4E2A13641890BC6300D8CB65 /* ClairDataSource.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ClairDataSource.xcdatamodel; sourceTree = "<group>"; };
+		4E2A13691890BDEC00D8CB65 /* MusicInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicInfo.h; sourceTree = "<group>"; };
+		4E2A136A1890BDEC00D8CB65 /* MusicInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicInfo.m; sourceTree = "<group>"; };
+		4E2A136F1890BFF600D8CB65 /* PersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentStore.h; sourceTree = "<group>"; };
+		4E2A13701890BFF600D8CB65 /* PersistentStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentStore.m; sourceTree = "<group>"; };
 		4E96B569188E9CBA008EA56F /* 权利游戏.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "权利游戏.mp3"; sourceTree = "<group>"; };
 		4E96B56B188EA003008EA56F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		4E96B56D188EAB88008EA56F /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
@@ -933,6 +941,8 @@
 		4E117967188F627F00FB619F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				4E2A136F1890BFF600D8CB65 /* PersistentStore.h */,
+				4E2A13701890BFF600D8CB65 /* PersistentStore.m */,
 				4E1CDDFE18900BA000C046ED /* AudioManager.h */,
 				4E1CDDFF18900BA000C046ED /* AudioManager.m */,
 				4E1CDE0018900BA000C046ED /* AudioWriter.h */,
@@ -1167,6 +1177,9 @@
 				C341172F188C2C2B0070EAB4 /* VoiceComment.m */,
 				C3B53E44188C3000004EA4A7 /* IntegralRankUser.h */,
 				C3B53E45188C3000004EA4A7 /* IntegralRankUser.m */,
+				4E2A13631890BC6300D8CB65 /* ClairDataSource.xcdatamodeld */,
+				4E2A13691890BDEC00D8CB65 /* MusicInfo.h */,
+				4E2A136A1890BDEC00D8CB65 /* MusicInfo.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2163,6 +2176,7 @@
 				C3FEB0BB1871C801008EADAA /* UIViewController+BarItem.m in Sources */,
 				C3D4FCC4187D6194001A7223 /* IntegralChampionCell.m in Sources */,
 				C32F4017188287B600681953 /* MyDownloadViewController.m in Sources */,
+				4E2A13651890BC6300D8CB65 /* ClairDataSource.xcdatamodeld in Sources */,
 				C3FEB0D61871CAA2008EADAA /* MusicFansViewController.m in Sources */,
 				C3456CFD18883C17009329D2 /* TMSoundEffectCell.m in Sources */,
 				C341171B188B8B080070EAB4 /* HttpService.m in Sources */,
@@ -2176,6 +2190,7 @@
 				C3456CF91887D2BC009329D2 /* SoundEffectViewController.m in Sources */,
 				C3FEB0EB1871D2FC008EADAA /* ControlCenter.m in Sources */,
 				4E96B592188EABC4008EA56F /* EZOutput.m in Sources */,
+				4E2A136B1890BDEC00D8CB65 /* MusicInfo.m in Sources */,
 				C3411720188BC6710070EAB4 /* BaseModel.m in Sources */,
 				C3164CF518746ABF00301ACA /* UINavigationBar+Custom.m in Sources */,
 				4E1CDE0318900BA000C046ED /* AudioWriter.m in Sources */,
@@ -2215,6 +2230,7 @@
 				4E96B58F188EABC4008EA56F /* EZAudioPlotGL.m in Sources */,
 				C32F4003188286EB00681953 /* LoginSuccessViewController.m in Sources */,
 				C32D4F9E187F8DCD0090730B /* SoundCatalogViewController.m in Sources */,
+				4E2A13711890BFF600D8CB65 /* PersistentStore.m in Sources */,
 				C326CDA7187C5E00006DD97C /* IntegralChampionViewController.m in Sources */,
 				C3FEB0DB1871CAC5008EADAA /* RecordViewController.m in Sources */,
 				C3FEB0CC1871CA45008EADAA /* LoginViewController.m in Sources */,
@@ -2459,6 +2475,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4E2A13631890BC6300D8CB65 /* ClairDataSource.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4E2A13641890BC6300D8CB65 /* ClairDataSource.xcdatamodel */,
+			);
+			currentVersion = 4E2A13641890BC6300D8CB65 /* ClairDataSource.xcdatamodel */;
+			path = ClairDataSource.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C3FEAF141871C156008EADAA /* Project object */;
 }

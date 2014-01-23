@@ -14,6 +14,9 @@
 #import "TSLibraryImport.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import "MBProgressHUD.h"
+#import "MusicInfo.h"
+#import "PersistentStore.h"
+
 #define Cell_Height 65.0f
 @interface MixingMusicListViewController ()
 {
@@ -23,6 +26,9 @@
     TSLibraryImport* importTool;
     
     BOOL isSimulator;
+    
+    //当前选择文件的本地路径
+    NSString * currentLocationPath;
 }
 @end
 
@@ -91,14 +97,44 @@
 
     }else
     {
-        NSURL* assetURL = (NSURL *)[musicInfo valueForKey:@"musicURL"];
+        NSURL* assetURL         = (NSURL *)[musicInfo valueForKey:@"musicURL"];
+        NSString * musicTitle   = musicInfo[@"Title"];
+        [self getLocationFilePath:assetURL title:musicTitle];
         __weak MixingMusicListViewController * weakSelf = self;
+        
+//判断是否已经在本地有音乐库的文件
+        NSArray * array =[PersistentStore getAllObjectWithType:[MusicInfo class]];
+        if ([array count]) {
+            for (MusicInfo * object in array) {
+                if ([object.title isEqualToString:musicTitle]) {
+                    
+                    NSMutableDictionary * tempMusicInfo     = [NSMutableDictionary dictionaryWithDictionary:musicInfo];
+                    [tempMusicInfo setValue:currentLocationPath forKey:@"musicURL"];
+                    
+                    MixingViewController * viewController   = [[MixingViewController alloc]initWithNibName:@"MixingViewController" bundle:nil];
+                    [viewController setMusicInfo:tempMusicInfo];
+                    [weakSelf.navigationController pushViewController:viewController animated:YES];
+                    viewController = nil;
+                    return;
+                }
+            }
+        }
+        
+//在数据库中没有找到已经读取的文件，执行一下操作：从ipd library 中复制音乐文件到用户document 目录下
+        //1) 保存数据到数据库
+        MusicInfo * info    = [MusicInfo MR_createEntity];
+        info.title          =  musicTitle;
+        info.artist         = [musicInfo valueForKey:@"Artist"];
+        info.localFilePath  = currentLocationPath;
+        [[NSManagedObjectContext MR_defaultContext]MR_saveOnlySelfAndWait];
+        
+        //复制文件到本地
         [self exportAssetAtURL:assetURL withTitle:musicInfo[@"Title"] completedHandler:^(NSString *path) {
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSMutableDictionary * tempMusicInfo = [NSMutableDictionary dictionaryWithDictionary:musicInfo];
+                NSMutableDictionary * tempMusicInfo     = [NSMutableDictionary dictionaryWithDictionary:musicInfo];
                 [tempMusicInfo setValue:path forKey:@"musicURL"];
-                MixingViewController * viewController = [[MixingViewController alloc]initWithNibName:@"MixingViewController" bundle:nil];
+                MixingViewController * viewController   = [[MixingViewController alloc]initWithNibName:@"MixingViewController" bundle:nil];
                 [viewController setMusicInfo:tempMusicInfo];
                 [weakSelf.navigationController pushViewController:viewController animated:YES];
                 viewController = nil;
@@ -158,21 +194,25 @@
     return array;
 }
 
-- (void)exportAssetAtURL:(NSURL*)assetURL withTitle:(NSString*)title completedHandler:(void (^)(NSString * path))completedBlock
+-(void)getLocationFilePath:(NSURL*)assetURL title:(NSString *)title
 {
-	
-	NSString* ext = [TSLibraryImport extensionForAssetURL:assetURL];
+    NSString* ext = [TSLibraryImport extensionForAssetURL:assetURL];
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsDirectory = [paths objectAtIndex:0];
-    
     NSString * filePath = [documentsDirectory stringByAppendingPathComponent:title];
-    NSString * localFilePath = [filePath stringByAppendingPathExtension:ext];
-	NSURL* outURL = [[NSURL fileURLWithPath:filePath] URLByAppendingPathExtension:ext];
-	
+    currentLocationPath = [filePath stringByAppendingPathExtension:ext];
+
+}
+
+- (void)exportAssetAtURL:(NSURL*)assetURL withTitle:(NSString*)title completedHandler:(void (^)(NSString * path))completedBlock
+{
+	NSURL* outURL = [NSURL fileURLWithPath:currentLocationPath];
     //已经存在就删除
     [[NSFileManager defaultManager] removeItemAtURL:outURL error:nil];
     
-    if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+    
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:currentLocationPath]) {
         [MBProgressHUD showHUDAddedTo: self.view animated:YES];
         __weak MixingMusicListViewController * weakSelf = self;
         [importTool importAsset:assetURL toURL:outURL completionBlock:^(TSLibraryImport* import) {
@@ -185,13 +225,13 @@
                 import = nil;
                 return;
             }
-            completedBlock (localFilePath);
+            completedBlock (currentLocationPath);
         }];
         
     }else
     {
         //音频文件已经存在
-        completedBlock (localFilePath);
+        completedBlock (currentLocationPath);
     }
 }
 

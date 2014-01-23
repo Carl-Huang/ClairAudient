@@ -19,6 +19,7 @@
                 <outlet property="startBtn" destination="zKU-C3-k5g" id="HdL-rP-vJg"/>
                 <outlet property="startTime" destination="pfv-EU-EI9" id="9OD-Y5-0Wg"/>
                 <outlet property="timeLabelView" destination="vH9-SL-s6k" id="WNl-Qv-5fL"/>
+                <outlet property="timeLineView" destination="Jo2-qF-0Nk" id="wv8-Sz-Pr2"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -150,6 +151,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="244"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
+                                <view contentMode="scaleToFill" id="Jo2-qF-0Nk">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="244"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zKU-C3-k5g" customClass="TrachBtn">
                                     <rect key="frame" x="-17" y="19" width="40" height="30"/>
