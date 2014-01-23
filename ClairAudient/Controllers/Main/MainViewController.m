@@ -30,7 +30,7 @@
     // Do any additional setup after loading the view from its nib.
     [self.navigationController setNavigationBarHidden:YES];
     
-    [self testAPI];
+//    [self testAPI];
 }
 
 - (void)viewWillAppear:(BOOL)animated

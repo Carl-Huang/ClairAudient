@@ -22,6 +22,7 @@
 #import "DownloadRankViewController.h"
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
+#import "SoundCatalogViewController.h"
 #import "VipRegisterViewController.h"
 #import "LoginSuccessViewController.h"
 #import "MessageInviteViewController.h"
@@ -37,6 +38,7 @@
 #import "MixingViewController.h"
 #import "RecordViewController.h"
 #import "RecordListViewController.h"
+#import "AllModels.h"
 @interface ControlCenter : NSObject
 
 + (AppDelegate *)appDelegate;
@@ -56,7 +58,7 @@
 + (void)showChampionHomePageVC;
 + (void)showDownloadRankVC;
 + (void)showFIndSoundVC;
-+ (void)showSoundCatalogVC;
++ (void)showSoundCatalogVC:(Catalog *)catalog;
 + (void)showRegisterVC;
 + (void)showVipRegisterVC;
 + (void)showUserCenterVC;

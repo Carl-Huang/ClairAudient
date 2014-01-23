@@ -107,9 +107,11 @@
     [[self class] showVC:@"FIndSoundViewController"];
 }
 
-+ (void)showSoundCatalogVC
++ (void)showSoundCatalogVC:(Catalog *)catalog
 {
-    [[self class] showVC:@"SoundCatalogViewController"];
+    SoundCatalogViewController * vc = (SoundCatalogViewController *)[[self class] viewControllerWithName:@"SoundCatalogViewController"];
+    vc.parentCatalog = catalog;
+    [[self class] showVCWithController:vc];
 }
 
 + (void)showLoginVC
@@ -198,6 +200,12 @@
     UIViewController * vc = [[self class] viewControllerWithName:vcName];
     [appDelegate.navigationController pushViewController:vc animated:YES];
     
+}
+
++ (void)showVCWithController:(UIViewController *)vc
+{
+    AppDelegate * appDelegate = [[self class] appDelegate];
+    [appDelegate.navigationController pushViewController:vc animated:YES];
 }
 
 + (MainViewController *)mainViewController

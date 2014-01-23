@@ -7,8 +7,9 @@
 //
 
 #import "CommonViewController.h"
-
+@class Catalog;
 @interface SoundCatalogViewController : CommonViewController<UITableViewDataSource,UITableViewDelegate>
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic,strong) Catalog * parentCatalog;
 @end

@@ -11,9 +11,12 @@
 #import "ControlCenter.h"
 #import "TMQuiltView.h"
 #import "TMCustomCell.h"
+#import "MBProgressHUD.h"
+#import "HttpService.h"
+#import "Catalog.h"
 @interface FIndSoundViewController ()<TMQuiltViewDataSource,TMQuiltViewDelegate>
 @property (nonatomic,strong) TMQuiltView * quiltView;
-@property (nonatomic,strong) NSArray * titles;
+@property (nonatomic,strong) NSArray * catalogs;
 @property (nonatomic,strong) NSArray * icons;
 @end
 
@@ -23,8 +26,9 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _titles = @[@"自然音库",@"动物音库",@"海量音库",@"事件音库",@"武器大全",@"吆喝大全",@"配音地带",@"段子库",@"手机铃声",@"乡音大全"];
-        _icons = @[@"FoundMusic_t",@"FoundMusic_u",@"FoundMusic_v",@"FoundMusic_w",@"FoundMusic_x",@"FoundMusic_y",@"FoundMusic_ef",@"FoundMusic_ab",@"FoundMusic_z",@"FoundMusic_cd"];
+        //_catalogs = @[@"自然音库",@"动物音库",@"海量音库",@"事件音库",@"武器大全",@"吆喝大全",@"配音地带",@"段子库",@"手机铃声",@"乡音大全"];
+        _catalogs = [NSArray array];
+        //_icons = @[@"FoundMusic_t",@"FoundMusic_u",@"FoundMusic_v",@"FoundMusic_w",@"FoundMusic_x",@"FoundMusic_y",@"FoundMusic_ef",@"FoundMusic_ab",@"FoundMusic_z",@"FoundMusic_cd"];
     }
     return self;
 }
@@ -44,7 +48,7 @@
 - (void)dealloc
 {
     [self setView:nil];
-    _titles = nil;
+    _catalogs = nil;
     _icons = nil;
     _quiltView.dataSource = nil;
     _quiltView.delegate = nil;
@@ -64,7 +68,19 @@
     _quiltView.showsVerticalScrollIndicator = NO;
     [_quiltView setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:_quiltView];
-    [_quiltView reloadData];
+    //[_quiltView reloadData];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [[HttpService sharedInstance] findCatalog:@{@"parentId":@"0"} completionBlock:^(id obj) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if(obj)
+        {
+            _catalogs = obj;
+            [_quiltView reloadData];
+        }
+    } failureBlock:^(NSError *error, NSString *responseString) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
     
 }
 
@@ -85,7 +101,7 @@
 
 -(NSInteger)quiltViewNumberOfCells:(TMQuiltView *)TMQuiltView
 {
-    return [_titles count];
+    return [_catalogs count];
 }
 
 
@@ -98,8 +114,10 @@
         cell = [[TMCustomCell alloc] initWithReuseIdentifier:@"Cell"];
     }
     
-    cell.photoView.image = [UIImage imageNamed:[_icons objectAtIndex:indexPath.row]];
-    cell.titleLabel.text = [_titles objectAtIndex:indexPath.row];
+    //cell.photoView.image = [UIImage imageNamed:[_icons objectAtIndex:indexPath.row]];
+    cell.photoView.image = [UIImage imageNamed:@"FoundMusic_t"];
+    Catalog * catalog = [_catalogs objectAtIndex:indexPath.row];
+    cell.titleLabel.text = catalog.vlt_name;
     return cell;
     
 }
@@ -108,7 +126,8 @@
 #pragma mark - TMQuiltViewDelegate Methods
 -(void)quiltView:(TMQuiltView *)quiltView didSelectCellAtIndexPath:(NSIndexPath *)indexPath
 {
-    [ControlCenter showSoundCatalogVC];
+    Catalog * catalog = [_catalogs objectAtIndex:indexPath.row];
+    [ControlCenter showSoundCatalogVC:catalog];
 }
 
 @end
