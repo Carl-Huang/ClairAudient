@@ -7,6 +7,7 @@
 //
 
 #define testFile [[NSBundle mainBundle] pathForResource:@"权利游戏" ofType:@"mp3"]
+#define ForwartTimeLength 10000
 
 #import "MixingViewController.h"
 #import "EZOutput.h"
@@ -21,7 +22,7 @@
 @interface MixingViewController ()<EZAudioFileDelegate,EZOutputDataSource>
 
 {
-    
+    BOOL isSimulator;
     CGFloat     waveLength;
     CGFloat     musicLength;
     CGFloat     cuttedMusicLength;
@@ -30,15 +31,20 @@
     
     CGFloat startLocation;
     CGFloat endLocation;
-    BOOL isSimulator;
+    
+    CGFloat totalLengthOfTheFile;
+    UIView * timeline;
+    
+    
 }
 
-
+@property (assign ,nonatomic)CGFloat currentPositionOfFile;
 @property (nonatomic,strong) EZAudioFile *audioFile;
 @property (nonatomic,assign) BOOL eof;
 @end
 
 @implementation MixingViewController
+@synthesize currentPositionOfFile;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -61,7 +67,7 @@
 #endif
     
     //初始化音乐波形图
-    self.audioPlot.backgroundColor = [UIColor colorWithRed: 0.816 green: 0.349 blue: 0.255 alpha: 0.1];
+    self.audioPlot.backgroundColor = [UIColor colorWithRed: 0.6 green: 0.6 blue: 0.6  alpha: 0.1];
     self.audioPlot.color           = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
     self.audioPlot.plotType        = EZPlotTypeBuffer;
     self.audioPlot.shouldFill      = NO;
@@ -141,6 +147,19 @@
         label               = nil;
     }
     self.endTime.text = [NSString stringWithFormat:@"%0.2f",musicLength];
+    
+    
+    timeline =  [[UIView alloc]initWithFrame:CGRectMake(0, 0, 1, self.contentScrollView.frame.size.height)];
+    [timeline setBackgroundColor:[UIColor yellowColor]];
+    [self addObserver:self forKeyPath:@"currentPositionOfFile" options:NSKeyValueObservingOptionNew context:NULL];
+    
+    
+    [self.contentScrollView addSubview:timeline];
+    currentPositionOfFile = 0.0f;
+    
+    UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(seekToPosition:)];
+    [self.maskView addGestureRecognizer:tapGesture];
+    tapGesture = nil;
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -152,9 +171,19 @@
 
 - (void)dealloc
 {
+    [self removeObserver:self forKeyPath:@"currentPositionOfFile"];
     [self setView:nil];
 }
 
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"currentPositionOfFile"]) {
+        CGFloat position = currentPositionOfFile/totalLengthOfTheFile * 320;
+        [self updateTimeLinePosition:position];
+    }
+}
+
+#pragma mark - Private Method
 //获取音乐长度
 -(CGFloat)getMusicLength:(NSURL *)url
 {
@@ -164,19 +193,46 @@
     return audioDurationSeconds;
 }
 
+-(void)seekToPosition:(UITapGestureRecognizer *)gesture
+{
+    CGPoint point = [gesture locationInView:self.maskView];
+    NSLog(@"%f",point.x);
+    [self updateTimeLinePosition:point.x];
+    CGFloat position        = point.x / waveLength * totalLengthOfTheFile;
+    self.currentPositionOfFile   = position;
+    [self seekToPostionWithValue:position];
+    
+}
 
+-(void)seekToPostionWithValue:(CGFloat)offset
+{
+    [self.audioFile seekToFrame:offset];
+}
+
+-(void)updateTimeLinePosition:(CGFloat)offset
+{
+    @autoreleasepool {
+        CGRect rect = timeline.frame;
+        rect.origin.x = offset;
+        timeline.frame = rect;
+    }
+}
 #pragma mark - Outlet Action
 - (IBAction)playMusic:(id)sender {
+    UIButton * btn = (UIButton *)sender;
+    
     if( ![[EZOutput sharedOutput] isPlaying] ){
         if( self.eof ){
             [self.audioFile seekToFrame:0];
         }
         [EZOutput sharedOutput].outputDataSource = self;
         [[EZOutput sharedOutput] startPlayback];
+        [btn setSelected:YES];
     }
     else {
         [EZOutput sharedOutput].outputDataSource = nil;
         [[EZOutput sharedOutput] stopPlayback];
+        [btn setSelected:NO];
     }
 }
 
@@ -192,6 +248,19 @@
     }];
 }
 
+- (IBAction)backAction:(id)sender
+{
+    [self popVIewController];
+}
+
+- (IBAction)fastForwardAction:(id)sender {
+    [self seekToPostionWithValue:currentPositionOfFile+ForwartTimeLength];
+}
+
+- (IBAction)backForwardAction:(id)sender {
+    [self seekToPostionWithValue:currentPositionOfFile-ForwartTimeLength];
+}
+
 
 #pragma mark - AudioPlot
 -(void)openFileWithFilePathURL:(NSURL*)filePathURL {
@@ -204,6 +273,7 @@
     self.eof                       = NO;
     
     self.framePositionSlider.maximumValue = (float)self.audioFile.totalFrames;
+    totalLengthOfTheFile = (float)self.audioFile.totalFrames;
     
     // Plot the whole waveform
     self.audioPlot.plotType        = EZPlotTypeBuffer;
@@ -241,9 +311,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
 -(void)audioFile:(EZAudioFile *)audioFile
  updatedPosition:(SInt64)framePosition {
     dispatch_async(dispatch_get_main_queue(), ^{
-        if( !self.framePositionSlider.touchInside ){
-            self.framePositionSlider.value = (float)framePosition;
-        }
+        self.currentPositionOfFile = (float)framePosition;
     });
 }
 
@@ -285,9 +353,5 @@ withNumberOfChannels:(UInt32)numberOfChannels {
 }
 
 
-#pragma mark - Action Methods
-- (IBAction)backAction:(id)sender
-{
-    [self popVIewController];
-}
+
 @end

@@ -16,7 +16,6 @@
 #pragma mark - Outlet
 @property (weak, nonatomic) IBOutlet UILabel *littleTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bigTitleLabel;
-
 @property (weak, nonatomic) IBOutlet EZAudioPlotGL *audioPlot;
 
 @property (weak, nonatomic) IBOutlet UISlider *framePositionSlider;
@@ -31,9 +30,13 @@
 @property (weak, nonatomic) IBOutlet UIView *timeLabelView;
 
 
+
+#pragma  mark - Outlet Action
 - (IBAction)backAction:(id)sender;
--(IBAction)seekToFrame:(id)sender;
+- (IBAction)seekToFrame:(id)sender;
 - (IBAction)playMusic:(id)sender;
 
 - (IBAction)startCutting:(id)sender;
+- (IBAction)fastForwardAction:(id)sender;
+- (IBAction)backForwardAction:(id)sender;
 @end
