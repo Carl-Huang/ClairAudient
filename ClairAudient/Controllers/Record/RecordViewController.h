@@ -18,6 +18,7 @@
 - (IBAction)cancelRecordAction:(id)sender;
 - (IBAction)showRecordFileAction:(id)sender;
 
+- (IBAction)backAction:(id)sender;
 #pragma mark - Outlet
 @property (weak, nonatomic) IBOutlet UILabel *clocker;
 @property (weak, nonatomic) IBOutlet UIView *beginRecordView;

@@ -35,6 +35,7 @@
   
   CGPoint *_sampleData;
   UInt32  _sampleLength;
+    
 }
 @end
 
@@ -45,7 +46,7 @@
 @synthesize plotType        = _plotType;
 @synthesize shouldFill      = _shouldFill;
 @synthesize shouldMirror    = _shouldMirror;
-
+@synthesize snapShotImage;
 #pragma mark - Initialization
 -(id)init {
   self = [super init];
@@ -275,6 +276,8 @@
     
 #if TARGET_OS_IPHONE
     CGContextRestoreGState(ctx);
+    snapShotImage =  UIGraphicsGetImageFromCurrentImageContext();
+      
 #elif TARGET_OS_MAC
     [[NSGraphicsContext currentContext] restoreGraphicsState];
 #endif

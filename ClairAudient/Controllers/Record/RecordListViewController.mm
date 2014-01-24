@@ -45,7 +45,7 @@
     [super viewDidLoad];
     [self initUI];
     self.audioMng = [AudioManager shareAudioManager];
-    dataSource = [PersistentStore getAllObjectWithType:[RecordMusicInfo class]];
+    [self updateDataSource];
     sliderTimer = nil;
 }
 
@@ -124,7 +124,11 @@
     }
 }
 
-
+-(void)updateDataSource
+{
+    dataSource = [PersistentStore getAllObjectWithType:[RecordMusicInfo class]];
+    [self.tableView reloadData];
+}
 
 #pragma mark - Action Methods
 - (IBAction)backAction:(id)sender
@@ -235,6 +239,11 @@
 -(void)deleteItem:(id)object
 {
     RecordMusicInfo * info = object;
+
+    if ([PersistentStore deleteObje:info]) {
+        //删除成功
+        [self updateDataSource];
+    }
     NSLog(@"%@",info.title);
 }
 @end

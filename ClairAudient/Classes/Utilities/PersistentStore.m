@@ -55,10 +55,12 @@
     [[NSManagedObjectContext MR_defaultContext]MR_saveOnlySelfAndWait];
 }
 
-+(void)deleteObje:(id)obj
++(BOOL)deleteObje:(id)obj
 {
-    [obj MR_deleteEntity];
-    [[NSManagedObjectContext MR_defaultContext] MR_saveOnlySelfAndWait];
+   BOOL isSuccess = [obj MR_deleteEntity];
+    
+   [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+    return isSuccess;
 }
 
 
