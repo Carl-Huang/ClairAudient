@@ -14,4 +14,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 
+@property (weak, nonatomic) IBOutlet UIButton *firstBtn;
+@property (weak, nonatomic) IBOutlet UIButton *secondBtn;
 @end

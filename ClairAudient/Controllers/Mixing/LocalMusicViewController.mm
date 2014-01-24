@@ -1,12 +1,13 @@
 //
-//  MixingMusicListViewController.m
+//  LocalMusicViewController.m
 //  ClairAudient
 //
-//  Created by Carl on 13-12-30.
-//  Copyright (c) 2013年 helloworld. All rights reserved.
+//  Created by vedon on 24/1/14.
+//  Copyright (c) 2014 helloworld. All rights reserved.
 //
+#define Cell_Height 65.0f
 
-#import "MixingMusicListViewController.h"
+#import "LocalMusicViewController.h"
 #import "MixingMusicListCell.h"
 #import "ControlCenter.h"
 #import <MediaPlayer/MediaPlayer.h>
@@ -16,9 +17,11 @@
 #import "MBProgressHUD.h"
 #import "MusicInfo.h"
 #import "PersistentStore.h"
+#import "AudioReader.h"
+#import "AudioManager.h"
+#import "MutiMixingViewController.h"
 
-#define Cell_Height 65.0f
-@interface MixingMusicListViewController ()
+@interface LocalMusicViewController ()
 {
     NSMutableArray * dataSource;
     
@@ -30,9 +33,12 @@
     //当前选择文件的本地路径
     NSString * currentLocationPath;
 }
+
+@property (strong ,nonatomic) AudioReader * reader;
+@property (strong ,nonatomic) AudioManager * audioMng;
 @end
 
-@implementation MixingMusicListViewController
+@implementation LocalMusicViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,6 +52,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [super viewDidLoad];
     [self initUI];
     
     dataSource = [NSMutableArray array];
@@ -57,7 +64,7 @@
 #endif
     NSString * path = [[NSBundle mainBundle] pathForResource:@"权利游戏" ofType:@"mp3"];
     if (isSimulator) {
-         [dataSource addObject: @{@"Title":@"权利游戏",@"Artist":@"vedon",@"Album":@"权利游戏",@"musicTime":@"100",@"musicURL":path}];
+        [dataSource addObject: @{@"Title":@"权利游戏",@"Artist":@"vedon",@"Album":@"权利游戏",@"musicTime":@"100",@"musicURL":path}];
     }else
     {
         [self findArtistList];
@@ -65,8 +72,7 @@
             //没有歌曲
             [self showAlertViewWithMessage:@"本地没有音乐文件"];
         }
-    }
-
+    }    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning
@@ -75,48 +81,46 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self.audioMng pause];
+    if ([self.reader playing]) {
+        [self.reader stop];
+    }
+}
 #pragma mark - Private Methods
 - (void)initUI
 {
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-    _tableView.backgroundColor = [UIColor clearColor];
+    self.contentTable.backgroundColor = [UIColor clearColor];
     UINib * nib = [UINib nibWithNibName:@"MixingMusicListCell" bundle:[NSBundle bundleForClass:[MixingMusicListCell class]]];
-    [_tableView registerNib:nib forCellReuseIdentifier:@"Cell"];
+    [self.contentTable registerNib:nib forCellReuseIdentifier:@"Cell"];
 }
 
--(void)modifyMusic:(id)sender
+-(void)playMusic:(id)sender
 {
     UIButton * btn = (UIButton *)sender;
     NSInteger index = btn.tag;
     NSDictionary * musicInfo = [dataSource objectAtIndex:index];
-    
+    __weak LocalMusicViewController * weakSelf = self;
     if (isSimulator) {
-        MixingViewController * viewController = [[MixingViewController alloc]initWithNibName:@"MixingViewController" bundle:nil];
-        [viewController setMusicInfo:musicInfo];
-        [self.navigationController pushViewController:viewController animated:YES];
-        viewController = nil;
-
+        
+        [weakSelf playItemWithPath:musicInfo[@"musicURL"]];
     }else
     {
         NSURL* assetURL         = (NSURL *)[musicInfo valueForKey:@"musicURL"];
         NSString * musicTitle   = musicInfo[@"Title"];
         [self getLocationFilePath:assetURL title:musicTitle];
-        __weak MixingMusicListViewController * weakSelf = self;
         
-//判断是否已经在本地有音乐库的文件
+        
+        //判断是否已经在本地有音乐库的文件
         NSArray * array =[PersistentStore getAllObjectWithType:[MusicInfo class]];
         if ([array count]) {
             for (MusicInfo * object in array) {
                 if ([object.title isEqualToString:musicTitle]) {
                     
-                    NSMutableDictionary * tempMusicInfo     = [NSMutableDictionary dictionaryWithDictionary:musicInfo];
-                    [tempMusicInfo setValue:currentLocationPath forKey:@"musicURL"];
+                    [weakSelf playItemWithPath:object.localFilePath];
                     
-                    MixingViewController * viewController   = [[MixingViewController alloc]initWithNibName:@"MixingViewController" bundle:nil];
-                    [viewController setMusicInfo:tempMusicInfo];
-                    [weakSelf.navigationController pushViewController:viewController animated:YES];
-                    viewController = nil;
-                    return;
                 }
             }
         }
@@ -133,17 +137,19 @@
         [self exportAssetAtURL:assetURL withTitle:musicInfo[@"Title"] completedHandler:^(NSString *path) {
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSMutableDictionary * tempMusicInfo     = [NSMutableDictionary dictionaryWithDictionary:musicInfo];
-                [tempMusicInfo setValue:path forKey:@"musicURL"];
-                MixingViewController * viewController   = [[MixingViewController alloc]initWithNibName:@"MixingViewController" bundle:nil];
-                [viewController setMusicInfo:tempMusicInfo];
-                [weakSelf.navigationController pushViewController:viewController animated:YES];
-                viewController = nil;
+                [weakSelf playItemWithPath:path];
             });
             
         }];
-
+        
     }
+}
+
+-(void)editMusic:(id)sender
+{
+    MutiMixingViewController * viewController = [[MutiMixingViewController alloc]initWithNibName:@"MutiMixingViewController" bundle:nil];
+    [self.navigationController pushViewController:viewController animated:YES];
+    viewController = nil;
 }
 
 -(void)findArtistList
@@ -202,7 +208,7 @@
 	NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString * filePath = [documentsDirectory stringByAppendingPathComponent:title];
     currentLocationPath = [filePath stringByAppendingPathExtension:ext];
-
+    
 }
 
 - (void)exportAssetAtURL:(NSURL*)assetURL withTitle:(NSString*)title completedHandler:(void (^)(NSString * path))completedBlock
@@ -215,7 +221,7 @@
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:currentLocationPath]) {
         [MBProgressHUD showHUDAddedTo: self.view animated:YES];
-        __weak MixingMusicListViewController * weakSelf = self;
+        __weak LocalMusicViewController * weakSelf = self;
         [importTool importAsset:assetURL toURL:outURL completionBlock:^(TSLibraryImport* import) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
@@ -236,7 +242,33 @@
     }
 }
 
-
+-(void)playItemWithPath:(NSString *)localFilePath
+{
+    self.audioMng = [AudioManager shareAudioManager];
+    [self.audioMng pause];
+    if ([self.reader playing]) {
+        [self.reader stop];
+    }
+    
+    NSURL *inputFileURL = [NSURL fileURLWithPath:localFilePath];
+    if (self.reader) {
+        self.reader = nil;
+    }
+    self.reader = [[AudioReader alloc]
+                   initWithAudioFileURL:inputFileURL
+                   samplingRate:self.audioMng.samplingRate
+                   numChannels:self.audioMng.numOutputChannels];
+    
+    //太累了，要记住一定要设置currentime = 0.0,表示开始时间   :]
+    self.reader.currentTime = 0.0;
+    __weak LocalMusicViewController * weakSelf =self;
+    
+    [self.audioMng setOutputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels)
+     {
+         [weakSelf.reader retrieveFreshAudio:data numFrames:numFrames numChannels:numChannels];
+     }];
+    [self.audioMng play];
+}
 #pragma mark - UITableViewDataSource Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -258,13 +290,20 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MixingMusicListCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    [cell.firstBtn setImage:[UIImage imageNamed:@"hunyin_45.png"] forState:UIControlStateNormal];
+    [cell.secondBtn setImage:[UIImage imageNamed:@"hunyin_46.png"] forState:UIControlStateNormal];
+    
     NSDictionary * dic          = [dataSource objectAtIndex:indexPath.row];
-
-    [cell.editButton addTarget:self action:@selector(modifyMusic:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [cell.firstBtn addTarget:self action:@selector(playMusic:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.secondBtn addTarget:self action:@selector(editMusic:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    cell.firstBtn.tag           = indexPath.row;
     
     cell.bigTitleLabel.text     = [dic valueForKey:@"Artist"];
     cell.littleTitleLabel.text  = [dic valueForKey:@"Title"];
-    cell.editButton.tag         = indexPath.row;
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
@@ -272,7 +311,7 @@
 #pragma mark - UITableViewDelegate Methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    [ControlCenter showSoundEffectVC];
+    //    [ControlCenter showSoundEffectVC];
     
 }
 
