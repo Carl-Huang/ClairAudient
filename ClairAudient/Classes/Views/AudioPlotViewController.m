@@ -1,18 +1,15 @@
 //
-//  MixingViewController.m
+//  AudioPlotViewController.m
 //  ClairAudient
 //
-//  Created by Vedon on 14-1-18.
-//  Copyright (c) 2014年 helloworld. All rights reserved.
+//  Created by vedon on 24/1/14.
+//  Copyright (c) 2014 helloworld. All rights reserved.
 //
-
 #define testFile [[NSBundle mainBundle] pathForResource:@"权利游戏" ofType:@"mp3"]
 #define ForwartTimeLength 200000
 #define PlotViewBackgroundColor [UIColor colorWithRed: 0.6 green: 0.6 blue: 0.6  alpha: 1.0];
 #define PlotViewOffset 20
-
-
-#import "MixingViewController.h"
+#import "AudioPlotViewController.h"
 #import "EZOutput.h"
 #import "EZAudioFile.h"
 #import "EZAudio.h"
@@ -21,10 +18,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import "MusicCutter.h"
 #import "MBProgressHUD.h"
-#import "MixingEffectViewController.h"
-
-@interface MixingViewController ()<EZAudioFileDelegate,EZOutputDataSource>
-
+#import "EZOutputHelper.h"
+@interface AudioPlotViewController ()<EZAudioFileDelegate,EZOutputDataSource>
 {
     BOOL isSimulator;
     CGFloat     waveLength;
@@ -41,15 +36,14 @@
     
     EZAudioPlot * tempPlotView ;
     NSInteger  numberOfPlotView;
-    
 }
-
 @property (assign ,nonatomic)CGFloat currentPositionOfFile;
 @property (nonatomic,strong) EZAudioFile *audioFile;
 @property (nonatomic,assign) BOOL eof;
+
 @end
 
-@implementation MixingViewController
+@implementation AudioPlotViewController
 @synthesize currentPositionOfFile;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -64,9 +58,44 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(void)resizeContentSize:(CGRect)rect
+{
+    self.view.frame = rect;
+    self.contentView.frame = rect;
+    CGRect timeLabelRect = rect;
+    timeLabelRect.size.height = self.timeLabelView.frame.size.height;
+    self.timeLabelView.frame = timeLabelRect;
     
-    self.bigTitleLabel.text     = [self.musicInfo valueForKey:@"Artist"];
-    self.littleTitleLabel.text  = [self.musicInfo valueForKey:@"Title"];
+    self.maskView.frame = rect;
+    self.timeLineView.frame = rect;
+    self.contentScrollView.frame = rect;
+    self.audioPlot.frame = rect;
+    
+    
+    CGRect contentViewRect = rect;
+    rect.origin.x += PlotViewOffset;
+    self.contentView.frame = contentViewRect;
+    
+    
+    CGRect timeLineRect = rect;
+    timeLineRect.size.width = timeline.frame.size.width;
+    timeline.frame = timeLineRect;
+    
+    [self.view setNeedsDisplay];
+}
+
+-(void)setupAudioPlotViewWithRect:(CGRect)rect
+{
+    [self resizeContentSize:rect];
 #if TARGET_IPHONE_SIMULATOR
     isSimulator = YES;
 #else
@@ -79,7 +108,7 @@
     self.audioPlot.plotType        = EZPlotTypeBuffer;
     self.audioPlot.shouldFill      = YES;
     self.audioPlot.shouldMirror    = YES;
-
+    
     if (isSimulator) {
         edittingMusicFile = testFile;
     }else
@@ -88,33 +117,33 @@
     }
     NSURL * fileURL = [NSURL fileURLWithPath:edittingMusicFile];
     [self openFileWithFilePathURL:fileURL];
-
+    
     
     //startBtn ,endBtn
     waveLength = 320.0f;
     self.startBtn.locationView  = self.audioPlot;
     self.endBtn.locationView    = self.audioPlot;
-    __weak MixingViewController * weakSelf = self;
+    __weak AudioPlotViewController * weakSelf = self;
     [self.startBtn setBlock:^(NSInteger offset,NSInteger currentOffsetX)
-    {
-        CGRect rect         = weakSelf.maskView.frame;
-        NSInteger offsetWidth = weakSelf.endBtn.frame.origin.x -currentOffsetX;
-        if (offsetWidth < 0) {
-            rect.size.width = 0;
-        }else
-        {
-            rect.size.width     = offsetWidth;
-        }
-        rect.origin.x           = offset;
-        weakSelf.maskView.frame = rect;
-        
-        CGFloat start = (currentOffsetX * musicLength)/waveLength;
-        startLocation = start;
-        cuttedMusicLength = endLocation - startLocation;
-        weakSelf.cutLength.text = [NSString stringWithFormat:@"%0.2f",cuttedMusicLength];
-        weakSelf.startTime.text = [NSString stringWithFormat:@"%0.2f",start];
-    }];
- 
+     {
+         CGRect rect         = weakSelf.maskView.frame;
+         NSInteger offsetWidth = weakSelf.endBtn.frame.origin.x -currentOffsetX;
+         if (offsetWidth < 0) {
+             rect.size.width = 0;
+         }else
+         {
+             rect.size.width     = offsetWidth;
+         }
+         rect.origin.x           = offset;
+         weakSelf.maskView.frame = rect;
+         
+         CGFloat start = (currentOffsetX * musicLength)/waveLength;
+         startLocation = start;
+         cuttedMusicLength = endLocation - startLocation;
+         //         weakSelf.cutLength.text = [NSString stringWithFormat:@"%0.2f",cuttedMusicLength];
+         //         weakSelf.startTime.text = [NSString stringWithFormat:@"%0.2f",start];
+     }];
+    
     [self.endBtn setBlock:^(NSInteger offset,NSInteger currentOffsetX)
      {
          CGRect rect        = weakSelf.maskView.frame;
@@ -130,12 +159,13 @@
          CGFloat end = currentOffsetX/waveLength * musicLength;
          endLocation = end;
          cuttedMusicLength = endLocation - startLocation;
-         weakSelf.cutLength.text = [NSString stringWithFormat:@"%0.2f",cuttedMusicLength];
-         weakSelf.endTime.text = [NSString stringWithFormat:@"%0.2f",end];
-    }];
+         //         weakSelf.cutLength.text = [NSString stringWithFormat:@"%0.2f",cuttedMusicLength];
+         //         weakSelf.endTime.text = [NSString stringWithFormat:@"%0.2f",end];
+     }];
     
     //设置contentScrollView
     [self.contentScrollView setContentSize:CGSizeMake(500, self.contentScrollView.frame.size.height)];
+    self.contentScrollView.scrollEnabled = YES;
     self.contentScrollView.showsHorizontalScrollIndicator = NO;
     CGRect scrollViewRect = self.contentScrollView.frame;
     scrollViewRect.origin.x +=PlotViewOffset;
@@ -155,7 +185,6 @@
         [self.timeLabelView addSubview:label];
         label               = nil;
     }
-    self.endTime.text = [NSString stringWithFormat:@"%0.2f",musicLength];
     
     
     timeline =  [[UIView alloc]initWithFrame:CGRectMake(PlotViewOffset, 0, 1, self.contentScrollView.frame.size.height)];
@@ -171,27 +200,33 @@
     tapGesture = nil;
     
     numberOfPlotView = 1;
-    // Do any additional setup after loading the view from its nib.
 }
 
-- (void)didReceiveMemoryWarning
+#pragma mark - Public method
+-(void)play
 {
-    [super didReceiveMemoryWarning];
-
+    if(![[EZOutputHelper sharedOutput] isPlaying] ){
+        if( self.eof ){
+            [self.audioFile seekToFrame:0];
+        }
+        [EZOutputHelper sharedOutput].outputDataSource = self;
+        [[EZOutputHelper sharedOutput] startPlayback];
+    }
 }
 
--(void)viewWillDisappear:(BOOL)animated
+-(void)pause
 {
-   
     [EZOutput sharedOutput].outputDataSource = nil;
     [[EZOutput sharedOutput] stopPlayback];
 }
-- (void)dealloc
+
+-(void)stop
 {
-    [self removeObserver:self forKeyPath:@"currentPositionOfFile"];
-    [self setView:nil];
+    [EZOutput sharedOutput].outputDataSource = nil;
+    [[EZOutput sharedOutput] stopPlayback];
 }
 
+#pragma mark - Private Method
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"currentPositionOfFile"]) {
@@ -200,7 +235,6 @@
     }
 }
 
-#pragma mark - Private Method
 //获取音乐长度
 -(CGFloat)getMusicLength:(NSURL *)url
 {
@@ -228,7 +262,6 @@
     {
         [self.audioFile seekToFrame:offset];
     }
-    
 }
 
 -(void)updateTimeLinePosition:(CGFloat)offset
@@ -261,7 +294,7 @@
         tempPlotView.shouldFill      = YES;
         tempPlotView.shouldMirror    = YES;
         
-        __weak MixingViewController * weakSelf = self;
+        __weak AudioPlotViewController * weakSelf = self;
         [tempAudioFile getWaveformDataWithCompletionBlock:^(float *waveformData, UInt32 length) {
             [tempPlotView updateBuffer:waveformData withBufferSize:length];
             [weakSelf freePlotViewMemory];
@@ -281,64 +314,6 @@
     tempPlotView = nil;
 }
 
-#pragma mark - Outlet Action
-- (IBAction)playMusic:(id)sender {
-    UIButton * btn = (UIButton *)sender;
-    
-    if( ![[EZOutput sharedOutput] isPlaying] ){
-        if( self.eof ){
-            [self.audioFile seekToFrame:0];
-        }
-        [EZOutput sharedOutput].outputDataSource = self;
-        [[EZOutput sharedOutput] startPlayback];
-        [btn setSelected:YES];
-    }
-    else {
-        [EZOutput sharedOutput].outputDataSource = nil;
-        [[EZOutput sharedOutput] stopPlayback];
-        [btn setSelected:NO];
-    }
-}
-
-- (IBAction)startCutting:(id)sender {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    __weak MixingViewController * weakSelf = self;
-    [MusicCutter cropMusic:edittingMusicFile exportFileName:@"newSong.m4a" withStartTime:self.startTime.text.floatValue*100 endTime:self.endTime.text.floatValue*100 withCompletedBlock:^(AVAssetExportSessionStatus status, NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-            [self showAlertViewWithMessage:@"裁剪成功"];
-        });
-        
-    }];
-}
-
-- (IBAction)backAction:(id)sender
-{
-    [self popVIewController];
-}
-
-- (IBAction)fastForwardAction:(id)sender {
-    [self addPlotView];
-    currentPositionOfFile = currentPositionOfFile+ForwartTimeLength;
-    if (currentPositionOfFile > totalLengthOfTheFile) {
-        currentPositionOfFile = fabs(currentPositionOfFile - ForwartTimeLength);
-    }
-    [self seekToPostionWithValue:currentPositionOfFile];
-}
-
-- (IBAction)backForwardAction:(id)sender {
-    currentPositionOfFile = currentPositionOfFile-ForwartTimeLength;
-    if (currentPositionOfFile < 0) {
-        currentPositionOfFile = fabs(currentPositionOfFile - ForwartTimeLength);
-    }
-    [self seekToPostionWithValue:currentPositionOfFile];
-}
-
-- (IBAction)addMixingMusicAction:(id)sender {
-    MixingEffectViewController * viewController = [[MixingEffectViewController alloc]initWithNibName:@"MixingEffectViewController" bundle:nil];
-    [self.navigationController pushViewController:viewController animated:YES];
-    viewController = nil;
-}
 
 
 #pragma mark - AudioPlot
@@ -351,7 +326,6 @@
     self.audioFile.audioFileDelegate = self;
     self.eof                       = NO;
     
-    self.framePositionSlider.maximumValue = (float)self.audioFile.totalFrames;
     totalLengthOfTheFile = (float)self.audioFile.totalFrames;
     
     // Plot the whole waveform
@@ -400,7 +374,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
 -(AudioBufferList *)output:(EZOutput *)output
  needsBufferListWithFrames:(UInt32)frames
             withBufferSize:(UInt32 *)bufferSize {
-
+    
     if( self.audioFile ){
         
         // Reached the end of the file
@@ -417,7 +391,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
                         bufferSize:bufferSize
                                eof:&eof];
         self.eof = eof;
-
+        
         if( eof ){
             [EZAudio freeBufferList:bufferList];
             return nil;
@@ -431,7 +405,4 @@ withNumberOfChannels:(UInt32)numberOfChannels {
 -(AudioStreamBasicDescription)outputHasAudioStreamBasicDescription:(EZOutput *)output {
     return self.audioFile.clientFormat;
 }
-
-
-
 @end
