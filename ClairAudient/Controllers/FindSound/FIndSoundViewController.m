@@ -28,7 +28,7 @@
     if (self) {
         //_catalogs = @[@"自然音库",@"动物音库",@"海量音库",@"事件音库",@"武器大全",@"吆喝大全",@"配音地带",@"段子库",@"手机铃声",@"乡音大全"];
         _catalogs = [NSArray array];
-        //_icons = @[@"FoundMusic_t",@"FoundMusic_u",@"FoundMusic_v",@"FoundMusic_w",@"FoundMusic_x",@"FoundMusic_y",@"FoundMusic_ef",@"FoundMusic_ab",@"FoundMusic_z",@"FoundMusic_cd"];
+        _icons = @[@"catalog_icon_gpng",@"catalog_icon_hpng",@"catalog_icon_bpng",@"catalog_icon_kpng",@"catalog_icon_fpng",@"catalog_icon_epng",@"catalog_icon_jpng",@"catalog_icon_cpng",@"catalog_icon_apng",@"catalog_icon_lpng",@"catalog_icon_dpng"];
     }
     return self;
 }
@@ -101,7 +101,11 @@
 
 -(NSInteger)quiltViewNumberOfCells:(TMQuiltView *)TMQuiltView
 {
-    return [_catalogs count];
+    if([_catalogs count] <= [_icons count])
+    {
+        return [_catalogs count];
+    }
+    return [_icons count];
 }
 
 
@@ -114,8 +118,8 @@
         cell = [[TMCustomCell alloc] initWithReuseIdentifier:@"Cell"];
     }
     
-    //cell.photoView.image = [UIImage imageNamed:[_icons objectAtIndex:indexPath.row]];
-    cell.photoView.image = [UIImage imageNamed:@"FoundMusic_t"];
+    cell.photoView.image = [UIImage imageNamed:[_icons objectAtIndex:indexPath.row]];
+    //cell.photoView.image = [UIImage imageNamed:@"FoundMusic_t"];
     Catalog * catalog = [_catalogs objectAtIndex:indexPath.row];
     cell.titleLabel.text = catalog.vlt_name;
     return cell;

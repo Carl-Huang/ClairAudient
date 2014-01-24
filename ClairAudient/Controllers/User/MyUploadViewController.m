@@ -50,6 +50,11 @@
     _tableView.backgroundColor = [UIColor clearColor];
     UINib * nib = [UINib nibWithNibName:@"MyUploadCell" bundle:[NSBundle bundleForClass:[MyUploadCell class]]];
     [_tableView registerNib:nib forCellReuseIdentifier:@"Cell"];
+    UIView * view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    [_tableView setTableFooterView:view];
+    view = nil;
+
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     User * user = [User userFromLocal];
@@ -75,7 +80,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return [_dataSource count];
 }
 
 

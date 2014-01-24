@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="13A2093" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="13B3116" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <deployment defaultVersion="1280" identifier="iOS"/>
+        <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <objects>
@@ -48,6 +48,12 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="downloadBtn" destination="W9H-gZ-c4U" id="92J-9H-K7h"/>
+                <outlet property="downloadCountLabel" destination="arb-An-8dd" id="ffV-P1-sNz"/>
+                <outlet property="nameLabel" destination="Ngn-Iu-uhV" id="4OP-ZK-87o"/>
+                <outlet property="playBtn" destination="fhE-r4-zPg" id="wva-VM-SGO"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

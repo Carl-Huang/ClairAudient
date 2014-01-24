@@ -8,8 +8,9 @@
 
 #import "PersonalHomePageViewController.h"
 #import "UIViewController+CustomBarItemPosition.h"
+#import "User.h"
 @interface PersonalHomePageViewController ()
-
+@property (nonatomic,strong) User * user;
 @end
 
 @implementation PersonalHomePageViewController
@@ -18,7 +19,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _user = [User userFromLocal];
     }
     return self;
 }
@@ -41,6 +42,15 @@
     self.title = @"她的主页";
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self setLeftAndRightBarItem];
+    if(self.user)
+    {
+        _nameField.text = _user.userName;
+        _passwordField.text = _user.passWord;
+        _birthdayField.text = _user.birthday;
+        _jobField.text = _user.workUnit;
+        _emailField.text = _user.email;
+        
+    }
 }
 
 @end

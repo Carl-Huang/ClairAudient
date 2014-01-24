@@ -56,6 +56,11 @@
     _tableView.backgroundColor = [UIColor clearColor];
     UINib * nib = [UINib nibWithNibName:@"DownloadRankCell" bundle:[NSBundle bundleForClass:[DownloadRankCell class]]];
     [_tableView registerNib:nib forCellReuseIdentifier:@"Cell"];
+    UIView * view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    [_tableView setTableFooterView:view];
+    view = nil;
+
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[HttpService sharedInstance] findDownloadRankVoiceWithCompletionBlock:^(id object) {

@@ -194,6 +194,14 @@
     [[self class] showVC:@"RecordListViewController"];
 }
 
++ (void)showVoiceVC:(Voice *)voice
+{
+    VoiceViewController * vc = (VoiceViewController *)[[self class] viewControllerWithName:@"VoiceViewController"];
+    vc.voice = voice;
+    [[self class] showVCWithController:vc];
+    
+}
+
 + (void)showVC:(NSString *)vcName
 {
     AppDelegate * appDelegate = [[self class] appDelegate];

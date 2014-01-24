@@ -51,7 +51,11 @@
     [self setLeftAndRightBarItem];
 
     [_tableView setBackgroundColor:[UIColor clearColor]];
-    
+    UIView * view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    [_tableView setTableFooterView:view];
+    view = nil;
+
     
     
 }

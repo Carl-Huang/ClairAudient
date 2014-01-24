@@ -13,6 +13,7 @@
 #import "HttpService.h"
 #import "MBProgressHUD.h"
 #import "Voice.h"
+#import "ControlCenter.h"
 #define Section_Height 48.0f
 #define Cell_Height 44.0f
 @interface SoundCatalogViewController ()
@@ -57,7 +58,10 @@
     _tableView.backgroundColor = [UIColor clearColor];
     UINib * nib = [UINib nibWithNibName:@"SoundCatalogCell" bundle:[NSBundle bundleForClass:[SoundCatalogCell class]]];
     [_tableView registerNib:nib forCellReuseIdentifier:@"Cell"];
-    
+    UIView * footView = [UIView new];
+    footView.backgroundColor = [UIColor clearColor];
+    [_tableView setTableFooterView:footView];
+    footView = nil;
     if(self.parentCatalog)
     {
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -180,7 +184,10 @@
 #pragma mark - UITableViewDelegate Methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    Catalog * catalog = [_catalogs objectAtIndex:indexPath.section];
+    NSArray * voices = [_catalogSoundsInfo objectForKey:catalog.vlt_name];
+    Voice * voice = [voices objectAtIndex:indexPath.row];
+    [ControlCenter showVoiceVC:voice];
 }
 
 

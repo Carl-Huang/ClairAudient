@@ -38,6 +38,7 @@
 #import "MixingViewController.h"
 #import "RecordViewController.h"
 #import "RecordListViewController.h"
+#import "VoiceViewController.h"
 #import "AllModels.h"
 @interface ControlCenter : NSObject
 
@@ -75,6 +76,7 @@
 + (void)showMixingVC;
 + (void)showRecordVC;
 + (void)showRecordListVC;
++ (void)showVoiceVC:(Voice *)voice;
 + (void)showVC:(NSString *)vcName;
 + (MainViewController *)mainViewController;
 + (UIViewController *)viewControllerWithName:(NSString *)vcName;

@@ -56,6 +56,10 @@
     _tableView.backgroundColor = [UIColor clearColor];
     UINib * nib = [UINib nibWithNibName:@"IntegralChampionCell" bundle:[NSBundle bundleForClass:[IntegralChampionCell class]]];
     [_tableView registerNib:nib forCellReuseIdentifier:@"Cell"];
+    UIView * view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    [_tableView setTableFooterView:view];
+    view = nil;
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[HttpService sharedInstance] findIntegralRankUserWithCompletionBlock:^(id object) {

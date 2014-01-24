@@ -9,5 +9,11 @@
 #import "CommonViewController.h"
 
 @interface PersonalHomePageViewController : CommonViewController
+@property (weak, nonatomic) IBOutlet UITextField *nameField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UITextField *birthdayField;
+@property (weak, nonatomic) IBOutlet UITextField *jobField;
+
+@property (weak, nonatomic) IBOutlet UITextField *emailField;
 
 @end
