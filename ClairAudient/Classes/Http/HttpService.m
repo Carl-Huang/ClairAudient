@@ -281,4 +281,29 @@
     } failureBlock:failure];
 }
 
+/**
+ @desc 根据关键字搜索音频
+ */
+- (void)searchVocie:(NSDictionary *)params completionBlock:(void (^)(id object))success failureBlock:(void (^)(NSError * error,NSString * responseString))failure
+{
+    [self post:[self mergeURL:Search_Voice] withParams:params completionBlock:^(id obj) {
+        NSArray * items = [obj valueForKey:@"items"];
+        NSArray * voices = [self mapModelsProcess:items withClass:[Voice class]];
+        if(success)
+        {
+            success(voices);
+        }
+    } failureBlock:failure];
+}
+
+/**
+ @desc 上传音频
+ */
+- (void)uploadVoice:(NSDictionary *)params completionBlock:(void (^)(id object))success failureBlock:(void (^)(NSError * error,NSString * responseString))failure
+{
+    [self post:[self mergeURL:Upload_Voice] withParams:params completionBlock:^(id obj) {
+        
+    } failureBlock:failure];
+}
+
 @end

@@ -9,5 +9,8 @@
 #import "CommonViewController.h"
 
 @interface FIndSoundViewController : CommonViewController
+@property (weak, nonatomic) IBOutlet UITextField *searchField;
+- (IBAction)searchAction:(id)sender;
+- (IBAction)finishType:(id)sender;
 
 @end

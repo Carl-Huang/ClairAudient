@@ -84,6 +84,33 @@
     
 }
 
+- (IBAction)searchAction:(id)sender
+{
+    [_searchField resignFirstResponder];
+    NSString * text = [[_searchField text] stringByReplacingOccurrencesOfString:@" " withString:@""];
+    if([text length] == 0) return;
+    
+    MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"正在加载数据";
+    [[HttpService sharedInstance] searchVocie:@{@"vlName":text} completionBlock:^(id object) {
+        if(object == nil || [object count] == 0)
+        {
+            hud.labelText = @"无相关资源";
+            [hud hide:YES afterDelay:1.5];
+            return ;
+        }
+        [hud hide:YES];
+        [ControlCenter showSearchResultVC:object];
+    } failureBlock:^(NSError *error, NSString *responseString) {
+        hud.labelText = @"加载失败";
+        [hud hide:YES afterDelay:1.5];
+    }];
+}
+
+- (IBAction)finishType:(id)sender
+{
+    [_searchField resignFirstResponder];
+}
 
 
 #pragma mark - TMQuiltViewDataSource Methods

@@ -39,6 +39,7 @@
 #import "RecordViewController.h"
 #import "RecordListViewController.h"
 #import "VoiceViewController.h"
+#import "SearchResultViewController.h"
 #import "AllModels.h"
 @interface ControlCenter : NSObject
 
@@ -77,6 +78,7 @@
 + (void)showRecordVC;
 + (void)showRecordListVC;
 + (void)showVoiceVC:(Voice *)voice;
++ (void)showSearchResultVC:(NSArray *)voices;
 + (void)showVC:(NSString *)vcName;
 + (MainViewController *)mainViewController;
 + (UIViewController *)viewControllerWithName:(NSString *)vcName;

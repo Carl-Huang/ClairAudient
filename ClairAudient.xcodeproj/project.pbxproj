@@ -228,6 +228,8 @@
 		C39A97B9189247AE00F41CBB /* catalog_section_kpng@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C39A97A2189247AE00F41CBB /* catalog_section_kpng@2x.png */; };
 		C39A97BD189265A200F41CBB /* VoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C39A97BB189265A200F41CBB /* VoiceViewController.m */; };
 		C39A97BE189265A200F41CBB /* VoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C39A97BC189265A200F41CBB /* VoiceViewController.xib */; };
+		C39A97C21892CC6B00F41CBB /* SearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C39A97C01892CC6B00F41CBB /* SearchResultViewController.m */; };
+		C39A97C31892CC6B00F41CBB /* SearchResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C39A97C11892CC6B00F41CBB /* SearchResultViewController.xib */; };
 		C3B395C61875519800592C92 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B395C51875519800592C92 /* back@2x.png */; };
 		C3B53E46188C3000004EA4A7 /* IntegralRankUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B53E45188C3000004EA4A7 /* IntegralRankUser.m */; };
 		C3D4FCB8187CFD64001A7223 /* UIViewController+CustomBarItemPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D4FCB7187CFD64001A7223 /* UIViewController+CustomBarItemPosition.m */; };
@@ -735,6 +737,9 @@
 		C39A97BA189265A200F41CBB /* VoiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceViewController.h; sourceTree = "<group>"; };
 		C39A97BB189265A200F41CBB /* VoiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceViewController.m; sourceTree = "<group>"; };
 		C39A97BC189265A200F41CBB /* VoiceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoiceViewController.xib; sourceTree = "<group>"; };
+		C39A97BF1892CC6B00F41CBB /* SearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultViewController.h; sourceTree = "<group>"; };
+		C39A97C01892CC6B00F41CBB /* SearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultViewController.m; sourceTree = "<group>"; };
+		C39A97C11892CC6B00F41CBB /* SearchResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultViewController.xib; sourceTree = "<group>"; };
 		C3B395C51875519800592C92 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		C3B53E44188C3000004EA4A7 /* IntegralRankUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntegralRankUser.h; sourceTree = "<group>"; };
 		C3B53E45188C3000004EA4A7 /* IntegralRankUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntegralRankUser.m; sourceTree = "<group>"; };
@@ -1718,6 +1723,9 @@
 				C39A97BA189265A200F41CBB /* VoiceViewController.h */,
 				C39A97BB189265A200F41CBB /* VoiceViewController.m */,
 				C39A97BC189265A200F41CBB /* VoiceViewController.xib */,
+				C39A97BF1892CC6B00F41CBB /* SearchResultViewController.h */,
+				C39A97C01892CC6B00F41CBB /* SearchResultViewController.m */,
+				C39A97C11892CC6B00F41CBB /* SearchResultViewController.xib */,
 			);
 			path = FindSound;
 			sourceTree = "<group>";
@@ -2167,6 +2175,7 @@
 				C3164CD41874555D00301ACA /* FoundMusic_z@2x.png in Resources */,
 				C3FEB02D1871C294008EADAA /* first_@2x.png in Resources */,
 				C3FEAFF51871C294008EADAA /* hunyin_12@2x.png in Resources */,
+				C39A97C31892CC6B00F41CBB /* SearchResultViewController.xib in Resources */,
 				C3FEB00D1871C294008EADAA /* hunyin_35@2x.png in Resources */,
 				C3FEB0221871C294008EADAA /* hunyin_7@2x.png in Resources */,
 				C3164CC41874555D00301ACA /* FoundMusic_n@2x.png in Resources */,
@@ -2317,6 +2326,7 @@
 				C32F40121882878600681953 /* MyUploadViewController.m in Sources */,
 				C326CDB6187C5EBD006DD97C /* RecommendSoundViewController.m in Sources */,
 				C3FEB0B81871C801008EADAA /* OSHelper.m in Sources */,
+				C39A97C21892CC6B00F41CBB /* SearchResultViewController.m in Sources */,
 				C3456CEA18877A3B009329D2 /* MyProductionCell.m in Sources */,
 				C32F400D1882876A00681953 /* UserCenterViewController.m in Sources */,
 				4E2AD2F01891EC3600020135 /* CloneView.m in Sources */,

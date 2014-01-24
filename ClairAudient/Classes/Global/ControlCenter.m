@@ -194,6 +194,13 @@
     [[self class] showVC:@"RecordListViewController"];
 }
 
++ (void)showSearchResultVC:(NSArray *)voices
+{
+    SearchResultViewController * vc = (SearchResultViewController *)[[self class] viewControllerWithName:@"SearchResultViewController"];
+    vc.voices = voices;
+    [[self class] showVCWithController:vc];
+}
+
 + (void)showVoiceVC:(Voice *)voice
 {
     VoiceViewController * vc = (VoiceViewController *)[[self class] viewControllerWithName:@"VoiceViewController"];

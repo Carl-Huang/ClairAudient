@@ -18,6 +18,8 @@
 #define Find_Recommend_By_Catalog                   @"getVlTuiJianTop10Action"
 #define Find_Download_Rank_Voice                    @"getVoiceLibraryTop10Action"
 #define Find_Catalog_Rank_Voice                     @"getVoiceLibraryTop10Action"
+#define Search_Voice                                @"SerachVlAction"
+#define Upload_Voice                                @"UploadAction"
 @interface HttpService : AFHttp
 
 + (HttpService *)sharedInstance;
@@ -70,6 +72,16 @@
  @desc 获取下载排行声音
  */
 - (void)findDownloadRankVoiceWithCompletionBlock:(void (^)(id object))success failureBlock:(void (^)(NSError * error,NSString * responseString))failure;
+
+/**
+ @desc 根据关键字搜索音频
+ */
+- (void)searchVocie:(NSDictionary *)params completionBlock:(void (^)(id object))success failureBlock:(void (^)(NSError * error,NSString * responseString))failure;
+
+/**
+ @desc 上传音频
+ */
+- (void)uploadVoice:(NSDictionary *)params completionBlock:(void (^)(id object))success failureBlock:(void (^)(NSError * error,NSString * responseString))failure;
 
 
 @end
