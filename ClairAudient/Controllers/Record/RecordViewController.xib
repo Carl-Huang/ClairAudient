@@ -31,9 +31,20 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="record_.png" translatesAutoresizingMaskIntoConstraints="NO" id="IPb-Aj-dTN">
-                            <rect key="frame" x="0.0" y="1" width="320" height="64"/>
+                            <rect key="frame" x="0.0" y="-1" width="320" height="64"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rMG-6Y-cnw">
+                            <rect key="frame" x="11" y="22" width="30" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" image="back.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="backAction:" destination="-1" eventType="touchUpInside" id="yCO-8g-aBD"/>
+                            </connections>
+                        </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="record_2.png" translatesAutoresizingMaskIntoConstraints="NO" id="uYM-8u-dHQ">
                             <rect key="frame" x="119" y="18" width="31" height="29"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -126,6 +137,7 @@
         </view>
     </objects>
     <resources>
+        <image name="back.png" width="30" height="25"/>
         <image name="record_.png" width="320" height="59"/>
         <image name="record_10.png" width="76" height="67"/>
         <image name="record_11.png" width="76" height="67"/>

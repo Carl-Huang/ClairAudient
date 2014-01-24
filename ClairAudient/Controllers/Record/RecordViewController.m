@@ -280,6 +280,10 @@
     viewController = nil;
 }
 
+- (IBAction)backAction:(id)sender {
+    [self popVIewController];
+}
+
 #pragma mark - AlertView Delegate
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {

@@ -45,5 +45,5 @@
 /**
  @desc 删除对象
  */
-+(void)deleteObje:(id)obj;
++(BOOL)deleteObje:(id)obj;
 @end

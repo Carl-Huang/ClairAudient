@@ -23,6 +23,7 @@
 		4E2A13811891474800D8CB65 /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A13801891474800D8CB65 /* AudioRecorder.m */; };
 		4E2A1384189152F900D8CB65 /* AudioReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A1383189152F900D8CB65 /* AudioReader.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4E2A13871891531C00D8CB65 /* RingBuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A13861891531C00D8CB65 /* RingBuffer.mm */; };
+		4E2AD2F01891EC3600020135 /* CloneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2AD2EF1891EC3600020135 /* CloneView.m */; };
 		4E96B56A188E9CBA008EA56F /* 权利游戏.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4E96B569188E9CBA008EA56F /* 权利游戏.mp3 */; };
 		4E96B56C188EA003008EA56F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E96B56B188EA003008EA56F /* MediaPlayer.framework */; };
 		4E96B56E188EAB88008EA56F /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E96B56D188EAB88008EA56F /* GLKit.framework */; };
@@ -445,6 +446,8 @@
 		4E2A1383189152F900D8CB65 /* AudioReader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AudioReader.mm; sourceTree = "<group>"; };
 		4E2A13851891531C00D8CB65 /* RingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RingBuffer.h; sourceTree = "<group>"; };
 		4E2A13861891531C00D8CB65 /* RingBuffer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RingBuffer.mm; sourceTree = "<group>"; };
+		4E2AD2EE1891EC3600020135 /* CloneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloneView.h; sourceTree = "<group>"; };
+		4E2AD2EF1891EC3600020135 /* CloneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloneView.m; sourceTree = "<group>"; };
 		4E96B569188E9CBA008EA56F /* 权利游戏.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "权利游戏.mp3"; sourceTree = "<group>"; };
 		4E96B56B188EA003008EA56F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		4E96B56D188EAB88008EA56F /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
@@ -1165,6 +1168,8 @@
 				C34C3406188AB975009CD20B /* RecordListCell.xib */,
 				4E96B598188EC7B0008EA56F /* TrachBtn.h */,
 				4E96B599188EC7B0008EA56F /* TrachBtn.m */,
+				4E2AD2EE1891EC3600020135 /* CloneView.h */,
+				4E2AD2EF1891EC3600020135 /* CloneView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2196,6 +2201,7 @@
 				C3FEB0B81871C801008EADAA /* OSHelper.m in Sources */,
 				C3456CEA18877A3B009329D2 /* MyProductionCell.m in Sources */,
 				C32F400D1882876A00681953 /* UserCenterViewController.m in Sources */,
+				4E2AD2F01891EC3600020135 /* CloneView.m in Sources */,
 				C32F401C188287D300681953 /* PersonalHomePageViewController.m in Sources */,
 				C3FEB0B41871C801008EADAA /* IO.m in Sources */,
 				C32F402B188390A100681953 /* IntegralViewController.m in Sources */,

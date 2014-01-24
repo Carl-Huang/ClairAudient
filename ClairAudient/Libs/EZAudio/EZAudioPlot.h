@@ -47,5 +47,5 @@
  
  */
 @interface EZAudioPlot : EZPlot
-
+@property (strong ,nonatomic) UIImage * snapShotImage;
 @end

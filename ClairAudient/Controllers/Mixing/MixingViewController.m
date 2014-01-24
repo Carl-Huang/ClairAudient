@@ -8,6 +8,9 @@
 
 #define testFile [[NSBundle mainBundle] pathForResource:@"权利游戏" ofType:@"mp3"]
 #define ForwartTimeLength 200000
+#define PlotViewBackgroundColor [UIColor colorWithRed: 0.6 green: 0.6 blue: 0.6  alpha: 1.0];
+#define PlotViewOffset 20
+
 
 #import "MixingViewController.h"
 #import "EZOutput.h"
@@ -18,6 +21,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "MusicCutter.h"
 #import "MBProgressHUD.h"
+#import "CloneView.h"
 
 @interface MixingViewController ()<EZAudioFileDelegate,EZOutputDataSource>
 
@@ -35,6 +39,8 @@
     CGFloat totalLengthOfTheFile;
     UIView * timeline;
     
+    EZAudioPlot * tempPlotView ;
+    NSInteger  numberOfPlotView;
     
 }
 
@@ -67,10 +73,10 @@
 #endif
     
     //初始化音乐波形图
-    self.audioPlot.backgroundColor = [UIColor colorWithRed: 0.6 green: 0.6 blue: 0.6  alpha: 0.1];
+    self.audioPlot.backgroundColor = PlotViewBackgroundColor
     self.audioPlot.color           = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
     self.audioPlot.plotType        = EZPlotTypeBuffer;
-    self.audioPlot.shouldFill      = NO;
+    self.audioPlot.shouldFill      = YES;
     self.audioPlot.shouldMirror    = YES;
 
     if (isSimulator) {
@@ -81,8 +87,7 @@
     }
     NSURL * fileURL = [NSURL fileURLWithPath:edittingMusicFile];
     [self openFileWithFilePathURL:fileURL];
-    
-    
+
     
     //startBtn ,endBtn
     waveLength = 320.0f;
@@ -128,11 +133,14 @@
          weakSelf.endTime.text = [NSString stringWithFormat:@"%0.2f",end];
     }];
     
-    CGSize  size = self.contentScrollView.contentSize;
-    [self.contentScrollView setContentSize:CGSizeMake(500, size.height)];
+    //设置contentScrollView
+    [self.contentScrollView setContentSize:CGSizeMake(500, self.contentScrollView.frame.size.height)];
     self.contentScrollView.showsHorizontalScrollIndicator = NO;
+    CGRect scrollViewRect = self.contentScrollView.frame;
+    scrollViewRect.origin.x +=PlotViewOffset;
+    [self.contentScrollView scrollRectToVisible:scrollViewRect animated:YES];
     
-    musicLength = [self getMusicLength:[NSURL fileURLWithPath:testFile]];
+    musicLength = [self getMusicLength:[NSURL fileURLWithPath:edittingMusicFile]];
     startLocation = 0.0f;
     endLocation = musicLength;
     
@@ -149,7 +157,7 @@
     self.endTime.text = [NSString stringWithFormat:@"%0.2f",musicLength];
     
     
-    timeline =  [[UIView alloc]initWithFrame:CGRectMake(0, 0, 1, self.contentScrollView.frame.size.height)];
+    timeline =  [[UIView alloc]initWithFrame:CGRectMake(PlotViewOffset, 0, 1, self.contentScrollView.frame.size.height)];
     [timeline setBackgroundColor:[UIColor yellowColor]];
     [self addObserver:self forKeyPath:@"currentPositionOfFile" options:NSKeyValueObservingOptionNew context:NULL];
     
@@ -160,6 +168,8 @@
     UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(seekToPosition:)];
     [self.timeLineView addGestureRecognizer:tapGesture];
     tapGesture = nil;
+    
+    numberOfPlotView = 1;
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -169,6 +179,14 @@
 
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+   
+    [EZOutput sharedOutput].outputDataSource = nil;
+    [[EZOutput sharedOutput] stopPlayback];
+
+
+}
 - (void)dealloc
 {
     [self removeObserver:self forKeyPath:@"currentPositionOfFile"];
@@ -207,17 +225,77 @@
 
 -(void)seekToPostionWithValue:(CGFloat)offset
 {
-    [self.audioFile seekToFrame:offset];
+    @synchronized(self.audioFile)
+    {
+        [self.audioFile seekToFrame:offset];
+    }
+    
 }
 
 -(void)updateTimeLinePosition:(CGFloat)offset
 {
     @autoreleasepool {
         CGRect rect = timeline.frame;
-        rect.origin.x = offset;
+        rect.origin.x = offset + PlotViewOffset;
         timeline.frame = rect;
     }
 }
+
+-(void)cloneView
+{
+    CloneView * cloneView = [[CloneView alloc]initWithView:self.audioPlot];
+    CGRect rect = cloneView.frame;
+    rect.origin.y = 0; 
+    rect.origin.x +=rect.size.width;
+    cloneView.frame = rect;
+    [self.contentScrollView addSubview:cloneView];
+    CGSize size = self.contentScrollView.contentSize;
+    size.width +=cloneView.frame.size.width;
+    [self.contentScrollView setContentSize:size];
+    
+}
+
+-(void)addPlotView
+{
+    @autoreleasepool {
+        CGRect rect = self.audioPlot.frame;
+        rect.origin.x = rect.size.width * numberOfPlotView +PlotViewOffset;
+        rect.origin.y -= 10;
+        tempPlotView = [[EZAudioPlot alloc]initWithFrame:rect];
+        tempPlotView.backgroundColor = PlotViewBackgroundColor;        tempPlotView.color           = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
+        tempPlotView.plotType        = EZPlotTypeBuffer;
+        tempPlotView.shouldFill      = YES;
+        tempPlotView.shouldMirror    = YES;
+        self.eof                     = NO;
+        
+        EZAudioFile *tempAudioFile  = [EZAudioFile audioFileWithURL:[NSURL fileURLWithPath:edittingMusicFile]];
+        
+        
+        // Plot the whole waveform
+        tempPlotView.plotType        = EZPlotTypeBuffer;
+        tempPlotView.shouldFill      = YES;
+        tempPlotView.shouldMirror    = YES;
+        
+        __weak MixingViewController * weakSelf = self;
+        [tempAudioFile getWaveformDataWithCompletionBlock:^(float *waveformData, UInt32 length) {
+            [tempPlotView updateBuffer:waveformData withBufferSize:length];
+            [weakSelf freePlotViewMemory];
+        }];
+        
+        [self.contentScrollView addSubview:tempPlotView];
+        CGSize size = self.contentScrollView.contentSize;
+        size.width +=tempPlotView.frame.size.width;
+        [self.contentScrollView setContentSize:size];
+        tempAudioFile = nil;
+    }
+    numberOfPlotView ++;
+}
+
+-(void)freePlotViewMemory
+{
+    tempPlotView = nil;
+}
+
 #pragma mark - Outlet Action
 - (IBAction)playMusic:(id)sender {
     UIButton * btn = (UIButton *)sender;
@@ -255,12 +333,19 @@
 }
 
 - (IBAction)fastForwardAction:(id)sender {
+    [self addPlotView];
     currentPositionOfFile = currentPositionOfFile+ForwartTimeLength;
+    if (currentPositionOfFile > totalLengthOfTheFile) {
+        currentPositionOfFile = fabs(currentPositionOfFile - ForwartTimeLength);
+    }
     [self seekToPostionWithValue:currentPositionOfFile];
 }
 
 - (IBAction)backForwardAction:(id)sender {
     currentPositionOfFile = currentPositionOfFile-ForwartTimeLength;
+    if (currentPositionOfFile < 0) {
+        currentPositionOfFile = fabs(currentPositionOfFile - ForwartTimeLength);
+    }
     [self seekToPostionWithValue:currentPositionOfFile];
 }
 
@@ -282,6 +367,7 @@
     self.audioPlot.plotType        = EZPlotTypeBuffer;
     self.audioPlot.shouldFill      = YES;
     self.audioPlot.shouldMirror    = YES;
+    
     [self.audioFile getWaveformDataWithCompletionBlock:^(float *waveformData, UInt32 length) {
         [self.audioPlot updateBuffer:waveformData withBufferSize:length];
     }];
@@ -290,6 +376,7 @@
 
 -(void)seekToFrame:(id)sender {
     [self.audioFile seekToFrame:(SInt64)[(UISlider*)sender value]];
+    
 }
 
 
@@ -303,7 +390,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
             if( self.audioPlot.plotType     == EZPlotTypeBuffer &&
                self.audioPlot.shouldFill    == YES              &&
                self.audioPlot.shouldMirror  == YES ){
-                self.audioPlot.shouldFill   = NO;
+                self.audioPlot.shouldFill   = YES;
                 self.audioPlot.shouldMirror = YES;
             }
             //      [self.audioPlot updateBuffer:buffer[0] withBufferSize:bufferSize];
@@ -322,6 +409,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
 -(AudioBufferList *)output:(EZOutput *)output
  needsBufferListWithFrames:(UInt32)frames
             withBufferSize:(UInt32 *)bufferSize {
+
     if( self.audioFile ){
         
         // Reached the end of the file
@@ -329,9 +417,8 @@ withNumberOfChannels:(UInt32)numberOfChannels {
             // Here's what you do to loop the file
             [self.audioFile seekToFrame:0];
             self.eof = NO;
+            self.currentPositionOfFile = 0.0;
         }
-        
-        // Allocate a buffer list to hold the file's data
         AudioBufferList *bufferList = [EZAudio audioBufferList];
         BOOL eof;
         [self.audioFile readFrames:frames
@@ -339,8 +426,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
                         bufferSize:bufferSize
                                eof:&eof];
         self.eof = eof;
-        
-        // Reached the end of the file on the last read
+
         if( eof ){
             [EZAudio freeBufferList:bufferList];
             return nil;
