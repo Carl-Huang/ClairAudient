@@ -240,6 +240,12 @@
 		C39A97BE189265A200F41CBB /* VoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C39A97BC189265A200F41CBB /* VoiceViewController.xib */; };
 		C39A97C21892CC6B00F41CBB /* SearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C39A97C01892CC6B00F41CBB /* SearchResultViewController.m */; };
 		C39A97C31892CC6B00F41CBB /* SearchResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C39A97C11892CC6B00F41CBB /* SearchResultViewController.xib */; };
+		C39BBE481893DE4E00FC8F72 /* SortPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C39BBE471893DE4E00FC8F72 /* SortPopoverViewController.m */; };
+		C39BBE551893DF5C00FC8F72 /* TSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C39BBE4B1893DF5C00FC8F72 /* TSActionSheet.m */; };
+		C39BBE561893DF5C00FC8F72 /* TSPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = C39BBE4D1893DF5C00FC8F72 /* TSPopoverController.m */; };
+		C39BBE571893DF5C00FC8F72 /* TSPopoverPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = C39BBE4F1893DF5C00FC8F72 /* TSPopoverPopoverView.m */; };
+		C39BBE581893DF5C00FC8F72 /* TSPopoverTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = C39BBE521893DF5C00FC8F72 /* TSPopoverTouchView.m */; };
+		C39BBE591893DF5C00FC8F72 /* UIBarButtonItem+WEPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = C39BBE541893DF5C00FC8F72 /* UIBarButtonItem+WEPopover.m */; };
 		C3B395C61875519800592C92 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B395C51875519800592C92 /* back@2x.png */; };
 		C3B53E46188C3000004EA4A7 /* IntegralRankUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B53E45188C3000004EA4A7 /* IntegralRankUser.m */; };
 		C3D4FCB8187CFD64001A7223 /* UIViewController+CustomBarItemPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D4FCB7187CFD64001A7223 /* UIViewController+CustomBarItemPosition.m */; };
@@ -766,6 +772,19 @@
 		C39A97BF1892CC6B00F41CBB /* SearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultViewController.h; sourceTree = "<group>"; };
 		C39A97C01892CC6B00F41CBB /* SearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultViewController.m; sourceTree = "<group>"; };
 		C39A97C11892CC6B00F41CBB /* SearchResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultViewController.xib; sourceTree = "<group>"; };
+		C39BBE461893DE4E00FC8F72 /* SortPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortPopoverViewController.h; sourceTree = "<group>"; };
+		C39BBE471893DE4E00FC8F72 /* SortPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortPopoverViewController.m; sourceTree = "<group>"; };
+		C39BBE4A1893DF5C00FC8F72 /* TSActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSActionSheet.h; sourceTree = "<group>"; };
+		C39BBE4B1893DF5C00FC8F72 /* TSActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSActionSheet.m; sourceTree = "<group>"; };
+		C39BBE4C1893DF5C00FC8F72 /* TSPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverController.h; sourceTree = "<group>"; };
+		C39BBE4D1893DF5C00FC8F72 /* TSPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPopoverController.m; sourceTree = "<group>"; };
+		C39BBE4E1893DF5C00FC8F72 /* TSPopoverPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverPopoverView.h; sourceTree = "<group>"; };
+		C39BBE4F1893DF5C00FC8F72 /* TSPopoverPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPopoverPopoverView.m; sourceTree = "<group>"; };
+		C39BBE501893DF5C00FC8F72 /* TSPopoverTouchesDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverTouchesDelegate.h; sourceTree = "<group>"; };
+		C39BBE511893DF5C00FC8F72 /* TSPopoverTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverTouchView.h; sourceTree = "<group>"; };
+		C39BBE521893DF5C00FC8F72 /* TSPopoverTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPopoverTouchView.m; sourceTree = "<group>"; };
+		C39BBE531893DF5C00FC8F72 /* UIBarButtonItem+WEPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+WEPopover.h"; sourceTree = "<group>"; };
+		C39BBE541893DF5C00FC8F72 /* UIBarButtonItem+WEPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+WEPopover.m"; sourceTree = "<group>"; };
 		C3B395C51875519800592C92 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		C3B53E44188C3000004EA4A7 /* IntegralRankUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntegralRankUser.h; sourceTree = "<group>"; };
 		C3B53E45188C3000004EA4A7 /* IntegralRankUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntegralRankUser.m; sourceTree = "<group>"; };
@@ -1364,6 +1383,24 @@
 			path = catalog_section;
 			sourceTree = "<group>";
 		};
+		C39BBE491893DF5C00FC8F72 /* TSPopover */ = {
+			isa = PBXGroup;
+			children = (
+				C39BBE4A1893DF5C00FC8F72 /* TSActionSheet.h */,
+				C39BBE4B1893DF5C00FC8F72 /* TSActionSheet.m */,
+				C39BBE4C1893DF5C00FC8F72 /* TSPopoverController.h */,
+				C39BBE4D1893DF5C00FC8F72 /* TSPopoverController.m */,
+				C39BBE4E1893DF5C00FC8F72 /* TSPopoverPopoverView.h */,
+				C39BBE4F1893DF5C00FC8F72 /* TSPopoverPopoverView.m */,
+				C39BBE501893DF5C00FC8F72 /* TSPopoverTouchesDelegate.h */,
+				C39BBE511893DF5C00FC8F72 /* TSPopoverTouchView.h */,
+				C39BBE521893DF5C00FC8F72 /* TSPopoverTouchView.m */,
+				C39BBE531893DF5C00FC8F72 /* UIBarButtonItem+WEPopover.h */,
+				C39BBE541893DF5C00FC8F72 /* UIBarButtonItem+WEPopover.m */,
+			);
+			path = TSPopover;
+			sourceTree = "<group>";
+		};
 		C3FEAF131871C156008EADAA = {
 			isa = PBXGroup;
 			children = (
@@ -1705,6 +1742,7 @@
 		C3FEB0901871C2A8008EADAA /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				C39BBE491893DF5C00FC8F72 /* TSPopover */,
 				4E96B571188EABC4008EA56F /* EZAudio */,
 				C32D4FA0187F953C0090730B /* TMQuiltView */,
 				C3FEB0981871C800008EADAA /* HWSDK */,
@@ -1759,6 +1797,8 @@
 				C39A97BF1892CC6B00F41CBB /* SearchResultViewController.h */,
 				C39A97C01892CC6B00F41CBB /* SearchResultViewController.m */,
 				C39A97C11892CC6B00F41CBB /* SearchResultViewController.xib */,
+				C39BBE461893DE4E00FC8F72 /* SortPopoverViewController.h */,
+				C39BBE471893DE4E00FC8F72 /* SortPopoverViewController.m */,
 			);
 			path = FindSound;
 			sourceTree = "<group>";
@@ -2365,6 +2405,7 @@
 				C39A97BD189265A200F41CBB /* VoiceViewController.m in Sources */,
 				C3FEB0BA1871C801008EADAA /* UIImage+Util.m in Sources */,
 				C327499B187A5EBD00CF7A4A /* ThemeViewController.m in Sources */,
+				C39BBE581893DF5C00FC8F72 /* TSPopoverTouchView.m in Sources */,
 				C3FEAF2C1871C156008EADAA /* main.m in Sources */,
 				4ED175351892B8F3000EC483 /* LocalMusicViewController.mm in Sources */,
 				C351B690187E37FE00630408 /* RecommendSoundCell.m in Sources */,
@@ -2374,6 +2415,7 @@
 				4E96B595188EABC4008EA56F /* TPCircularBuffer.c in Sources */,
 				C32F40121882878600681953 /* MyUploadViewController.m in Sources */,
 				C326CDB6187C5EBD006DD97C /* RecommendSoundViewController.m in Sources */,
+				C39BBE591893DF5C00FC8F72 /* UIBarButtonItem+WEPopover.m in Sources */,
 				C3FEB0B81871C801008EADAA /* OSHelper.m in Sources */,
 				C39A97C21892CC6B00F41CBB /* SearchResultViewController.m in Sources */,
 				C3456CEA18877A3B009329D2 /* MyProductionCell.m in Sources */,
@@ -2386,6 +2428,7 @@
 				C32D4FA8187F953C0090730B /* TMQuiltViewCell.m in Sources */,
 				C32F3FFE188286CE00681953 /* VipRegisterViewController.m in Sources */,
 				4E2A13871891531C00D8CB65 /* RingBuffer.mm in Sources */,
+				C39BBE481893DE4E00FC8F72 /* SortPopoverViewController.m in Sources */,
 				C326CDAC187C5E44006DD97C /* CatalogRankViewController.m in Sources */,
 				C34C340B188AE6F7009CD20B /* ShareViewController.m in Sources */,
 				C3274996187A5E8200CF7A4A /* AboutScoreViewController.m in Sources */,
@@ -2414,6 +2457,7 @@
 				C3164CF518746ABF00301ACA /* UINavigationBar+Custom.m in Sources */,
 				4E2A1384189152F900D8CB65 /* AudioReader.mm in Sources */,
 				4E1CDE0318900BA000C046ED /* AudioWriter.m in Sources */,
+				C39BBE561893DF5C00FC8F72 /* TSPopoverController.m in Sources */,
 				C341171A188B8B080070EAB4 /* AFHttp.m in Sources */,
 				4E2A13811891474800D8CB65 /* AudioRecorder.m in Sources */,
 				C32D4FB1187FAB320090730B /* SoundCatalogCell.m in Sources */,
@@ -2436,6 +2480,7 @@
 				C3411727188BEC5A0070EAB4 /* Catalog.m in Sources */,
 				C3FEB0E01871CAF4008EADAA /* MixingMusicListViewController.m in Sources */,
 				C3456CF31887CA1D009329D2 /* MixingMusicListCell.m in Sources */,
+				C39BBE571893DF5C00FC8F72 /* TSPopoverPopoverView.m in Sources */,
 				4E11796A188F627F00FB619F /* MusicCutter.m in Sources */,
 				C3411724188BE31E0070EAB4 /* User.m in Sources */,
 				4E1CDE0218900BA000C046ED /* AudioManager.m in Sources */,
@@ -2456,6 +2501,7 @@
 				C326CDA7187C5E00006DD97C /* IntegralChampionViewController.m in Sources */,
 				C3FEB0DB1871CAC5008EADAA /* RecordViewController.m in Sources */,
 				C3FEB0CC1871CA45008EADAA /* LoginViewController.m in Sources */,
+				C39BBE551893DF5C00FC8F72 /* TSActionSheet.m in Sources */,
 				C3B53E46188C3000004EA4A7 /* IntegralRankUser.m in Sources */,
 				4ED17525189268AC000EC483 /* AudioPlotViewController.m in Sources */,
 				4E96B594188EABC4008EA56F /* EZRecorder.m in Sources */,

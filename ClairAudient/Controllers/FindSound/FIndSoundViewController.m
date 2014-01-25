@@ -114,7 +114,6 @@
 
 
 #pragma mark - TMQuiltViewDataSource Methods
-
 -(CGFloat)quiltView:(TMQuiltView *)quiltView heightForCellAtIndexPath:(NSIndexPath *)indexPath
 {
     return 130;

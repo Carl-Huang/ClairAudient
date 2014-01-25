@@ -14,12 +14,17 @@
 #import "MBProgressHUD.h"
 #import "Voice.h"
 #import "ControlCenter.h"
+#import "TSPopoverController.h"
+#import "SortPopoverViewController.h"
 #define Section_Height 48.0f
 #define Cell_Height 44.0f
-@interface SoundCatalogViewController ()
+@interface SoundCatalogViewController ()<SortPopoverViewControllerDelegate>
 @property (nonatomic,strong) NSArray * catalogs;
 @property (nonatomic,strong) NSMutableDictionary * catalogSoundsInfo;
 @property (nonatomic,strong) Catalog * selectedCatalog;
+@property (nonatomic,strong) TSPopoverController * tsPopoverController;
+@property (nonatomic,strong) NSArray * sortArr_1, * sortArr_2, * sortArr_3;
+@property (nonatomic,assign) BOOL isSortConditionChange;
 @end
 
 @implementation SoundCatalogViewController
@@ -30,6 +35,10 @@
     if (self) {
         _catalogs = [NSArray array];
         _catalogSoundsInfo = [NSMutableDictionary dictionary];
+        _sortArr_1 = @[@"上传时间",@"下载次数",@"星级排名"];
+        _sortArr_2 = @[@"比特率",@"8-bit",@"16-bit"];
+        _sortArr_3 = @[@"采样率",@"8000HZ",@"11025HZ",@"22050HZ",@"44100HZ"];
+        self.isSortConditionChange = NO;
     }
     return self;
 }
@@ -38,6 +47,12 @@
 {
     [super viewDidLoad];
     [self initUI];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self dismissPopoverController];
 }
 
 - (void)didReceiveMemoryWarning
@@ -103,7 +118,21 @@
     {
         MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.labelText = @"正在加载";
-        [[HttpService sharedInstance] findVoiceByCatalog:@{@"vltId":self.selectedCatalog.vlt_id} completionBlock:^(id object) {
+        NSMutableDictionary * params = [NSMutableDictionary dictionary];
+        [params setValue:self.selectedCatalog.vlt_id forKey:@"vltId"];
+        if([self SortArg1] != nil)
+        {
+            [params setValue:[self SortArg1] forKey:@"arg1"];
+        }
+        if([self SortArg2] != nil)
+        {
+            [params setValue:[self SortArg2] forKey:@"arg2"];
+        }
+        if([self sortArg3] != nil)
+        {
+            [params setValue:[self sortArg3] forKey:@"arg3"];
+        }
+        [[HttpService sharedInstance] findVoiceByCatalog:params completionBlock:^(id object) {
             [hud hide:YES];
             
             if(object)
@@ -120,6 +149,113 @@
     [_tableView reloadData];
 }
 
+- (IBAction)sortByUpload:(id)sender
+{
+    UIButton * btn = (UIButton *)sender;
+    SortPopoverViewController * sortVC = [[SortPopoverViewController alloc] initWithStyle:UITableViewStylePlain];
+    sortVC.delegate = self;
+    sortVC.dataSource = _sortArr_1;
+    sortVC.view.frame = CGRectMake(0, 0, 180, 150);
+    CGRect rect = btn.frame;
+    rect.origin.y += 64;
+    [self showPopoverWithController:sortVC atRect:rect];
+}
+
+- (IBAction)sourtByAction:(id)sender
+{
+    UIButton * btn = (UIButton *)sender;
+    SortPopoverViewController * sortVC = [[SortPopoverViewController alloc] initWithStyle:UITableViewStylePlain];
+    sortVC.delegate = self;
+    sortVC.dataSource = _sortArr_2;
+    sortVC.view.frame = CGRectMake(0, 0, 180, 150);
+    CGRect rect = btn.frame;
+    rect.origin.y += 64;
+    [self showPopoverWithController:sortVC atRect:rect];
+}
+
+- (IBAction)sortBySampel:(id)sender
+{
+    UIButton * btn = (UIButton *)sender;
+    SortPopoverViewController * sortVC = [[SortPopoverViewController alloc] initWithStyle:UITableViewStylePlain];
+    sortVC.delegate = self;
+    sortVC.dataSource = _sortArr_3;
+    sortVC.view.frame = CGRectMake(0, 0, 180, 240);
+    CGRect rect = btn.frame;
+    rect.origin.y += 64;
+    [self showPopoverWithController:sortVC atRect:rect];
+
+}
+
+#pragma mark - Private Methods
+- (void)showPopoverWithController:(UIViewController *)vc atRect:(CGRect)frame
+{
+    if(_tsPopoverController)
+        _tsPopoverController = nil;
+    _tsPopoverController = [[TSPopoverController alloc] initWithContentViewController:vc];
+    _tsPopoverController.titleText = nil;
+    _tsPopoverController.popoverGradient = NO;
+    _tsPopoverController.popoverBaseColor = [UIColor whiteColor];
+    _tsPopoverController.cornerRadius = 5.0f;
+    [_tsPopoverController showPopoverWithRect:frame];
+}
+
+- (void)dismissPopoverController
+{
+    if(_tsPopoverController)
+        [_tsPopoverController dismissPopoverAnimatd:YES];
+}
+
+- (NSString *)SortArg1
+{
+    NSString * title = [_sortBtn_1 titleForState:UIControlStateNormal];
+    NSString * arg;
+    if(![_sortArr_1 containsObject:title]) arg = nil;
+    int index = [_sortArr_1 indexOfObject:title];
+    if(index == 0)
+    {
+        arg = nil;
+    }
+    else
+    {
+        arg = [NSString stringWithFormat:@"%i",index];
+    }
+    return arg;
+}
+
+- (NSString *)SortArg2
+{
+    NSString * title = [_sortBtn_2 titleForState:UIControlStateNormal];
+    NSString * arg;
+    if(![_sortArr_2 containsObject:title]) arg = nil;
+    int index = [_sortArr_2 indexOfObject:title];
+    if(index == 0)
+    {
+        arg = nil;
+    }
+    else
+    {
+        arg = [NSString stringWithFormat:@"%i",index];
+    }
+    return nil;
+}
+
+
+- (NSString *)sortArg3
+{
+    NSString * title = [_sortBtn_3 titleForState:UIControlStateNormal];
+    NSString * arg;
+    if(![_sortArr_3 containsObject:title]) arg = nil;
+    int index = [_sortArr_3 indexOfObject:title];
+    if(index == 0)
+    {
+        arg = nil;
+    }
+    else
+    {
+        arg = [NSString stringWithFormat:@"%i",index];
+    }
+    return arg;
+}
 #pragma mark - UITableViewDataSource Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -189,6 +325,86 @@
     Voice * voice = [voices objectAtIndex:indexPath.row];
     [ControlCenter showVoiceVC:voice];
 }
+
+
+#pragma mark - SortPopoverViewControllerDelegate Methods
+- (void)sortItem:(NSString *)item
+{
+    NSLog(@"%@",item);
+    [self dismissPopoverController];
+    if([_sortArr_1 containsObject:item])
+    {
+        NSString * condition_1 = [_sortBtn_1 titleForState:UIControlStateNormal];
+        if(![condition_1 isEqualToString:item])
+        {
+            [_sortBtn_1 setTitle:item forState:UIControlStateNormal];
+            self.isSortConditionChange = YES;
+        }
+    }
+    else if([_sortArr_2 containsObject:item])
+    {
+        NSString * condition_2 = [_sortBtn_2 titleForState:UIControlStateNormal];
+        if(![condition_2 isEqualToString:item])
+        {
+            [_sortBtn_2 setTitle:item forState:UIControlStateNormal];
+            self.isSortConditionChange = YES;
+        }
+    }
+    else if([_sortArr_3 containsObject:item])
+    {
+        NSString * condition_3 = [_sortBtn_3 titleForState:UIControlStateNormal];
+        if(![condition_3 isEqualToString:item])
+        {
+            [_sortBtn_3 setTitle:item forState:UIControlStateNormal];
+            self.isSortConditionChange = YES;
+        }
+    }
+    
+//    if(self.selectedCatalog == nil) return;
+    if(self.isSortConditionChange)
+    {
+        self.isSortConditionChange = NO;
+        for(Catalog * catalog in _catalogs)
+        {
+            [_catalogSoundsInfo setObject:[NSArray array] forKey:catalog.vlt_name];
+        }
+        if(self.selectedCatalog == nil)
+        {
+            [_tableView reloadData];
+            return ;
+        }
+        MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.labelText = @"正在加载";
+        NSMutableDictionary * params = [NSMutableDictionary dictionary];
+        [params setValue:self.selectedCatalog.vlt_id forKey:@"vltId"];
+        if([self SortArg1] != nil)
+        {
+            [params setValue:[self SortArg1] forKey:@"arg1"];
+        }
+        if([self SortArg2] != nil)
+        {
+            [params setValue:[self SortArg2] forKey:@"arg2"];
+        }
+        if([self sortArg3] != nil)
+        {
+            [params setValue:[self sortArg3] forKey:@"arg3"];
+        }
+        [[HttpService sharedInstance] findVoiceByCatalog:params completionBlock:^(id object) {
+            [hud hide:YES];
+            
+            if(object)
+            {
+                [_catalogSoundsInfo setObject:object forKey:self.selectedCatalog.vlt_name];
+                [_tableView reloadData];
+            }
+        } failureBlock:^(NSError *error, NSString *responseString) {
+            hud.labelText = @"加载失败";
+            [hud hide:YES afterDelay:2];
+        }];
+    }
+}
+
+
 
 
 

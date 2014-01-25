@@ -7,6 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SoundCatalogViewController">
             <connections>
+                <outlet property="sortBtn_1" destination="tsZ-0X-ehw" id="KCm-gr-42o"/>
+                <outlet property="sortBtn_2" destination="ZWG-tY-U6G" id="wfa-Or-wjM"/>
+                <outlet property="sortBtn_3" destination="PId-U3-4c2" id="tvl-7b-O8c"/>
                 <outlet property="tableView" destination="FSW-X7-gDo" id="Wh6-jU-RYb"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
@@ -39,7 +42,7 @@
                             <rect key="frame" x="58" y="2" width="83" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FoundMusic_jk.png" id="TZi-xz-E37">
+                        <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FoundMusic_jk.png" id="TZi-xz-E37">
                             <rect key="frame" x="148" y="2" width="83" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -47,38 +50,47 @@
                             <rect key="frame" x="237" y="2" width="83" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="tsZ-0X-ehw">
-                            <rect key="frame" x="64" y="10" width="71" height="18"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tsZ-0X-ehw">
+                            <rect key="frame" x="64" y="4" width="71" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <inset key="titleEdgeInsets" minX="-24" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="titleEdgeInsets" minX="-29" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="-104" maxY="0.0"/>
                             <state key="normal" title="上传时间" image="FoundMusic_hi.png">
                                 <color key="titleColor" red="0.0" green="0.1843137255" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="sortByUpload:" destination="-1" eventType="touchUpInside" id="IfU-5b-HBd"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="ZWG-tY-U6G">
-                            <rect key="frame" x="154" y="10" width="71" height="18"/>
+                            <rect key="frame" x="154" y="4" width="71" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <inset key="titleEdgeInsets" minX="-24" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="titleEdgeInsets" minX="-35" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="-85" maxY="0.0"/>
                             <state key="normal" title="比特率" image="FoundMusic_hi.png">
                                 <color key="titleColor" red="0.0" green="0.1843137255" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="sourtByAction:" destination="-1" eventType="touchUpInside" id="hJb-bq-yhY"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="PId-U3-4c2">
-                            <rect key="frame" x="243" y="10" width="71" height="18"/>
+                            <rect key="frame" x="239" y="4" width="81" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <inset key="titleEdgeInsets" minX="-24" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="-85" maxY="0.0"/>
+                            <inset key="titleEdgeInsets" minX="-40" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="-91" maxY="0.0"/>
                             <state key="normal" title="采样率" image="FoundMusic_hi.png">
                                 <color key="titleColor" red="0.0" green="0.1843137255" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="sortBySampel:" destination="-1" eventType="touchUpInside" id="uuj-5o-ikg"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
