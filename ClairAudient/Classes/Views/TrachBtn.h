@@ -14,5 +14,6 @@ typedef void(^BtnDidMoveBlock) (NSInteger offset,NSInteger currentOffsetX);
 }
 
 @property (strong ,nonatomic) BtnDidMoveBlock  block;
+@property (assign ,nonatomic) NSInteger criticalValue;
 @property (weak ,nonatomic) UIView * locationView;
 @end

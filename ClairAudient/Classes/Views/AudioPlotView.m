@@ -146,7 +146,7 @@
     
     musicLength = [self getMusicLength:[NSURL fileURLWithPath:edittingMusicFile]]*number;
     startLocation = 0.0f;
-    endLocation = musicLength;
+    endLocation = rect.size.width * number;
     
     
     NSURL * fileURL = [NSURL fileURLWithPath:edittingMusicFile];
@@ -205,9 +205,11 @@
     waveLength = rect.size.width * number;
     //startBtn ,endBtn
     self.startBtn = [[TrachBtn alloc]initWithFrame:CGRectMake(2.5, 10, 40, 30)];
+    self.startBtn.criticalValue = rect.size.width * number;
     [self.startBtn setBackgroundImage:[UIImage imageNamed:@"sliderStart.png"] forState:UIControlStateNormal];
     
-    self.endBtn   = [[TrachBtn alloc]initWithFrame:CGRectMake(rect.size.width-2.5, rect.size.height-30, 40, 30)];
+    self.endBtn   = [[TrachBtn alloc]initWithFrame:CGRectMake(rect.size.width*number-2.5, rect.size.height -30, 40, 30)];
+    self.endBtn.criticalValue = rect.size.width * number;
     [self.endBtn setBackgroundImage:[UIImage imageNamed:@"sliderEnd.png"] forState:UIControlStateNormal];
 
     [self.contentScrollView addSubview:self.startBtn];
@@ -225,13 +227,9 @@
          {
              rect.size.width     = offsetWidth;
          }
-         rect.origin.x           = offset;
+         rect.origin.x           = offset + weakSelf.startBtn.frame.size.width / 2;
          weakSelf.maskView.frame = rect;
-         
-         CGFloat start = (currentOffsetX * weakSelf.musicLength)/weakSelf.waveLength;
-         weakSelf.startLocation = start;
-         weakSelf.cuttedMusicLength = weakSelf.endLocation - weakSelf.startLocation;
-
+         weakSelf.startLocation  = offset;
      }];
     
     [self.endBtn setBlock:^(NSInteger offset,NSInteger currentOffsetX)
@@ -245,17 +243,14 @@
              rect.size.width = offsetWidth;
          }
          weakSelf.maskView.frame= rect;
-         
-         CGFloat end = currentOffsetX/weakSelf.waveLength * weakSelf.musicLength;
-         weakSelf.endLocation = end;
-         weakSelf.cuttedMusicLength = weakSelf.endLocation - weakSelf.startLocation;
+         weakSelf.endLocation = offset;
      }];
 
     
     
     
     
-    timeline =  [[UIView alloc]initWithFrame:CGRectMake(PlotViewOffset, 0, 1, rect.size.height)];
+    timeline =  [[UIView alloc]initWithFrame:CGRectMake(PlotViewOffset, 0, 0.5, rect.size.height)];
     [timeline setBackgroundColor:[UIColor yellowColor]];
     [self addObserver:self forKeyPath:@"currentPositionOfFile" options:NSKeyValueObservingOptionNew context:NULL];
     
@@ -325,7 +320,6 @@
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"currentPositionOfFile"]) {
-//        [self updateTimeLinePosition:currentPositionOfFile];
         [self updateTimeLinePosition:currentPositionOfTimeLine];
     }
 }
@@ -497,7 +491,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
                     self.audioPlot.shouldFill   = YES;
                     self.audioPlot.shouldMirror = YES;
                 }
-                //      [self.audioPlot updateBuffer:buffer[0] withBufferSize:bufferSize];
+//      [self.audioPlot updateBuffer:buffer[0] withBufferSize:bufferSize];
             });
         }
 
@@ -526,9 +520,13 @@ withNumberOfChannels:(UInt32)numberOfChannels {
             self.currentPositionOfFile = totalLengthOfTheFile;
         }
         
-        NSInteger  df = floor(self.currentPositionOfFile)/totalLengthOfTheFile * roundDownRectWidth;
-        self.currentPositionOfTimeLine = self.currentPage * roundDownRectWidth + df;
+        //获取已经播放文件的位置
+        NSInteger  tempOffset = floor(self.currentPositionOfFile)/totalLengthOfTheFile * roundDownRectWidth;
+        self.currentPositionOfTimeLine = self.currentPage * roundDownRectWidth + tempOffset;
+        
+        
         self.currentPositionOfFile = framePos;
+       
     });
 }
 
@@ -538,26 +536,29 @@ withNumberOfChannels:(UInt32)numberOfChannels {
             withBufferSize:(UInt32 *)bufferSize {
     
     if( self.audioFile ){
-        
-        // Reached the end of the file
-        if( self.eof ){
-            // Here's what you do to loop the file
-            self.currentPage +=1;
-//            NSInteger roundDownPosition = floor(self.currentPositionOfFile);
-//            NSInteger relativePosition = roundDownPosition % roundDownRectWidth;
-//            
-//            CGFloat param1 = (CGFloat)relativePosition;
-//            CGFloat parma2 = (CGFloat)roundDownRectWidth;
-//            CGFloat position        = param1/parma2 * totalLengthOfTheFile;
+        if (self.currentPositionOfTimeLine >= self.endLocation||self.eof ) {
+            //获取位置在音乐文件中的相对位置
+            NSInteger roundDownPosition = floor(self.startLocation);
+            NSInteger relativePosition = roundDownPosition % roundDownRectWidth;
+            CGFloat param1      = (CGFloat)relativePosition;
+            CGFloat parma2      = (CGFloat)roundDownRectWidth;
+            CGFloat position    = param1/parma2 * totalLengthOfTheFile;
             
-//            [self.audioFile seekToFrame:position];
-//            self.currentPositionOfFile = position;
             
-                        [self.audioFile seekToFrame:0];
-            self.currentPositionOfFile = 0;
+            [self.audioFile seekToFrame:position];
+//            self.currentPositionOfFile = 0;
             self.eof = NO;
-
+            
+            //更新当前时间轴的位置
             self.currentPositionOfTimeLine = self.currentPage * roundDownRectWidth + self.currentPositionOfTimeLine;
+            
+            //判断时间轴的x 坐标
+            self.currentPage +=1;
+            if (self.currentPositionOfTimeLine >= self.endLocation) {
+                self.currentPositionOfTimeLine  = self.startLocation;
+                self.currentPage = self.startLocation/roundDownRectWidth;
+            }
+            
         }
         AudioBufferList *bufferList = [EZAudio audioBufferList];
         BOOL eof;
