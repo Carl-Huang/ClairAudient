@@ -33,8 +33,7 @@
 
     CGFloat totalLengthOfTheFile;
     UIView * timeline;
-    
-   
+    NSInteger       roundDownRectWidth;
     OutputType      currentType;
 }
 
@@ -85,6 +84,7 @@
     currentType = type;
     self.snapShotImageCount = number;
     CGRect rect = self.frame;
+    roundDownRectWidth = floor(self.frame.size.width);
     rect.origin.y = 0;
     rect.origin.x = 0;
     
@@ -120,7 +120,15 @@
     
     //更新点击，更新时间
     self.timeLineView = [[UIView alloc]initWithFrame:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width * number, rect.size.height)];
-    self.timeLineView.backgroundColor = [UIColor clearColor];
+    UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(seekToPosition:)];
+    [self.timeLineView addGestureRecognizer:tapGesture];
+    tapGesture = nil;
+    self.timeLineView.backgroundColor = [UIColor blueColor];
+    self.timeLineView.alpha = 0.3;
+    
+    
+    
+    
     
     [self.contentScrollView addSubview:self.audioPlot];
     [self.contentScrollView addSubview:self.maskView];
@@ -245,10 +253,6 @@
     [self.contentScrollView addSubview:timeline];
     currentPositionOfFile = 0.0f;
     
-    UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(seekToPosition:)];
-    [self.timeLineView addGestureRecognizer:tapGesture];
-    tapGesture = nil;
-    
     [self addSubview:self.contentScrollView];
     
     
@@ -311,8 +315,8 @@
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"currentPositionOfFile"]) {
-        CGFloat position = currentPositionOfFile/totalLengthOfTheFile * 320;
-        [self updateTimeLinePosition:position];
+//        CGFloat position = currentPositionOfFile/totalLengthOfTheFile * waveLength;
+        [self updateTimeLinePosition:currentPositionOfFile];
     }
 }
 
@@ -328,11 +332,21 @@
 -(void)seekToPosition:(UITapGestureRecognizer *)gesture
 {
     CGPoint point = [gesture locationInView:self.timeLineView];
+    NSLog(@"%f",point.x);
+//    [self updateTimeLinePosition:point.x];
     
-    [self updateTimeLinePosition:point.x];
-    CGFloat position        = point.x / waveLength * totalLengthOfTheFile;
+    NSInteger roundDownPosition = floor(point.x);
+    NSInteger relativePosition = roundDownPosition % roundDownRectWidth;
+    
+    CGFloat param1 = (CGFloat)relativePosition;
+    CGFloat parma2 = (CGFloat)roundDownRectWidth;
+    CGFloat position        = param1/parma2 * totalLengthOfTheFile;
     NSLog(@"position :%f totalLengthOfTheFile:%f ",position,totalLengthOfTheFile);
-    self.currentPositionOfFile   = position;
+    
+    
+//    CGFloat position        = point.x / waveLength * totalLengthOfTheFile;
+//    NSLog(@"position :%f totalLengthOfTheFile:%f ",position,totalLengthOfTheFile);
+    self.currentPositionOfFile   = point.x;
     [self seekToPostionWithValue:position];
     
 }
@@ -405,6 +419,7 @@
         UIImageView * tempImage = [[UIImageView alloc]initWithImage:self.snapShotImage.image];
         [tempImage setFrame:plotViewRect];
         [self.contentScrollView addSubview:tempImage];
+        [self.contentScrollView sendSubviewToBack:tempImage];
         tempImage = nil;
     }
 }
@@ -483,7 +498,11 @@ withNumberOfChannels:(UInt32)numberOfChannels {
 -(void)audioFile:(EZAudioFile *)audioFile
  updatedPosition:(SInt64)framePosition {
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.currentPositionOfFile = (float)framePosition;
+        NSInteger roundDownPosition = floor(self.currentPositionOfFile);
+        NSInteger relativePosition = roundDownPosition / roundDownRectWidth;
+        CGFloat param1 = (CGFloat)relativePosition * roundDownRectWidth;
+        CGFloat fileOffset = (float)framePosition /totalLengthOfTheFile * roundDownRectWidth;
+        self.currentPositionOfFile = fileOffset + param1;
     });
 }
 
