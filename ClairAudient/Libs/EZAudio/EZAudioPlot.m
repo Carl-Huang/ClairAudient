@@ -204,7 +204,9 @@
 #if TARGET_OS_IPHONE
 - (void)drawRect:(CGRect)rect
 {
+    UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, 0.0);
   CGContextRef ctx = UIGraphicsGetCurrentContext();
+   
   CGContextSaveGState(ctx);
   CGRect frame = self.bounds;
 #elif TARGET_OS_MAC
@@ -275,8 +277,9 @@
     }
     
 #if TARGET_OS_IPHONE
-    CGContextRestoreGState(ctx);
     snapShotImage =  UIGraphicsGetImageFromCurrentImageContext();
+    CGContextRestoreGState(ctx);
+    UIGraphicsEndImageContext();
       
 #elif TARGET_OS_MAC
     [[NSGraphicsContext currentContext] restoreGraphicsState];
