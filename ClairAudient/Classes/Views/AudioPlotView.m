@@ -34,13 +34,13 @@
     CGFloat totalLengthOfTheFile;
     UIView * timeline;
     
-    EZAudioPlot * tempPlotView ;
-    NSInteger  numberOfPlotView;
-    OutputType  currentType;
+   
+    OutputType      currentType;
 }
 
 @property (strong, nonatomic) EZAudioPlotGL *audioPlot;
-@property (strong, nonatomic) UIView *timeLabelView;
+@property (strong, nonatomic) EZAudioPlot   * tempPlotView ;
+@property (strong, nonatomic) UIView        *timeLabelView;
 @property (strong, nonatomic) UIView *maskView;
 @property (strong, nonatomic) UIView *timeLineView;
 @property (strong, nonatomic) TrachBtn *startBtn;
@@ -52,14 +52,18 @@
 @property (nonatomic, assign) BOOL eof;
 @property (assign ,nonatomic) CGFloat   musicLength;
 @property (assign ,nonatomic) CGFloat   waveLength;
-@property (assign ,nonatomic) CGFloat startLocation;
-@property (assign ,nonatomic) CGFloat endLocation;
-@property (assign ,nonatomic) CGFloat cuttedMusicLength;
+@property (assign ,nonatomic) CGFloat   startLocation;
+@property (assign ,nonatomic) CGFloat   endLocation;
+@property (assign ,nonatomic) CGFloat   cuttedMusicLength;
+@property (assign ,nonatomic) NSInteger snapShotImageCount;
+@property (strong ,nonatomic) UIImageView * snapShotImage;
+@property (assign ,nonatomic) CGRect    originalRect;
+
 @end
 
 @implementation AudioPlotView
 @synthesize currentPositionOfFile;
-@synthesize musicLength,waveLength,startLocation,endLocation,cuttedMusicLength;
+@synthesize musicLength,waveLength,startLocation,endLocation,cuttedMusicLength,snapShotImage,tempPlotView;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -79,6 +83,7 @@
     isSimulator = NO;
 #endif
     currentType = type;
+    self.snapShotImageCount = number;
     CGRect rect = self.frame;
     rect.origin.y = 0;
     rect.origin.x = 0;
@@ -128,6 +133,7 @@
     {
         edittingMusicFile = [self.musicInfo valueForKey:@"musicURL"];;
     }
+    
     NSURL * fileURL = [NSURL fileURLWithPath:edittingMusicFile];
     // Stop playback
     self.audioFile                 = [EZAudioFile audioFileWithURL:fileURL];
@@ -143,7 +149,20 @@
     
     [self.audioFile getWaveformDataWithCompletionBlock:^(float *waveformData, UInt32 length) {
         [self.audioPlot updateBuffer:waveformData withBufferSize:length];
-        block(YES);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            dispatch_group_t group = dispatch_group_create();
+
+            dispatch_group_async(group,dispatch_get_main_queue(), ^ {
+                if (number > 1) {
+                    [self addPlotViewWithNumber:1];
+                }
+            });
+            dispatch_group_notify(group,dispatch_get_main_queue(), ^ {
+                block(YES);
+                NSLog(@"Block3");
+            });
+        });
+        
     }];
     
     
@@ -230,12 +249,9 @@
     [self.timeLineView addGestureRecognizer:tapGesture];
     tapGesture = nil;
     
-    numberOfPlotView = 1;
     [self addSubview:self.contentScrollView];
     
-    for (int i =0 ; i< number; i++) {
-        [self addPlotViewWithNumber:i];
-    }
+    
 }
 
 -(void)dealloc
@@ -340,13 +356,13 @@
 
 -(void)addPlotViewWithNumber:(NSInteger)count
 {
-    count +=1;
     @autoreleasepool {
         CGRect rect = self.audioPlot.frame;
         rect.origin.x = rect.size.width * count +PlotViewOffset;
         
         tempPlotView = [[EZAudioPlot alloc]initWithFrame:rect];
-        tempPlotView.backgroundColor = PlotViewBackgroundColor;        tempPlotView.color           = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
+        tempPlotView.backgroundColor = PlotViewBackgroundColor;
+        tempPlotView.color           = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
         tempPlotView.plotType        = EZPlotTypeBuffer;
         tempPlotView.shouldFill      = YES;
         tempPlotView.shouldMirror    = YES;
@@ -359,20 +375,38 @@
         tempPlotView.plotType        = EZPlotTypeBuffer;
         tempPlotView.shouldFill      = YES;
         tempPlotView.shouldMirror    = YES;
-        
+        [tempPlotView setNeedsDisplay];
         __weak AudioPlotView * weakSelf = self;
         [tempAudioFile getWaveformDataWithCompletionBlock:^(float *waveformData, UInt32 length) {
             [tempPlotView updateBuffer:waveformData withBufferSize:length];
-            [weakSelf freePlotViewMemory];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                weakSelf.snapShotImage = [[UIImageView alloc]initWithImage:tempPlotView.snapShotImage];
+//                [weakSelf.snapShotImage setFrame:CGRectMake(0, 300, 320, 100)];
+//                [self addSubview:weakSelf.snapShotImage];
+                [weakSelf configureSnapShotImage];
+            });
+            
         }];
         
         [self.contentScrollView addSubview:tempPlotView];
-        CGSize size = self.contentScrollView.contentSize;
-        size.width +=tempPlotView.frame.size.width;
-        [self.contentScrollView setContentSize:size];
+        tempPlotView.alpha = 0.0;
         tempAudioFile = nil;
     }
-    numberOfPlotView ++;
+}
+
+-(void)configureSnapShotImage
+{
+    tempPlotView = nil;
+    CGRect plotViewRect = self.audioPlot.frame;
+    
+    for (int i= 1; i< self.snapShotImageCount; i++) {
+        plotViewRect.origin.x = plotViewRect.size.width * i + PlotViewOffset;
+        
+        UIImageView * tempImage = [[UIImageView alloc]initWithImage:self.snapShotImage.image];
+        [tempImage setFrame:plotViewRect];
+        [self.contentScrollView addSubview:tempImage];
+        tempImage = nil;
+    }
 }
 
 -(void)freePlotViewMemory
