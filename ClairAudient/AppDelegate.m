@@ -18,10 +18,10 @@
     [ControlCenter setNavigationTitleWhiteColor];
     [self custonNavigationBar];
     
-    MutiMixingViewController * viewController = [[MutiMixingViewController alloc]initWithNibName:@"MutiMixingViewController" bundle:nil];
-    self.window.rootViewController = viewController;
-    [self.window makeKeyAndVisible];
-    viewController = nil;
+//    MutiMixingViewController * viewController = [[MutiMixingViewController alloc]initWithNibName:@"MutiMixingViewController" bundle:nil];
+//    self.window.rootViewController = viewController;
+//    [self.window makeKeyAndVisible];
+//    viewController = nil;
     
      [MagicalRecord setupCoreDataStackWithStoreNamed:@"ClairDataSource.sqlite"];
     return YES;

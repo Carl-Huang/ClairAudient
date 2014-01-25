@@ -74,7 +74,7 @@
     return self;
 }
 
--(void)setupAudioPlotViewWitnNimber:(NSInteger)number type:(OutputType)type withCompletedBlock:(void (^)(BOOL isFinish))block;
+-(void)setupAudioPlotViewWitnNimber:(NSInteger)number type:(OutputType)type musicPath:(NSString *)path withCompletedBlock:(void (^)(BOOL isFinish))block
 {
 
 #if TARGET_IPHONE_SIMULATOR
@@ -135,14 +135,12 @@
     [self.contentScrollView addSubview:self.maskView];
     [self.contentScrollView addSubview:self.timeLineView];
     [self.contentScrollView addSubview:self.timeLabelView];
-    
-    if (isSimulator) {
-        edittingMusicFile = DefaultTextMusicFile;
+    if ([path length]) {
+        edittingMusicFile = path;
     }else
     {
-        edittingMusicFile = [self.musicInfo valueForKey:@"musicURL"];;
+        edittingMusicFile = DefaultTextMusicFile;
     }
-    edittingMusicFile = DefaultTextMusicFile;
     
     musicLength = [self getMusicLength:[NSURL fileURLWithPath:edittingMusicFile]]*number;
     startLocation = 0.0f;
@@ -247,9 +245,6 @@
      }];
 
     
-    
-    
-    
     timeline =  [[UIView alloc]initWithFrame:CGRectMake(PlotViewOffset, 0, 0.5, rect.size.height)];
     [timeline setBackgroundColor:[UIColor yellowColor]];
     [self addObserver:self forKeyPath:@"currentPositionOfFile" options:NSKeyValueObservingOptionNew context:NULL];
@@ -266,6 +261,7 @@
 -(void)dealloc
 {
     [self stop];
+    [self removeObserver:self forKeyPath:@"currentPositionOfFile"];
 }
 
 #pragma mark - Public method
@@ -316,6 +312,27 @@
     }
 }
 
+-(void)fastForward:(NSInteger)sec
+{
+    CGFloat minute = (CGFloat)sec / 60.0f;
+    self.currentPositionOfFile = minute / musicLength * totalLengthOfTheFile + self.currentPositionOfFile;
+    [self seekToPostionWithValue:currentPositionOfFile];
+}
+
+-(void)backForward:(NSInteger)sec
+{
+    CGFloat minute = (CGFloat)sec / 60.0f;
+    self.currentPositionOfFile =  self.currentPositionOfFile - minute / musicLength * totalLengthOfTheFile;
+    if (self.currentPositionOfFile < 0) {
+        self.currentPositionOfFile  = 0;
+    }
+    [self seekToPostionWithValue:currentPositionOfFile];
+}
+
+-(CGFloat)getMusicLength
+{
+    return musicLength;
+}
 #pragma mark - Private Method
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
@@ -329,7 +346,7 @@
 {
     AVURLAsset* audioAsset =[AVURLAsset assetWithURL:url];
     CMTime audioDuration = audioAsset.duration;
-    float audioDurationSeconds =CMTimeGetSeconds(audioDuration)/100.0f;
+    float audioDurationSeconds =CMTimeGetSeconds(audioDuration)/60.0f;
     return audioDurationSeconds;
 }
 
