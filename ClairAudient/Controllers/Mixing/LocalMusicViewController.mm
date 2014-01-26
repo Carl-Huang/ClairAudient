@@ -20,6 +20,9 @@
 #import "AudioReader.h"
 #import "AudioManager.h"
 #import "MutiMixingViewController.h"
+#import <objc/runtime.h>
+#import <Foundation/NSObjCRuntime.h>
+#import <objc/message.h>
 
 @interface LocalMusicViewController ()
 {
@@ -102,14 +105,26 @@
     UIButton * btn = (UIButton *)sender;
     NSInteger index = btn.tag;
     NSDictionary * musicInfo = [dataSource objectAtIndex:index];
+    [self configureLibraryMusicWithSelector:@selector(playItemWithPath:) withInfo:musicInfo];
+}
+
+-(void)editMusic:(id)sender
+{
+    MutiMixingViewController * viewController = [[MutiMixingViewController alloc]initWithNibName:@"MutiMixingViewController" bundle:nil];
+    [self.navigationController pushViewController:viewController animated:YES];
+    viewController = nil;
+}
+
+
+-(void)configureLibraryMusicWithSelector:(SEL)action withInfo:(NSDictionary *)info
+{
     __weak LocalMusicViewController * weakSelf = self;
     if (isSimulator) {
-        
-        [weakSelf playItemWithPath:musicInfo[@"musicURL"]];
+        [weakSelf playItemWithPath:info[@"musicURL"]];
     }else
     {
-        NSURL* assetURL         = (NSURL *)[musicInfo valueForKey:@"musicURL"];
-        NSString * musicTitle   = musicInfo[@"Title"];
+        NSURL* assetURL         = (NSURL *)[info valueForKey:@"musicURL"];
+        NSString * musicTitle   = info[@"Title"];
         [self getLocationFilePath:assetURL title:musicTitle];
         
         
@@ -125,32 +140,29 @@
             }
         }
         
-//在数据库中没有找到已经读取的文件，执行一下操作：从ipd library 中复制音乐文件到用户document 目录下
+        //在数据库中没有找到已经读取的文件，执行一下操作：从ipd library 中复制音乐文件到用户document 目录下
         //1) 保存数据到数据库
-        MusicInfo * info    = [MusicInfo MR_createEntity];
-        info.title          =  musicTitle;
-        info.artist         = [musicInfo valueForKey:@"Artist"];
-        info.localFilePath  = currentLocationPath;
+        MusicInfo * tempMusicInfo    = [MusicInfo MR_createEntity];
+        tempMusicInfo.title          =  musicTitle;
+        tempMusicInfo.artist         = [info valueForKey:@"Artist"];
+        tempMusicInfo.localFilePath  = currentLocationPath;
         [[NSManagedObjectContext MR_defaultContext]MR_saveOnlySelfAndWait];
         
         //复制文件到本地
-        [self exportAssetAtURL:assetURL withTitle:musicInfo[@"Title"] completedHandler:^(NSString *path) {
+        [self exportAssetAtURL:assetURL withTitle:info[@"Title"] completedHandler:^(NSString *path) {
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 [weakSelf playItemWithPath:path];
+                objc_msgSend(self, action,path);
             });
             
         }];
         
     }
+
 }
 
--(void)editMusic:(id)sender
-{
-    MutiMixingViewController * viewController = [[MutiMixingViewController alloc]initWithNibName:@"MutiMixingViewController" bundle:nil];
-    [self.navigationController pushViewController:viewController animated:YES];
-    viewController = nil;
-}
+
 
 -(void)findArtistList
 {

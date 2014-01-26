@@ -11,6 +11,8 @@
 @interface MutiMixingViewController : CommonViewController
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 
+@property (strong ,nonatomic) NSDictionary * mutiMixingInfo;
+
 - (IBAction)backAction:(id)sender;
 - (IBAction)playAction:(id)sender;
 @end

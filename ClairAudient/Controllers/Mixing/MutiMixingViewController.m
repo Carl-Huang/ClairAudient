@@ -8,6 +8,7 @@
 
 #import "MutiMixingViewController.h"
 #import "AudioPlotView.h"
+#import "MBProgressHUD.h"
 
 @interface MutiMixingViewController ()
 {
@@ -30,13 +31,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    __weak MutiMixingViewController * weakSelf = self;
     plotViewUp = [[AudioPlotView alloc]initWithFrame:CGRectMake(0, 80, 320, 140)];
-    [plotViewUp setupAudioPlotViewWitnNimber:3 type:OutputTypeDefautl withCompletedBlock:^(BOOL isFinish) {
+    [plotViewUp setupAudioPlotViewWitnNimber:2 type:OutputTypeDefautl musicPath:@"" withCompletedBlock:^(BOOL isFinish) {
         if (isFinish) {
             plotViewDown = [[AudioPlotView alloc]initWithFrame:CGRectMake(0, 80+plotViewUp.frame.size.height, 320, 140)];
-            [plotViewDown setupAudioPlotViewWitnNimber:6 type:OutputTypeHelper withCompletedBlock:^(BOOL isFinish) {
-                ;
+            [plotViewDown setupAudioPlotViewWitnNimber:1 type:OutputTypeHelper musicPath:@"" withCompletedBlock:^(BOOL isFinish) {
+                [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
             }];
             
             [self.contentView addSubview:plotViewDown];

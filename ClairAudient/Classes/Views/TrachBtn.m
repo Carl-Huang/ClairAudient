@@ -9,7 +9,7 @@
 #import "TrachBtn.h"
 
 @implementation TrachBtn
-
+@synthesize criticalValue;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -39,15 +39,12 @@
     CGPoint  point = [touches.anyObject locationInView:self.locationView];
     
     
-    NSInteger X         = point.x + self.frame.size.width/2.0;
+    NSInteger offsetX         = point.x;
 
-    NSLog(@"Touch Moved:%ld",(long)X);
-    NSInteger offsetX = 0;
-    offsetX         = X;
     CGRect rect     = self.frame;
-    NSLog(@"Offset: %ld",(long)offsetX);
-    if (X > 320) {
-        rect.origin.x   = 320 - self.frame.size.width/2.0;
+    NSLog(@"OffsetX: %ld",(long)offsetX);
+    if (offsetX > criticalValue) {
+        rect.origin.x   = criticalValue - self.frame.size.width/2.0;
     }else
     {
         rect.origin.x   = point.x;
@@ -57,8 +54,6 @@
     if (self.block) {
         self.block(offsetX,self.frame.origin.x);
     }
-
-   
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event

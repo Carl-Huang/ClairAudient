@@ -17,9 +17,22 @@ typedef NS_ENUM(NSInteger, OutputType)
 
 @property (strong ,nonatomic) NSDictionary * musicInfo;
 
+/**
+ 初始化PlotView: Number 为复制的歌曲数量   
+ type:有两种类型，因为只设置了两个单例来控制输出的数据 
+ path: 音乐文件路径   
+ block:完成初始化时候返回
+ */
+-(void)setupAudioPlotViewWitnNimber:(NSInteger)number type:(OutputType)type musicPath:(NSString *)path withCompletedBlock:(void (^)(BOOL isFinish))block;
 
--(void)setupAudioPlotViewWitnNimber:(NSInteger)number type:(OutputType)type withCompletedBlock:(void (^)(BOOL isFinish))block;
 -(void)play;
 -(void)pause;
 -(void)stop;
+
+-(void)fastForward:(NSInteger)sec;
+-(void)backForward:(NSInteger)sec;
+
+-(CGFloat)getMusicLength;
+
+
 @end

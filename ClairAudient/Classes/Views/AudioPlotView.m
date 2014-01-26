@@ -28,26 +28,26 @@
     BOOL isSimulator;
     
     
-    CGFloat     cuttedMusicLength;
-    NSString    * edittingMusicFile;
+    CGFloat         cuttedMusicLength;
+    NSString        * edittingMusicFile;
 
-    CGFloat totalLengthOfTheFile;
-    UIView * timeline;
-    
-   
+    CGFloat         totalLengthOfTheFile;
+    UIView          * timeline;
+    NSInteger       roundDownRectWidth;
     OutputType      currentType;
 }
 
 @property (strong, nonatomic) EZAudioPlotGL *audioPlot;
 @property (strong, nonatomic) EZAudioPlot   * tempPlotView ;
 @property (strong, nonatomic) UIView        *timeLabelView;
-@property (strong, nonatomic) UIView *maskView;
-@property (strong, nonatomic) UIView *timeLineView;
-@property (strong, nonatomic) TrachBtn *startBtn;
-@property (strong, nonatomic) TrachBtn *endBtn;
+@property (strong, nonatomic) UIView        *maskView;
+@property (strong, nonatomic) UIView        *timeLineView;
+@property (strong, nonatomic) TrachBtn      *startBtn;
+@property (strong, nonatomic) TrachBtn      *endBtn;
 @property (strong, nonatomic) UIScrollView *contentScrollView;
 
 @property (assign ,nonatomic) CGFloat currentPositionOfFile;
+@property (assign ,nonatomic) CGFloat currentPositionOfTimeLine;
 @property (nonatomic, strong) EZAudioFile *audioFile;
 @property (nonatomic, assign) BOOL eof;
 @property (assign ,nonatomic) CGFloat   musicLength;
@@ -58,11 +58,11 @@
 @property (assign ,nonatomic) NSInteger snapShotImageCount;
 @property (strong ,nonatomic) UIImageView * snapShotImage;
 @property (assign ,nonatomic) CGRect    originalRect;
-
+@property (assign ,nonatomic) NSInteger currentPage;
 @end
 
 @implementation AudioPlotView
-@synthesize currentPositionOfFile;
+@synthesize currentPositionOfFile,currentPositionOfTimeLine;
 @synthesize musicLength,waveLength,startLocation,endLocation,cuttedMusicLength,snapShotImage,tempPlotView;
 
 - (id)initWithFrame:(CGRect)frame
@@ -74,7 +74,7 @@
     return self;
 }
 
--(void)setupAudioPlotViewWitnNimber:(NSInteger)number type:(OutputType)type withCompletedBlock:(void (^)(BOOL isFinish))block;
+-(void)setupAudioPlotViewWitnNimber:(NSInteger)number type:(OutputType)type musicPath:(NSString *)path withCompletedBlock:(void (^)(BOOL isFinish))block
 {
 
 #if TARGET_IPHONE_SIMULATOR
@@ -82,9 +82,12 @@
 #else
     isSimulator = NO;
 #endif
-    currentType = type;
+    currentType             = type;
     self.snapShotImageCount = number;
+    self.currentPage        = 0;
+    
     CGRect rect = self.frame;
+    roundDownRectWidth = floor(self.frame.size.width);
     rect.origin.y = 0;
     rect.origin.x = 0;
     
@@ -110,7 +113,8 @@
     
     
     //时间表
-    self.timeLabelView = [[UIView alloc]initWithFrame:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width*number, 40)];
+    self.timeLabelView = [[UIView alloc]initWithFrame:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width*number, 30)];
+    [self.timeLabelView setBackgroundColor:[UIColor clearColor]];
     
     //遮罩
     self.maskView = [[UIView alloc]initWithFrame:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width * number, rect.size.height)];
@@ -120,29 +124,36 @@
     
     //更新点击，更新时间
     self.timeLineView = [[UIView alloc]initWithFrame:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width * number, rect.size.height)];
+    UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(seekToPosition:)];
+    [self.timeLineView addGestureRecognizer:tapGesture];
+    tapGesture = nil;
     self.timeLineView.backgroundColor = [UIColor clearColor];
+//    self.timeLineView.alpha = 0.3;
+
     
     [self.contentScrollView addSubview:self.audioPlot];
     [self.contentScrollView addSubview:self.maskView];
     [self.contentScrollView addSubview:self.timeLineView];
     [self.contentScrollView addSubview:self.timeLabelView];
-    
-    if (isSimulator) {
-        edittingMusicFile = DefaultTextMusicFile;
+    if ([path length]) {
+        edittingMusicFile = path;
     }else
     {
-        edittingMusicFile = [self.musicInfo valueForKey:@"musicURL"];;
+        edittingMusicFile = DefaultTextMusicFile;
     }
     
+    musicLength = [self getMusicLength:[NSURL fileURLWithPath:edittingMusicFile]]*number;
+    startLocation = 0.0f;
+    endLocation = rect.size.width * number;
+    
+    
     NSURL * fileURL = [NSURL fileURLWithPath:edittingMusicFile];
-    // Stop playback
     self.audioFile                 = [EZAudioFile audioFileWithURL:fileURL];
     self.audioFile.audioFileDelegate = self;
     self.eof                       = NO;
     
     totalLengthOfTheFile = (float)self.audioFile.totalFrames;
     
-    // Plot the whole waveform
     self.audioPlot.plotType        = EZPlotTypeBuffer;
     self.audioPlot.shouldFill      = YES;
     self.audioPlot.shouldMirror    = YES;
@@ -165,13 +176,38 @@
         
     }];
     
+    CGFloat slideNum = 6.0 * number;
+    CGFloat timeSlice = musicLength / slideNum;
+    NSInteger pageOffset = 0;
+    for (int i =0; i< slideNum; i++) {
+        NSInteger page = i;
+        
+        if (i != 0) {
+            page = i % 6;
+            if (page == 0) {
+                pageOffset ++;
+            }
+        }else
+        {
+            page = 0;
+        }
+        UILabel * label     = [[UILabel alloc]initWithFrame:CGRectMake((50)*page+rect.size.width * pageOffset, 5, 50, 30)];
+        label.textAlignment = NSTextAlignmentLeft;
+        label.textColor     = [UIColor whiteColor];
+        label.font          = [UIFont systemFontOfSize:12];
+        label.text          = [NSString stringWithFormat:@"%0.2f",timeSlice*i];
+        [self.timeLabelView addSubview:label];
+        label               = nil;
+    }
     
     waveLength = rect.size.width * number;
     //startBtn ,endBtn
     self.startBtn = [[TrachBtn alloc]initWithFrame:CGRectMake(2.5, 10, 40, 30)];
+    self.startBtn.criticalValue = rect.size.width * number;
     [self.startBtn setBackgroundImage:[UIImage imageNamed:@"sliderStart.png"] forState:UIControlStateNormal];
     
-    self.endBtn   = [[TrachBtn alloc]initWithFrame:CGRectMake(rect.size.width-2.5, rect.size.height-30, 40, 30)];
+    self.endBtn   = [[TrachBtn alloc]initWithFrame:CGRectMake(rect.size.width*number-2.5, rect.size.height -30, 40, 30)];
+    self.endBtn.criticalValue = rect.size.width * number;
     [self.endBtn setBackgroundImage:[UIImage imageNamed:@"sliderEnd.png"] forState:UIControlStateNormal];
 
     [self.contentScrollView addSubview:self.startBtn];
@@ -189,13 +225,9 @@
          {
              rect.size.width     = offsetWidth;
          }
-         rect.origin.x           = offset;
+         rect.origin.x           = offset + weakSelf.startBtn.frame.size.width / 2;
          weakSelf.maskView.frame = rect;
-         
-         CGFloat start = (currentOffsetX * weakSelf.musicLength)/weakSelf.waveLength;
-         weakSelf.startLocation = start;
-         weakSelf.cuttedMusicLength = weakSelf.endLocation - weakSelf.startLocation;
-
+         weakSelf.startLocation  = offset;
      }];
     
     [self.endBtn setBlock:^(NSInteger offset,NSInteger currentOffsetX)
@@ -209,46 +241,18 @@
              rect.size.width = offsetWidth;
          }
          weakSelf.maskView.frame= rect;
-         
-         CGFloat end = currentOffsetX/weakSelf.waveLength * weakSelf.musicLength;
-         weakSelf.endLocation = end;
-         weakSelf.cuttedMusicLength = weakSelf.endLocation - weakSelf.startLocation;
+         weakSelf.endLocation = offset;
      }];
+
     
-    
-    
-    
-    musicLength = [self getMusicLength:[NSURL fileURLWithPath:edittingMusicFile]]*number;
-    startLocation = 0.0f;
-    endLocation = musicLength;
-    
-    
-    
-    CGFloat slideNum = 6.0 * number;
-    CGFloat timeSlice = musicLength / slideNum;
-    for (int i =0; i< 6; i++) {
-        UILabel * label     = [[UILabel alloc]initWithFrame:CGRectMake(10+(50)*i, 5, 50, 30)];
-        label.textAlignment = NSTextAlignmentCenter;
-        label.textColor     = [UIColor whiteColor];
-        label.font          = [UIFont systemFontOfSize:12];
-        label.text          = [NSString stringWithFormat:@"%0.2f",timeSlice*i];
-        [self.timeLabelView addSubview:label];
-        label               = nil;
-    }
-    
-    
-    timeline =  [[UIView alloc]initWithFrame:CGRectMake(PlotViewOffset, 0, 1, rect.size.height)];
+    timeline =  [[UIView alloc]initWithFrame:CGRectMake(PlotViewOffset, 0, 0.5, rect.size.height)];
     [timeline setBackgroundColor:[UIColor yellowColor]];
     [self addObserver:self forKeyPath:@"currentPositionOfFile" options:NSKeyValueObservingOptionNew context:NULL];
     
     
     [self.contentScrollView addSubview:timeline];
     currentPositionOfFile = 0.0f;
-    
-    UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(seekToPosition:)];
-    [self.timeLineView addGestureRecognizer:tapGesture];
-    tapGesture = nil;
-    
+    currentPositionOfTimeLine = 0.0f;
     [self addSubview:self.contentScrollView];
     
     
@@ -257,6 +261,7 @@
 -(void)dealloc
 {
     [self stop];
+    [self removeObserver:self forKeyPath:@"currentPositionOfFile"];
 }
 
 #pragma mark - Public method
@@ -307,12 +312,32 @@
     }
 }
 
+-(void)fastForward:(NSInteger)sec
+{
+    CGFloat minute = (CGFloat)sec / 60.0f;
+    self.currentPositionOfFile = minute / musicLength * totalLengthOfTheFile + self.currentPositionOfFile;
+    [self seekToPostionWithValue:currentPositionOfFile];
+}
+
+-(void)backForward:(NSInteger)sec
+{
+    CGFloat minute = (CGFloat)sec / 60.0f;
+    self.currentPositionOfFile =  self.currentPositionOfFile - minute / musicLength * totalLengthOfTheFile;
+    if (self.currentPositionOfFile < 0) {
+        self.currentPositionOfFile  = 0;
+    }
+    [self seekToPostionWithValue:currentPositionOfFile];
+}
+
+-(CGFloat)getMusicLength
+{
+    return musicLength;
+}
 #pragma mark - Private Method
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"currentPositionOfFile"]) {
-        CGFloat position = currentPositionOfFile/totalLengthOfTheFile * 320;
-        [self updateTimeLinePosition:position];
+        [self updateTimeLinePosition:currentPositionOfTimeLine];
     }
 }
 
@@ -321,18 +346,29 @@
 {
     AVURLAsset* audioAsset =[AVURLAsset assetWithURL:url];
     CMTime audioDuration = audioAsset.duration;
-    float audioDurationSeconds =CMTimeGetSeconds(audioDuration)/100.0f;
+    float audioDurationSeconds =CMTimeGetSeconds(audioDuration)/60.0f;
     return audioDurationSeconds;
 }
 
 -(void)seekToPosition:(UITapGestureRecognizer *)gesture
 {
     CGPoint point = [gesture locationInView:self.timeLineView];
+    NSLog(@"%f",point.x);
+
+    NSInteger roundDownPosition = floor(point.x);
+    NSInteger relativePosition = roundDownPosition % roundDownRectWidth;
     
-    [self updateTimeLinePosition:point.x];
-    CGFloat position        = point.x / waveLength * totalLengthOfTheFile;
+    CGFloat param1 = (CGFloat)relativePosition;
+    CGFloat parma2 = (CGFloat)roundDownRectWidth;
+    CGFloat position        = param1/parma2 * totalLengthOfTheFile;
     NSLog(@"position :%f totalLengthOfTheFile:%f ",position,totalLengthOfTheFile);
-    self.currentPositionOfFile   = position;
+    
+    
+//    CGFloat position        = point.x / waveLength * totalLengthOfTheFile;
+//    NSLog(@"position :%f totalLengthOfTheFile:%f ",position,totalLengthOfTheFile);
+    self.currentPage = roundDownPosition / roundDownRectWidth;
+    self.currentPositionOfTimeLine  = point.x;
+    self.currentPositionOfFile      = position;
     [self seekToPostionWithValue:position];
     
 }
@@ -381,8 +417,6 @@
             [tempPlotView updateBuffer:waveformData withBufferSize:length];
             dispatch_async(dispatch_get_main_queue(), ^{
                 weakSelf.snapShotImage = [[UIImageView alloc]initWithImage:tempPlotView.snapShotImage];
-//                [weakSelf.snapShotImage setFrame:CGRectMake(0, 300, 320, 100)];
-//                [self addSubview:weakSelf.snapShotImage];
                 [weakSelf configureSnapShotImage];
             });
             
@@ -405,6 +439,7 @@
         UIImageView * tempImage = [[UIImageView alloc]initWithImage:self.snapShotImage.image];
         [tempImage setFrame:plotViewRect];
         [self.contentScrollView addSubview:tempImage];
+        [self.contentScrollView sendSubviewToBack:tempImage];
         tempImage = nil;
     }
 }
@@ -473,7 +508,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
                     self.audioPlot.shouldFill   = YES;
                     self.audioPlot.shouldMirror = YES;
                 }
-                //      [self.audioPlot updateBuffer:buffer[0] withBufferSize:bufferSize];
+//      [self.audioPlot updateBuffer:buffer[0] withBufferSize:bufferSize];
             });
         }
 
@@ -483,7 +518,32 @@ withNumberOfChannels:(UInt32)numberOfChannels {
 -(void)audioFile:(EZAudioFile *)audioFile
  updatedPosition:(SInt64)framePosition {
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.currentPositionOfFile = (float)framePosition;
+        SInt64  framePos = framePosition;
+        if (framePosition > totalLengthOfTheFile) {
+            framePos = totalLengthOfTheFile;
+        }
+//        NSInteger roundDownPosition = floor(self.currentPositionOfFile);
+//        NSInteger relativePosition = roundDownPosition / roundDownRectWidth;
+//        CGFloat param1 = (CGFloat)relativePosition * roundDownRectWidth;
+//        CGFloat fileOffset = (float)framePos /totalLengthOfTheFile * roundDownRectWidth;
+//        
+//        CGFloat tempCurrentPosition = fileOffset + param1;
+//        if (tempCurrentPosition > roundDownRectWidth) {
+//            tempCurrentPosition = roundDownRectWidth;
+//        }
+//        self.currentPositionOfFile = tempCurrentPosition;
+//        NSLog(@"%f",self.currentPositionOfFile);
+        if (self.currentPositionOfFile > totalLengthOfTheFile) {
+            self.currentPositionOfFile = totalLengthOfTheFile;
+        }
+        
+        //获取已经播放文件的位置
+        NSInteger  tempOffset = floor(self.currentPositionOfFile)/totalLengthOfTheFile * roundDownRectWidth;
+        self.currentPositionOfTimeLine = self.currentPage * roundDownRectWidth + tempOffset;
+        
+        
+        self.currentPositionOfFile = framePos;
+       
     });
 }
 
@@ -493,13 +553,29 @@ withNumberOfChannels:(UInt32)numberOfChannels {
             withBufferSize:(UInt32 *)bufferSize {
     
     if( self.audioFile ){
-        
-        // Reached the end of the file
-        if( self.eof ){
-            // Here's what you do to loop the file
-            [self.audioFile seekToFrame:0];
+        if (self.currentPositionOfTimeLine >= self.endLocation||self.eof ) {
+            //获取位置在音乐文件中的相对位置
+            NSInteger roundDownPosition = floor(self.startLocation);
+            NSInteger relativePosition = roundDownPosition % roundDownRectWidth;
+            CGFloat param1      = (CGFloat)relativePosition;
+            CGFloat parma2      = (CGFloat)roundDownRectWidth;
+            CGFloat position    = param1/parma2 * totalLengthOfTheFile;
+            
+            
+            [self.audioFile seekToFrame:position];
+//            self.currentPositionOfFile = 0;
             self.eof = NO;
-            self.currentPositionOfFile = 0.0;
+            
+            //更新当前时间轴的位置
+            self.currentPositionOfTimeLine = self.currentPage * roundDownRectWidth + self.currentPositionOfTimeLine;
+            
+            //判断时间轴的x 坐标
+            self.currentPage +=1;
+            if (self.currentPositionOfTimeLine >= self.endLocation) {
+                self.currentPositionOfTimeLine  = self.startLocation;
+                self.currentPage = self.startLocation/roundDownRectWidth;
+            }
+            
         }
         AudioBufferList *bufferList = [EZAudio audioBufferList];
         BOOL eof;
