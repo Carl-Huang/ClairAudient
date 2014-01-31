@@ -30,6 +30,7 @@
 - (IBAction)startCutting:(id)sender;
 - (IBAction)fastForwardAction:(id)sender;
 - (IBAction)backForwardAction:(id)sender;
+- (IBAction)copyMusicAction:(id)sender;
 
 
 - (IBAction)addMixingMusicAction:(id)sender;
