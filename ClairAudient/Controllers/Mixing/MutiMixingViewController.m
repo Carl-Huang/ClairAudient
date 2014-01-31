@@ -34,17 +34,24 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     __weak MutiMixingViewController * weakSelf = self;
     plotViewUp = [[AudioPlotView alloc]initWithFrame:CGRectMake(0, 80, 320, 140)];
-    [plotViewUp setupAudioPlotViewWitnNimber:2 type:OutputTypeDefautl musicPath:@"" withCompletedBlock:^(BOOL isFinish) {
-        if (isFinish) {
-            plotViewDown = [[AudioPlotView alloc]initWithFrame:CGRectMake(0, 80+plotViewUp.frame.size.height, 320, 140)];
-            [plotViewDown setupAudioPlotViewWitnNimber:1 type:OutputTypeHelper musicPath:@"" withCompletedBlock:^(BOOL isFinish) {
-                [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-            }];
-            
-            [self.contentView addSubview:plotViewDown];
-        }
-    }];
-    [self.contentView addSubview:plotViewUp];
+    NSDictionary * currentEditMusicInfo = [[NSUserDefaults standardUserDefaults]dictionaryForKey:@"currentEditingMusic"];
+    if (currentEditMusicInfo) {
+        [plotViewUp setupAudioPlotViewWitnNimber:[[currentEditMusicInfo valueForKey:@"count"] integerValue] type:OutputTypeDefautl musicPath:[currentEditMusicInfo valueForKey:@"music"] withCompletedBlock:^(BOOL isFinish) {
+            if (isFinish) {
+                plotViewDown = [[AudioPlotView alloc]initWithFrame:CGRectMake(0, 80+plotViewUp.frame.size.height, 320, 140)];
+                [plotViewDown setupAudioPlotViewWitnNimber:1 type:OutputTypeHelper musicPath:@"" withCompletedBlock:^(BOOL isFinish) {
+                    [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+                }];
+                
+                [self.contentView addSubview:plotViewDown];
+            }
+        }];
+        [self.contentView addSubview:plotViewUp];
+
+    }else
+    {
+        //错误
+    }
     
 }
 
@@ -60,8 +67,15 @@
 }
 
 - (IBAction)playAction:(id)sender {
-    [plotViewUp play];
-    [plotViewDown play];
-    
+    UIButton * btn = (UIButton *)sender;
+    [btn setSelected:!btn.selected];
+    if (btn.selected) {
+        [plotViewUp play];
+        [plotViewDown play];
+    }else
+    {
+        [plotViewUp pause];
+        [plotViewDown pause];
+    }
 }
 @end

@@ -63,6 +63,10 @@
     {
         edittingMusicFile = [self.musicInfo valueForKey:@"musicURL"];;
     }
+    NSDictionary * currentEditMusicInfo = @{@"music": edittingMusicFile,@"count":@"1"};
+    [[NSUserDefaults standardUserDefaults]setObject:currentEditMusicInfo forKey:@"currentEditingMusic"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+    
     __weak MixingViewController * weakSelf =self;
     plotView = [[AudioPlotView alloc]initWithFrame:CGRectMake(0, 80, 320, 245)];
     [plotView setupAudioPlotViewWitnNimber:1 type:OutputTypeDefautl musicPath:edittingMusicFile withCompletedBlock:^(BOOL isFinish) {
@@ -142,6 +146,7 @@
 }
 
 - (IBAction)copyMusicAction:(id)sender {
+    NSInteger copyNumber = 3;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_main_queue(), ^{
         
@@ -153,7 +158,7 @@
         plotView = [[AudioPlotView alloc]initWithFrame:CGRectMake(0, 80, 320, 245)];
         
         __weak MixingViewController * weakSelf = self;
-        [plotView setupAudioPlotViewWitnNimber:16 type:OutputTypeDefautl musicPath:edittingMusicFile withCompletedBlock:^(BOOL isFinish) {
+        [plotView setupAudioPlotViewWitnNimber:copyNumber type:OutputTypeDefautl musicPath:edittingMusicFile withCompletedBlock:^(BOOL isFinish) {
             if (isFinish) {
                 [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
             }
@@ -165,7 +170,10 @@
          }];
         self.endTime.text   = [NSString stringWithFormat:@"%0.2f",[plotView getMusicLength]];
         self.cutLength.text = self.endTime.text;
-
+        
+        NSDictionary * currentEditMusicInfo = @{@"music": edittingMusicFile,@"count":[NSNumber numberWithInteger:copyNumber]};
+        [[NSUserDefaults standardUserDefaults]setObject:currentEditMusicInfo forKey:@"currentEditingMusic"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
         [self.view addSubview:plotView];
     });
    
@@ -173,6 +181,7 @@
 }
 
 - (IBAction)addMixingMusicAction:(id)sender {
+    
     MixingEffectViewController * viewController = [[MixingEffectViewController alloc]initWithNibName:@"MixingEffectViewController" bundle:nil];
     [self.navigationController pushViewController:viewController animated:YES];
     viewController = nil;
