@@ -63,7 +63,7 @@
     {
         edittingMusicFile = [self.musicInfo valueForKey:@"musicURL"];;
     }
-    NSDictionary * currentEditMusicInfo = @{@"music": edittingMusicFile,@"count":@"1"};
+    NSDictionary * currentEditMusicInfo = @{@"musicURL": edittingMusicFile,@"count":@"1"};
     [[NSUserDefaults standardUserDefaults]setObject:currentEditMusicInfo forKey:@"currentEditingMusic"];
     [[NSUserDefaults standardUserDefaults]synchronize];
     

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3A213A19BF144FE19FC80A52 /* libPods-ClairAudient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8746E38BC0442AC8598C419 /* libPods-ClairAudient.a */; };
+		4E079C30189B557900B0BB5F /* MusicMixerOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E079C2F189B557900B0BB5F /* MusicMixerOutput.m */; };
 		4E117966188F5F6200FB619F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E117965188F5F6200FB619F /* AVFoundation.framework */; };
 		4E11796A188F627F00FB619F /* MusicCutter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E117969188F627F00FB619F /* MusicCutter.m */; };
 		4E11796D188F6DA000FB619F /* TSLibraryImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E11796C188F6DA000FB619F /* TSLibraryImport.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -430,6 +431,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E079C2E189B557900B0BB5F /* MusicMixerOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicMixerOutput.h; sourceTree = "<group>"; };
+		4E079C2F189B557900B0BB5F /* MusicMixerOutput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicMixerOutput.m; sourceTree = "<group>"; };
 		4E117965188F5F6200FB619F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4E117968188F627F00FB619F /* MusicCutter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicCutter.h; sourceTree = "<group>"; };
 		4E117969188F627F00FB619F /* MusicCutter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicCutter.m; sourceTree = "<group>"; };
@@ -986,6 +989,8 @@
 		4E117967188F627F00FB619F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				4E079C2E189B557900B0BB5F /* MusicMixerOutput.h */,
+				4E079C2F189B557900B0BB5F /* MusicMixerOutput.m */,
 				4E2A137B189125DB00D8CB65 /* lame */,
 				4E2A136F1890BFF600D8CB65 /* PersistentStore.h */,
 				4E2A13701890BFF600D8CB65 /* PersistentStore.m */,
@@ -2292,6 +2297,7 @@
 				4E96B59A188EC7B0008EA56F /* TrachBtn.m in Sources */,
 				4E96B593188EABC4008EA56F /* EZPlot.m in Sources */,
 				C3D4FCBD187D0DD1001A7223 /* CatalogRankCell.m in Sources */,
+				4E079C30189B557900B0BB5F /* MusicMixerOutput.m in Sources */,
 				C3FEB0B91871C801008EADAA /* UIColor+Utils.m in Sources */,
 				4E2A137A1891257600D8CB65 /* RecordMusicInfo.m in Sources */,
 				4E96B58E188EABC4008EA56F /* EZAudioPlot.m in Sources */,

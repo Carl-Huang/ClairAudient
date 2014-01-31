@@ -110,7 +110,14 @@
 
 -(void)editMusic:(id)sender
 {
+    UIButton * btn = (UIButton *)sender;
+    
     MutiMixingViewController * viewController = [[MutiMixingViewController alloc]initWithNibName:@"MutiMixingViewController" bundle:nil];
+    
+    
+    NSDictionary * musicInfo = [dataSource objectAtIndex:btn.tag];
+    [self configureLibraryMusicWithSelector:nil withInfo:musicInfo];
+    [viewController setMutiMixingInfo:@{@"musicURL":currentLocationPath}];
     [self.navigationController pushViewController:viewController animated:YES];
     viewController = nil;
 }
@@ -137,7 +144,7 @@
                     if ([object.title isEqualToString:musicTitle]) {
                         
                         [weakSelf playItemWithPath:object.localFilePath];
-                        
+                        return;
                     }
                 }
             }
@@ -154,8 +161,9 @@
             [self exportAssetAtURL:assetURL withTitle:info[@"Title"] completedHandler:^(NSString *path) {
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [weakSelf playItemWithPath:path];
-                    objc_msgSend(self, action,path);
+                    if (action) {
+                        objc_msgSend(self, action,path);
+                    }
                 });
                 
             }];
@@ -316,18 +324,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSDictionary * dic          = [dataSource objectAtIndex:indexPath.row];
     MixingMusicListCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     [cell.firstBtn setImage:[UIImage imageNamed:@"hunyin_45.png"] forState:UIControlStateNormal];
     [cell.secondBtn setImage:[UIImage imageNamed:@"hunyin_46.png"] forState:UIControlStateNormal];
-    
-    NSDictionary * dic          = [dataSource objectAtIndex:indexPath.row];
-    
     [cell.firstBtn addTarget:self action:@selector(playMusic:) forControlEvents:UIControlEventTouchUpInside];
     [cell.secondBtn addTarget:self action:@selector(editMusic:) forControlEvents:UIControlEventTouchUpInside];
     
     
     cell.firstBtn.tag           = indexPath.row;
-    
     cell.bigTitleLabel.text     = [dic valueForKey:@"Artist"];
     cell.littleTitleLabel.text  = [dic valueForKey:@"Title"];
     
