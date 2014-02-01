@@ -10,6 +10,7 @@
 #import "AudioPlotView.h"
 #import "MBProgressHUD.h"
 #import "MusicMixerOutput.h"
+#import "AudioManager.h"
 
 @interface MutiMixingViewController ()
 {
@@ -17,7 +18,9 @@
     AudioPlotView * plotViewDown;
     
     NSDictionary * currentEditMusicInfo;
+
 }
+@property (strong ,nonatomic)    AudioManager * audioManager;
 @end
 
 @implementation MutiMixingViewController
@@ -87,14 +90,23 @@
     __weak MutiMixingViewController * weakSelf = self;
     NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *destinationFilePath = [NSString stringWithFormat: @"%@/AudioRecording.caf", documentsDirectory];
+    NSString *tempFilePath = [NSString stringWithFormat: @"%@/MixingMusic.caf", documentsDirectory];
+    NSString *destinationFilePath = [NSString stringWithFormat: @"%@/MixingMusic2.mp3", documentsDirectory];
     NSString *sourceA = [currentEditMusicInfo valueForKey:@"musicURL"];
     NSString *sourceB = [self.mutiMixingInfo valueForKey:@"musicURL"];
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [MusicMixerOutput mixAudio:sourceA andAudio:sourceB toFile:destinationFilePath preferedSampleRate:10000 withCompletedBlock:^(id object, NSError *error) {
+        [MusicMixerOutput mixAudio:sourceA andAudio:sourceB toFile:tempFilePath preferedSampleRate:10000 withCompletedBlock:^(id object, NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
+                
+                //转换caf to mp3 格式
+                weakSelf.audioManager = [AudioManager shareAudioManager];
+                [weakSelf.audioManager audio_PCMtoMP3WithSourceFile:tempFilePath destinationFile:destinationFilePath];
+                
+                //删除caf 格式文件
+                [[NSFileManager defaultManager]removeItemAtPath:tempFilePath error:nil];
+                
                 [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
             });
         }];
