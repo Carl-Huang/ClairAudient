@@ -146,7 +146,7 @@
 }
 
 - (IBAction)copyMusicAction:(id)sender {
-    NSInteger copyNumber = 3;
+    NSInteger copyNumber = 4;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_main_queue(), ^{
         

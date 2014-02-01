@@ -585,7 +585,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
     if( self.audioFile ){
         if (self.currentPositionOfTimeLine >= self.endLocation||self.eof ) {
             //获取位置在音乐文件中的相对位置
-            NSInteger roundDownPosition = floor(self.startLocation);
+            NSInteger roundDownPosition = floor(self.currentPositionOfTimeLine);
             NSInteger relativePosition = roundDownPosition % roundDownRectWidth;
             CGFloat param1      = (CGFloat)relativePosition;
             CGFloat parma2      = (CGFloat)roundDownRectWidth;
