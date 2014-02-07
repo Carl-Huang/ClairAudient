@@ -2477,7 +2477,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/vedon/Documents/GitHub/ClairAudient/ClairAudient/Classes/Utilities/lame,
+					"$(SRCROOT)/ClairAudient/Classes/Utilities/lame",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -2507,7 +2507,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/vedon/Documents/GitHub/ClairAudient/ClairAudient/Classes/Utilities/lame,
+					"$(SRCROOT)/ClairAudient/Classes/Utilities/lame",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

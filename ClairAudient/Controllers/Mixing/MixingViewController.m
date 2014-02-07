@@ -123,6 +123,9 @@
 - (IBAction)startCutting:(id)sender {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     __weak MixingViewController * weakSelf = self;
+    
+    
+    
     [MusicCutter cropMusic:edittingMusicFile exportFileName:@"newSong.m4a" withStartTime:self.startTime.text.floatValue*100 endTime:self.endTime.text.floatValue*100 withCompletedBlock:^(AVAssetExportSessionStatus status, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
