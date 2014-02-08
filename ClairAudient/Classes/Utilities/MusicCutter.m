@@ -8,6 +8,7 @@
 
 #import "MusicCutter.h"
 #import "lame.h"
+#import <MobileCoreServices/MobileCoreServices.h>
 @implementation MusicCutter
 
 +(void)cropMusic:(NSString *)musicSourcePath exportFileName:(NSString *)exportedFileName withStartTime:(CGFloat)timeS endTime:(CGFloat)timeE withCompletedBlock:(void (^)(AVAssetExportSessionStatus status,NSError *error))completedBlock
@@ -18,19 +19,34 @@
     NSString * path = [self getExportPath:exportedFileName];
     NSURL *exportURL = [NSURL fileURLWithPath:path];
     AVAssetExportSession *exportSession = [AVAssetExportSession exportSessionWithAsset:musicAsset
-                                                                            presetName:AVAssetExportPresetAppleM4A];
+                                                                            presetName:AVAssetExportPresetPassthrough];
     CMTime startTime = CMTimeMake(timeS, 1);
     CMTime stopTime = CMTimeMake(timeE, 1);
     CMTimeRange exportTimeRange = CMTimeRangeFromTimeToTime(startTime, stopTime);
     
     exportSession.outputURL = exportURL; // output path
-    exportSession.outputFileType = AVFileTypeAppleM4A; // output file type
+    exportSession.outputFileType = @"com.apple.quicktime-movie"; // output file type
     exportSession.timeRange = exportTimeRange; // trim time range
+    NSLog(@"export.supportedFileTypes : %@",exportSession.supportedFileTypes);
+    exportSession.shouldOptimizeForNetworkUse = YES;
+    
+    NSString *extension = (__bridge  NSString *)UTTypeCopyPreferredTagWithClass((__bridge  CFStringRef)exportSession.outputFileType, kUTTagClassFilenameExtension);
+    
+    NSLog(@"extension %@",extension);
     [exportSession exportAsynchronouslyWithCompletionHandler:^{
         
         if (AVAssetExportSessionStatusCompleted == exportSession.status) {
             NSLog(@"AVAssetExportSessionStatusCompleted");
-            [self audio_PCMtoMP3WithSourceFile:path destinationFile:[[path stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"new.mp3"] sampleRate:44100];
+//            [self audio_PCMtoMP3WithSourceFile:path destinationFile:[[path stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"new.mp3"] sampleRate:44100];
+            
+            NSFileManager *manage = [NSFileManager defaultManager];
+            
+            NSString *mp3Path = [[path stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"new.mp3"];
+            NSError *error = nil;
+            
+            [manage moveItemAtPath:path toPath:mp3Path error:&error];
+            
+            NSLog(@"error %@",error);
             completedBlock(AVAssetExportSessionStatusCompleted,nil);
         } else if (AVAssetExportSessionStatusFailed == exportSession.status) {
             NSLog(@"AVAssetExportSessionStatusFailed");
