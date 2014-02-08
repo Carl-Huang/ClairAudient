@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		3A213A19BF144FE19FC80A52 /* libPods-ClairAudient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8746E38BC0442AC8598C419 /* libPods-ClairAudient.a */; };
+		4E079C30189B557900B0BB5F /* MusicMixerOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E079C2F189B557900B0BB5F /* MusicMixerOutput.m */; };
 		4E117966188F5F6200FB619F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E117965188F5F6200FB619F /* AVFoundation.framework */; };
 		4E11796A188F627F00FB619F /* MusicCutter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E117969188F627F00FB619F /* MusicCutter.m */; };
 		4E11796D188F6DA000FB619F /* TSLibraryImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E11796C188F6DA000FB619F /* TSLibraryImport.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4E16D66D189966EE00C21536 /* 权利游戏.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4E16D66C189966EE00C21536 /* 权利游戏.mp3 */; };
 		4E1CDE0218900BA000C046ED /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1CDDFF18900BA000C046ED /* AudioManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4E1CDE0318900BA000C046ED /* AudioWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1CDE0118900BA000C046ED /* AudioWriter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4E1CDE05189012CB00C046ED /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1CDE04189012CB00C046ED /* CoreAudio.framework */; };
@@ -24,7 +26,6 @@
 		4E2A1384189152F900D8CB65 /* AudioReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A1383189152F900D8CB65 /* AudioReader.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4E2A13871891531C00D8CB65 /* RingBuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A13861891531C00D8CB65 /* RingBuffer.mm */; };
 		4E2AD2F01891EC3600020135 /* CloneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2AD2EF1891EC3600020135 /* CloneView.m */; };
-		4E96B56A188E9CBA008EA56F /* 权利游戏.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4E96B569188E9CBA008EA56F /* 权利游戏.mp3 */; };
 		4E96B56C188EA003008EA56F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E96B56B188EA003008EA56F /* MediaPlayer.framework */; };
 		4E96B56E188EAB88008EA56F /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E96B56D188EAB88008EA56F /* GLKit.framework */; };
 		4E96B570188EAB90008EA56F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E96B56F188EAB90008EA56F /* AudioToolbox.framework */; };
@@ -430,11 +431,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E079C2E189B557900B0BB5F /* MusicMixerOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicMixerOutput.h; sourceTree = "<group>"; };
+		4E079C2F189B557900B0BB5F /* MusicMixerOutput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicMixerOutput.m; sourceTree = "<group>"; };
 		4E117965188F5F6200FB619F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4E117968188F627F00FB619F /* MusicCutter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicCutter.h; sourceTree = "<group>"; };
 		4E117969188F627F00FB619F /* MusicCutter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicCutter.m; sourceTree = "<group>"; };
 		4E11796B188F6DA000FB619F /* TSLibraryImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSLibraryImport.h; sourceTree = "<group>"; };
 		4E11796C188F6DA000FB619F /* TSLibraryImport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSLibraryImport.m; sourceTree = "<group>"; };
+		4E16D66C189966EE00C21536 /* 权利游戏.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "权利游戏.mp3"; sourceTree = "<group>"; };
 		4E1CDDFE18900BA000C046ED /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
 		4E1CDDFF18900BA000C046ED /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
 		4E1CDE0018900BA000C046ED /* AudioWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioWriter.h; sourceTree = "<group>"; };
@@ -458,7 +462,6 @@
 		4E2A13861891531C00D8CB65 /* RingBuffer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RingBuffer.mm; sourceTree = "<group>"; };
 		4E2AD2EE1891EC3600020135 /* CloneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloneView.h; sourceTree = "<group>"; };
 		4E2AD2EF1891EC3600020135 /* CloneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloneView.m; sourceTree = "<group>"; };
-		4E96B569188E9CBA008EA56F /* 权利游戏.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "权利游戏.mp3"; sourceTree = "<group>"; };
 		4E96B56B188EA003008EA56F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		4E96B56D188EAB88008EA56F /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		4E96B56F188EAB90008EA56F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -986,6 +989,8 @@
 		4E117967188F627F00FB619F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				4E079C2E189B557900B0BB5F /* MusicMixerOutput.h */,
+				4E079C2F189B557900B0BB5F /* MusicMixerOutput.m */,
 				4E2A137B189125DB00D8CB65 /* lame */,
 				4E2A136F1890BFF600D8CB65 /* PersistentStore.h */,
 				4E2A13701890BFF600D8CB65 /* PersistentStore.m */,
@@ -1019,7 +1024,7 @@
 		4E96B568188E9CBA008EA56F /* 歌曲 */ = {
 			isa = PBXGroup;
 			children = (
-				4E96B569188E9CBA008EA56F /* 权利游戏.mp3 */,
+				4E16D66C189966EE00C21536 /* 权利游戏.mp3 */,
 			);
 			path = "歌曲";
 			sourceTree = "<group>";
@@ -1931,7 +1936,6 @@
 				C3FEB0161871C294008EADAA /* hunyin_43@2x.png in Resources */,
 				C3FEB0551871C294008EADAA /* record_@2x.png in Resources */,
 				C32F40091882873A00681953 /* MessageInviteViewController.xib in Resources */,
-				4E96B56A188E9CBA008EA56F /* 权利游戏.mp3 in Resources */,
 				C3FEB0641871C294008EADAA /* setting_3@2x.png in Resources */,
 				C3164CE41874555D00301ACA /* MusicFans_sdc@2x.png in Resources */,
 				C3FEB06D1871C294008EADAA /* user_10@2x.png in Resources */,
@@ -1999,6 +2003,7 @@
 				C3FEB02A1871C294008EADAA /* first_7@2x.png in Resources */,
 				C3FEB04C1871C294008EADAA /* record_39@2x.png in Resources */,
 				C3FEB0081871C294008EADAA /* hunyin_2@2x.png in Resources */,
+				4E16D66D189966EE00C21536 /* 权利游戏.mp3 in Resources */,
 				C3FEAFF21871C294008EADAA /* hunyin_0@2x.png in Resources */,
 				C3456CFA1887D2BC009329D2 /* SoundEffectViewController.xib in Resources */,
 				C3164CB31874555D00301ACA /* FoundMusic_d@2x.png in Resources */,
@@ -2292,6 +2297,7 @@
 				4E96B59A188EC7B0008EA56F /* TrachBtn.m in Sources */,
 				4E96B593188EABC4008EA56F /* EZPlot.m in Sources */,
 				C3D4FCBD187D0DD1001A7223 /* CatalogRankCell.m in Sources */,
+				4E079C30189B557900B0BB5F /* MusicMixerOutput.m in Sources */,
 				C3FEB0B91871C801008EADAA /* UIColor+Utils.m in Sources */,
 				4E2A137A1891257600D8CB65 /* RecordMusicInfo.m in Sources */,
 				4E96B58E188EABC4008EA56F /* EZAudioPlot.m in Sources */,

@@ -11,5 +11,6 @@
 @interface MixingEffectViewController : CommonViewController
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 
+@property (strong ,nonatomic) NSDictionary * musicInfo;
 - (IBAction)backAction:(id)sender;
 @end

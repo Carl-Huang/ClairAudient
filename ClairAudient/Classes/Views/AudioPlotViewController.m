@@ -124,7 +124,7 @@
     self.startBtn.locationView  = self.audioPlot;
     self.endBtn.locationView    = self.audioPlot;
     __weak AudioPlotViewController * weakSelf = self;
-    [self.startBtn setBlock:^(NSInteger offset,NSInteger currentOffsetX)
+    [self.startBtn setBlock:^(CGFloat offset,CGFloat currentOffsetX)
      {
          CGRect rect         = weakSelf.maskView.frame;
          NSInteger offsetWidth = weakSelf.endBtn.frame.origin.x -currentOffsetX;
@@ -144,7 +144,7 @@
          //         weakSelf.startTime.text = [NSString stringWithFormat:@"%0.2f",start];
      }];
     
-    [self.endBtn setBlock:^(NSInteger offset,NSInteger currentOffsetX)
+    [self.endBtn setBlock:^(CGFloat offset,CGFloat currentOffsetX)
      {
          CGRect rect        = weakSelf.maskView.frame;
          NSInteger offsetWidth = currentOffsetX -weakSelf.startBtn.frame.origin.x ;

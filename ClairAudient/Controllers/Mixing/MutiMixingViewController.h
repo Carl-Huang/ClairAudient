@@ -15,4 +15,5 @@
 
 - (IBAction)backAction:(id)sender;
 - (IBAction)playAction:(id)sender;
+- (IBAction)startMixingAction:(id)sender;
 @end

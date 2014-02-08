@@ -246,18 +246,21 @@
     self.clocker.text = @"00:00:00";
    
     
-    //转换格式
+    //1）转换格式
     NSString * destinationFileName = [[self getDocumentDirectory] stringByAppendingPathComponent:[defaultFileName stringByAppendingPathExtension:@"mp3"]];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [audioManager audio_PCMtoMP3WithSourceFile:recordFilePath destinationFile:destinationFileName];
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-    //保存录音文件信息
+    
+    //2）保存录音文件信息
     RecordMusicInfo * recordFile = [RecordMusicInfo MR_createEntity];
     recordFile.title    = defaultFileName;
     recordFile.length   = [NSString stringWithFormat:@"%0.2f",[self getMusicLength:recordFileURL]];
     recordFile.makeTime = recordMakeTime;
     recordFile.localPath= destinationFileName;
     [[NSManagedObjectContext MR_defaultContext]MR_saveOnlySelfAndWait];
+    
+    //3）删除录音文件
     [[NSFileManager defaultManager]removeItemAtPath:recordFilePath error:nil];
     
     

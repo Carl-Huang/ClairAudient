@@ -23,7 +23,7 @@
     CMTimeRange exportTimeRange = CMTimeRangeFromTimeToTime(startTime, stopTime);
     
     exportSession.outputURL = exportURL; // output path
-    exportSession.outputFileType = AVFileTypeAppleM4A; // output file type
+    exportSession.outputFileType = AVFileTypeMPEGLayer3; // output file type
     exportSession.timeRange = exportTimeRange; // trim time range
     [exportSession exportAsynchronouslyWithCompletionHandler:^{
         
