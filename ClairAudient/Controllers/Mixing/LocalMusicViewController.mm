@@ -110,7 +110,14 @@
 
 -(void)editMusic:(id)sender
 {
+    UIButton * btn = (UIButton *)sender;
+    
     MutiMixingViewController * viewController = [[MutiMixingViewController alloc]initWithNibName:@"MutiMixingViewController" bundle:nil];
+    
+    
+    NSDictionary * musicInfo = [dataSource objectAtIndex:btn.tag];
+    [self configureLibraryMusicWithSelector:nil withInfo:musicInfo];
+    [viewController setMutiMixingInfo:@{@"musicURL":currentLocationPath}];
     [self.navigationController pushViewController:viewController animated:YES];
     viewController = nil;
 }
@@ -118,51 +125,65 @@
 
 -(void)configureLibraryMusicWithSelector:(SEL)action withInfo:(NSDictionary *)info
 {
-    __weak LocalMusicViewController * weakSelf = self;
-    if (isSimulator) {
-        [weakSelf playItemWithPath:info[@"musicURL"]];
-    }else
+    if ([self isValidMusicName:[info valueForKey:@"Title"]])
     {
-        NSURL* assetURL         = (NSURL *)[info valueForKey:@"musicURL"];
-        NSString * musicTitle   = info[@"Title"];
-        [self getLocationFilePath:assetURL title:musicTitle];
-        
-        
-        //判断是否已经在本地有音乐库的文件
-        NSArray * array =[PersistentStore getAllObjectWithType:[MusicInfo class]];
-        if ([array count]) {
-            for (MusicInfo * object in array) {
-                if ([object.title isEqualToString:musicTitle]) {
-                    
-                    [weakSelf playItemWithPath:object.localFilePath];
-                    
+        __weak LocalMusicViewController * weakSelf = self;
+        if (isSimulator) {
+            [weakSelf playItemWithPath:info[@"musicURL"]];
+        }else
+        {
+            NSURL* assetURL         = (NSURL *)[info valueForKey:@"musicURL"];
+            NSString * musicTitle   = info[@"Title"];
+            [self getLocationFilePath:assetURL title:musicTitle];
+            
+            
+            //判断是否已经在本地有音乐库的文件
+            NSArray * array =[PersistentStore getAllObjectWithType:[MusicInfo class]];
+            if ([array count]) {
+                for (MusicInfo * object in array) {
+                    if ([object.title isEqualToString:musicTitle]) {
+                        
+                        [weakSelf playItemWithPath:object.localFilePath];
+                        return;
+                    }
                 }
             }
+            
+            //在数据库中没有找到已经读取的文件，执行一下操作：从ipd library 中复制音乐文件到用户document 目录下
+            //1) 保存数据到数据库
+            MusicInfo * tempMusicInfo    = [MusicInfo MR_createEntity];
+            tempMusicInfo.title          =  musicTitle;
+            tempMusicInfo.artist         = [info valueForKey:@"Artist"];
+            tempMusicInfo.localFilePath  = currentLocationPath;
+            [[NSManagedObjectContext MR_defaultContext]MR_saveOnlySelfAndWait];
+            
+            //复制文件到本地
+            [self exportAssetAtURL:assetURL withTitle:info[@"Title"] completedHandler:^(NSString *path) {
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (action) {
+                        objc_msgSend(self, action,path);
+                    }
+                });
+                
+            }];
+            
         }
-        
-        //在数据库中没有找到已经读取的文件，执行一下操作：从ipd library 中复制音乐文件到用户document 目录下
-        //1) 保存数据到数据库
-        MusicInfo * tempMusicInfo    = [MusicInfo MR_createEntity];
-        tempMusicInfo.title          =  musicTitle;
-        tempMusicInfo.artist         = [info valueForKey:@"Artist"];
-        tempMusicInfo.localFilePath  = currentLocationPath;
-        [[NSManagedObjectContext MR_defaultContext]MR_saveOnlySelfAndWait];
-        
-        //复制文件到本地
-        [self exportAssetAtURL:assetURL withTitle:info[@"Title"] completedHandler:^(NSString *path) {
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf playItemWithPath:path];
-                objc_msgSend(self, action,path);
-            });
-            
-        }];
-        
+    }else
+    {
+        [self showAlertViewWithMessage:@"音乐文件名有误"];
     }
 
 }
 
-
+-(BOOL)isValidMusicName:(NSString *)musicName
+{
+    //有可能会遇到像   泡沫/杨子琪.mp3 这样的文件。需要首先判断是否是合法的名称
+    if ([musicName rangeOfString:@"/"].location != NSNotFound) {
+        return NO;
+    }
+    return YES;
+}
 
 -(void)findArtistList
 {
@@ -171,7 +192,9 @@
     NSArray *playlist = [listQuery items];
     for (MPMediaItem * item in playlist) {
         NSDictionary * dic = [self getMPMediaItemInfo:item];
-        [dataSource addObject:dic];
+        if ([[dic[@"musicURL"] absoluteString] rangeOfString:@"item.mp3"].location != NSNotFound) {
+            [dataSource addObject:dic];
+        }
     }
 }
 
@@ -301,18 +324,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSDictionary * dic          = [dataSource objectAtIndex:indexPath.row];
     MixingMusicListCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     [cell.firstBtn setImage:[UIImage imageNamed:@"hunyin_45.png"] forState:UIControlStateNormal];
     [cell.secondBtn setImage:[UIImage imageNamed:@"hunyin_46.png"] forState:UIControlStateNormal];
-    
-    NSDictionary * dic          = [dataSource objectAtIndex:indexPath.row];
-    
     [cell.firstBtn addTarget:self action:@selector(playMusic:) forControlEvents:UIControlEventTouchUpInside];
     [cell.secondBtn addTarget:self action:@selector(editMusic:) forControlEvents:UIControlEventTouchUpInside];
     
     
     cell.firstBtn.tag           = indexPath.row;
-    
     cell.bigTitleLabel.text     = [dic valueForKey:@"Artist"];
     cell.littleTitleLabel.text  = [dic valueForKey:@"Title"];
     

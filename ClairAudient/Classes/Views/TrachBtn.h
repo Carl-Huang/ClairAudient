@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-typedef void(^BtnDidMoveBlock) (NSInteger offset,NSInteger currentOffsetX);
+typedef void(^BtnDidMoveBlock) (CGFloat offset,CGFloat currentOffsetX);
 @interface TrachBtn : UIButton
 {
     NSInteger previewOffsetX;
 }
 
 @property (strong ,nonatomic) BtnDidMoveBlock  block;
-@property (assign ,nonatomic) NSInteger criticalValue;
+@property (assign ,nonatomic) CGFloat criticalValue;
 @property (weak ,nonatomic) UIView * locationView;
 @end

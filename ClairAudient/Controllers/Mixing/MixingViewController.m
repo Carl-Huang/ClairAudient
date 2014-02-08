@@ -23,20 +23,11 @@
 
 {
     BOOL isSimulator;
-    CGFloat     waveLength;
-    CGFloat     musicLength;
     CGFloat     cuttedMusicLength;
     NSString    * edittingMusicFile;
-    
-    
-    CGFloat startLocation;
-    CGFloat endLocation;
-    
-    CGFloat totalLengthOfTheFile;
-    UIView * timeline;
-    
-    NSInteger  numberOfPlotView;
     AudioPlotView * plotView;
+    
+    MBProgressHUD * progressView;
 }
 
 @property (assign ,nonatomic)CGFloat currentPositionOfFile;
@@ -72,34 +63,48 @@
     {
         edittingMusicFile = [self.musicInfo valueForKey:@"musicURL"];;
     }
+    NSDictionary * currentEditMusicInfo = @{@"musicURL": edittingMusicFile,@"count":@"1"};
+    [[NSUserDefaults standardUserDefaults]setObject:currentEditMusicInfo forKey:@"currentEditingMusic"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
     
+    __weak MixingViewController * weakSelf =self;
     plotView = [[AudioPlotView alloc]initWithFrame:CGRectMake(0, 80, 320, 245)];
-    [plotView setupAudioPlotViewWitnNimber:2 type:OutputTypeDefautl musicPath:edittingMusicFile withCompletedBlock:^(BOOL isFinish) {
+    [plotView setupAudioPlotViewWitnNimber:1 type:OutputTypeDefautl musicPath:edittingMusicFile withCompletedBlock:^(BOOL isFinish) {
         ;
     }];
-
+    
+    [plotView setLocationBlock:^(NSDictionary * locationInfo)
+     {
+         NSLog(@"%@",locationInfo);
+         [weakSelf updateInterfaceWithInfo:locationInfo];
+     }];
+    self.endTime.text   = [NSString stringWithFormat:@"%0.2f",[plotView getMusicLength]];
+    self.cutLength.text = self.endTime.text;
     [self.view addSubview:plotView];
+    
+//    progressView = [[MBProgressHUD alloc]initWithFrame:CGRectMake(0, 0, 320, 460)];
+//    progressView.labelText = @"处理";
+//    progressView.dimBackground = YES;
+//    [self.view addSubview:progressView];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-
 }
-
--(void)viewWillDisappear:(BOOL)animated
-{
-
-}
-- (void)dealloc
-{
-
-}
-
-
 
 #pragma mark - Private Method
-
+-(void)updateInterfaceWithInfo:(NSDictionary*)info
+{
+    NSNumber * start = [info valueForKey:@"startLocation"];
+    NSNumber * end   = [info valueForKey:@"endLocation"];
+    self.startTime.text = [NSString stringWithFormat:@"%0.2f",start.floatValue];
+    self.endTime.text   = [NSString stringWithFormat:@"%0.2f",end.floatValue];
+    
+    CGFloat cutLength = end.floatValue - start.floatValue;
+    self.cutLength.text = [NSString stringWithFormat:@"%0.2f",cutLength];
+    
+}
 
 
 #pragma mark - Outlet Action
@@ -140,7 +145,43 @@
     [plotView backForward:10];
 }
 
+- (IBAction)copyMusicAction:(id)sender {
+    NSInteger copyNumber = 4;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        if (plotView) {
+            [plotView removeFromSuperview];
+            plotView  =  nil;
+        }
+        
+        plotView = [[AudioPlotView alloc]initWithFrame:CGRectMake(0, 80, 320, 245)];
+        
+        __weak MixingViewController * weakSelf = self;
+        [plotView setupAudioPlotViewWitnNimber:copyNumber type:OutputTypeDefautl musicPath:edittingMusicFile withCompletedBlock:^(BOOL isFinish) {
+            if (isFinish) {
+                [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+            }
+        }];
+        
+        [plotView setLocationBlock:^(NSDictionary * locationInfo)
+         {
+             [weakSelf updateInterfaceWithInfo:locationInfo];
+         }];
+        self.endTime.text   = [NSString stringWithFormat:@"%0.2f",[plotView getMusicLength]];
+        self.cutLength.text = self.endTime.text;
+        
+        NSDictionary * currentEditMusicInfo = @{@"music": edittingMusicFile,@"count":[NSNumber numberWithInteger:copyNumber]};
+        [[NSUserDefaults standardUserDefaults]setObject:currentEditMusicInfo forKey:@"currentEditingMusic"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+        [self.view addSubview:plotView];
+    });
+   
+    
+}
+
 - (IBAction)addMixingMusicAction:(id)sender {
+    
     MixingEffectViewController * viewController = [[MixingEffectViewController alloc]initWithNibName:@"MixingEffectViewController" bundle:nil];
     [self.navigationController pushViewController:viewController animated:YES];
     viewController = nil;

@@ -35,6 +35,8 @@
     UIView          * timeline;
     NSInteger       roundDownRectWidth;
     OutputType      currentType;
+    
+    NSMutableDictionary    *locationInfo;
 }
 
 @property (strong, nonatomic) EZAudioPlotGL *audioPlot;
@@ -56,7 +58,6 @@
 @property (assign ,nonatomic) CGFloat   endLocation;
 @property (assign ,nonatomic) CGFloat   cuttedMusicLength;
 @property (assign ,nonatomic) NSInteger snapShotImageCount;
-@property (strong ,nonatomic) UIImageView * snapShotImage;
 @property (assign ,nonatomic) CGRect    originalRect;
 @property (assign ,nonatomic) NSInteger currentPage;
 @end
@@ -170,7 +171,6 @@
             });
             dispatch_group_notify(group,dispatch_get_main_queue(), ^ {
                 block(YES);
-                NSLog(@"Block3");
             });
         });
         
@@ -206,7 +206,7 @@
     self.startBtn.criticalValue = rect.size.width * number;
     [self.startBtn setBackgroundImage:[UIImage imageNamed:@"sliderStart.png"] forState:UIControlStateNormal];
     
-    self.endBtn   = [[TrachBtn alloc]initWithFrame:CGRectMake(rect.size.width*number-2.5, rect.size.height -30, 40, 30)];
+    self.endBtn   = [[TrachBtn alloc]initWithFrame:CGRectMake(rect.size.width*number, rect.size.height -30, 40, 30)];
     self.endBtn.criticalValue = rect.size.width * number;
     [self.endBtn setBackgroundImage:[UIImage imageNamed:@"sliderEnd.png"] forState:UIControlStateNormal];
 
@@ -215,25 +215,25 @@
     self.startBtn.locationView  = self.audioPlot;
     self.endBtn.locationView    = self.audioPlot;
     __weak AudioPlotView * weakSelf = self;
-    [self.startBtn setBlock:^(NSInteger offset,NSInteger currentOffsetX)
+    [self.startBtn setBlock:^(CGFloat offset,CGFloat currentOffsetX)
      {
          CGRect rect         = weakSelf.maskView.frame;
-         NSInteger offsetWidth = weakSelf.endBtn.frame.origin.x -currentOffsetX;
+         CGFloat offsetWidth = weakSelf.endBtn.frame.origin.x -currentOffsetX;
          if (offsetWidth < 0) {
              rect.size.width = 0;
          }else
          {
              rect.size.width     = offsetWidth;
          }
-         rect.origin.x           = offset + weakSelf.startBtn.frame.size.width / 2;
+         rect.origin.x           = offset + weakSelf.startBtn.frame.size.width / 2.0;
          weakSelf.maskView.frame = rect;
          weakSelf.startLocation  = offset;
      }];
     
-    [self.endBtn setBlock:^(NSInteger offset,NSInteger currentOffsetX)
+    [self.endBtn setBlock:^(CGFloat offset,CGFloat currentOffsetX)
      {
          CGRect rect        = weakSelf.maskView.frame;
-         NSInteger offsetWidth = currentOffsetX -weakSelf.startBtn.frame.origin.x ;
+         CGFloat offsetWidth = currentOffsetX - weakSelf.startBtn.frame.origin.x ;
          if (offsetWidth < 0) {
              rect.size.width = 0;
          }else
@@ -248,6 +248,13 @@
     timeline =  [[UIView alloc]initWithFrame:CGRectMake(PlotViewOffset, 0, 0.5, rect.size.height)];
     [timeline setBackgroundColor:[UIColor yellowColor]];
     [self addObserver:self forKeyPath:@"currentPositionOfFile" options:NSKeyValueObservingOptionNew context:NULL];
+    [self addObserver:self forKeyPath:@"startLocation" options:NSKeyValueObservingOptionNew context:NULL];
+    [self addObserver:self forKeyPath:@"endLocation" options:NSKeyValueObservingOptionNew context:NULL];
+    
+    
+    locationInfo = [NSMutableDictionary dictionary];
+    [locationInfo setObject:[NSNumber numberWithFloat:0.0] forKey:@"startLocation"];
+    [locationInfo setObject:[NSNumber numberWithFloat:musicLength] forKey:@"endLocation"];
     
     
     [self.contentScrollView addSubview:timeline];
@@ -262,6 +269,8 @@
 {
     [self stop];
     [self removeObserver:self forKeyPath:@"currentPositionOfFile"];
+    [self removeObserver:self forKeyPath:@"startLocation"];
+    [self removeObserver:self forKeyPath:@"endLocation"];
 }
 
 #pragma mark - Public method
@@ -333,11 +342,31 @@
 {
     return musicLength;
 }
+
+-(NSDictionary *)getCropMusicLocationInfo
+{
+    NSDictionary * tempLocation = @{@"startLocation": [NSNumber numberWithFloat:self.startLocation],@"endLocation":[NSNumber numberWithFloat:self.endLocation]};
+    return tempLocation;
+}
 #pragma mark - Private Method
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"currentPositionOfFile"]) {
         [self updateTimeLinePosition:currentPositionOfTimeLine];
+    }else if ([keyPath isEqualToString:@"startLocation"])
+    {
+        if (self.locationBlock) {
+            CGFloat time = [self getTimeFromRelativePosition:self.startLocation];
+            [locationInfo setObject:[NSNumber numberWithFloat:time]forKey:@"startLocation"];
+            self.locationBlock(locationInfo);
+        }
+    }else if ([keyPath isEqualToString:@"endLocation"])
+    {
+        if (self.locationBlock) {
+            CGFloat time = [self getTimeFromRelativePosition:self.endLocation];
+            [locationInfo setObject:[NSNumber numberWithFloat:time]forKey:@"endLocation"];
+            self.locationBlock(locationInfo);
+        }
     }
 }
 
@@ -435,7 +464,6 @@
     
     for (int i= 1; i< self.snapShotImageCount; i++) {
         plotViewRect.origin.x = plotViewRect.size.width * i + PlotViewOffset;
-        
         UIImageView * tempImage = [[UIImageView alloc]initWithImage:self.snapShotImage.image];
         [tempImage setFrame:plotViewRect];
         [self.contentScrollView addSubview:tempImage];
@@ -444,9 +472,11 @@
     }
 }
 
--(void)freePlotViewMemory
+-(CGFloat)getTimeFromRelativePosition:(CGFloat)sec
 {
-    tempPlotView = nil;
+    CGFloat relativePosition = sec/(roundDownRectWidth * self.snapShotImageCount);
+    CGFloat minute = relativePosition * musicLength;
+    return minute;
 }
 
 
@@ -494,7 +524,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
                     self.audioPlot.shouldFill   = YES;
                     self.audioPlot.shouldMirror = YES;
                 }
-                //      [self.audioPlot updateBuffer:buffer[0] withBufferSize:bufferSize];
+        //      [self.audioPlot updateBuffer:buffer[0] withBufferSize:bufferSize];
             });
         }
 
@@ -555,7 +585,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
     if( self.audioFile ){
         if (self.currentPositionOfTimeLine >= self.endLocation||self.eof ) {
             //获取位置在音乐文件中的相对位置
-            NSInteger roundDownPosition = floor(self.startLocation);
+            NSInteger roundDownPosition = floor(self.currentPositionOfTimeLine);
             NSInteger relativePosition = roundDownPosition % roundDownRectWidth;
             CGFloat param1      = (CGFloat)relativePosition;
             CGFloat parma2      = (CGFloat)roundDownRectWidth;
