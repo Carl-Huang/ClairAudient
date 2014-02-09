@@ -61,8 +61,8 @@
     float editDistanceOfCurrentString;
     NSDictionary *stringsWithEditDistances;
     NSUInteger maximumRange;
-    for(NSString *currentString in possibleTerms) {
-        
+    for(NSDictionary * item in possibleTerms) {
+        NSString * currentString = [item valueForKey:@"Title"];
         if(self.isCancelled){
             return [NSArray array];
         }
@@ -70,7 +70,7 @@
         maximumRange = (inputString.length < currentString.length) ? inputString.length : currentString.length;
         editDistanceOfCurrentString = [inputString asciiLevenshteinDistanceWithString:[currentString substringWithRange:NSMakeRange(0, maximumRange)]];
         
-        stringsWithEditDistances = @{@"string" : currentString ,
+        stringsWithEditDistances = @{@"MusicInfo" : item ,
                                      @"editDistance" : [NSNumber numberWithFloat:editDistanceOfCurrentString]};
         [editDistances addObject:stringsWithEditDistances];
     }
@@ -86,7 +86,7 @@
     }];
     
     
-    NSString *suggestedString;
+    NSString *suggestedString = nil;
     NSMutableArray *prioritySuggestions = [NSMutableArray array];
     NSMutableArray *otherSuggestions = [NSMutableArray array];
     for(NSDictionary *stringsWithEditDistances in editDistances){
@@ -94,15 +94,15 @@
         if(self.isCancelled){
             return [NSArray array];
         }
-        
-        suggestedString = stringsWithEditDistances[@"string"];
+        NSDictionary * tempDic = stringsWithEditDistances[@"MusicInfo"];
+        suggestedString = tempDic[@"Title"];
         NSRange occurrenceOfInputString = [[suggestedString lowercaseString]
                                            rangeOfString:[inputString lowercaseString]];
         
         if (occurrenceOfInputString.length != 0 && occurrenceOfInputString.location == 0) {
-            [prioritySuggestions addObject:suggestedString];
+            [prioritySuggestions addObject:tempDic];
         } else{
-            [otherSuggestions addObject:suggestedString];
+            [otherSuggestions addObject:tempDic];
         }
     }
     

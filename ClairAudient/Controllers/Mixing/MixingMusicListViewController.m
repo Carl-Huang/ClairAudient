@@ -54,6 +54,7 @@
     [self initUI];
     
     dataSource = [NSMutableArray array];
+    searchResultDataSource = [NSArray array];
     importTool = [[TSLibraryImport alloc] init];
 #if TARGET_IPHONE_SIMULATOR
     isSimulator = YES;
@@ -344,7 +345,7 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    
+    [self fetchItemsResultsWithString:textField.text];
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -355,9 +356,9 @@
     }else
     {
         [self fetchItemsResultsWithString:string];
-        return NO;
+        return  YES;
     }
-    return  YES;
+    
 }
 
 #pragma mark - AutoComplete Operation Delegate
@@ -365,5 +366,6 @@
 {
     isSearchResultDataSource    = YES;
     searchResultDataSource      = autocompletions;
+    [self.tableView reloadData];
 }
 @end
