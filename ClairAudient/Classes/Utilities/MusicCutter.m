@@ -14,38 +14,39 @@
 +(void)cropMusic:(NSString *)musicSourcePath exportFileName:(NSString *)exportedFileName withStartTime:(CGFloat)timeS endTime:(CGFloat)timeE withCompletedBlock:(void (^)(AVAssetExportSessionStatus status,NSError *error))completedBlock
 {
     
-    NSURL *songURL = [NSURL fileURLWithPath:musicSourcePath];
+    NSURL *songURL      = [NSURL fileURLWithPath:musicSourcePath];
     AVURLAsset *musicAsset = [AVURLAsset URLAssetWithURL:songURL options:nil];
-    NSString * path = [self getExportPath:exportedFileName];
-    NSURL *exportURL = [NSURL fileURLWithPath:path];
+    NSString * path     = [self getExportPath:exportedFileName];
+    NSURL *exportURL    = [NSURL fileURLWithPath:path];
     AVAssetExportSession *exportSession = [AVAssetExportSession exportSessionWithAsset:musicAsset
                                                                             presetName:AVAssetExportPresetPassthrough];
-    CMTime startTime = CMTimeMake(timeS, 1);
-    CMTime stopTime = CMTimeMake(timeE, 1);
-    CMTimeRange exportTimeRange = CMTimeRangeFromTimeToTime(startTime, stopTime);
+    CMTime startTime                = CMTimeMake(timeS, 1);
+    CMTime stopTime                 = CMTimeMake(timeE, 1);
+    CMTimeRange exportTimeRange     = CMTimeRangeFromTimeToTime(startTime, stopTime);
     
-    exportSession.outputURL = exportURL; // output path
-    exportSession.outputFileType = @"com.apple.quicktime-movie"; // output file type
-    exportSession.timeRange = exportTimeRange; // trim time range
+    exportSession.outputURL         = exportURL;                       // output path
+    exportSession.outputFileType    = @"com.apple.quicktime-movie";    // output file type
+    exportSession.timeRange         = exportTimeRange;                 // trim time range
     NSLog(@"export.supportedFileTypes : %@",exportSession.supportedFileTypes);
     exportSession.shouldOptimizeForNetworkUse = YES;
     
+    //log the file type
     NSString *extension = (__bridge  NSString *)UTTypeCopyPreferredTagWithClass((__bridge  CFStringRef)exportSession.outputFileType, kUTTagClassFilenameExtension);
     
     NSLog(@"extension %@",extension);
+    
+    
+    //start crop music
     [exportSession exportAsynchronouslyWithCompletionHandler:^{
         
         if (AVAssetExportSessionStatusCompleted == exportSession.status) {
             NSLog(@"AVAssetExportSessionStatusCompleted");
-//            [self audio_PCMtoMP3WithSourceFile:path destinationFile:[[path stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"new.mp3"] sampleRate:44100];
             
-            NSFileManager *manage = [NSFileManager defaultManager];
-            
-            NSString *mp3Path = [[path stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"new.mp3"];
+            NSFileManager *manage   = [NSFileManager defaultManager];
+            NSString * convertedFilePath = [NSString stringWithString:path];
+            NSString *mp3Path       = [[convertedFilePath stringByDeletingPathExtension] stringByAppendingPathExtension:@"mp3"];
             NSError *error = nil;
-            
             [manage moveItemAtPath:path toPath:mp3Path error:&error];
-            
             NSLog(@"error %@",error);
             completedBlock(AVAssetExportSessionStatusCompleted,nil);
         } else if (AVAssetExportSessionStatusFailed == exportSession.status) {

@@ -78,6 +78,7 @@
 -(void)setupAudioPlotViewWitnNimber:(NSInteger)number type:(OutputType)type musicPath:(NSString *)path withCompletedBlock:(void (^)(BOOL isFinish))block
 {
 
+    
 #if TARGET_IPHONE_SIMULATOR
     isSimulator = YES;
 #else
@@ -129,8 +130,6 @@
     [self.timeLineView addGestureRecognizer:tapGesture];
     tapGesture = nil;
     self.timeLineView.backgroundColor = [UIColor clearColor];
-//    self.timeLineView.alpha = 0.3;
-
     
     [self.contentScrollView addSubview:self.audioPlot];
     [self.contentScrollView addSubview:self.maskView];
@@ -166,11 +165,19 @@
 
             dispatch_group_async(group,dispatch_get_main_queue(), ^ {
                 if (number > 1) {
-                    [self addPlotViewWithNumber:1];
+                    [self addPlotViewWithNumber:number completed:^(BOOL isCompleted) {
+                        if (isCompleted) {
+                            block(YES);
+                        }
+                    }];
+                }else
+                {
+                    block (YES);
                 }
             });
             dispatch_group_notify(group,dispatch_get_main_queue(), ^ {
-                block(YES);
+                //TODO: 如何保证嵌套的block 完成后执行到这里
+//                block(YES);
             });
         });
         
@@ -419,7 +426,7 @@
     }
 }
 
--(void)addPlotViewWithNumber:(NSInteger)count
+-(void)addPlotViewWithNumber:(NSInteger)count completed:(void (^)(BOOL isCompleted))completedBlock
 {
     @autoreleasepool {
         CGRect rect = self.audioPlot.frame;
@@ -446,7 +453,11 @@
             [tempPlotView updateBuffer:waveformData withBufferSize:length];
             dispatch_async(dispatch_get_main_queue(), ^{
                 weakSelf.snapShotImage = [[UIImageView alloc]initWithImage:tempPlotView.snapShotImage];
-                [weakSelf configureSnapShotImage];
+                [weakSelf configureSnapShotImage:count completed:^(BOOL isCompleted) {
+                    if (isCompleted) {
+                        completedBlock(YES);
+                    }
+                }];
             });
             
         }];
@@ -457,12 +468,12 @@
     }
 }
 
--(void)configureSnapShotImage
+-(void)configureSnapShotImage:(NSInteger)number completed:(void (^)(BOOL isCompleted))completedBlock
 {
     tempPlotView = nil;
     CGRect plotViewRect = self.audioPlot.frame;
     
-    for (int i= 1; i< self.snapShotImageCount; i++) {
+    for (int i= 1; i< number; i++) {
         plotViewRect.origin.x = plotViewRect.size.width * i + PlotViewOffset;
         UIImageView * tempImage = [[UIImageView alloc]initWithImage:self.snapShotImage.image];
         [tempImage setFrame:plotViewRect];
@@ -470,6 +481,7 @@
         [self.contentScrollView sendSubviewToBack:tempImage];
         tempImage = nil;
     }
+    completedBlock(YES);
 }
 
 -(CGFloat)getTimeFromRelativePosition:(CGFloat)sec
@@ -585,15 +597,14 @@ withNumberOfChannels:(UInt32)numberOfChannels {
     if( self.audioFile ){
         if (self.currentPositionOfTimeLine >= self.endLocation||self.eof ) {
             //获取位置在音乐文件中的相对位置
-            NSInteger roundDownPosition = floor(self.currentPositionOfTimeLine);
-            NSInteger relativePosition = roundDownPosition % roundDownRectWidth;
-            CGFloat param1      = (CGFloat)relativePosition;
-            CGFloat parma2      = (CGFloat)roundDownRectWidth;
-            CGFloat position    = param1/parma2 * totalLengthOfTheFile;
-            
+//            NSInteger roundDownPosition = floor(self.currentPositionOfTimeLine);
+//            NSInteger relativePosition = roundDownPosition % roundDownRectWidth;
+//            CGFloat param1      = (CGFloat)relativePosition;
+//            CGFloat parma2      = (CGFloat)roundDownRectWidth;
+//            CGFloat position    = param1/parma2 * totalLengthOfTheFile;
+            CGFloat position    = self.startLocation/roundDownRectWidth * totalLengthOfTheFile;
             
             [self.audioFile seekToFrame:position];
-//            self.currentPositionOfFile = 0;
             self.eof = NO;
             
             //更新当前时间轴的位置
