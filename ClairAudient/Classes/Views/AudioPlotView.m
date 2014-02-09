@@ -37,6 +37,7 @@
     OutputType      currentType;
     
     NSMutableDictionary    *locationInfo;
+    BOOL            isAccessHalf;
 }
 
 @property (strong, nonatomic) EZAudioPlotGL *audioPlot;
@@ -95,13 +96,13 @@
     
     //设置contentScrollView
     self.contentScrollView = [[UIScrollView alloc]initWithFrame:rect];
-    [self.contentScrollView setContentSize:CGSizeMake(60 + number*rect.size.width, self.contentScrollView.frame.size.height)];
+    [self.contentScrollView setContentSize:CGSizeMake(60 + (number*rect.size.width * 1.5), self.contentScrollView.frame.size.height)];
     self.contentScrollView.showsHorizontalScrollIndicator = NO;
     self.contentScrollView.scrollEnabled = YES;
     
     CGRect scrollViewRect = self.contentScrollView.frame;
     scrollViewRect.origin.x = rect.origin.x+PlotViewOffset;
-    self.contentScrollView.backgroundColor = [UIColor clearColor];
+    self.contentScrollView.backgroundColor = PlotViewBackgroundColor;
     [self.contentScrollView scrollRectToVisible:scrollViewRect animated:YES];
     
     rect.origin.x = PlotViewOffset/2;
@@ -262,13 +263,20 @@
     locationInfo = [NSMutableDictionary dictionary];
     [locationInfo setObject:[NSNumber numberWithFloat:0.0] forKey:@"startLocation"];
     [locationInfo setObject:[NSNumber numberWithFloat:musicLength] forKey:@"endLocation"];
-    
+    rect.origin.x = PlotViewOffset;
+   
     
     [self.contentScrollView addSubview:timeline];
     currentPositionOfFile = 0.0f;
     currentPositionOfTimeLine = 0.0f;
-    [self addSubview:self.contentScrollView];
     
+//    UIView * timeLineBgView = [[UIView alloc]initWithFrame:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width * number, rect.size.height)];
+//    [timeLineBgView setBackgroundColor:[UIColor redColor]];
+//    timeLineBgView.alpha = 0.2;
+//    [timeLineBgView addSubview:timeline];
+    
+    [self addSubview:self.contentScrollView];
+    isAccessHalf = NO;
     
 }
 
@@ -325,6 +333,16 @@
     {
         [EZOutputHelper sharedOutput].outputDataSource = nil;
         [[EZOutputHelper sharedOutput] stopPlayback];
+    }
+}
+
+-(BOOL)isPlaying
+{
+    if ([EZOutput sharedOutput].isPlaying) {
+        return YES;
+    }else
+    {
+        return NO;
     }
 }
 
@@ -422,6 +440,24 @@
     @autoreleasepool {
         CGRect rect = timeline.frame;
         rect.origin.x = offset + PlotViewOffset;
+        
+        CGRect scrollViewRect = self.contentScrollView.frame;
+        scrollViewRect.origin.x = offset ;
+        
+        if ((offset ) > self.frame.size.width / 2.0) {
+            isAccessHalf = YES;
+            NSLog(@"******* %f",offset);
+            [self.contentScrollView scrollRectToVisible:scrollViewRect animated:YES];
+            
+        }else
+        {
+            if (isAccessHalf) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.contentScrollView scrollRectToVisible:CGRectMake(PlotViewOffset, 0, 320, scrollViewRect.size.height) animated:YES];
+                });
+                isAccessHalf = NO;
+            }
+        }
         timeline.frame = rect;
     }
 }
