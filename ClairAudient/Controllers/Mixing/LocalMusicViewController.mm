@@ -111,15 +111,9 @@
 -(void)editMusic:(id)sender
 {
     UIButton * btn = (UIButton *)sender;
-    
-    MutiMixingViewController * viewController = [[MutiMixingViewController alloc]initWithNibName:@"MutiMixingViewController" bundle:nil];
-    
-    
     NSDictionary * musicInfo = [dataSource objectAtIndex:btn.tag];
-    [self configureLibraryMusicWithSelector:nil withInfo:musicInfo];
-    [viewController setMutiMixingInfo:@{@"musicURL":currentLocationPath}];
-    [self.navigationController pushViewController:viewController animated:YES];
-    viewController = nil;
+    [self configureLibraryMusicWithSelector:@selector(editItemWithPath:) withInfo:musicInfo];
+
 }
 
 
@@ -127,9 +121,9 @@
 {
     if ([self isValidMusicName:[info valueForKey:@"Title"]])
     {
-        __weak LocalMusicViewController * weakSelf = self;
-        if (isSimulator) {
-            [weakSelf playItemWithPath:info[@"musicURL"]];
+        if (isSimulator)
+        {
+            objc_msgSend(self, action,info[@"musicURL"]);
         }else
         {
             NSURL* assetURL         = (NSURL *)[info valueForKey:@"musicURL"];
@@ -142,13 +136,11 @@
             if ([array count]) {
                 for (MusicInfo * object in array) {
                     if ([object.title isEqualToString:musicTitle]) {
-                        
-                        [weakSelf playItemWithPath:object.localFilePath];
+                        objc_msgSend(self, action,object.localFilePath);
                         return;
                     }
                 }
             }
-            
             //在数据库中没有找到已经读取的文件，执行一下操作：从ipd library 中复制音乐文件到用户document 目录下
             //1) 保存数据到数据库
             MusicInfo * tempMusicInfo    = [MusicInfo MR_createEntity];
@@ -173,7 +165,6 @@
     {
         [self showAlertViewWithMessage:@"音乐文件名有误"];
     }
-
 }
 
 -(BOOL)isValidMusicName:(NSString *)musicName
@@ -304,6 +295,15 @@
      }];
     [self.audioMng play];
 }
+
+-(void)editItemWithPath:(NSString *)path
+{
+    MutiMixingViewController * viewController = [[MutiMixingViewController alloc]initWithNibName:@"MutiMixingViewController" bundle:nil];
+    [viewController setMutiMixingInfo:@{@"musicURL":path}];
+    [self.navigationController pushViewController:viewController animated:YES];
+    viewController = nil;
+}
+
 #pragma mark - UITableViewDataSource Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
