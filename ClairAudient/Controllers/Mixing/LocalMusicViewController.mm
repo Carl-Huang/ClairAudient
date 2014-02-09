@@ -179,13 +179,15 @@
 -(void)findArtistList
 {
     MPMediaQuery *listQuery = [MPMediaQuery playlistsQuery];
+    NSNumber *musicType = [NSNumber numberWithInteger:MPMediaTypeMusic];
+    
+    MPMediaPropertyPredicate *musicPredicate = [MPMediaPropertyPredicate predicateWithValue:musicType forProperty:MPMediaItemPropertyMediaType];
+    [listQuery addFilterPredicate: musicPredicate];
     //播放列表
     NSArray *playlist = [listQuery items];
     for (MPMediaItem * item in playlist) {
         NSDictionary * dic = [self getMPMediaItemInfo:item];
-        if ([[dic[@"musicURL"] absoluteString] rangeOfString:@"item.mp3"].location != NSNotFound) {
-            [dataSource addObject:dic];
-        }
+        [dataSource addObject:dic];
     }
 }
 

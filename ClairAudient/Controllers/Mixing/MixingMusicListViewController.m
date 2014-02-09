@@ -16,12 +16,13 @@
 #import "MBProgressHUD.h"
 #import "MusicInfo.h"
 #import "PersistentStore.h"
+#import "AutoCompletedOperation.h"
 
 #define Cell_Height 65.0f
-@interface MixingMusicListViewController ()
+@interface MixingMusicListViewController ()<UITextFieldDelegate,AutoCompleteOperationDelegate>
 {
     NSMutableArray * dataSource;
-    
+    NSArray        * searchResultDataSource;
     //用importTool导出音乐库里面的文件
     TSLibraryImport* importTool;
     
@@ -29,7 +30,11 @@
     
     //当前选择文件的本地路径
     NSString * currentLocationPath;
+    
+    //控制使用哪个数据源
+    BOOL isSearchResultDataSource;
 }
+@property (strong ,nonatomic) NSOperationQueue *autoCompleteQueue;
 @end
 
 @implementation MixingMusicListViewController
@@ -66,7 +71,12 @@
             [self showAlertViewWithMessage:@"本地没有音乐文件"];
         }
     }
-
+    
+    
+    //搜索框
+    self.searchField.delegate   = self;
+    
+    isSearchResultDataSource    = NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -147,7 +157,6 @@
                 });
                 
             }];
-            
         }
     }else
     {
@@ -209,15 +218,6 @@
     return musicInfo;
 }
 
-//读取本地音乐文件
--(NSMutableArray *)readLocalMusicFile
-{
-    NSMutableArray * array = [NSMutableArray array];
-    
-    
-    return array;
-}
-
 -(void)getLocationFilePath:(NSURL*)assetURL title:(NSString *)title
 {
     NSString* ext = [TSLibraryImport extensionForAssetURL:assetURL];
@@ -259,6 +259,36 @@
     }
 }
 
+-(void)updateTableWithData:(NSArray *)data
+{
+    if (dataSource) {
+        dataSource = nil;
+    }
+    dataSource = [data mutableCopy];
+    [self.tableView reloadData];
+}
+
+-(void)fetchItemsResultsWithString:(NSString *)searchStr
+{
+    [self.autoCompleteQueue cancelAllOperations];
+    if (self.autoCompleteQueue == nil) {
+        self.autoCompleteQueue = [[NSOperationQueue alloc]init];
+    }
+    AutoCompletedOperation *operation = [[AutoCompletedOperation alloc]
+                                         initWithDelegate:self
+                                         incompleteString:searchStr
+                                         possibleCompletions:dataSource];
+    [self.autoCompleteQueue addOperation:operation];
+    operation = nil;
+
+}
+
+#pragma mark - Outlet Action
+- (IBAction)backAction:(id)sender
+{
+    [self popVIewController];
+}
+
 
 #pragma mark - UITableViewDataSource Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -281,7 +311,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MixingMusicListCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    NSDictionary * dic          = [dataSource objectAtIndex:indexPath.row];
+    NSDictionary * dic = nil;
+    if (isSearchResultDataSource) {
+        dic = [searchResultDataSource objectAtIndex:indexPath.row];
+    }else
+    {
+        dic = [dataSource objectAtIndex:indexPath.row];
+    }
+    
 
     [cell.editButton addTarget:self action:@selector(modifyMusic:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -299,9 +336,34 @@
     
 }
 
-#pragma mark -
-- (IBAction)backAction:(id)sender
+#pragma mark - TextField Delegate
+-(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [self popVIewController];
+    
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    
+}
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if ([string isEqualToString:@"\n"]) {
+        [textField resignFirstResponder];
+        return NO;
+    }else
+    {
+        [self fetchItemsResultsWithString:string];
+        return NO;
+    }
+    return  YES;
+}
+
+#pragma mark - AutoComplete Operation Delegate
+- (void)autoCompleteItems:(NSArray *)autocompletions
+{
+    isSearchResultDataSource    = YES;
+    searchResultDataSource      = autocompletions;
 }
 @end
