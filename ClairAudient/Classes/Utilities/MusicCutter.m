@@ -46,7 +46,14 @@
 {
     NSArray *dirs = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
     NSString *documentsDirectoryPath = [dirs objectAtIndex:0];
-    NSString *exportPath = [documentsDirectoryPath stringByAppendingPathComponent:fileName];
+    
+    NSString * fileFloder = [documentsDirectoryPath stringByAppendingPathComponent:@"我的制作"];
+    NSString *exportPath = [fileFloder stringByAppendingPathComponent:fileName];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:fileFloder]) {
+        NSError * error = nil;
+         [[NSFileManager defaultManager] createDirectoryAtPath:fileFloder withIntermediateDirectories:NO attributes:nil error:&error];
+        
+    }
     if ([[NSFileManager defaultManager] fileExistsAtPath:exportPath]) {
         [[NSFileManager defaultManager] removeItemAtPath:exportPath error:nil];
     }

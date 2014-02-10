@@ -96,7 +96,7 @@
         UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                     action:@selector(handleTap:)];
         [imageView addGestureRecognizer:singleTap];
-        
+        singleTap  = nil;
         // 水平滚动
         if(scrollDirection == CycleDirectionLandscape) {
             imageView.frame = CGRectOffset(imageView.frame, scrollFrame.size.width * i, 0);
@@ -109,12 +109,12 @@
         
         [scrollView addSubview:imageView];
     }
-    if (scrollDirection == CycleDirectionLandscape) {
-        [scrollView setContentOffset:CGPointMake(scrollFrame.size.width, 0)];
-    }
-    if (scrollDirection == CycleDirectionPortait) {
-        [scrollView setContentOffset:CGPointMake(0, scrollFrame.size.height)];
-    }
+//    if (scrollDirection == CycleDirectionLandscape) {
+//        [scrollView setContentOffset:CGPointMake(scrollFrame.size.width, 0)];
+//    }
+//    if (scrollDirection == CycleDirectionPortait) {
+//        [scrollView setContentOffset:CGPointMake(0, scrollFrame.size.height)];
+//    }
 }
 
 - (NSArray *)getDisplayImagesWithCurpage:(int)page {
@@ -129,8 +129,6 @@
         [curImages addObject:[imagesArray objectAtIndex:curPage-1]];
         [curImages addObject:[imagesArray objectAtIndex:last-1]];
     }
-  
-    
     return curImages;
 }
 
