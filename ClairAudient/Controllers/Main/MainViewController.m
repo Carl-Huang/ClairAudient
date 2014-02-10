@@ -11,10 +11,11 @@
 #import "HttpService.h"
 #import "CycleScrollView.h"
 @interface MainViewController ()
-
+@property (strong ,nonatomic)CycleScrollView * advertisementImageView;
 @end
 
 @implementation MainViewController
+@synthesize advertisementImageView;
 #pragma mark - Life Cycle
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,6 +36,11 @@
     
     [self showAdvertisementImage];
     
+    CGRect rect = self.adScrollView.frame;
+    rect.origin.x = rect.origin.y = 0;
+    advertisementImageView = [[CycleScrollView alloc]initWithFrame:rect cycleDirection:CycleDirectionLandscape pictures:@[] autoScroll:YES];
+    [advertisementImageView setHidden:YES];
+    [self.adScrollView addSubview:advertisementImageView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -141,14 +147,33 @@
 
 -(void)showAdvertisementImage
 {
-    __block NSArray * imgArray = nil;
+    __weak MainViewController * weakSelf = self;
+    __block NSMutableArray * imgArray = [NSMutableArray array];
     [[HttpService sharedInstance]getAdvertisementImageWithCompletedBlock:^(id object) {
-        //获取图片名字
-        imgArray = object;
-        
-        //获取图片
+        for (NSString * imgStr in object) {
+            //获取图片
+            [[HttpService sharedInstance]getImageWithResourcePath:imgStr completedBlock:^(id object) {
+                if (object) {
+                    [imgArray addObject:object];
+                    @synchronized(self)
+                    {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [weakSelf.advertisementImageView setHidden:NO];
+                            [weakSelf.advertisementImageView updateImageArrayWithImageArray:imgArray];
+                            [weakSelf.advertisementImageView refreshScrollView];
+                        });
+                        
+                    }
+                }
+            } failureBlock:^(NSError * error) {
+                ;
+            }];
+        }
     } failureBlock:^(NSError *error, NSString *responseString) {
         ;
     }];
+   
+   
+    
 }
 @end

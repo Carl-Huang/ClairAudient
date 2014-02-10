@@ -12,6 +12,9 @@
 @synthesize delegate;
 @synthesize pageControl;
 @synthesize timer;
+@synthesize imagesArray;
+
+#pragma mark - Public Method
 - (id)initWithFrame:(CGRect)frame cycleDirection:(CycleDirection)direction pictures:(NSArray *)pictureArray autoScroll:(BOOL)shouldScroll
 {
     self = [super initWithFrame:frame];
@@ -24,7 +27,7 @@
         totalPage = pictureArray.count;
         curPage = 1;  
         curImages = [[NSMutableArray alloc] init];
-        imagesArray = [[NSArray alloc] initWithArray:pictureArray];
+        imagesArray = [NSMutableArray arrayWithArray:pictureArray];
         
         scrollView = [[UIScrollView alloc] initWithFrame:frame];
         scrollView.backgroundColor = [UIColor blackColor];
@@ -67,8 +70,10 @@
                                                 scrollView.frame.size.height * 3);
         }
         isAutoScroll = YES;
-        
-        [self refreshScrollView];
+
+        if (viewCount != 0) {
+            [self refreshScrollView];
+        }
     }
     
     return self;
@@ -119,9 +124,12 @@
     
     if([curImages count] != 0) [curImages removeAllObjects];
     
-    [curImages addObject:[imagesArray objectAtIndex:pre-1]];
-    [curImages addObject:[imagesArray objectAtIndex:curPage-1]];
-    [curImages addObject:[imagesArray objectAtIndex:last-1]];
+    if ([imagesArray count]) {
+        [curImages addObject:[imagesArray objectAtIndex:pre-1]];
+        [curImages addObject:[imagesArray objectAtIndex:curPage-1]];
+        [curImages addObject:[imagesArray objectAtIndex:last-1]];
+    }
+  
     
     return curImages;
 }
@@ -135,7 +143,6 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)aScrollView {
-//    isAutoScroll = NO;
     int x = aScrollView.contentOffset.x;
     int y = aScrollView.contentOffset.y;
     NSLog(@"did  x=%d  y=%d", x, y);
@@ -170,6 +177,22 @@
     }
 }
 
+- (void)updateImageArrayWithImageArray:(NSArray *)images
+{
+    if ([images count]) {
+        [imagesArray removeAllObjects];
+        for (UIImage * image in images) {
+            if (image) {
+                [imagesArray addObject:image];
+                
+            }
+        }
+        totalPage = [images count];
+        viewCount = totalPage;
+    }
+}
+
+#pragma mark - Private Method
 -(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
 {
     isAutoScroll = YES;
@@ -229,7 +252,6 @@
 
 - (void)turnPage
 {
-//    NSInteger page = pageControl.currentPage;
     NSLog(@"%d",currentPage);
     pageControl.currentPage = currentPage;
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -240,14 +262,12 @@
 
 - (void)runTimePage
 {
-
-    currentPage++;
-    currentPage = currentPage > viewCount-1 ? 0 : currentPage ;
-    if (isAutoScroll) {
-        [self turnPage];
+    if (viewCount!=0) {
+        currentPage++;
+        currentPage = currentPage > viewCount-1 ? 0 : currentPage ;
+        if (isAutoScroll) {
+            [self turnPage];
+        }
     }
-    
 }
-
-
 @end
