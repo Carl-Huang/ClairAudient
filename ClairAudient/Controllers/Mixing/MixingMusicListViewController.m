@@ -16,12 +16,13 @@
 #import "MBProgressHUD.h"
 #import "MusicInfo.h"
 #import "PersistentStore.h"
+#import "AutoCompletedOperation.h"
 
 #define Cell_Height 65.0f
-@interface MixingMusicListViewController ()
+@interface MixingMusicListViewController ()<UITextFieldDelegate,AutoCompleteOperationDelegate>
 {
     NSMutableArray * dataSource;
-    
+    NSArray        * searchResultDataSource;
     //用importTool导出音乐库里面的文件
     TSLibraryImport* importTool;
     
@@ -29,7 +30,11 @@
     
     //当前选择文件的本地路径
     NSString * currentLocationPath;
+    
+    //控制使用哪个数据源
+    BOOL isSearchResultDataSource;
 }
+@property (strong ,nonatomic) NSOperationQueue *autoCompleteQueue;
 @end
 
 @implementation MixingMusicListViewController
@@ -49,6 +54,7 @@
     [self initUI];
     
     dataSource = [NSMutableArray array];
+    searchResultDataSource = [NSArray array];
     importTool = [[TSLibraryImport alloc] init];
 #if TARGET_IPHONE_SIMULATOR
     isSimulator = YES;
@@ -66,7 +72,12 @@
             [self showAlertViewWithMessage:@"本地没有音乐文件"];
         }
     }
-
+    
+    
+    //搜索框
+    self.searchField.delegate   = self;
+    
+    isSearchResultDataSource    = NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -147,7 +158,6 @@
                 });
                 
             }];
-            
         }
     }else
     {
@@ -168,14 +178,15 @@
 -(void)findArtistList
 {
     MPMediaQuery *listQuery = [MPMediaQuery playlistsQuery];
+    NSNumber *musicType = [NSNumber numberWithInteger:MPMediaTypeMusic];
+    
+    MPMediaPropertyPredicate *musicPredicate = [MPMediaPropertyPredicate predicateWithValue:musicType forProperty:MPMediaItemPropertyMediaType];
+    [listQuery addFilterPredicate: musicPredicate];
     //播放列表
     NSArray *playlist = [listQuery items];
     for (MPMediaItem * item in playlist) {
         NSDictionary * dic = [self getMPMediaItemInfo:item];
-        if ([[dic[@"musicURL"] absoluteString] rangeOfString:@"item.mp3"].location != NSNotFound) {
-            [dataSource addObject:dic];
-        }
-        
+        [dataSource addObject:dic];
     }
 }
 
@@ -206,15 +217,6 @@
     
     NSDictionary * musicInfo = @{@"Title":title,@"Artist":artist,@"Album":albumName,@"musicTime":musicTime,@"musicURL":musicURL};
     return musicInfo;
-}
-
-//读取本地音乐文件
--(NSMutableArray *)readLocalMusicFile
-{
-    NSMutableArray * array = [NSMutableArray array];
-    
-    
-    return array;
 }
 
 -(void)getLocationFilePath:(NSURL*)assetURL title:(NSString *)title
@@ -258,6 +260,36 @@
     }
 }
 
+-(void)updateTableWithData:(NSArray *)data
+{
+    if (dataSource) {
+        dataSource = nil;
+    }
+    dataSource = [data mutableCopy];
+    [self.tableView reloadData];
+}
+
+-(void)fetchItemsResultsWithString:(NSString *)searchStr
+{
+    [self.autoCompleteQueue cancelAllOperations];
+    if (self.autoCompleteQueue == nil) {
+        self.autoCompleteQueue = [[NSOperationQueue alloc]init];
+    }
+    AutoCompletedOperation *operation = [[AutoCompletedOperation alloc]
+                                         initWithDelegate:self
+                                         incompleteString:searchStr
+                                         possibleCompletions:dataSource];
+    [self.autoCompleteQueue addOperation:operation];
+    operation = nil;
+
+}
+
+#pragma mark - Outlet Action
+- (IBAction)backAction:(id)sender
+{
+    [self popVIewController];
+}
+
 
 #pragma mark - UITableViewDataSource Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -280,7 +312,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MixingMusicListCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    NSDictionary * dic          = [dataSource objectAtIndex:indexPath.row];
+    NSDictionary * dic = nil;
+    if (isSearchResultDataSource) {
+        dic = [searchResultDataSource objectAtIndex:indexPath.row];
+    }else
+    {
+        dic = [dataSource objectAtIndex:indexPath.row];
+    }
+    
 
     [cell.editButton addTarget:self action:@selector(modifyMusic:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -298,9 +337,44 @@
     
 }
 
-#pragma mark -
-- (IBAction)backAction:(id)sender
+#pragma mark - TextField Delegate
+-(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [self popVIewController];
+    
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [self fetchItemsResultsWithString:textField.text];
+}
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if ([string isEqualToString:@"\n"]) {
+        [textField resignFirstResponder];
+        return NO;
+    }else if ([string length]==0)
+    {
+        isSearchResultDataSource = NO;
+        [self.tableView reloadData];
+        return YES;
+    }else
+    {
+        NSLog(@"%@",string);
+        [self fetchItemsResultsWithString:string];
+        return  YES;
+    }
+    
+}
+
+#pragma mark - AutoComplete Operation Delegate
+- (void)autoCompleteItems:(NSArray *)autocompletions
+{
+    isSearchResultDataSource    = YES;
+    searchResultDataSource      = autocompletions;
+    if ([searchResultDataSource count]) {
+        [self.tableView reloadData];
+    }
+    
 }
 @end

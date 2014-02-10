@@ -23,8 +23,8 @@
 #import <objc/runtime.h>
 #import <Foundation/NSObjCRuntime.h>
 #import <objc/message.h>
-
-@interface LocalMusicViewController ()
+#import "AutoCompletedOperation.h"
+@interface LocalMusicViewController ()<UITextFieldDelegate,AutoCompleteOperationDelegate>
 {
     NSMutableArray * dataSource;
     
@@ -35,10 +35,16 @@
     
     //当前选择文件的本地路径
     NSString * currentLocationPath;
+    
+    //控制使用哪个数据源
+    BOOL isSearchResultDataSource;
+    
+    NSArray        * searchResultDataSource;
 }
 
 @property (strong ,nonatomic) AudioReader * reader;
 @property (strong ,nonatomic) AudioManager * audioMng;
+@property (strong ,nonatomic) NSOperationQueue *autoCompleteQueue;
 @end
 
 @implementation LocalMusicViewController
@@ -76,6 +82,12 @@
             [self showAlertViewWithMessage:@"本地没有音乐文件"];
         }
     }    // Do any additional setup after loading the view from its nib.
+    
+    //搜索框
+    self.searchField.delegate   = self;
+    
+    
+    isSearchResultDataSource    = NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -179,13 +191,15 @@
 -(void)findArtistList
 {
     MPMediaQuery *listQuery = [MPMediaQuery playlistsQuery];
+    NSNumber *musicType = [NSNumber numberWithInteger:MPMediaTypeMusic];
+    
+    MPMediaPropertyPredicate *musicPredicate = [MPMediaPropertyPredicate predicateWithValue:musicType forProperty:MPMediaItemPropertyMediaType];
+    [listQuery addFilterPredicate: musicPredicate];
     //播放列表
     NSArray *playlist = [listQuery items];
     for (MPMediaItem * item in playlist) {
         NSDictionary * dic = [self getMPMediaItemInfo:item];
-        if ([[dic[@"musicURL"] absoluteString] rangeOfString:@"item.mp3"].location != NSNotFound) {
-            [dataSource addObject:dic];
-        }
+        [dataSource addObject:dic];
     }
 }
 
@@ -324,7 +338,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary * dic          = [dataSource objectAtIndex:indexPath.row];
+    NSDictionary * dic = nil;
+    if (isSearchResultDataSource) {
+        dic = [searchResultDataSource objectAtIndex:indexPath.row];
+    }else
+    {
+        dic = [dataSource objectAtIndex:indexPath.row];
+    }
     MixingMusicListCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     [cell.firstBtn setImage:[UIImage imageNamed:@"hunyin_45.png"] forState:UIControlStateNormal];
     [cell.secondBtn setImage:[UIImage imageNamed:@"hunyin_46.png"] forState:UIControlStateNormal];
@@ -347,9 +367,76 @@
     
 }
 
-#pragma mark -
+
+-(void)updateTableWithData:(NSArray *)data
+{
+    if (dataSource) {
+        dataSource = nil;
+    }
+    dataSource = [data mutableCopy];
+    [self.contentTable reloadData];
+}
+
+-(void)fetchItemsResultsWithString:(NSString *)searchStr
+{
+    [self.autoCompleteQueue cancelAllOperations];
+    if (self.autoCompleteQueue == nil) {
+        self.autoCompleteQueue = [[NSOperationQueue alloc]init];
+    }
+    AutoCompletedOperation *operation = [[AutoCompletedOperation alloc]
+                                         initWithDelegate:self
+                                         incompleteString:searchStr
+                                         possibleCompletions:dataSource];
+    [self.autoCompleteQueue addOperation:operation];
+    operation = nil;
+    
+}
+
+
+#pragma mark - Outlet Action
 - (IBAction)backAction:(id)sender
 {
     [self popVIewController];
+}
+
+#pragma mark - TextField Delegate
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [self fetchItemsResultsWithString:textField.text];
+}
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if ([string isEqualToString:@"\n"]) {
+        [textField resignFirstResponder];
+        return NO;
+    }else if ([string length]==0)
+    {
+        isSearchResultDataSource = NO;
+        [self.contentTable reloadData];
+        return YES;
+    }else
+    {
+        NSLog(@"%@",string);
+        [self fetchItemsResultsWithString:string];
+        return  YES;
+    }
+    
+}
+
+#pragma mark - AutoComplete Operation Delegate
+- (void)autoCompleteItems:(NSArray *)autocompletions
+{
+    isSearchResultDataSource    = YES;
+    searchResultDataSource      = autocompletions;
+    if ([searchResultDataSource count]) {
+        [self.contentTable reloadData];
+    }
+    
 }
 @end

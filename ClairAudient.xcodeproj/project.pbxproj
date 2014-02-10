@@ -54,6 +54,8 @@
 		4ED175311892B570000EC483 /* MixingEffectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ED1752F1892B570000EC483 /* MixingEffectViewController.xib */; };
 		4ED175351892B8F3000EC483 /* LocalMusicViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4ED175331892B8F3000EC483 /* LocalMusicViewController.mm */; };
 		4ED175361892B8F3000EC483 /* LocalMusicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ED175341892B8F3000EC483 /* LocalMusicViewController.xib */; };
+		4EFF165118A7D134005E4802 /* NSString+Levenshtein.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EFF165018A7D134005E4802 /* NSString+Levenshtein.m */; };
+		4EFF165418A7D19C005E4802 /* AutoCompletedOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EFF165318A7D19C005E4802 /* AutoCompletedOperation.m */; };
 		C3164CAD1874555D00301ACA /* FoundMusic_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C691874555D00301ACA /* FoundMusic_@2x.png */; };
 		C3164CAE1874555D00301ACA /* FoundMusic_a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C6A1874555D00301ACA /* FoundMusic_a@2x.png */; };
 		C3164CAF1874555D00301ACA /* FoundMusic_ab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C6B1874555D00301ACA /* FoundMusic_ab@2x.png */; };
@@ -542,6 +544,10 @@
 		4ED175321892B8F3000EC483 /* LocalMusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalMusicViewController.h; sourceTree = "<group>"; };
 		4ED175331892B8F3000EC483 /* LocalMusicViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LocalMusicViewController.mm; sourceTree = "<group>"; };
 		4ED175341892B8F3000EC483 /* LocalMusicViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocalMusicViewController.xib; sourceTree = "<group>"; };
+		4EFF164F18A7D134005E4802 /* NSString+Levenshtein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Levenshtein.h"; sourceTree = "<group>"; };
+		4EFF165018A7D134005E4802 /* NSString+Levenshtein.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Levenshtein.m"; sourceTree = "<group>"; };
+		4EFF165218A7D19C005E4802 /* AutoCompletedOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoCompletedOperation.h; sourceTree = "<group>"; };
+		4EFF165318A7D19C005E4802 /* AutoCompletedOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoCompletedOperation.m; sourceTree = "<group>"; };
 		C3164C691874555D00301ACA /* FoundMusic_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_@2x.png"; sourceTree = "<group>"; };
 		C3164C6A1874555D00301ACA /* FoundMusic_a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_a@2x.png"; sourceTree = "<group>"; };
 		C3164C6B1874555D00301ACA /* FoundMusic_ab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FoundMusic_ab@2x.png"; sourceTree = "<group>"; };
@@ -1064,7 +1070,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4E117967188F627F00FB619F /* Utilities */ = {
+		4E117967188F627F00FB619F /* Audio Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				4E079C2E189B557900B0BB5F /* MusicMixerOutput.h */,
@@ -1087,6 +1093,7 @@
 				4E2A13851891531C00D8CB65 /* RingBuffer.h */,
 				4E2A13861891531C00D8CB65 /* RingBuffer.mm */,
 			);
+			name = "Audio Utilities";
 			path = Utilities;
 			sourceTree = "<group>";
 		};
@@ -1146,6 +1153,15 @@
 				4E96B58A188EABC4008EA56F /* VERSION */,
 			);
 			path = VERSION;
+			sourceTree = "<group>";
+		};
+		4EFF164E18A7D134005E4802 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				4EFF164F18A7D134005E4802 /* NSString+Levenshtein.h */,
+				4EFF165018A7D134005E4802 /* NSString+Levenshtein.m */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		C3164C681874555D00301ACA /* foundmusic */ = {
@@ -1724,7 +1740,8 @@
 		C3FEB08E1871C2A8008EADAA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				4E117967188F627F00FB619F /* Utilities */,
+				4EFF164E18A7D134005E4802 /* Category */,
+				4E117967188F627F00FB619F /* Audio Utilities */,
 				C341171D188BC6580070EAB4 /* Models */,
 				C3411715188B8B080070EAB4 /* Http */,
 				C3164CF218746A9A00301ACA /* Views */,
@@ -1957,6 +1974,8 @@
 				C3FEB0EA1871D2FC008EADAA /* ControlCenter.m */,
 				C3D4FCB6187CFD64001A7223 /* UIViewController+CustomBarItemPosition.h */,
 				C3D4FCB7187CFD64001A7223 /* UIViewController+CustomBarItemPosition.m */,
+				4EFF165218A7D19C005E4802 /* AutoCompletedOperation.h */,
+				4EFF165318A7D19C005E4802 /* AutoCompletedOperation.m */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -2429,6 +2448,7 @@
 				C39A97C21892CC6B00F41CBB /* SearchResultViewController.m in Sources */,
 				C3456CEA18877A3B009329D2 /* MyProductionCell.m in Sources */,
 				C32F400D1882876A00681953 /* UserCenterViewController.m in Sources */,
+				4EFF165418A7D19C005E4802 /* AutoCompletedOperation.m in Sources */,
 				4E2AD2F01891EC3600020135 /* CloneView.m in Sources */,
 				C32F401C188287D300681953 /* PersonalHomePageViewController.m in Sources */,
 				C3FEB0B41871C801008EADAA /* IO.m in Sources */,
@@ -2492,6 +2512,7 @@
 				C3456CF31887CA1D009329D2 /* MixingMusicListCell.m in Sources */,
 				C39BBE571893DF5C00FC8F72 /* TSPopoverPopoverView.m in Sources */,
 				4E11796A188F627F00FB619F /* MusicCutter.m in Sources */,
+				4EFF165118A7D134005E4802 /* NSString+Levenshtein.m in Sources */,
 				C3411724188BE31E0070EAB4 /* User.m in Sources */,
 				4E1CDE0218900BA000C046ED /* AudioManager.m in Sources */,
 				C3FEB0B31871C801008EADAA /* HWConnect.m in Sources */,
