@@ -120,7 +120,6 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             currentSelectedItemSlider.value = postionInSec;
         });
-        
     }
 }
 
