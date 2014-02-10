@@ -30,6 +30,7 @@ typedef NS_ENUM(NSInteger, OutputType)
 -(void)play;
 -(void)pause;
 -(void)stop;
+-(BOOL)isPlaying;
 
 -(void)fastForward:(NSInteger)sec;
 -(void)backForward:(NSInteger)sec;

@@ -70,7 +70,9 @@
     __weak MixingViewController * weakSelf =self;
     plotView = [[AudioPlotView alloc]initWithFrame:CGRectMake(0, 80, 320, 245)];
     [plotView setupAudioPlotViewWitnNimber:1 type:OutputTypeDefautl musicPath:edittingMusicFile withCompletedBlock:^(BOOL isFinish) {
-        ;
+        if (isFinish) {
+            [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        }
     }];
     
     [plotView setLocationBlock:^(NSDictionary * locationInfo)
@@ -81,17 +83,21 @@
     self.endTime.text   = [NSString stringWithFormat:@"%0.2f",[plotView getMusicLength]];
     self.cutLength.text = self.endTime.text;
     [self.view addSubview:plotView];
-    
-//    progressView = [[MBProgressHUD alloc]initWithFrame:CGRectMake(0, 0, 320, 460)];
-//    progressView.labelText = @"处理";
-//    progressView.dimBackground = YES;
-//    [self.view addSubview:progressView];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    if ([plotView isPlaying]) {
+        [plotView stop];
+    }
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
 }
+
 
 #pragma mark - Private Method
 -(void)updateInterfaceWithInfo:(NSDictionary*)info
@@ -106,12 +112,17 @@
     
 }
 
-
+-(NSString *)getTimeAsFileName
+{
+    NSDate * date = [NSDate date];
+    NSDateFormatter * format = [[NSDateFormatter alloc]init];
+    [format setDateFormat:@"yyyyMMddhhmmss"];
+    NSString * tempFileName = [format stringFromDate:date];
+    return tempFileName;
+}
 #pragma mark - Outlet Action
 - (IBAction)playMusic:(id)sender {
-    UIButton * btn = (UIButton *)sender;
-    [btn setSelected:!btn.selected];
-    if (btn.selected) {
+    if (![plotView isPlaying]) {
         [plotView play];
     }else
     {
@@ -124,15 +135,20 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     __weak MixingViewController * weakSelf = self;
     
-    
-    
-    [MusicCutter cropMusic:edittingMusicFile exportFileName:@"newSong.m4a" withStartTime:self.startTime.text.floatValue*60 endTime:self.endTime.text.floatValue*60 withCompletedBlock:^(AVAssetExportSessionStatus status, NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-            [self showAlertViewWithMessage:@"裁剪成功"];
-        });
-        
-    }];
+    // * Synthesis the music according to the length of the file
+    // * Crop the music
+    NSString * tempFileName = [self getTimeAsFileName];
+    if (tempFileName) {
+        tempFileName = [tempFileName stringByAppendingPathExtension:@"mov"];
+        [MusicCutter cropMusic:edittingMusicFile exportFileName:tempFileName withStartTime:self.startTime.text.floatValue*60 endTime:self.endTime.text.floatValue*60 withCompletedBlock:^(AVAssetExportSessionStatus status, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+                [self showAlertViewWithMessage:@"裁剪成功"];
+            });
+            
+        }];
+    }
+   
 }
 
 - (IBAction)backAction:(id)sender
@@ -141,16 +157,17 @@
 }
 
 - (IBAction)fastForwardAction:(id)sender {
+    //快进10秒
     [plotView fastForward:10];
 }
 
 - (IBAction)backForwardAction:(id)sender {
+    //后退10秒
     [plotView backForward:10];
 }
 
 - (IBAction)copyMusicAction:(id)sender {
-    NSInteger copyNumber = 4;
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSInteger copyNumber = 3;
     dispatch_async(dispatch_get_main_queue(), ^{
         
         if (plotView) {
@@ -163,7 +180,7 @@
         __weak MixingViewController * weakSelf = self;
         [plotView setupAudioPlotViewWitnNimber:copyNumber type:OutputTypeDefautl musicPath:edittingMusicFile withCompletedBlock:^(BOOL isFinish) {
             if (isFinish) {
-                [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
             }
         }];
         
@@ -178,6 +195,7 @@
         [[NSUserDefaults standardUserDefaults]setObject:currentEditMusicInfo forKey:@"currentEditingMusic"];
         [[NSUserDefaults standardUserDefaults]synchronize];
         [self.view addSubview:plotView];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     });
    
     

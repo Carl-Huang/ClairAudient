@@ -37,6 +37,7 @@
     OutputType      currentType;
     
     NSMutableDictionary    *locationInfo;
+    BOOL            isAccessHalf;
 }
 
 @property (strong, nonatomic) EZAudioPlotGL *audioPlot;
@@ -78,6 +79,7 @@
 -(void)setupAudioPlotViewWitnNimber:(NSInteger)number type:(OutputType)type musicPath:(NSString *)path withCompletedBlock:(void (^)(BOOL isFinish))block
 {
 
+    
 #if TARGET_IPHONE_SIMULATOR
     isSimulator = YES;
 #else
@@ -94,13 +96,13 @@
     
     //设置contentScrollView
     self.contentScrollView = [[UIScrollView alloc]initWithFrame:rect];
-    [self.contentScrollView setContentSize:CGSizeMake(60 + number*rect.size.width, self.contentScrollView.frame.size.height)];
+    [self.contentScrollView setContentSize:CGSizeMake(60 + (number*rect.size.width * 1.5), self.contentScrollView.frame.size.height)];
     self.contentScrollView.showsHorizontalScrollIndicator = NO;
     self.contentScrollView.scrollEnabled = YES;
     
     CGRect scrollViewRect = self.contentScrollView.frame;
     scrollViewRect.origin.x = rect.origin.x+PlotViewOffset;
-    self.contentScrollView.backgroundColor = [UIColor clearColor];
+    self.contentScrollView.backgroundColor = PlotViewBackgroundColor;
     [self.contentScrollView scrollRectToVisible:scrollViewRect animated:YES];
     
     rect.origin.x = PlotViewOffset/2;
@@ -129,8 +131,6 @@
     [self.timeLineView addGestureRecognizer:tapGesture];
     tapGesture = nil;
     self.timeLineView.backgroundColor = [UIColor clearColor];
-//    self.timeLineView.alpha = 0.3;
-
     
     [self.contentScrollView addSubview:self.audioPlot];
     [self.contentScrollView addSubview:self.maskView];
@@ -166,11 +166,19 @@
 
             dispatch_group_async(group,dispatch_get_main_queue(), ^ {
                 if (number > 1) {
-                    [self addPlotViewWithNumber:1];
+                    [self addPlotViewWithNumber:number completed:^(BOOL isCompleted) {
+                        if (isCompleted) {
+                            block(YES);
+                        }
+                    }];
+                }else
+                {
+                    block (YES);
                 }
             });
             dispatch_group_notify(group,dispatch_get_main_queue(), ^ {
-                block(YES);
+                //TODO: 如何保证嵌套的block 完成后执行到这里
+//                block(YES);
             });
         });
         
@@ -255,13 +263,20 @@
     locationInfo = [NSMutableDictionary dictionary];
     [locationInfo setObject:[NSNumber numberWithFloat:0.0] forKey:@"startLocation"];
     [locationInfo setObject:[NSNumber numberWithFloat:musicLength] forKey:@"endLocation"];
-    
+    rect.origin.x = PlotViewOffset;
+   
     
     [self.contentScrollView addSubview:timeline];
     currentPositionOfFile = 0.0f;
     currentPositionOfTimeLine = 0.0f;
-    [self addSubview:self.contentScrollView];
     
+//    UIView * timeLineBgView = [[UIView alloc]initWithFrame:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width * number, rect.size.height)];
+//    [timeLineBgView setBackgroundColor:[UIColor redColor]];
+//    timeLineBgView.alpha = 0.2;
+//    [timeLineBgView addSubview:timeline];
+    
+    [self addSubview:self.contentScrollView];
+    isAccessHalf = NO;
     
 }
 
@@ -318,6 +333,16 @@
     {
         [EZOutputHelper sharedOutput].outputDataSource = nil;
         [[EZOutputHelper sharedOutput] stopPlayback];
+    }
+}
+
+-(BOOL)isPlaying
+{
+    if ([EZOutput sharedOutput].isPlaying) {
+        return YES;
+    }else
+    {
+        return NO;
     }
 }
 
@@ -415,11 +440,29 @@
     @autoreleasepool {
         CGRect rect = timeline.frame;
         rect.origin.x = offset + PlotViewOffset;
+        
+        CGRect scrollViewRect = self.contentScrollView.frame;
+        scrollViewRect.origin.x = offset ;
+        
+        if ((offset ) > self.frame.size.width / 2.0) {
+            isAccessHalf = YES;
+            NSLog(@"******* %f",offset);
+            [self.contentScrollView scrollRectToVisible:scrollViewRect animated:YES];
+            
+        }else
+        {
+            if (isAccessHalf) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.contentScrollView scrollRectToVisible:CGRectMake(PlotViewOffset, 0, 320, scrollViewRect.size.height) animated:YES];
+                });
+                isAccessHalf = NO;
+            }
+        }
         timeline.frame = rect;
     }
 }
 
--(void)addPlotViewWithNumber:(NSInteger)count
+-(void)addPlotViewWithNumber:(NSInteger)count completed:(void (^)(BOOL isCompleted))completedBlock
 {
     @autoreleasepool {
         CGRect rect = self.audioPlot.frame;
@@ -446,7 +489,11 @@
             [tempPlotView updateBuffer:waveformData withBufferSize:length];
             dispatch_async(dispatch_get_main_queue(), ^{
                 weakSelf.snapShotImage = [[UIImageView alloc]initWithImage:tempPlotView.snapShotImage];
-                [weakSelf configureSnapShotImage];
+                [weakSelf configureSnapShotImage:count completed:^(BOOL isCompleted) {
+                    if (isCompleted) {
+                        completedBlock(YES);
+                    }
+                }];
             });
             
         }];
@@ -457,12 +504,12 @@
     }
 }
 
--(void)configureSnapShotImage
+-(void)configureSnapShotImage:(NSInteger)number completed:(void (^)(BOOL isCompleted))completedBlock
 {
     tempPlotView = nil;
     CGRect plotViewRect = self.audioPlot.frame;
     
-    for (int i= 1; i< self.snapShotImageCount; i++) {
+    for (int i= 1; i< number; i++) {
         plotViewRect.origin.x = plotViewRect.size.width * i + PlotViewOffset;
         UIImageView * tempImage = [[UIImageView alloc]initWithImage:self.snapShotImage.image];
         [tempImage setFrame:plotViewRect];
@@ -470,6 +517,7 @@
         [self.contentScrollView sendSubviewToBack:tempImage];
         tempImage = nil;
     }
+    completedBlock(YES);
 }
 
 -(CGFloat)getTimeFromRelativePosition:(CGFloat)sec
@@ -585,15 +633,14 @@ withNumberOfChannels:(UInt32)numberOfChannels {
     if( self.audioFile ){
         if (self.currentPositionOfTimeLine >= self.endLocation||self.eof ) {
             //获取位置在音乐文件中的相对位置
-            NSInteger roundDownPosition = floor(self.currentPositionOfTimeLine);
-            NSInteger relativePosition = roundDownPosition % roundDownRectWidth;
-            CGFloat param1      = (CGFloat)relativePosition;
-            CGFloat parma2      = (CGFloat)roundDownRectWidth;
-            CGFloat position    = param1/parma2 * totalLengthOfTheFile;
-            
+//            NSInteger roundDownPosition = floor(self.currentPositionOfTimeLine);
+//            NSInteger relativePosition = roundDownPosition % roundDownRectWidth;
+//            CGFloat param1      = (CGFloat)relativePosition;
+//            CGFloat parma2      = (CGFloat)roundDownRectWidth;
+//            CGFloat position    = param1/parma2 * totalLengthOfTheFile;
+            CGFloat position    = self.startLocation/roundDownRectWidth * totalLengthOfTheFile;
             
             [self.audioFile seekToFrame:position];
-//            self.currentPositionOfFile = 0;
             self.eof = NO;
             
             //更新当前时间轴的位置
