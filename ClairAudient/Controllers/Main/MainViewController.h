@@ -9,6 +9,11 @@
 #import "CommonViewController.h"
 
 @interface MainViewController : CommonViewController
+@property (weak, nonatomic) IBOutlet UIView *adScrollView;
+
+
+
+
 - (IBAction)showRecordVC:(id)sender;
 - (IBAction)showFoundMusicVC:(id)sender;
 - (IBAction)showMixingMusicVC:(id)sender;

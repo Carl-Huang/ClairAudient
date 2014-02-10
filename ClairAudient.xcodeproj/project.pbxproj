@@ -43,6 +43,7 @@
 		4E96B596188EABC4008EA56F /* CHANGELOG in Resources */ = {isa = PBXBuildFile; fileRef = 4E96B589188EABC4008EA56F /* CHANGELOG */; };
 		4E96B597188EABC4008EA56F /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 4E96B58A188EABC4008EA56F /* VERSION */; };
 		4E96B59A188EC7B0008EA56F /* TrachBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E96B599188EC7B0008EA56F /* TrachBtn.m */; };
+		4EB6FAC518A8F67300482613 /* CycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB6FAC418A8F67300482613 /* CycleScrollView.m */; };
 		4ED1751A18925322000EC483 /* AudioPlotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1751918925322000EC483 /* AudioPlotView.m */; };
 		4ED1752018925CC2000EC483 /* MutiMixingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1751E18925CC2000EC483 /* MutiMixingViewController.m */; };
 		4ED1752118925CC2000EC483 /* MutiMixingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ED1751F18925CC2000EC483 /* MutiMixingViewController.xib */; };
@@ -491,6 +492,8 @@
 		4E96B58A188EABC4008EA56F /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
 		4E96B598188EC7B0008EA56F /* TrachBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrachBtn.h; sourceTree = "<group>"; };
 		4E96B599188EC7B0008EA56F /* TrachBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrachBtn.m; sourceTree = "<group>"; };
+		4EB6FAC318A8F67300482613 /* CycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CycleScrollView.h; sourceTree = "<group>"; };
+		4EB6FAC418A8F67300482613 /* CycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CycleScrollView.m; sourceTree = "<group>"; };
 		4ED1751818925322000EC483 /* AudioPlotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlotView.h; sourceTree = "<group>"; };
 		4ED1751918925322000EC483 /* AudioPlotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlotView.m; sourceTree = "<group>"; };
 		4ED1751D18925CC2000EC483 /* MutiMixingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutiMixingViewController.h; sourceTree = "<group>"; };
@@ -1808,6 +1811,8 @@
 		C3FEB0E81871D2BB008EADAA /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				4EB6FAC318A8F67300482613 /* CycleScrollView.h */,
+				4EB6FAC418A8F67300482613 /* CycleScrollView.m */,
 				C3FEB0E91871D2FC008EADAA /* ControlCenter.h */,
 				C3FEB0EA1871D2FC008EADAA /* ControlCenter.m */,
 				C3D4FCB6187CFD64001A7223 /* UIViewController+CustomBarItemPosition.h */,
@@ -2258,6 +2263,7 @@
 				4E2AD2F01891EC3600020135 /* CloneView.m in Sources */,
 				C32F401C188287D300681953 /* PersonalHomePageViewController.m in Sources */,
 				C3FEB0B41871C801008EADAA /* IO.m in Sources */,
+				4EB6FAC518A8F67300482613 /* CycleScrollView.m in Sources */,
 				C32F402B188390A100681953 /* IntegralViewController.m in Sources */,
 				C3FEB0E51871CB12008EADAA /* FIndSoundViewController.m in Sources */,
 				C32D4FA8187F953C0090730B /* TMQuiltViewCell.m in Sources */,

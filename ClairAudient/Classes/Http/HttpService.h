@@ -18,6 +18,7 @@
 #define Find_Recommend_By_Catalog                   @"getVlTuiJianTop10Action"
 #define Find_Download_Rank_Voice                    @"getVoiceLibraryTop10Action"
 #define Find_Catalog_Rank_Voice                     @"getVoiceLibraryTop10Action"
+#define GetMainImagesAction                         @"GetMainImagesAction"
 @interface HttpService : AFHttp
 
 + (HttpService *)sharedInstance;
@@ -71,5 +72,10 @@
  */
 - (void)findDownloadRankVoiceWithCompletionBlock:(void (^)(id object))success failureBlock:(void (^)(NSError * error,NSString * responseString))failure;
 
+
+/**
+ @desc 获取功能首页最上面的广告图片
+ */
+- (void)getAdvertisementImageWithCompletedBlock:(void (^)(id object))success failureBlock:(void (^)(NSError * error,NSString * responseString))failure;
 
 @end

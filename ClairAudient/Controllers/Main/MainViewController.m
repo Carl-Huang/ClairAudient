@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "ControlCenter.h"
 #import "HttpService.h"
+#import "CycleScrollView.h"
 @interface MainViewController ()
 
 @end
@@ -31,6 +32,9 @@
     [self.navigationController setNavigationBarHidden:YES];
     
     [self testAPI];
+    
+    [self showAdvertisementImage];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -132,6 +136,19 @@
         NSLog(@"findDownloadRankVoice");
     } failureBlock:^(NSError *error, NSString *responseString) {
         
+    }];
+}
+
+-(void)showAdvertisementImage
+{
+    __block NSArray * imgArray = nil;
+    [[HttpService sharedInstance]getAdvertisementImageWithCompletedBlock:^(id object) {
+        //获取图片名字
+        imgArray = object;
+        
+        //获取图片
+    } failureBlock:^(NSError *error, NSString *responseString) {
+        ;
     }];
 }
 @end
