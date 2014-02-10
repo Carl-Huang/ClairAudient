@@ -86,6 +86,13 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    if ([plotView isPlaying]) {
+        [plotView stop];
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -115,9 +122,7 @@
 }
 #pragma mark - Outlet Action
 - (IBAction)playMusic:(id)sender {
-    UIButton * btn = (UIButton *)sender;
-    [btn setSelected:!btn.selected];
-    if (btn.selected) {
+    if (![plotView isPlaying]) {
         [plotView play];
     }else
     {
@@ -130,7 +135,8 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     __weak MixingViewController * weakSelf = self;
     
-    
+    // * Synthesis the music according to the length of the file
+    // * Crop the music
     NSString * tempFileName = [self getTimeAsFileName];
     if (tempFileName) {
         tempFileName = [tempFileName stringByAppendingPathExtension:@"mov"];

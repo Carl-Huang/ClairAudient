@@ -58,7 +58,9 @@
     {
         //错误
     }
-    
+    CGRect rect = self.controlBtnView.frame;
+    rect.origin.x = plotViewUp.frame.size.height * 2;
+    self.controlBtnView.frame = rect;
 }
 
 - (void)didReceiveMemoryWarning

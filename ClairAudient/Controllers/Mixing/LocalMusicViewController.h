@@ -10,6 +10,7 @@
 
 @interface LocalMusicViewController : CommonViewController
 @property (weak, nonatomic) IBOutlet UITableView *contentTable;
+@property (weak, nonatomic) IBOutlet UITextField *searchField;
 
 
 - (IBAction)backAction:(id)sender;
