@@ -353,8 +353,14 @@
     if ([string isEqualToString:@"\n"]) {
         [textField resignFirstResponder];
         return NO;
+    }else if ([string length]==0)
+    {
+        isSearchResultDataSource = NO;
+        [self.tableView reloadData];
+        return YES;
     }else
     {
+        NSLog(@"%@",string);
         [self fetchItemsResultsWithString:string];
         return  YES;
     }
@@ -366,6 +372,9 @@
 {
     isSearchResultDataSource    = YES;
     searchResultDataSource      = autocompletions;
-    [self.tableView reloadData];
+    if ([searchResultDataSource count]) {
+        [self.tableView reloadData];
+    }
+    
 }
 @end
