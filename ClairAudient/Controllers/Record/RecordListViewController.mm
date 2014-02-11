@@ -97,31 +97,9 @@
      {
          [weakSelf.reader retrieveFreshAudio:data numFrames:numFrames numChannels:numChannels];
      }];
-    
-//    if (sliderTimer) {
-//        [sliderTimer invalidate];
-//        sliderTimer = nil;
-//    }
-//    sliderTimer = [NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(updateSliderPositon) userInfo:nil repeats:YES];
-//    [[NSRunLoop currentRunLoop]addTimer:sliderTimer forMode:NSRunLoopCommonModes];
-//    [sliderTimer fire];
+
 }
 
--(void)updateSliderPositon
-{
-//    CGFloat postionInSec = self.reader.currentTime;
-//    if (postionInSec == currentPlayFileLength) {
-//        [self.audioMng pause];
-//        [currentPlayItemControlBtn setSelected:NO];
-//        currentSelectedItemSlider.value = 0.0f;
-//    }else
-//    {
-//        NSLog(@"%f",postionInSec);
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            currentSelectedItemSlider.value = postionInSec;
-//        });
-//    }
-}
 
 -(void)updateDataSource
 {

@@ -17,7 +17,7 @@
 #import "AudioManager.h"
 
 #define Cell_Height 90.0f
-@interface MyProductionViewController ()<ItemDidSelectedDelegate>
+@interface MyProductionViewController ()<ItemDidSelectedDelegate,AudioReaderDelegate>
 {
     NSArray * dataSource;
     UISlider * currentSelectedItemSlider;
@@ -122,6 +122,17 @@
     }
 }
 
+-(CGFloat)convertSecondToMinute:(CGFloat)time
+{
+    NSInteger roundDownSecond = floor(time);
+    CGFloat   h = roundDownSecond / (60 * 60);
+    CGFloat   m = floor((time - h * 60) / 60);
+    CGFloat   s = (time - h * 60*60 - m * 60);
+    
+    CGFloat totalTime = h + m + s;
+    return totalTime;
+}
+
 -(void)updateDataSource
 {
     dataSource = [PersistentStore getAllObjectWithType:[EditMusicInfo class]];
@@ -140,7 +151,7 @@
                    initWithAudioFileURL:inputFileURL
                    samplingRate:self.audioMng.samplingRate
                    numChannels:self.audioMng.numOutputChannels];
-    
+    self.reader.delegate = self;
     //太累了，要记住一定要设置currentime = 0.0,表示开始时间   :]
     self.reader.currentTime = 0.0;
     __weak MyProductionViewController * weakSelf =self;
@@ -149,33 +160,7 @@
      {
          [weakSelf.reader retrieveFreshAudio:data numFrames:numFrames numChannels:numChannels];
      }];
-    
-    if (sliderTimer) {
-        [sliderTimer invalidate];
-        sliderTimer = nil;
-    }
-    sliderTimer = [NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(updateSliderPositon) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop]addTimer:sliderTimer forMode:NSRunLoopCommonModes];
-    [sliderTimer fire];
-}
 
--(void)updateSliderPositon
-{
-    
-    NSInteger postionInSec = self.reader.currentTime / 60;
-    if (postionInSec == currentPlayFileLength) {
-        [sliderTimer invalidate];
-        sliderTimer = nil;
-        [self.audioMng pause];
-        [currentPlayItemControlBtn setSelected:NO];
-        currentSelectedItemSlider.value = 0.0f;
-    }else
-    {
-        NSLog(@"%d",postionInSec);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            currentSelectedItemSlider.value = postionInSec;
-        });
-    }
 }
 
 
@@ -203,15 +188,14 @@
     EditMusicInfo * object = [dataSource objectAtIndex:indexPath.row];
     cell.nameLabel.text         = object.title;
     cell.recordTimeLabel.text   = object.makeTime;
-    cell.playTimeLabel.text     = object.length;
+    cell.playTimeLabel.text     = [NSString stringWithFormat:@"%0.2f",[self convertSecondToMinute:object.length.floatValue]];
     cell.delegate               = self;
     cell.musicInfo              = object;
     [cell.playSlider setThumbImage:[UIImage imageNamed:@"record_20"] forState:UIControlStateNormal];
     [cell.playSlider setThumbImage:[UIImage imageNamed:@"record_20"] forState:UIControlStateHighlighted];
-    [cell.playSlider setMinimumTrackImage:[UIImage imageNamed:@"record_19"] forState:UIControlStateNormal];
+    [cell.playSlider setMinimumTrackImage:[UIImage imageNamed:@"MinimumTrackImage"] forState:UIControlStateNormal];
     [cell.playSlider setMaximumTrackImage:[UIImage imageNamed:@"record_19"] forState:UIControlStateNormal];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
 
     return cell;
 }
@@ -281,4 +265,20 @@
     NSLog(@"%@",info.title);
 }
 
+#pragma mark - AudioReader Delegate
+-(void)currentFileLocation:(CGFloat)location
+{
+    if (location == currentPlayFileLength) {
+        [self.audioMng pause];
+        [currentPlayItemControlBtn setSelected:NO];
+        currentSelectedItemSlider.value = 0.0f;
+    }else
+    {
+//        NSLog(@"%f",location);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            currentSelectedItemSlider.value = ceil(location);
+        });
+    }
+    
+}
 @end

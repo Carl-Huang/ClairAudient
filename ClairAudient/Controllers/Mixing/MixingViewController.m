@@ -130,6 +130,14 @@
     NSString * dateStr = [format stringFromDate:currentDate];
     return dateStr;
 }
+
+-(CGFloat)convertMinuteToSecond:(CGFloat)time
+{
+    NSInteger minute = floor(time);
+    CGFloat   second = time - minute;
+    CGFloat totalTime = minute * 60 + second;
+    return totalTime;
+}
 #pragma mark - Outlet Action
 - (IBAction)playMusic:(id)sender {
     if (![plotView isPlaying]) {
@@ -160,7 +168,7 @@
                 info.artist             = [weakSelf.musicInfo valueForKey:@"Artist"];
                 info.makeTime           = [self getMakeTime];
                 info.localFilePath      = localPath;
-                info.length             = [NSString stringWithFormat:@"%0.2f",musicLength];
+                info.length             = [NSString stringWithFormat:@"%0.2f",[self convertMinuteToSecond:musicLength]];
                 [[NSManagedObjectContext MR_defaultContext]MR_saveOnlySelfAndWait];
                 
                 

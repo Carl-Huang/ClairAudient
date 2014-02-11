@@ -153,11 +153,7 @@
     AVURLAsset* audioAsset =[AVURLAsset assetWithURL:url];
     CMTime audioDuration = audioAsset.duration;
     float audioDurationSeconds =CMTimeGetSeconds(audioDuration);
-    CGFloat h = floor(audioDurationSeconds / 120.0f);
-    CGFloat m = floor(audioDurationSeconds / 60.0f);
-    CGFloat s = floor(audioDurationSeconds  - m);
-    CGFloat musicLength = h + m + s;
-    return musicLength;
+    return floor(audioDurationSeconds);
 }
 
 -(NSString *)getDocumentDirectory
