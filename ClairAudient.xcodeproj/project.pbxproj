@@ -75,6 +75,7 @@
 		4EAF2A5318A9FE90007A8F70 /* ShareSDKiPhoneDefaultShareViewUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EAF2A3718A9FE90007A8F70 /* ShareSDKiPhoneDefaultShareViewUI.framework */; };
 		4EAF2A5418A9FE90007A8F70 /* ShareSDKiPhoneSimpleShareViewUI.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4EAF2A3818A9FE90007A8F70 /* ShareSDKiPhoneSimpleShareViewUI.bundle */; };
 		4EAF2A5518A9FE90007A8F70 /* ShareSDKiPhoneSimpleShareViewUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EAF2A3918A9FE90007A8F70 /* ShareSDKiPhoneSimpleShareViewUI.framework */; };
+		4EAF2A5718AA03B5007A8F70 /* MinimumTrackImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EAF2A5618AA03B5007A8F70 /* MinimumTrackImage.png */; };
 		4EB20FA518A92BC1007E5A8B /* EditMusicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB20FA418A92BC1007E5A8B /* EditMusicInfo.m */; };
 		4EB20FA918A931BE007E5A8B /* EditListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB20FA718A931BE007E5A8B /* EditListCell.m */; };
 		4EB20FAA18A931BE007E5A8B /* EditListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EB20FA818A931BE007E5A8B /* EditListCell.xib */; };
@@ -604,6 +605,7 @@
 		4EAF2A3718A9FE90007A8F70 /* ShareSDKiPhoneDefaultShareViewUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKiPhoneDefaultShareViewUI.framework; sourceTree = "<group>"; };
 		4EAF2A3818A9FE90007A8F70 /* ShareSDKiPhoneSimpleShareViewUI.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDKiPhoneSimpleShareViewUI.bundle; sourceTree = "<group>"; };
 		4EAF2A3918A9FE90007A8F70 /* ShareSDKiPhoneSimpleShareViewUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKiPhoneSimpleShareViewUI.framework; sourceTree = "<group>"; };
+		4EAF2A5618AA03B5007A8F70 /* MinimumTrackImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MinimumTrackImage.png; sourceTree = "<group>"; };
 		4EB20FA318A92BC1007E5A8B /* EditMusicInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditMusicInfo.h; sourceTree = "<group>"; };
 		4EB20FA418A92BC1007E5A8B /* EditMusicInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditMusicInfo.m; sourceTree = "<group>"; };
 		4EB20FA618A931BE007E5A8B /* EditListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditListCell.h; sourceTree = "<group>"; };
@@ -1838,6 +1840,7 @@
 		C3FEAF8F1871C294008EADAA /* record */ = {
 			isa = PBXGroup;
 			children = (
+				4EAF2A5618AA03B5007A8F70 /* MinimumTrackImage.png */,
 				C3FEAF901871C294008EADAA /* record_10@2x.png */,
 				C3FEAF911871C294008EADAA /* record_11@2x.png */,
 				C3FEAF921871C294008EADAA /* record_12@2x.png */,
@@ -2537,6 +2540,7 @@
 				C3FEB0E11871CAF4008EADAA /* MixingMusicListViewController.xib in Resources */,
 				C3FEB0291871C294008EADAA /* first_6@2x.png in Resources */,
 				C3FEB0391871C294008EADAA /* record_21@2x.png in Resources */,
+				4EAF2A5718AA03B5007A8F70 /* MinimumTrackImage.png in Resources */,
 				C3FEB01E1871C294008EADAA /* hunyin_50@2x.png in Resources */,
 				C326CDB7187C5EBD006DD97C /* RecommendSoundViewController.xib in Resources */,
 				C3164CC81874555D00301ACA /* FoundMusic_q@2x.png in Resources */,

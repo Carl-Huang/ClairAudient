@@ -194,6 +194,9 @@
 - (void)retrieveFreshAudio:(float *)buffer numFrames:(UInt32)thisNumFrames numChannels:(UInt32)thisNumChannels
 {
     ringBuffer->FetchInterleavedData(buffer, thisNumFrames, thisNumChannels);
+    if ([self.delegate respondsToSelector:@selector(currentFileLocation:)]) {
+        [self.delegate currentFileLocation:[self getCurrentTime]];
+    }
 }
 
 

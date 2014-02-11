@@ -15,7 +15,7 @@
 #import "AudioManager.h"
 
 #define Cell_Height 90.0f
-@interface RecordListViewController ()<ItemDidSelectedDelegate>
+@interface RecordListViewController ()<ItemDidSelectedDelegate,AudioReaderDelegate>
 {
     NSArray * dataSource;
     CGFloat currentPlayFileLength;
@@ -88,7 +88,7 @@
                        initWithAudioFileURL:inputFileURL
                        samplingRate:self.audioMng.samplingRate
                        numChannels:self.audioMng.numOutputChannels];
-    
+    self.reader.delegate = self;
     //太累了，要记住一定要设置currentime = 0.0,表示开始时间   :]
     self.reader.currentTime = 0.0;
     __weak RecordListViewController * weakSelf =self;
@@ -98,29 +98,29 @@
          [weakSelf.reader retrieveFreshAudio:data numFrames:numFrames numChannels:numChannels];
      }];
     
-    if (sliderTimer) {
-        [sliderTimer invalidate];
-        sliderTimer = nil;
-    }
-    sliderTimer = [NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(updateSliderPositon) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop]addTimer:sliderTimer forMode:NSRunLoopCommonModes];
-    [sliderTimer fire];
+//    if (sliderTimer) {
+//        [sliderTimer invalidate];
+//        sliderTimer = nil;
+//    }
+//    sliderTimer = [NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(updateSliderPositon) userInfo:nil repeats:YES];
+//    [[NSRunLoop currentRunLoop]addTimer:sliderTimer forMode:NSRunLoopCommonModes];
+//    [sliderTimer fire];
 }
 
 -(void)updateSliderPositon
 {
-    
-    CGFloat postionInSec = self.reader.currentTime / 100.0;
-    if (postionInSec == currentPlayFileLength) {
-        [self.audioMng pause];
-        [currentPlayItemControlBtn setSelected:NO];
-        currentSelectedItemSlider.value = 0.0f;
-    }else
-    {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            currentSelectedItemSlider.value = postionInSec;
-        });
-    }
+//    CGFloat postionInSec = self.reader.currentTime;
+//    if (postionInSec == currentPlayFileLength) {
+//        [self.audioMng pause];
+//        [currentPlayItemControlBtn setSelected:NO];
+//        currentSelectedItemSlider.value = 0.0f;
+//    }else
+//    {
+//        NSLog(@"%f",postionInSec);
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            currentSelectedItemSlider.value = postionInSec;
+//        });
+//    }
 }
 
 -(void)updateDataSource
@@ -168,9 +168,11 @@
     cell.playTimeLabel.text     = object.length;
     cell.delegate               = self;
     cell.musicInfo              = object;
+    
+    cell.playSlider.value = 0.0f;
     [cell.playSlider setThumbImage:[UIImage imageNamed:@"record_20"] forState:UIControlStateNormal];
     [cell.playSlider setThumbImage:[UIImage imageNamed:@"record_20"] forState:UIControlStateHighlighted];
-    [cell.playSlider setMinimumTrackImage:[UIImage imageNamed:@"record_19"] forState:UIControlStateNormal];
+    [cell.playSlider setMinimumTrackImage:[UIImage imageNamed:@"MinimumTrackImage"] forState:UIControlStateNormal];
     [cell.playSlider setMaximumTrackImage:[UIImage imageNamed:@"record_19"] forState:UIControlStateNormal];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -244,5 +246,22 @@
         [self updateDataSource];
     }
     NSLog(@"%@",info.title);
+}
+
+#pragma mark - AudioReader Delegate
+-(void)currentFileLocation:(CGFloat)location
+{
+    if (location == currentPlayFileLength) {
+        [self.audioMng pause];
+        [currentPlayItemControlBtn setSelected:NO];
+        currentSelectedItemSlider.value = 0.0f;
+    }else
+    {
+        NSLog(@"%f",location);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            currentSelectedItemSlider.value = ceil(location);
+        });
+    }
+
 }
 @end

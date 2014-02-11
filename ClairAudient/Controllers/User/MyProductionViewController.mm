@@ -162,13 +162,16 @@
 -(void)updateSliderPositon
 {
     
-    CGFloat postionInSec = self.reader.currentTime / 100.0;
+    NSInteger postionInSec = self.reader.currentTime / 60;
     if (postionInSec == currentPlayFileLength) {
+        [sliderTimer invalidate];
+        sliderTimer = nil;
         [self.audioMng pause];
         [currentPlayItemControlBtn setSelected:NO];
         currentSelectedItemSlider.value = 0.0f;
     }else
     {
+        NSLog(@"%d",postionInSec);
         dispatch_async(dispatch_get_main_queue(), ^{
             currentSelectedItemSlider.value = postionInSec;
         });
