@@ -16,7 +16,7 @@
 #import "AudioReader.h"
 #import "AudioManager.h"
 
-#define Cell_Height 65.0f
+#define Cell_Height 90.0f
 @interface MyProductionViewController ()<ItemDidSelectedDelegate>
 {
     NSArray * dataSource;
@@ -45,6 +45,7 @@
 {
     [super viewDidLoad];
     [self initUI];
+    self.audioMng = [AudioManager shareAudioManager];
     dataSource = [PersistentStore getAllObjectWithType:[EditMusicInfo class]];
     if ([dataSource count]) {
         [self.tableView reloadData];
@@ -183,7 +184,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return [dataSource count];
 }
 
 

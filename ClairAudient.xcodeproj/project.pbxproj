@@ -173,7 +173,7 @@
 		C32F4018188287B600681953 /* MyDownloadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32F4016188287B600681953 /* MyDownloadViewController.xib */; };
 		C32F401C188287D300681953 /* PersonalHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32F401A188287D300681953 /* PersonalHomePageViewController.m */; };
 		C32F401D188287D300681953 /* PersonalHomePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32F401B188287D300681953 /* PersonalHomePageViewController.xib */; };
-		C32F4021188287EE00681953 /* MyProductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32F401F188287EE00681953 /* MyProductionViewController.m */; };
+		C32F4021188287EE00681953 /* MyProductionViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C32F401F188287EE00681953 /* MyProductionViewController.mm */; };
 		C32F4022188287EE00681953 /* MyProductionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32F4020188287EE00681953 /* MyProductionViewController.xib */; };
 		C32F40261882886900681953 /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32F40241882886900681953 /* ReviewViewController.m */; };
 		C32F40271882886900681953 /* ReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32F40251882886900681953 /* ReviewViewController.xib */; };
@@ -663,7 +663,7 @@
 		C32F401A188287D300681953 /* PersonalHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalHomePageViewController.m; sourceTree = "<group>"; };
 		C32F401B188287D300681953 /* PersonalHomePageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalHomePageViewController.xib; sourceTree = "<group>"; };
 		C32F401E188287EE00681953 /* MyProductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProductionViewController.h; sourceTree = "<group>"; };
-		C32F401F188287EE00681953 /* MyProductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProductionViewController.m; sourceTree = "<group>"; };
+		C32F401F188287EE00681953 /* MyProductionViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MyProductionViewController.mm; sourceTree = "<group>"; };
 		C32F4020188287EE00681953 /* MyProductionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyProductionViewController.xib; sourceTree = "<group>"; };
 		C32F40231882886900681953 /* ReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewViewController.h; sourceTree = "<group>"; };
 		C32F40241882886900681953 /* ReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewViewController.m; sourceTree = "<group>"; };
@@ -1833,7 +1833,7 @@
 				C32F401A188287D300681953 /* PersonalHomePageViewController.m */,
 				C32F401B188287D300681953 /* PersonalHomePageViewController.xib */,
 				C32F401E188287EE00681953 /* MyProductionViewController.h */,
-				C32F401F188287EE00681953 /* MyProductionViewController.m */,
+				C32F401F188287EE00681953 /* MyProductionViewController.mm */,
 				C32F4020188287EE00681953 /* MyProductionViewController.xib */,
 				C32F40231882886900681953 /* ReviewViewController.h */,
 				C32F40241882886900681953 /* ReviewViewController.m */,
@@ -2373,7 +2373,7 @@
 				C3456CE51887753E009329D2 /* MyDownloadCell.m in Sources */,
 				C3FEB0B71871C801008EADAA /* NSString+Utils.m in Sources */,
 				4E11796D188F6DA000FB619F /* TSLibraryImport.m in Sources */,
-				C32F4021188287EE00681953 /* MyProductionViewController.m in Sources */,
+				C32F4021188287EE00681953 /* MyProductionViewController.mm in Sources */,
 				4E96B58F188EABC4008EA56F /* EZAudioPlotGL.m in Sources */,
 				C32F4003188286EB00681953 /* LoginSuccessViewController.m in Sources */,
 				C32D4F9E187F8DCD0090730B /* SoundCatalogViewController.m in Sources */,
