@@ -44,6 +44,10 @@
 		4E96B596188EABC4008EA56F /* CHANGELOG in Resources */ = {isa = PBXBuildFile; fileRef = 4E96B589188EABC4008EA56F /* CHANGELOG */; };
 		4E96B597188EABC4008EA56F /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 4E96B58A188EABC4008EA56F /* VERSION */; };
 		4E96B59A188EC7B0008EA56F /* TrachBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E96B599188EC7B0008EA56F /* TrachBtn.m */; };
+		4EB20FA518A92BC1007E5A8B /* EditMusicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB20FA418A92BC1007E5A8B /* EditMusicInfo.m */; };
+		4EB20FA918A931BE007E5A8B /* EditListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB20FA718A931BE007E5A8B /* EditListCell.m */; };
+		4EB20FAA18A931BE007E5A8B /* EditListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EB20FA818A931BE007E5A8B /* EditListCell.xib */; };
+		4EB6FAC518A8F67300482613 /* CycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB6FAC418A8F67300482613 /* CycleScrollView.m */; };
 		4ED1751A18925322000EC483 /* AudioPlotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1751918925322000EC483 /* AudioPlotView.m */; };
 		4ED1752018925CC2000EC483 /* MutiMixingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1751E18925CC2000EC483 /* MutiMixingViewController.m */; };
 		4ED1752118925CC2000EC483 /* MutiMixingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ED1751F18925CC2000EC483 /* MutiMixingViewController.xib */; };
@@ -169,7 +173,7 @@
 		C32F4018188287B600681953 /* MyDownloadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32F4016188287B600681953 /* MyDownloadViewController.xib */; };
 		C32F401C188287D300681953 /* PersonalHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32F401A188287D300681953 /* PersonalHomePageViewController.m */; };
 		C32F401D188287D300681953 /* PersonalHomePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32F401B188287D300681953 /* PersonalHomePageViewController.xib */; };
-		C32F4021188287EE00681953 /* MyProductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32F401F188287EE00681953 /* MyProductionViewController.m */; };
+		C32F4021188287EE00681953 /* MyProductionViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C32F401F188287EE00681953 /* MyProductionViewController.mm */; };
 		C32F4022188287EE00681953 /* MyProductionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32F4020188287EE00681953 /* MyProductionViewController.xib */; };
 		C32F40261882886900681953 /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32F40241882886900681953 /* ReviewViewController.m */; };
 		C32F40271882886900681953 /* ReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32F40251882886900681953 /* ReviewViewController.xib */; };
@@ -528,6 +532,13 @@
 		4E96B58A188EABC4008EA56F /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
 		4E96B598188EC7B0008EA56F /* TrachBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrachBtn.h; sourceTree = "<group>"; };
 		4E96B599188EC7B0008EA56F /* TrachBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrachBtn.m; sourceTree = "<group>"; };
+		4EB20FA318A92BC1007E5A8B /* EditMusicInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditMusicInfo.h; sourceTree = "<group>"; };
+		4EB20FA418A92BC1007E5A8B /* EditMusicInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditMusicInfo.m; sourceTree = "<group>"; };
+		4EB20FA618A931BE007E5A8B /* EditListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditListCell.h; sourceTree = "<group>"; };
+		4EB20FA718A931BE007E5A8B /* EditListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditListCell.m; sourceTree = "<group>"; };
+		4EB20FA818A931BE007E5A8B /* EditListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditListCell.xib; sourceTree = "<group>"; };
+		4EB6FAC318A8F67300482613 /* CycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CycleScrollView.h; sourceTree = "<group>"; };
+		4EB6FAC418A8F67300482613 /* CycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CycleScrollView.m; sourceTree = "<group>"; };
 		4ED1751818925322000EC483 /* AudioPlotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlotView.h; sourceTree = "<group>"; };
 		4ED1751918925322000EC483 /* AudioPlotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlotView.m; sourceTree = "<group>"; };
 		4ED1751D18925CC2000EC483 /* MutiMixingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutiMixingViewController.h; sourceTree = "<group>"; };
@@ -685,7 +696,7 @@
 		C32F401A188287D300681953 /* PersonalHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalHomePageViewController.m; sourceTree = "<group>"; };
 		C32F401B188287D300681953 /* PersonalHomePageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalHomePageViewController.xib; sourceTree = "<group>"; };
 		C32F401E188287EE00681953 /* MyProductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProductionViewController.h; sourceTree = "<group>"; };
-		C32F401F188287EE00681953 /* MyProductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProductionViewController.m; sourceTree = "<group>"; };
+		C32F401F188287EE00681953 /* MyProductionViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MyProductionViewController.mm; sourceTree = "<group>"; };
 		C32F4020188287EE00681953 /* MyProductionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyProductionViewController.xib; sourceTree = "<group>"; };
 		C32F40231882886900681953 /* ReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewViewController.h; sourceTree = "<group>"; };
 		C32F40241882886900681953 /* ReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewViewController.m; sourceTree = "<group>"; };
@@ -1256,6 +1267,9 @@
 		C3164CF218746A9A00301ACA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4EB20FA618A931BE007E5A8B /* EditListCell.h */,
+				4EB20FA718A931BE007E5A8B /* EditListCell.m */,
+				4EB20FA818A931BE007E5A8B /* EditListCell.xib */,
 				C3164CF318746ABF00301ACA /* UINavigationBar+Custom.h */,
 				C3164CF418746ABF00301ACA /* UINavigationBar+Custom.m */,
 				C3D4FCB9187D0C3A001A7223 /* CatalogRankSectionHeader.xib */,
@@ -1349,6 +1363,8 @@
 				C3B53E44188C3000004EA4A7 /* IntegralRankUser.h */,
 				C3B53E45188C3000004EA4A7 /* IntegralRankUser.m */,
 				4E2A13631890BC6300D8CB65 /* ClairDataSource.xcdatamodeld */,
+				4EB20FA318A92BC1007E5A8B /* EditMusicInfo.h */,
+				4EB20FA418A92BC1007E5A8B /* EditMusicInfo.m */,
 				4E2A13691890BDEC00D8CB65 /* MusicInfo.h */,
 				4E2A136A1890BDEC00D8CB65 /* MusicInfo.m */,
 				4E2A13781891257600D8CB65 /* RecordMusicInfo.h */,
@@ -1958,7 +1974,7 @@
 				C32F401A188287D300681953 /* PersonalHomePageViewController.m */,
 				C32F401B188287D300681953 /* PersonalHomePageViewController.xib */,
 				C32F401E188287EE00681953 /* MyProductionViewController.h */,
-				C32F401F188287EE00681953 /* MyProductionViewController.m */,
+				C32F401F188287EE00681953 /* MyProductionViewController.mm */,
 				C32F4020188287EE00681953 /* MyProductionViewController.xib */,
 				C32F40231882886900681953 /* ReviewViewController.h */,
 				C32F40241882886900681953 /* ReviewViewController.m */,
@@ -1970,6 +1986,8 @@
 		C3FEB0E81871D2BB008EADAA /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				4EB6FAC318A8F67300482613 /* CycleScrollView.h */,
+				4EB6FAC418A8F67300482613 /* CycleScrollView.m */,
 				C3FEB0E91871D2FC008EADAA /* ControlCenter.h */,
 				C3FEB0EA1871D2FC008EADAA /* ControlCenter.m */,
 				C3D4FCB6187CFD64001A7223 /* UIViewController+CustomBarItemPosition.h */,
@@ -2233,6 +2251,7 @@
 				C326CDAD187C5E44006DD97C /* CatalogRankViewController.xib in Resources */,
 				C3164CB81874555D00301ACA /* FoundMusic_g@2x.png in Resources */,
 				C3FEB08C1871C294008EADAA /* user_注册 高级会员.png in Resources */,
+				4EB20FAA18A931BE007E5A8B /* EditListCell.xib in Resources */,
 				C3486CCF18866B1E00EB7AD0 /* wenhao@2x.png in Resources */,
 				C3FEB0611871C294008EADAA /* setting_22@2x.png in Resources */,
 				C3456CEC18877A5A009329D2 /* MyProductionCell.xib in Resources */,
@@ -2452,6 +2471,7 @@
 				4E2AD2F01891EC3600020135 /* CloneView.m in Sources */,
 				C32F401C188287D300681953 /* PersonalHomePageViewController.m in Sources */,
 				C3FEB0B41871C801008EADAA /* IO.m in Sources */,
+				4EB6FAC518A8F67300482613 /* CycleScrollView.m in Sources */,
 				C32F402B188390A100681953 /* IntegralViewController.m in Sources */,
 				C3FEB0E51871CB12008EADAA /* FIndSoundViewController.m in Sources */,
 				C32D4FA8187F953C0090730B /* TMQuiltViewCell.m in Sources */,
@@ -2509,6 +2529,7 @@
 				C326CDB1187C5E7B006DD97C /* ChampionHomePageViewController.m in Sources */,
 				C3411727188BEC5A0070EAB4 /* Catalog.m in Sources */,
 				C3FEB0E01871CAF4008EADAA /* MixingMusicListViewController.m in Sources */,
+				4EB20FA918A931BE007E5A8B /* EditListCell.m in Sources */,
 				C3456CF31887CA1D009329D2 /* MixingMusicListCell.m in Sources */,
 				C39BBE571893DF5C00FC8F72 /* TSPopoverPopoverView.m in Sources */,
 				4E11796A188F627F00FB619F /* MusicCutter.m in Sources */,
@@ -2518,13 +2539,14 @@
 				C3FEB0B31871C801008EADAA /* HWConnect.m in Sources */,
 				C3FEB0C71871CA19008EADAA /* MainViewController.m in Sources */,
 				C3FEB0B61871C801008EADAA /* NSString+MD5_32.m in Sources */,
+				4EB20FA518A92BC1007E5A8B /* EditMusicInfo.m in Sources */,
 				4E96B58D188EABC4008EA56F /* EZAudioFile.m in Sources */,
 				C34C3405188AB967009CD20B /* RecordListCell.m in Sources */,
 				4E96B590188EABC4008EA56F /* EZAudioPlotGLKViewController.m in Sources */,
 				C3456CE51887753E009329D2 /* MyDownloadCell.m in Sources */,
 				C3FEB0B71871C801008EADAA /* NSString+Utils.m in Sources */,
 				4E11796D188F6DA000FB619F /* TSLibraryImport.m in Sources */,
-				C32F4021188287EE00681953 /* MyProductionViewController.m in Sources */,
+				C32F4021188287EE00681953 /* MyProductionViewController.mm in Sources */,
 				4E96B58F188EABC4008EA56F /* EZAudioPlotGL.m in Sources */,
 				C32F4003188286EB00681953 /* LoginSuccessViewController.m in Sources */,
 				C32D4F9E187F8DCD0090730B /* SoundCatalogViewController.m in Sources */,

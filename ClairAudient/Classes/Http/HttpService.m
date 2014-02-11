@@ -138,7 +138,8 @@
                 failure(nil,result);
             }
         }
-        else if ([result intValue] == 5)
+        else if ([
+                  result intValue] == 5)
         {
             //密码错误
             //用户名不存在
@@ -292,6 +293,16 @@
         if(success)
         {
             success(voices);
+
+        }
+    }failureBlock:failure];
+}
+-(void)getAdvertisementImageWithCompletedBlock:(void (^)(id object))success failureBlock:(void (^)(NSError *, NSString *))failure
+{
+    [self post:[self mergeURL:GetMainImagesAction] withParams:nil completionBlock:^(id obj) {
+        NSArray * items = [obj valueForKey:@"ad_image"];
+        if ([items count]) {
+            success(items);
         }
     } failureBlock:failure];
 }
@@ -306,4 +317,21 @@
     } failureBlock:failure];
 }
 
+-(void)getImageWithResourcePath:(NSString *)path completedBlock:(void (^)(id object))success failureBlock:(void (^)(NSError * error))failure
+{
+//    [self post:[self mergeURL:path] withParams:nil completionBlock:^(id obj) {
+//        if (obj) {
+//            success(obj);
+//        }
+//    } failureBlock:nil];
+    
+    NSURL * imageUrl = [NSURL URLWithString:[self mergeURL:path]];
+    NSURLRequest * request = [NSURLRequest requestWithURL:imageUrl];
+    NSOperationQueue * queue = [[NSOperationQueue alloc]init];
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        UIImage * image = [UIImage imageWithData:data];
+        success (image);
+    }];
+    
+}
 @end

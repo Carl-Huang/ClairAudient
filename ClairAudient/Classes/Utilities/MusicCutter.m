@@ -11,7 +11,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 @implementation MusicCutter
 
-+(void)cropMusic:(NSString *)musicSourcePath exportFileName:(NSString *)exportedFileName withStartTime:(CGFloat)timeS endTime:(CGFloat)timeE withCompletedBlock:(void (^)(AVAssetExportSessionStatus status,NSError *error))completedBlock
++(void)cropMusic:(NSString *)musicSourcePath exportFileName:(NSString *)exportedFileName withStartTime:(CGFloat)timeS endTime:(CGFloat)timeE withCompletedBlock:(void (^)(AVAssetExportSessionStatus status,NSError *error,NSString * localPath))completedBlock
 {
     
     NSURL *songURL      = [NSURL fileURLWithPath:musicSourcePath];
@@ -48,12 +48,12 @@
             NSError *error = nil;
             [manage moveItemAtPath:path toPath:mp3Path error:&error];
             NSLog(@"error %@",error);
-            completedBlock(AVAssetExportSessionStatusCompleted,nil);
+            completedBlock(AVAssetExportSessionStatusCompleted,error,mp3Path);
         } else if (AVAssetExportSessionStatusFailed == exportSession.status) {
             NSLog(@"AVAssetExportSessionStatusFailed");
-            completedBlock(AVAssetExportSessionStatusFailed,nil);
+            completedBlock(AVAssetExportSessionStatusFailed,nil,nil);
         } else {
-            completedBlock(exportSession.status,nil);
+            completedBlock(exportSession.status,nil,nil);
             NSLog(@"Export Session Status: %d", exportSession.status);
         }
     }];
@@ -63,7 +63,14 @@
 {
     NSArray *dirs = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
     NSString *documentsDirectoryPath = [dirs objectAtIndex:0];
-    NSString *exportPath = [documentsDirectoryPath stringByAppendingPathComponent:fileName];
+    
+    NSString * fileFloder = [documentsDirectoryPath stringByAppendingPathComponent:@"我的制作"];
+    NSString *exportPath = [fileFloder stringByAppendingPathComponent:fileName];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:fileFloder]) {
+        NSError * error = nil;
+         [[NSFileManager defaultManager] createDirectoryAtPath:fileFloder withIntermediateDirectories:NO attributes:nil error:&error];
+        
+    }
     if ([[NSFileManager defaultManager] fileExistsAtPath:exportPath]) {
         [[NSFileManager defaultManager] removeItemAtPath:exportPath error:nil];
     }

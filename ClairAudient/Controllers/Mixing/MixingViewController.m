@@ -18,6 +18,7 @@
 #import "MBProgressHUD.h"
 #import "MixingEffectViewController.h"
 #import "AudioPlotView.h"
+#import "EditMusicInfo.h"
 
 @interface MixingViewController ()
 
@@ -120,6 +121,15 @@
     NSString * tempFileName = [format stringFromDate:date];
     return tempFileName;
 }
+
+-(NSString *)getMakeTime;
+{
+    NSDate * currentDate = [NSDate date];
+    NSDateFormatter * format = [[NSDateFormatter alloc]init];
+    [format setDateFormat:@"yyyy-MM-dd"];
+    NSString * dateStr = [format stringFromDate:currentDate];
+    return dateStr;
+}
 #pragma mark - Outlet Action
 - (IBAction)playMusic:(id)sender {
     if (![plotView isPlaying]) {
@@ -138,10 +148,22 @@
     // * Synthesis the music according to the length of the file
     // * Crop the music
     NSString * tempFileName = [self getTimeAsFileName];
+    CGFloat musicLength = self.endTime.text.floatValue  - self.startTime.text.floatValue;
     if (tempFileName) {
         tempFileName = [tempFileName stringByAppendingPathExtension:@"mov"];
-        [MusicCutter cropMusic:edittingMusicFile exportFileName:tempFileName withStartTime:self.startTime.text.floatValue*60 endTime:self.endTime.text.floatValue*60 withCompletedBlock:^(AVAssetExportSessionStatus status, NSError *error) {
+        [MusicCutter cropMusic:edittingMusicFile exportFileName:tempFileName withStartTime:self.startTime.text.floatValue*60 endTime:self.endTime.text.floatValue*60 withCompletedBlock:^(AVAssetExportSessionStatus status, NSError *error,NSString * localPath) {
             dispatch_async(dispatch_get_main_queue(), ^{
+                
+                //保存信息到数据库
+                EditMusicInfo * info    = [EditMusicInfo MR_createEntity];
+                info.title              = [weakSelf.musicInfo valueForKey:@"Title"];;
+                info.artist             = [weakSelf.musicInfo valueForKey:@"Artist"];
+                info.makeTime           = [self getMakeTime];
+                info.localFilePath      = localPath;
+                info.length             = [NSString stringWithFormat:@"%0.2f",musicLength];
+                [[NSManagedObjectContext MR_defaultContext]MR_saveOnlySelfAndWait];
+                
+                
                 [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
                 [self showAlertViewWithMessage:@"裁剪成功"];
             });
