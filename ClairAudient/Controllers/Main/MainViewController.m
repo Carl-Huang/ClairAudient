@@ -153,30 +153,33 @@
         if ([object count]) {
             for (NSString * imgStr in object) {
                 //获取图片
-                [[HttpService sharedInstance]getImageWithResourcePath:imgStr completedBlock:^(id object) {
-                    if (object) {
-                        [imgArray addObject:object];
-                        @synchronized(self)
-                        {
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                [weakSelf.advertisementImageView setHidden:NO];
-                                [weakSelf.advertisementImageView updateImageArrayWithImageArray:imgArray];
-                                [weakSelf.advertisementImageView refreshScrollView];
-                            });
-                            
-                        }
-                    }
-                } failureBlock:^(NSError * error) {
-                    ;
-                }];
+                [weakSelf getImage:imgStr withContainer:imgArray];
             }
-
         }
     } failureBlock:^(NSError *error, NSString *responseString) {
         ;
     }];
-   
-   
-    
+}
+
+-(void)getImage:(NSString *)imgStr withContainer:(NSMutableArray *)container
+{
+    __weak MainViewController * weakSelf = self;
+
+    [[HttpService sharedInstance]getImageWithResourcePath:imgStr completedBlock:^(id object) {
+        if (object) {
+            [container addObject:object];
+            @synchronized(self)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakSelf.advertisementImageView setHidden:NO];
+                    [weakSelf.advertisementImageView updateImageArrayWithImageArray:container];
+                    [weakSelf.advertisementImageView refreshScrollView];
+                });
+                
+            }
+        }
+    } failureBlock:^(NSError * error) {
+        ;
+    }];
 }
 @end
