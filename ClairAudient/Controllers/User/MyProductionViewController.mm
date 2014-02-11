@@ -133,6 +133,18 @@
     return totalTime;
 }
 
+-(NSString *)customiseTimeFormat:(NSString *)date
+{
+    NSDateFormatter * format  = [[NSDateFormatter alloc]init];
+    [format setDateFormat:@"yyyyMMddhhmmss"];
+    NSDate * tempDate = [format dateFromString:date];
+    
+    NSDateFormatter * customiseFormat  = [[NSDateFormatter alloc]init];
+    [customiseFormat setDateFormat:@"yyyy-MM-dd"];
+    NSString * dateStr = [customiseFormat stringFromDate:tempDate];
+    return dateStr;
+}
+
 -(void)updateDataSource
 {
     dataSource = [PersistentStore getAllObjectWithType:[EditMusicInfo class]];
@@ -187,10 +199,12 @@
     EditListCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     EditMusicInfo * object = [dataSource objectAtIndex:indexPath.row];
     cell.nameLabel.text         = object.title;
-    cell.recordTimeLabel.text   = object.makeTime;
+    cell.recordTimeLabel.text   = [self customiseTimeFormat:object.makeTime];
     cell.playTimeLabel.text     = [NSString stringWithFormat:@"%0.2f",[self convertSecondToMinute:object.length.floatValue]];
     cell.delegate               = self;
     cell.musicInfo              = object;
+    
+    cell.playSlider.value = 0.0f;
     [cell.playSlider setThumbImage:[UIImage imageNamed:@"record_20"] forState:UIControlStateNormal];
     [cell.playSlider setThumbImage:[UIImage imageNamed:@"record_20"] forState:UIControlStateHighlighted];
     [cell.playSlider setMinimumTrackImage:[UIImage imageNamed:@"MinimumTrackImage"] forState:UIControlStateNormal];
@@ -211,7 +225,7 @@
     EditMusicInfo * info = object;
     for (int i =0; i < [dataSource count]; i++) {
         EditMusicInfo * tempObj = [dataSource objectAtIndex:i];
-        if ([tempObj.title isEqualToString:info.title]) {
+        if ([tempObj.makeTime isEqualToString:info.makeTime]) {
             @autoreleasepool {
                 NSIndexPath *index = [NSIndexPath indexPathForRow:i inSection:0] ;
                 EditListCell * cell = (EditListCell *)[self.tableView cellForRowAtIndexPath:index];
@@ -274,7 +288,6 @@
         currentSelectedItemSlider.value = 0.0f;
     }else
     {
-//        NSLog(@"%f",location);
         dispatch_async(dispatch_get_main_queue(), ^{
             currentSelectedItemSlider.value = ceil(location);
         });

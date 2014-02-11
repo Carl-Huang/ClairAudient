@@ -126,7 +126,7 @@
 {
     NSDate * currentDate = [NSDate date];
     NSDateFormatter * format = [[NSDateFormatter alloc]init];
-    [format setDateFormat:@"yyyy-MM-dd"];
+    [format setDateFormat:@"yyyyMMddhhmmss"];
     NSString * dateStr = [format stringFromDate:currentDate];
     return dateStr;
 }

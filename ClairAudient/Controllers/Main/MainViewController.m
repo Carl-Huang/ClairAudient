@@ -150,24 +150,27 @@
     __weak MainViewController * weakSelf = self;
     __block NSMutableArray * imgArray = [NSMutableArray array];
     [[HttpService sharedInstance]getAdvertisementImageWithCompletedBlock:^(id object) {
-        for (NSString * imgStr in object) {
-            //获取图片
-            [[HttpService sharedInstance]getImageWithResourcePath:imgStr completedBlock:^(id object) {
-                if (object) {
-                    [imgArray addObject:object];
-                    @synchronized(self)
-                    {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            [weakSelf.advertisementImageView setHidden:NO];
-                            [weakSelf.advertisementImageView updateImageArrayWithImageArray:imgArray];
-                            [weakSelf.advertisementImageView refreshScrollView];
-                        });
-                        
+        if ([object count]) {
+            for (NSString * imgStr in object) {
+                //获取图片
+                [[HttpService sharedInstance]getImageWithResourcePath:imgStr completedBlock:^(id object) {
+                    if (object) {
+                        [imgArray addObject:object];
+                        @synchronized(self)
+                        {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                [weakSelf.advertisementImageView setHidden:NO];
+                                [weakSelf.advertisementImageView updateImageArrayWithImageArray:imgArray];
+                                [weakSelf.advertisementImageView refreshScrollView];
+                            });
+                            
+                        }
                     }
-                }
-            } failureBlock:^(NSError * error) {
-                ;
-            }];
+                } failureBlock:^(NSError * error) {
+                    ;
+                }];
+            }
+
         }
     } failureBlock:^(NSError *error, NSString *responseString) {
         ;
