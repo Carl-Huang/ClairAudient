@@ -13,6 +13,7 @@
 #import "User.h"
 #import "HttpService.h"
 #import "MBProgressHUD.h"
+#import "MyUploadDetailViewController.h"
 #define Cell_Height 65.0f
 @interface MyUploadViewController ()
 @property (nonatomic,strong) NSMutableArray * dataSource;
@@ -99,12 +100,17 @@
     [cell.playSlider setMaximumTrackImage:[UIImage imageNamed:@"record_19"] forState:UIControlStateNormal];
     Voice * voice = [_dataSource objectAtIndex:indexPath.row];
     cell.nameLabel.text = voice.vl_name;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 #pragma mark - UITableViewDelegate Methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    Voice * voice = [_dataSource objectAtIndex:indexPath.row];
+    MyUploadDetailViewController * viewController = [[MyUploadDetailViewController alloc]initWithNibName:@"MyUploadDetailViewController" bundle:nil];
+    [viewController setVoiceItem:voice];
+    [self push:viewController];
+    viewController = nil;
 }
 
 

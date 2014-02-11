@@ -31,7 +31,6 @@
 #import "PersonalHomePageViewController.h"
 #import "MyProductionViewController.h"
 #import "MyUploadViewController.h"
-#import "ReviewViewController.h"
 #import "UserCenterViewController.h"
 #import "IntegralViewController.h"
 #import "SoundEffectViewController.h"

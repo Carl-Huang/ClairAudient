@@ -90,6 +90,9 @@
 		4ED175311892B570000EC483 /* MixingEffectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ED1752F1892B570000EC483 /* MixingEffectViewController.xib */; };
 		4ED175351892B8F3000EC483 /* LocalMusicViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4ED175331892B8F3000EC483 /* LocalMusicViewController.mm */; };
 		4ED175361892B8F3000EC483 /* LocalMusicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ED175341892B8F3000EC483 /* LocalMusicViewController.xib */; };
+		4EEA197C18AA5F070062D118 /* MyUploadDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEA197A18AA5F070062D118 /* MyUploadDetailViewController.m */; };
+		4EEA197D18AA5F070062D118 /* MyUploadDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EEA197B18AA5F070062D118 /* MyUploadDetailViewController.xib */; };
+		4EEA197F18AA72540062D118 /* testImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EEA197E18AA72540062D118 /* testImage.png */; };
 		4EFF165118A7D134005E4802 /* NSString+Levenshtein.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EFF165018A7D134005E4802 /* NSString+Levenshtein.m */; };
 		4EFF165418A7D19C005E4802 /* AutoCompletedOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EFF165318A7D19C005E4802 /* AutoCompletedOperation.m */; };
 		C3164CAD1874555D00301ACA /* FoundMusic_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C691874555D00301ACA /* FoundMusic_@2x.png */; };
@@ -207,8 +210,6 @@
 		C32F401D188287D300681953 /* PersonalHomePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32F401B188287D300681953 /* PersonalHomePageViewController.xib */; };
 		C32F4021188287EE00681953 /* MyProductionViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C32F401F188287EE00681953 /* MyProductionViewController.mm */; };
 		C32F4022188287EE00681953 /* MyProductionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32F4020188287EE00681953 /* MyProductionViewController.xib */; };
-		C32F40261882886900681953 /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32F40241882886900681953 /* ReviewViewController.m */; };
-		C32F40271882886900681953 /* ReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32F40251882886900681953 /* ReviewViewController.xib */; };
 		C32F402B188390A100681953 /* IntegralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32F4029188390A100681953 /* IntegralViewController.m */; };
 		C32F402C188390A100681953 /* IntegralViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32F402A188390A100681953 /* IntegralViewController.xib */; };
 		C341171A188B8B080070EAB4 /* AFHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = C3411717188B8B080070EAB4 /* AFHttp.m */; };
@@ -629,6 +630,10 @@
 		4ED175321892B8F3000EC483 /* LocalMusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalMusicViewController.h; sourceTree = "<group>"; };
 		4ED175331892B8F3000EC483 /* LocalMusicViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LocalMusicViewController.mm; sourceTree = "<group>"; };
 		4ED175341892B8F3000EC483 /* LocalMusicViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocalMusicViewController.xib; sourceTree = "<group>"; };
+		4EEA197918AA5F070062D118 /* MyUploadDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUploadDetailViewController.h; sourceTree = "<group>"; };
+		4EEA197A18AA5F070062D118 /* MyUploadDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUploadDetailViewController.m; sourceTree = "<group>"; };
+		4EEA197B18AA5F070062D118 /* MyUploadDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyUploadDetailViewController.xib; sourceTree = "<group>"; };
+		4EEA197E18AA72540062D118 /* testImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testImage.png; sourceTree = "<group>"; };
 		4EFF164F18A7D134005E4802 /* NSString+Levenshtein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Levenshtein.h"; sourceTree = "<group>"; };
 		4EFF165018A7D134005E4802 /* NSString+Levenshtein.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Levenshtein.m"; sourceTree = "<group>"; };
 		4EFF165218A7D19C005E4802 /* AutoCompletedOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoCompletedOperation.h; sourceTree = "<group>"; };
@@ -772,9 +777,6 @@
 		C32F401E188287EE00681953 /* MyProductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProductionViewController.h; sourceTree = "<group>"; };
 		C32F401F188287EE00681953 /* MyProductionViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MyProductionViewController.mm; sourceTree = "<group>"; };
 		C32F4020188287EE00681953 /* MyProductionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyProductionViewController.xib; sourceTree = "<group>"; };
-		C32F40231882886900681953 /* ReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewViewController.h; sourceTree = "<group>"; };
-		C32F40241882886900681953 /* ReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewViewController.m; sourceTree = "<group>"; };
-		C32F40251882886900681953 /* ReviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewViewController.xib; sourceTree = "<group>"; };
 		C32F4028188390A100681953 /* IntegralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntegralViewController.h; sourceTree = "<group>"; };
 		C32F4029188390A100681953 /* IntegralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntegralViewController.m; sourceTree = "<group>"; };
 		C32F402A188390A100681953 /* IntegralViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntegralViewController.xib; sourceTree = "<group>"; };
@@ -1765,6 +1767,7 @@
 		C3FEAF511871C294008EADAA /* hunyin */ = {
 			isa = PBXGroup;
 			children = (
+				4EEA197E18AA72540062D118 /* testImage.png */,
 				C3B395C51875519800592C92 /* back@2x.png */,
 				C3FEAF521871C294008EADAA /* hunyin_0@2x.png */,
 				C3FEAF531871C294008EADAA /* sliderEnd.png */,
@@ -2183,9 +2186,9 @@
 				C32F401E188287EE00681953 /* MyProductionViewController.h */,
 				C32F401F188287EE00681953 /* MyProductionViewController.mm */,
 				C32F4020188287EE00681953 /* MyProductionViewController.xib */,
-				C32F40231882886900681953 /* ReviewViewController.h */,
-				C32F40241882886900681953 /* ReviewViewController.m */,
-				C32F40251882886900681953 /* ReviewViewController.xib */,
+				4EEA197918AA5F070062D118 /* MyUploadDetailViewController.h */,
+				4EEA197A18AA5F070062D118 /* MyUploadDetailViewController.m */,
+				4EEA197B18AA5F070062D118 /* MyUploadDetailViewController.xib */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -2364,6 +2367,7 @@
 				C32F400E1882876A00681953 /* UserCenterViewController.xib in Resources */,
 				C3FEB0721871C294008EADAA /* user_15@2x.png in Resources */,
 				C3FEB0061871C294008EADAA /* hunyin_28@2x.png in Resources */,
+				4EEA197D18AA5F070062D118 /* MyUploadDetailViewController.xib in Resources */,
 				C3164CD91874555D00301ACA /* MusicFans_eleven@2x.png in Resources */,
 				C3FEB0671871C294008EADAA /* setting_6@2x.png in Resources */,
 				C351B69B187E3E0F00630408 /* sd@2x.png in Resources */,
@@ -2472,6 +2476,7 @@
 				C3FEB0051871C294008EADAA /* hunyin_27@2x.png in Resources */,
 				C351B699187E3E0F00630408 /* fhjh@2x.png in Resources */,
 				C3FEB0621871C294008EADAA /* setting_23@2x.png in Resources */,
+				4EEA197F18AA72540062D118 /* testImage.png in Resources */,
 				C3FEB0441871C294008EADAA /* record_31@2x.png in Resources */,
 				C32F401D188287D300681953 /* PersonalHomePageViewController.xib in Resources */,
 				C326CDBC187C5EDB006DD97C /* DownloadRankViewController.xib in Resources */,
@@ -2598,7 +2603,6 @@
 				C3FEB03A1871C294008EADAA /* record_22@2x.png in Resources */,
 				C3FEB0E61871CB12008EADAA /* FIndSoundViewController.xib in Resources */,
 				C3FEB0701871C294008EADAA /* user_13@2x.png in Resources */,
-				C32F40271882886900681953 /* ReviewViewController.xib in Resources */,
 				C39A97B4189247AE00F41CBB /* catalog_section_fpng@2x.png in Resources */,
 				C3164CCE1874555D00301ACA /* FoundMusic_t@2x.png in Resources */,
 				C3164CDD1874555D00301ACA /* MusicFans_gvb @2x.png in Resources */,
@@ -2672,6 +2676,7 @@
 				C3FEB0BA1871C801008EADAA /* UIImage+Util.m in Sources */,
 				C327499B187A5EBD00CF7A4A /* ThemeViewController.m in Sources */,
 				C39BBE581893DF5C00FC8F72 /* TSPopoverTouchView.m in Sources */,
+				4EEA197C18AA5F070062D118 /* MyUploadDetailViewController.m in Sources */,
 				C3FEAF2C1871C156008EADAA /* main.m in Sources */,
 				4ED175351892B8F3000EC483 /* LocalMusicViewController.mm in Sources */,
 				C351B690187E37FE00630408 /* RecommendSoundCell.m in Sources */,
@@ -2744,7 +2749,6 @@
 				C34C3401188AB430009CD20B /* RecordListViewController.mm in Sources */,
 				C32749A0187A5ED400CF7A4A /* HelpViewController.m in Sources */,
 				C3FEB0B51871C801008EADAA /* NSDate+Utils.m in Sources */,
-				C32F40261882886900681953 /* ReviewViewController.m in Sources */,
 				C326CDB1187C5E7B006DD97C /* ChampionHomePageViewController.m in Sources */,
 				C3411727188BEC5A0070EAB4 /* Catalog.m in Sources */,
 				C3FEB0E01871CAF4008EADAA /* MixingMusicListViewController.m in Sources */,
