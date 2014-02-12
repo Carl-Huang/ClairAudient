@@ -300,8 +300,8 @@
 -(void)getAdvertisementImageWithCompletedBlock:(void (^)(id object))success failureBlock:(void (^)(NSError *, NSString *))failure
 {
     [self post:[self mergeURL:GetMainImagesAction] withParams:nil completionBlock:^(id obj) {
-        NSArray * items = [obj valueForKey:@"ad_image"];
-        if ([items count]) {
+        if ([obj count]) {
+            NSArray * items = [obj valueForKey:@"ad_image"];
             success(items);
         }
     } failureBlock:failure];

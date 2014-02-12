@@ -34,7 +34,7 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="N9O-DL-gxh">
-                            <rect key="frame" x="10" y="151" width="300" height="281"/>
+                            <rect key="frame" x="20" y="171" width="280" height="281"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <connections>
@@ -43,16 +43,16 @@
                             </connections>
                         </tableView>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PWu-HH-Dxn">
-                            <rect key="frame" x="10" y="447" width="300" height="37"/>
+                            <rect key="frame" x="20" y="464" width="280" height="37"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mPS-B1-THy">
-                            <rect key="frame" x="10" y="499" width="300" height="195"/>
+                            <rect key="frame" x="20" y="525" width="280" height="195"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="全球因故撒旦法撒旦法是两地分居阿克苏打飞机卡机独立开发姐啊；款到即发；卡机的；发卡机的是；副科级啊；SD卡房间爱；ksdfjasdfj啊的就发可敬的；了开发姐啊；dk发对方姐啊打姐夫；akdjf打发；快递费就；啊款到即发；la" translatesAutoresizingMaskIntoConstraints="NO" id="cQ4-gW-jK0">
-                                    <rect key="frame" x="10" y="-5" width="280" height="195"/>
+                                    <rect key="frame" x="10" y="-5" width="260" height="195"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>

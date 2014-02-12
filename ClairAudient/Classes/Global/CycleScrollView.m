@@ -182,7 +182,6 @@
         for (UIImage * image in images) {
             if (image) {
                 [imagesArray addObject:image];
-                
             }
         }
         totalPage = [images count];

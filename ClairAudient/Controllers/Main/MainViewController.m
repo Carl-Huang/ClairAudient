@@ -175,7 +175,6 @@
                     [weakSelf.advertisementImageView updateImageArrayWithImageArray:container];
                     [weakSelf.advertisementImageView refreshScrollView];
                 });
-                
             }
         }
     } failureBlock:^(NSError * error) {

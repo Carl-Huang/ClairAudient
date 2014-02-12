@@ -79,6 +79,11 @@
 		4EB20FA518A92BC1007E5A8B /* EditMusicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB20FA418A92BC1007E5A8B /* EditMusicInfo.m */; };
 		4EB20FA918A931BE007E5A8B /* EditListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB20FA718A931BE007E5A8B /* EditListCell.m */; };
 		4EB20FAA18A931BE007E5A8B /* EditListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EB20FA818A931BE007E5A8B /* EditListCell.xib */; };
+		4EB43E6D18AB15B6004CCC85 /* MyUploadDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB43E6C18AB15B6004CCC85 /* MyUploadDetailCell.m */; };
+		4EB43E6F18AB15CD004CCC85 /* MyUploadDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EB43E6E18AB15CD004CCC85 /* MyUploadDetailCell.xib */; };
+		4EB43E7218AB26BC004CCC85 /* PlayItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB43E7118AB26BC004CCC85 /* PlayItemView.m */; };
+		4EB43E7418AB26D4004CCC85 /* PlayItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EB43E7318AB26D4004CCC85 /* PlayItemView.xib */; };
+		4EB43E7618AB284E004CCC85 /* arrow-down.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EB43E7518AB284D004CCC85 /* arrow-down.png */; };
 		4EB6FAC518A8F67300482613 /* CycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB6FAC418A8F67300482613 /* CycleScrollView.m */; };
 		4ED1751A18925322000EC483 /* AudioPlotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1751918925322000EC483 /* AudioPlotView.m */; };
 		4ED1752018925CC2000EC483 /* MutiMixingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1751E18925CC2000EC483 /* MutiMixingViewController.m */; };
@@ -90,7 +95,7 @@
 		4ED175311892B570000EC483 /* MixingEffectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ED1752F1892B570000EC483 /* MixingEffectViewController.xib */; };
 		4ED175351892B8F3000EC483 /* LocalMusicViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4ED175331892B8F3000EC483 /* LocalMusicViewController.mm */; };
 		4ED175361892B8F3000EC483 /* LocalMusicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ED175341892B8F3000EC483 /* LocalMusicViewController.xib */; };
-		4EEA197C18AA5F070062D118 /* MyUploadDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEA197A18AA5F070062D118 /* MyUploadDetailViewController.m */; };
+		4EEA197C18AA5F070062D118 /* MyUploadDetailViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4EEA197A18AA5F070062D118 /* MyUploadDetailViewController.mm */; };
 		4EEA197D18AA5F070062D118 /* MyUploadDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EEA197B18AA5F070062D118 /* MyUploadDetailViewController.xib */; };
 		4EEA197F18AA72540062D118 /* testImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EEA197E18AA72540062D118 /* testImage.png */; };
 		4EFF165118A7D134005E4802 /* NSString+Levenshtein.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EFF165018A7D134005E4802 /* NSString+Levenshtein.m */; };
@@ -612,6 +617,13 @@
 		4EB20FA618A931BE007E5A8B /* EditListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditListCell.h; sourceTree = "<group>"; };
 		4EB20FA718A931BE007E5A8B /* EditListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditListCell.m; sourceTree = "<group>"; };
 		4EB20FA818A931BE007E5A8B /* EditListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditListCell.xib; sourceTree = "<group>"; };
+		4EB43E6B18AB15B6004CCC85 /* MyUploadDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUploadDetailCell.h; sourceTree = "<group>"; };
+		4EB43E6C18AB15B6004CCC85 /* MyUploadDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUploadDetailCell.m; sourceTree = "<group>"; };
+		4EB43E6E18AB15CD004CCC85 /* MyUploadDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyUploadDetailCell.xib; sourceTree = "<group>"; };
+		4EB43E7018AB26BC004CCC85 /* PlayItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayItemView.h; sourceTree = "<group>"; };
+		4EB43E7118AB26BC004CCC85 /* PlayItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayItemView.m; sourceTree = "<group>"; };
+		4EB43E7318AB26D4004CCC85 /* PlayItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayItemView.xib; sourceTree = "<group>"; };
+		4EB43E7518AB284D004CCC85 /* arrow-down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-down.png"; sourceTree = "<group>"; };
 		4EB6FAC318A8F67300482613 /* CycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CycleScrollView.h; sourceTree = "<group>"; };
 		4EB6FAC418A8F67300482613 /* CycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CycleScrollView.m; sourceTree = "<group>"; };
 		4ED1751818925322000EC483 /* AudioPlotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlotView.h; sourceTree = "<group>"; };
@@ -631,7 +643,7 @@
 		4ED175331892B8F3000EC483 /* LocalMusicViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LocalMusicViewController.mm; sourceTree = "<group>"; };
 		4ED175341892B8F3000EC483 /* LocalMusicViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocalMusicViewController.xib; sourceTree = "<group>"; };
 		4EEA197918AA5F070062D118 /* MyUploadDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUploadDetailViewController.h; sourceTree = "<group>"; };
-		4EEA197A18AA5F070062D118 /* MyUploadDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUploadDetailViewController.m; sourceTree = "<group>"; };
+		4EEA197A18AA5F070062D118 /* MyUploadDetailViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MyUploadDetailViewController.mm; sourceTree = "<group>"; };
 		4EEA197B18AA5F070062D118 /* MyUploadDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyUploadDetailViewController.xib; sourceTree = "<group>"; };
 		4EEA197E18AA72540062D118 /* testImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testImage.png; sourceTree = "<group>"; };
 		4EFF164F18A7D134005E4802 /* NSString+Levenshtein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Levenshtein.h"; sourceTree = "<group>"; };
@@ -1517,6 +1529,12 @@
 				4ED17522189268AC000EC483 /* AudioPlotViewController.h */,
 				4ED17523189268AC000EC483 /* AudioPlotViewController.m */,
 				4ED17524189268AC000EC483 /* AudioPlotViewController.xib */,
+				4EB43E6B18AB15B6004CCC85 /* MyUploadDetailCell.h */,
+				4EB43E6C18AB15B6004CCC85 /* MyUploadDetailCell.m */,
+				4EB43E6E18AB15CD004CCC85 /* MyUploadDetailCell.xib */,
+				4EB43E7018AB26BC004CCC85 /* PlayItemView.h */,
+				4EB43E7118AB26BC004CCC85 /* PlayItemView.m */,
+				4EB43E7318AB26D4004CCC85 /* PlayItemView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1767,6 +1785,7 @@
 		C3FEAF511871C294008EADAA /* hunyin */ = {
 			isa = PBXGroup;
 			children = (
+				4EB43E7518AB284D004CCC85 /* arrow-down.png */,
 				4EEA197E18AA72540062D118 /* testImage.png */,
 				C3B395C51875519800592C92 /* back@2x.png */,
 				C3FEAF521871C294008EADAA /* hunyin_0@2x.png */,
@@ -2187,7 +2206,7 @@
 				C32F401F188287EE00681953 /* MyProductionViewController.mm */,
 				C32F4020188287EE00681953 /* MyProductionViewController.xib */,
 				4EEA197918AA5F070062D118 /* MyUploadDetailViewController.h */,
-				4EEA197A18AA5F070062D118 /* MyUploadDetailViewController.m */,
+				4EEA197A18AA5F070062D118 /* MyUploadDetailViewController.mm */,
 				4EEA197B18AA5F070062D118 /* MyUploadDetailViewController.xib */,
 			);
 			path = User;
@@ -2504,6 +2523,7 @@
 				C3FEB0491871C294008EADAA /* record_36@2x.png in Resources */,
 				C3164CAD1874555D00301ACA /* FoundMusic_@2x.png in Resources */,
 				C3FEB0281871C294008EADAA /* first_5@2x.png in Resources */,
+				4EB43E7418AB26D4004CCC85 /* PlayItemView.xib in Resources */,
 				C3164CD61874555D00301ACA /* MusicFans_cv@2x.png in Resources */,
 				C39A97A9189247AE00F41CBB /* catalog_icon_gpng@2x.png in Resources */,
 				C3FEB0361871C294008EADAA /* record_18@2x.png in Resources */,
@@ -2539,6 +2559,7 @@
 				C3FEB0891871C294008EADAA /* user_8@2x.png in Resources */,
 				C3FEB0241871C294008EADAA /* sliderStart.png in Resources */,
 				C39A97A3189247AE00F41CBB /* catalog_icon_apng@2x.png in Resources */,
+				4EB43E7618AB284E004CCC85 /* arrow-down.png in Resources */,
 				C39A97B7189247AE00F41CBB /* catalog_section_ipng@2x.png in Resources */,
 				C3164CE21874555D00301ACA /* MusicFans_nine@2x.png in Resources */,
 				C39A97A7189247AE00F41CBB /* catalog_icon_epng@2x.png in Resources */,
@@ -2562,6 +2583,7 @@
 				C3FEAFFC1871C294008EADAA /* hunyin_19@2x.png in Resources */,
 				C3164CE31874555D00301ACA /* MusicFans_one@2x.png in Resources */,
 				C3456CEF18877DCF009329D2 /* 2kuanf@2x.png in Resources */,
+				4EB43E6F18AB15CD004CCC85 /* MyUploadDetailCell.xib in Resources */,
 				C3FEAFFE1871C294008EADAA /* hunyin_20@2x.png in Resources */,
 				C3164CBC1874555D00301ACA /* FoundMusic_j@2x.png in Resources */,
 				C3D4FCC9187D679E001A7223 /* DownloadRankCell.xib in Resources */,
@@ -2676,7 +2698,7 @@
 				C3FEB0BA1871C801008EADAA /* UIImage+Util.m in Sources */,
 				C327499B187A5EBD00CF7A4A /* ThemeViewController.m in Sources */,
 				C39BBE581893DF5C00FC8F72 /* TSPopoverTouchView.m in Sources */,
-				4EEA197C18AA5F070062D118 /* MyUploadDetailViewController.m in Sources */,
+				4EEA197C18AA5F070062D118 /* MyUploadDetailViewController.mm in Sources */,
 				C3FEAF2C1871C156008EADAA /* main.m in Sources */,
 				4ED175351892B8F3000EC483 /* LocalMusicViewController.mm in Sources */,
 				C351B690187E37FE00630408 /* RecommendSoundCell.m in Sources */,
@@ -2728,10 +2750,12 @@
 				4E2A136B1890BDEC00D8CB65 /* MusicInfo.m in Sources */,
 				C3411720188BC6710070EAB4 /* BaseModel.m in Sources */,
 				C3164CF518746ABF00301ACA /* UINavigationBar+Custom.m in Sources */,
+				4EB43E7218AB26BC004CCC85 /* PlayItemView.m in Sources */,
 				4E2A1384189152F900D8CB65 /* AudioReader.mm in Sources */,
 				4E1CDE0318900BA000C046ED /* AudioWriter.m in Sources */,
 				C39BBE561893DF5C00FC8F72 /* TSPopoverController.m in Sources */,
 				C341171A188B8B080070EAB4 /* AFHttp.m in Sources */,
+				4EB43E6D18AB15B6004CCC85 /* MyUploadDetailCell.m in Sources */,
 				4E2A13811891474800D8CB65 /* AudioRecorder.m in Sources */,
 				C32D4FB1187FAB320090730B /* SoundCatalogCell.m in Sources */,
 				4E96B59A188EC7B0008EA56F /* TrachBtn.m in Sources */,
