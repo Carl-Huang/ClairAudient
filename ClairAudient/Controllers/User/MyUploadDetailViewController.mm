@@ -6,6 +6,16 @@
 //  Copyright (c) 2014 helloworld. All rights reserved.
 //
 
+/*
+ 以voice_data开头的用http://app.hfapp.cn/soundValley这个前缀
+ */
+#define MusicVoiceDatePrefix @"http://app.hfapp.cn/soundValley/"
+/*
+ 其他
+ */
+#define MusicOtherPrefix     @"http://s1.vocc.cc/"
+
+
 #import "MyUploadDetailViewController.h"
 #import "UIViewController+CustomBarItemPosition.h"
 #import "CycleScrollView.h"
@@ -15,8 +25,9 @@
 #import <objc/runtime.h>
 #import "HWSDK.h"
 #import "PlayItemView.h"
-
-
+#import "AudioPlayer.h"
+#import "AudioStreamer.h"
+#import "MBProgressHUD.h"
 static NSString * cellIdentifier = @"cellIdentifier";
 @interface MyUploadDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -25,12 +36,17 @@ static NSString * cellIdentifier = @"cellIdentifier";
     NSArray * contentArray;
     
     UIView * headerView;
-    UISlider * currentPlaySlider;
     
+    AudioPlayer * streamPlayer;
+    
+    NSThread * bufferingThread;
 }
+@property (strong ,nonatomic) UISlider * currentPlaySlider;
+@property (strong ,nonatomic) PlayItemView * playView;
 @end
 
 @implementation MyUploadDetailViewController
+@synthesize currentPlaySlider,playView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -75,6 +91,15 @@ static NSString * cellIdentifier = @"cellIdentifier";
     
     UINib * cellNib = [UINib nibWithNibName:@"MyUploadDetailCell" bundle:[NSBundle bundleForClass:[MyUploadDetailCell class]]];
     [self.musicInfoTable registerNib:cellNib forCellReuseIdentifier:cellIdentifier];
+    
+    
+    playView = [[[NSBundle mainBundle]loadNibNamed:@"PlayItemView" owner:self options:nil]objectAtIndex:0];
+    [playView.playBtn addTarget:self action:@selector(playMusic:) forControlEvents:UIControlEventTouchUpInside];
+    [playView.downloadBtn addTarget:self action:@selector(downloadMusic:) forControlEvents:UIControlEventTouchUpInside];
+    currentPlaySlider = playView.playSlider;
+    currentPlaySlider.maximumValue = 1.0;
+    currentPlaySlider.minimumValue = 0.0;
+    currentPlaySlider.value = 0.0;
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -82,6 +107,12 @@ static NSString * cellIdentifier = @"cellIdentifier";
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [streamPlayer stop];
+    streamPlayer = nil;
 }
 #pragma mark - Private Method
 -(NSArray *)objectPropertyValueToArray:(id)object
@@ -103,7 +134,47 @@ static NSString * cellIdentifier = @"cellIdentifier";
 
 -(void)playMusic:(id)sender
 {
-    
+    UIButton * btn = (UIButton *)sender;
+    [btn setSelected:!btn.selected];
+    if (streamPlayer) {
+        [streamPlayer stop];
+        streamPlayer = nil;
+    }
+    __weak MyUploadDetailViewController * weakSelf = self;
+    streamPlayer = [[AudioPlayer alloc]init];
+    [streamPlayer setBlock:^(double processOffset)
+     {
+         
+         if (processOffset > 0) {
+             NSLog(@"%f",processOffset);
+             @try {
+                 weakSelf.playView.playSlider.value = processOffset;
+             }
+             @catch (NSException *exception) {
+                 NSLog(@"%@",[exception description]);
+             }
+             @finally {
+                 ;
+             }
+         }
+     }];
+    [streamPlayer stop];
+    NSURL * musciURL = [self getMusicUrl:self.voiceItem.url];
+    if (musciURL) {
+        
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        streamPlayer.url = musciURL;
+        [streamPlayer play];
+        
+        if (bufferingThread) {
+            if (![bufferingThread isCancelled]) {
+                [bufferingThread cancel];
+            }
+            bufferingThread = nil;
+        }
+        bufferingThread = [[NSThread alloc]initWithTarget:self selector:@selector(buffering) object:nil];
+        [bufferingThread start];
+    }
 }
 
 
@@ -111,6 +182,37 @@ static NSString * cellIdentifier = @"cellIdentifier";
 {
     
 }
+
+-(NSURL *)getMusicUrl:(NSString *)path
+{
+    NSString * prefixStr = nil;
+    if ([path rangeOfString:@"voice_data"].location!= NSNotFound) {
+        prefixStr = MusicVoiceDatePrefix;
+    }else
+    {
+        prefixStr = MusicOtherPrefix;
+    }
+    NSURL * url = [NSURL URLWithString:[prefixStr stringByAppendingString:path]];
+    return url;
+}
+
+-(void)buffering
+{
+    do {
+        if ([streamPlayer.streamer isPlaying]) {
+            //stop chrysanthemum
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                if (![bufferingThread isCancelled]) {
+                    [bufferingThread cancel];
+                    bufferingThread = nil;
+                }
+            });
+        }
+    } while (bufferingThread);
+    
+}
+
 #pragma mark - UITableView Delegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -118,7 +220,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 70.f;
+    return playView.frame.size.height;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -137,15 +239,9 @@ static NSString * cellIdentifier = @"cellIdentifier";
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if (!headerView) {
-        headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 280, 70)];
-        PlayItemView * playView = [[[NSBundle mainBundle]loadNibNamed:@"PlayItemView" owner:self options:nil]objectAtIndex:0];
-        [playView.playBtn addTarget:self action:@selector(playMusic:) forControlEvents:UIControlEventTouchUpInside];
-        [playView.downloadBtn addTarget:self action:@selector(downloadMusic:) forControlEvents:UIControlEventTouchUpInside];
-        currentPlaySlider = playView.playSlider;
-        
+        headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 280, playView.frame.size.height)];
         [headerView addSubview:playView];
-        playView = nil;
-        [headerView setBackgroundColor:[UIColor blueColor]];
+        [headerView setBackgroundColor:[UIColor clearColor]];
     }
     return headerView;
 }
