@@ -16,6 +16,7 @@
 #import "HWSDK.h"
 #import "PlayItemView.h"
 
+
 static NSString * cellIdentifier = @"cellIdentifier";
 @interface MyUploadDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -24,6 +25,8 @@ static NSString * cellIdentifier = @"cellIdentifier";
     NSArray * contentArray;
     
     UIView * headerView;
+    UISlider * currentPlaySlider;
+    
 }
 @end
 
@@ -138,11 +141,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
         PlayItemView * playView = [[[NSBundle mainBundle]loadNibNamed:@"PlayItemView" owner:self options:nil]objectAtIndex:0];
         [playView.playBtn addTarget:self action:@selector(playMusic:) forControlEvents:UIControlEventTouchUpInside];
         [playView.downloadBtn addTarget:self action:@selector(downloadMusic:) forControlEvents:UIControlEventTouchUpInside];
-        
-        
-        
-        
-        
+        currentPlaySlider = playView.playSlider;
         
         [headerView addSubview:playView];
         playView = nil;

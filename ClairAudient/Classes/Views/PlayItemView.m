@@ -27,5 +27,13 @@
     // Drawing code
 }
 */
+-(void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self.playSlider setThumbImage:[UIImage imageNamed:@"record_20"] forState:UIControlStateNormal];
+    [self.playSlider setThumbImage:[UIImage imageNamed:@"record_20"] forState:UIControlStateHighlighted];
+    [self.playSlider setMinimumTrackImage:[UIImage imageNamed:@"MinimumTrackImage"] forState:UIControlStateNormal];
+    [self.playSlider setMaximumTrackImage:[UIImage imageNamed:@"record_19"] forState:UIControlStateNormal];
 
+}
 @end
