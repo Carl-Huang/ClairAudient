@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^GetProcessingLocationBlock) (double processOffset);
+typedef void(^GetProcessingLocationBlock) (double processOffset,BOOL isFinished);
 
 @class AudioStreamer;
-@interface AudioPlayer : NSObject {
+@interface AudioPlayer : NSObject { 
     AudioStreamer *streamer;
     NSURL *url;
     NSTimer *timer;

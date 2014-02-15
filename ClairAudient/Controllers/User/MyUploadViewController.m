@@ -25,10 +25,12 @@
 }
 @property (nonatomic,strong) NSMutableArray * dataSource;
 @property (strong ,nonatomic) UISlider * currentSlider;
+@property (strong ,nonatomic) UIButton * currentControllBtn;
 @end
 
 @implementation MyUploadViewController
 @synthesize currentSlider;
+@synthesize currentControllBtn;
 #pragma mark - Life Cycle
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -89,10 +91,10 @@
 
 -(void)playMusic:(id)sender
 {
-    UIButton * btn = (UIButton *)sender;
-    [btn setSelected:!btn.selected];
-    if (btn.selected) {
-        currentPlayItemIndex = btn.tag;
+    currentControllBtn = (UIButton *)sender;
+    [currentControllBtn setSelected:!currentControllBtn.selected];
+    if (currentControllBtn.selected) {
+        currentPlayItemIndex = currentControllBtn.tag;
         Voice * voice = [_dataSource objectAtIndex:currentPlayItemIndex];
         MyUploadCell * cell  = (MyUploadCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:currentPlayItemIndex inSection:0]];
         currentSlider = cell.playSlider;
@@ -115,13 +117,18 @@
 
     __weak MyUploadViewController * weakSelf = self;
     streamPlayer = [[AudioPlayer alloc]init];
-    [streamPlayer setBlock:^(double processOffset)
+    [streamPlayer setBlock:^(double processOffset,BOOL isFinished)
      {
          
          if (processOffset > 0) {
-//             NSLog(@"%f",processOffset);
              @try {
-                 weakSelf.currentSlider.value = processOffset;
+                 if (isFinished) {
+                     weakSelf.currentSlider.value = 0.0;
+                     weakSelf.currentControllBtn.selected = NO;
+                 }else
+                 {
+                     weakSelf.currentSlider.value = processOffset;
+                 }
              }
              @catch (NSException *exception) {
                  NSLog(@"%@",[exception description]);

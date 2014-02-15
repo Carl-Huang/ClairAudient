@@ -36,11 +36,12 @@ static NSString * cellIdentifier = @"cellIdentifier";
     BOOL isDowning;
 }
 @property (strong ,nonatomic) UISlider * currentPlaySlider;
+@property (strong ,nonatomic) UIButton * currentControllBtn;
 @property (strong ,nonatomic) PlayItemView * playView;
 @end
 
 @implementation MyUploadDetailViewController
-@synthesize currentPlaySlider,playView;
+@synthesize currentPlaySlider,playView,currentControllBtn;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -130,9 +131,9 @@ static NSString * cellIdentifier = @"cellIdentifier";
 
 -(void)playMusic:(id)sender
 {
-    UIButton * btn = (UIButton *)sender;
-    [btn setSelected:!btn.selected];
-    if (btn.selected) {
+    currentControllBtn = (UIButton *)sender;
+    [currentControllBtn setSelected:!currentControllBtn.selected];
+    if (currentControllBtn.selected) {
         [self playMusicStream];
     }else
     {
@@ -151,13 +152,19 @@ static NSString * cellIdentifier = @"cellIdentifier";
     }
     __weak MyUploadDetailViewController * weakSelf = self;
     streamPlayer = [[AudioPlayer alloc]init];
-    [streamPlayer setBlock:^(double processOffset)
+    [streamPlayer setBlock:^(double processOffset,BOOL isFinished)
      {
          
          if (processOffset > 0) {
              NSLog(@"%f",processOffset);
              @try {
-                 weakSelf.playView.playSlider.value = processOffset;
+                 if (isFinished) {
+                     weakSelf.playView.playSlider.value = 0.0;
+                     weakSelf.currentControllBtn.selected = NO;
+                 }else
+                 {
+                     weakSelf.playView.playSlider.value = processOffset;
+                 }
              }
              @catch (NSException *exception) {
                  NSLog(@"%@",[exception description]);

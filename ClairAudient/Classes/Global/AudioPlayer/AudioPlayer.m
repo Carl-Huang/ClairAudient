@@ -90,14 +90,15 @@
 {
     if (streamer.progress <= streamer.duration ) {
         if (self.block) {
-             self.block(streamer.progress/streamer.duration);
+            
+             self.block(streamer.progress/streamer.duration,[streamer isFinishing]);
         }
        
 //        [button setProgress:streamer.progress/streamer.duration];        
     } else {
 //        [button setProgress:0.0f];
         if (self.block) {
-            self.block(0);
+            self.block(0,YES);
         }
         
     }
