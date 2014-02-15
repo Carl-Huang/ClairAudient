@@ -10,6 +10,7 @@
 #import "ControlCenter.h"
 #import "HttpService.h"
 #import "CycleScrollView.h"
+
 @interface MainViewController ()
 @property (strong ,nonatomic)CycleScrollView * advertisementImageView;
 @end
@@ -38,9 +39,9 @@
     
     CGRect rect = self.adScrollView.frame;
     rect.origin.x = rect.origin.y = 0;
-//    advertisementImageView = [[CycleScrollView alloc]initWithFrame:rect cycleDirection:CycleDirectionLandscape pictures:@[] autoScroll:YES];
-//    [advertisementImageView setHidden:YES];
-//    [self.adScrollView addSubview:advertisementImageView];
+    advertisementImageView = [[CycleScrollView alloc]initWithFrame:rect cycleDirection:CycleDirectionLandscape pictures:@[] autoScroll:YES];
+    [advertisementImageView setHidden:YES];
+    [self.adScrollView addSubview:advertisementImageView];
 }
 
 - (void)viewWillAppear:(BOOL)animated

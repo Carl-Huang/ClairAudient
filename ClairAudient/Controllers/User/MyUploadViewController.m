@@ -14,12 +14,21 @@
 #import "HttpService.h"
 #import "MBProgressHUD.h"
 #import "MyUploadDetailViewController.h"
+#import "AudioStreamer.h"
+#import "AudioPlayer.h"
 #define Cell_Height 65.0f
 @interface MyUploadViewController ()
+{
+    AudioPlayer * streamPlayer;
+    NSThread * bufferingThread;
+    NSInteger currentPlayItemIndex;
+}
 @property (nonatomic,strong) NSMutableArray * dataSource;
+@property (strong ,nonatomic) UISlider * currentSlider;
 @end
 
 @implementation MyUploadViewController
+@synthesize currentSlider;
 #pragma mark - Life Cycle
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,6 +43,12 @@
 {
     [super viewDidLoad];
     [self initUI];
+    currentPlayItemIndex = -1;
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [streamPlayer stop];
+    streamPlayer = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,7 +87,98 @@
     }];
 }
 
+-(void)playMusic:(id)sender
+{
+    UIButton * btn = (UIButton *)sender;
+    [btn setSelected:!btn.selected];
+    if (btn.selected) {
+        currentPlayItemIndex = btn.tag;
+        Voice * voice = [_dataSource objectAtIndex:currentPlayItemIndex];
+        MyUploadCell * cell  = (MyUploadCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:currentPlayItemIndex inSection:0]];
+        currentSlider = cell.playSlider;
+        [self playMusicStreamWithData:voice];
+    }else
+    {
+        if (streamPlayer) {
+            [streamPlayer stop];
+            streamPlayer = nil;
+        }
+    }
+}
 
+-(void)playMusicStreamWithData:(Voice *)object
+{
+    if (streamPlayer) {
+        [streamPlayer stop];
+        streamPlayer = nil;
+    }
+
+    __weak MyUploadViewController * weakSelf = self;
+    streamPlayer = [[AudioPlayer alloc]init];
+    [streamPlayer setBlock:^(double processOffset)
+     {
+         
+         if (processOffset > 0) {
+//             NSLog(@"%f",processOffset);
+             @try {
+                 weakSelf.currentSlider.value = processOffset;
+             }
+             @catch (NSException *exception) {
+                 NSLog(@"%@",[exception description]);
+             }
+             @finally {
+                 ;
+             }
+         }
+     }];
+    [streamPlayer stop];
+    NSURL * musciURL = [self getMusicUrl:object.url];
+    if (musciURL) {
+        
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        streamPlayer.url = musciURL;
+        [streamPlayer play];
+        
+        if (bufferingThread) {
+            if (![bufferingThread isCancelled]) {
+                [bufferingThread cancel];
+            }
+            bufferingThread = nil;
+        }
+        bufferingThread = [[NSThread alloc]initWithTarget:self selector:@selector(buffering) object:nil];
+        [bufferingThread start];
+    }
+}
+
+-(void)buffering
+{
+    do {
+        if ([streamPlayer.streamer isPlaying]) {
+            //stop chrysanthemum
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                if (![bufferingThread isCancelled]) {
+                    [bufferingThread cancel];
+                    bufferingThread = nil;
+                }
+            });
+        }
+    } while (bufferingThread);
+    
+}
+
+-(NSURL *)getMusicUrl:(NSString *)path
+{
+    NSString * prefixStr = nil;
+    if ([path rangeOfString:@"voice_data"].location!= NSNotFound) {
+        prefixStr = SoundValleyPrefix;
+    }else
+    {
+        prefixStr = VoccPrefix;
+    }
+    NSURL * url = [NSURL URLWithString:[prefixStr stringByAppendingString:path]];
+    return url;
+}
 #pragma mark - UITableViewDataSource Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -100,6 +206,18 @@
     [cell.playSlider setMaximumTrackImage:[UIImage imageNamed:@"record_19"] forState:UIControlStateNormal];
     Voice * voice = [_dataSource objectAtIndex:indexPath.row];
     cell.nameLabel.text = voice.vl_name;
+    cell.controlButton.tag = indexPath.row;
+    if (indexPath.row != currentPlayItemIndex) {
+        cell.playSlider.value = 0.0;
+        cell.controlButton.selected = NO;
+    }else
+    {
+        cell.playSlider.value = currentSlider.value;
+        currentSlider = cell.playSlider;
+        cell.controlButton.selected = YES;
+    }
+    
+    [cell.controlButton addTarget:self action:@selector(playMusic:) forControlEvents:UIControlEventTouchUpInside];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }

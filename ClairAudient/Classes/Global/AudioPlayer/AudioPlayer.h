@@ -19,7 +19,7 @@ typedef void(^GetProcessingLocationBlock) (double processOffset);
 
 @property (nonatomic, retain) AudioStreamer *streamer;
 @property (nonatomic, retain) NSURL *url;
-@property (nonatomic, retain) GetProcessingLocationBlock  block;
+@property (nonatomic, copy) GetProcessingLocationBlock  block;
 - (void)play;
 - (void)stop;
 - (BOOL)isProcessing;

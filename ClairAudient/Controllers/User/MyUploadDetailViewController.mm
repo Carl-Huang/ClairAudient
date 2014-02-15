@@ -6,15 +6,6 @@
 //  Copyright (c) 2014 helloworld. All rights reserved.
 //
 
-/*
- 以voice_data开头的用http://app.hfapp.cn/soundValley这个前缀
- */
-#define MusicVoiceDatePrefix @"http://app.hfapp.cn/soundValley/"
-/*
- 其他
- */
-#define MusicOtherPrefix     @"http://s1.vocc.cc/"
-
 
 #import "MyUploadDetailViewController.h"
 #import "UIViewController+CustomBarItemPosition.h"
@@ -28,6 +19,8 @@
 #import "AudioPlayer.h"
 #import "AudioStreamer.h"
 #import "MBProgressHUD.h"
+#import "AFNetworking.h"
+
 static NSString * cellIdentifier = @"cellIdentifier";
 @interface MyUploadDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -40,6 +33,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
     AudioPlayer * streamPlayer;
     
     NSThread * bufferingThread;
+    BOOL isDowning;
 }
 @property (strong ,nonatomic) UISlider * currentPlaySlider;
 @property (strong ,nonatomic) PlayItemView * playView;
@@ -100,6 +94,8 @@ static NSString * cellIdentifier = @"cellIdentifier";
     currentPlaySlider.maximumValue = 1.0;
     currentPlaySlider.minimumValue = 0.0;
     currentPlaySlider.value = 0.0;
+    
+    isDowning = NO;
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -136,6 +132,19 @@ static NSString * cellIdentifier = @"cellIdentifier";
 {
     UIButton * btn = (UIButton *)sender;
     [btn setSelected:!btn.selected];
+    if (btn.selected) {
+        [self playMusicStream];
+    }else
+    {
+        if (streamPlayer) {
+            [streamPlayer stop];
+            streamPlayer = nil;
+        }
+    }
+}
+
+-(void)playMusicStream
+{
     if (streamPlayer) {
         [streamPlayer stop];
         streamPlayer = nil;
@@ -180,17 +189,67 @@ static NSString * cellIdentifier = @"cellIdentifier";
 
 -(void)downloadMusic:(id)sender
 {
+    if (!isDowning) {
+        NSURLRequest * request = [NSURLRequest requestWithURL:[self getMusicUrl:self.voiceItem.url]];
+        if (request) {
+            __weak MyUploadDetailViewController * weakSelf = self;
+            
+            [self getExportPath:[_voiceItem.vl_name stringByAppendingPathExtension:@"mp3"] completedBlock:^(BOOL isDownloaded, NSString *exportFilePath) {
+                if (isDowning) {
+                    [self showAlertViewWithMessage:@"已经下载"];
+                }else
+                {
+                    AFURLConnectionOperation * downloadOperation = [[AFURLConnectionOperation alloc]initWithRequest:request];
+                    downloadOperation.completionBlock = ^()
+                    {
+                        //下载完成
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [weakSelf showAlertViewWithMessage:@"下载完成"];
+                            isDowning = NO;
+                        });
+                    };
+                    downloadOperation.outputStream = [NSOutputStream outputStreamToFileAtPath:exportFilePath append:NO];
+                    [downloadOperation start];
+                }
+                
+            }];
+        }else
+        {
+            //文件路径错误
+        }
+    }else
+    {
+        [self showAlertViewWithMessage:@"正在下载"];
+    }
+   
+}
+
+-(void)getExportPath:(NSString *)fileName completedBlock:(void (^)(BOOL isDownloaded,NSString * exportFilePath))block
+{
+    NSArray *dirs = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
+    NSString *documentsDirectoryPath = [dirs objectAtIndex:0];
     
+    NSString * fileFloder = [documentsDirectoryPath stringByAppendingPathComponent:@"我的下载"];
+    NSString *exportPath = [fileFloder stringByAppendingPathComponent:fileName];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:fileFloder]) {
+        NSError * error = nil;
+        [[NSFileManager defaultManager] createDirectoryAtPath:fileFloder withIntermediateDirectories:NO attributes:nil error:&error];
+        
+    }
+    if ([[NSFileManager defaultManager] fileExistsAtPath:exportPath]) {
+        block(YES,nil);
+    }
+    block(NO,exportPath);
 }
 
 -(NSURL *)getMusicUrl:(NSString *)path
 {
     NSString * prefixStr = nil;
     if ([path rangeOfString:@"voice_data"].location!= NSNotFound) {
-        prefixStr = MusicVoiceDatePrefix;
+        prefixStr = SoundValleyPrefix;
     }else
     {
-        prefixStr = MusicOtherPrefix;
+        prefixStr = VoccPrefix;
     }
     NSURL * url = [NSURL URLWithString:[prefixStr stringByAppendingString:path]];
     return url;

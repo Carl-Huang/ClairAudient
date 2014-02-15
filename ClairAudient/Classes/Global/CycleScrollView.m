@@ -109,12 +109,12 @@
         
         [scrollView addSubview:imageView];
     }
-//    if (scrollDirection == CycleDirectionLandscape) {
-//        [scrollView setContentOffset:CGPointMake(scrollFrame.size.width, 0)];
-//    }
-//    if (scrollDirection == CycleDirectionPortait) {
-//        [scrollView setContentOffset:CGPointMake(0, scrollFrame.size.height)];
-//    }
+    if (scrollDirection == CycleDirectionLandscape) {
+        [scrollView setContentOffset:CGPointMake(scrollFrame.size.width, 0)];
+    }
+    if (scrollDirection == CycleDirectionPortait) {
+        [scrollView setContentOffset:CGPointMake(0, scrollFrame.size.height)];
+    }
 }
 
 - (NSArray *)getDisplayImagesWithCurpage:(int)page {
