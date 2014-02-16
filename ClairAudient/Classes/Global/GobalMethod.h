@@ -12,4 +12,7 @@
 +(void)getExportPath:(NSString *)fileName completedBlock:(void (^)(BOOL isDownloaded,NSString * exportFilePath))block;
 
 +(NSURL *)getMusicUrl:(NSString *)path;
+
+//获取音乐长度
++(CGFloat)getMusicLength:(NSURL *)url;
 @end

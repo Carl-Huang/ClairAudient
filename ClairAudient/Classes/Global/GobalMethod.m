@@ -7,7 +7,7 @@
 //
 
 #import "GobalMethod.h"
-
+#import <AVFoundation/AVFoundation.h>
 @implementation GobalMethod
 
 //我的下载
@@ -24,7 +24,8 @@
         
     }
     if ([[NSFileManager defaultManager] fileExistsAtPath:exportPath]) {
-        block(YES,nil);
+        block(YES,exportPath);
+        return;
     }
     block(NO,exportPath);
 }
@@ -40,5 +41,14 @@
     }
     NSURL * url = [NSURL URLWithString:[prefixStr stringByAppendingString:path]];
     return url;
+}
+
+//获取音乐长度
++(CGFloat)getMusicLength:(NSURL *)url
+{
+    AVURLAsset* audioAsset =[AVURLAsset assetWithURL:url];
+    CMTime audioDuration = audioAsset.duration;
+    float audioDurationSeconds =CMTimeGetSeconds(audioDuration)/60.0f;
+    return audioDurationSeconds;
 }
 @end

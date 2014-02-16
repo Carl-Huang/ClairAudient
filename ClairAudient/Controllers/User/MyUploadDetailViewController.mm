@@ -21,6 +21,8 @@
 #import "MBProgressHUD.h"
 #import "AFNetworking.h"
 #import "GobalMethod.h"
+#import "AudioReader.h"
+#import "AudioManager.h"
 static NSString * cellIdentifier = @"cellIdentifier";
 @interface MyUploadDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -31,13 +33,15 @@ static NSString * cellIdentifier = @"cellIdentifier";
     UIView * headerView;
     
     AudioPlayer * streamPlayer;
-    
+    NSInteger currentPlayFileLength;
     NSThread * bufferingThread;
     BOOL isDowning;
 }
 @property (strong ,nonatomic) UISlider * currentPlaySlider;
 @property (strong ,nonatomic) UIButton * currentControllBtn;
 @property (strong ,nonatomic) PlayItemView * playView;
+@property (strong ,nonatomic) AudioManager * audioMng;
+@property (strong ,nonatomic) AudioReader  * reader;
 @end
 
 @implementation MyUploadDetailViewController
@@ -76,7 +80,6 @@ static NSString * cellIdentifier = @"cellIdentifier";
     }
     
     [self.contentScrollView setContentSize:CGSizeMake(420, 600)];
-    [self.contentScrollView setBackgroundColor:[UIColor clearColor]];
     self.contentScrollView.scrollEnabled = YES;
 
     [self.musicInfoTable setBackgroundView:nil];
@@ -97,8 +100,10 @@ static NSString * cellIdentifier = @"cellIdentifier";
     currentPlaySlider.value = 0.0;
     
     isDowning = NO;
+    currentPlayFileLength = 0;
     // Do any additional setup after loading the view from its nib.
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -146,6 +151,48 @@ static NSString * cellIdentifier = @"cellIdentifier";
 
 -(void)playMusicStream
 {
+    
+    __weak MyUploadDetailViewController * weakSelf = self;
+    [GobalMethod getExportPath:[_voiceItem.vl_name stringByAppendingPathExtension:@"mp3"] completedBlock:^(BOOL isDownloaded, NSString *exportFilePath) {
+        if (isDownloaded) {
+            weakSelf.audioMng = [AudioManager shareAudioManager];
+            [weakSelf.audioMng pause];
+            if ([weakSelf.reader playing]) {
+                [weakSelf.reader stop];
+            }
+            
+            NSURL *inputFileURL = [NSURL fileURLWithPath:exportFilePath];
+            currentPlayFileLength = [GobalMethod getMusicLength:inputFileURL];
+            if (weakSelf.reader) {
+                weakSelf.reader = nil;
+            }
+            weakSelf.reader = [[AudioReader alloc]
+                           initWithAudioFileURL:inputFileURL
+                           samplingRate:weakSelf.audioMng.samplingRate
+                           numChannels:weakSelf.audioMng.numOutputChannels];
+            
+            //太累了，要记住一定要设置currentime = 0.0,表示开始时间   :]
+            weakSelf.reader.currentTime = 0.0;
+            
+            
+            [weakSelf.audioMng setOutputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels)
+             {
+                 [weakSelf.reader retrieveFreshAudio:data numFrames:numFrames numChannels:numChannels];
+             }];
+            [weakSelf.audioMng play];
+        }else
+        {
+            [weakSelf startStreamPlayer];
+        }
+        
+    }];
+
+
+    
+}
+
+-(void)startStreamPlayer
+{
     if (streamPlayer) {
         [streamPlayer stop];
         streamPlayer = nil;
@@ -192,7 +239,6 @@ static NSString * cellIdentifier = @"cellIdentifier";
         [bufferingThread start];
     }
 }
-
 
 -(void)downloadMusic:(id)sender
 {
@@ -280,5 +326,22 @@ static NSString * cellIdentifier = @"cellIdentifier";
         [headerView setBackgroundColor:[UIColor clearColor]];
     }
     return headerView;
+}
+
+#pragma mark - AudioReader Delegate
+-(void)currentFileLocation:(CGFloat)location
+{
+    if (location == currentPlayFileLength) {
+        [self.audioMng pause];
+//        [currentPlayItemControlBtn setSelected:NO];
+//        currentSelectedItemSlider.value = 0.0f;
+    }else
+    {
+        NSLog(@"%f",location);
+        dispatch_async(dispatch_get_main_queue(), ^{
+//            currentSelectedItemSlider.value = ceil(location);
+        });
+    }
+    
 }
 @end
