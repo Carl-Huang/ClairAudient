@@ -19,44 +19,47 @@ typedef enum {
     UIScrollView *scrollView;
     UIImageView *curImageView;
     
-    int totalPage;  
+    int totalPage;
     int curPage;
     CGRect scrollFrame;
     
     CycleDirection scrollDirection;     // scrollView滚动的方向
     NSMutableArray *curImages;          // 存放当前滚动的三张图片
     
-    int viewCount;
     CGRect rect;
-    BOOL shouldAutoScroll;
     NSInteger currentPage;
     BOOL isAutoScroll;
     
-   
+    
 }
 
 @property (nonatomic, weak) id<CycleScrollViewDelegate> delegate;
 @property (nonatomic, strong) UIPageControl    *pageControl;
 @property (strong, nonatomic) NSTimer          *timer;
 @property (strong, nonatomic) NSMutableArray   *imagesArray;               // 存放所有需要滚动的图片 UIImage
-//@property (assign ,nonatomic) CGRect            pageControllerRect;
-
+@property (strong, nonatomic) NSArray          *imageArrayInfo;
+@property (strong, nonatomic) NSString         * identifier;
+@property (strong, nonatomic) NSString         * contentIdentifier;
 - (int)validPageValue:(NSInteger)value;
 - (id)initWithFrame:(CGRect)frame
      cycleDirection:(CycleDirection)direction
            pictures:(NSArray *)pictureArray
          autoScroll:(BOOL)shouldScroll;
 
-- (NSArray *)getDisplayImagesWithCurpage:(int)page;
+- (void)getDisplayImagesWithCurpage:(int)page;
 - (void)refreshScrollView;
 - (void)updateImageArrayWithImageArray:(NSArray *)images;
 
+/**
+ @desc 把标识符（identifier） 和需要标示的内容（contentIdentifier）传递过去。在cycleScrollViewDelegate: didSelectImageView: delegate中可以获取传递回来的identifier
+ */
+- (void)setIdentifier:(NSString *)iden andContentIdenifier:(NSString *)contentIden;
 
 @end
 
 @protocol CycleScrollViewDelegate <NSObject>
 @optional
-- (void)cycleScrollViewDelegate:(CycleScrollView *)cycleScrollView didSelectImageView:(int)index;
+- (void)cycleScrollViewDelegate:(CycleScrollView *)cycleScrollView didSelectImageView:(NSString *)index;
 - (void)cycleScrollViewDelegate:(CycleScrollView *)cycleScrollView didScrollImageView:(int)index;
 
 @end

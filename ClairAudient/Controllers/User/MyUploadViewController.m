@@ -91,6 +91,9 @@
 
 -(void)playMusic:(id)sender
 {
+    if (currentControllBtn) {
+        [currentControllBtn setSelected:NO];
+    }
     currentControllBtn = (UIButton *)sender;
     [currentControllBtn setSelected:!currentControllBtn.selected];
     if (currentControllBtn.selected) {
@@ -142,7 +145,7 @@
     NSURL * musciURL = [self getMusicUrl:object.url];
     if (musciURL) {
         
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         streamPlayer.url = musciURL;
         [streamPlayer play];
         

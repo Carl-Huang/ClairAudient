@@ -40,6 +40,7 @@
     CGRect rect = self.adScrollView.frame;
     rect.origin.x = rect.origin.y = 0;
     advertisementImageView = [[CycleScrollView alloc]initWithFrame:rect cycleDirection:CycleDirectionLandscape pictures:@[] autoScroll:YES];
+    [advertisementImageView setIdentifier:@"identifier" andContentIdenifier:@"Image"];
     [advertisementImageView setHidden:YES];
     [self.adScrollView addSubview:advertisementImageView];
 }
@@ -168,7 +169,8 @@
 
     [[HttpService sharedInstance]getImageWithResourcePath:imgStr completedBlock:^(id object) {
         if (object) {
-            [container addObject:object];
+            NSDictionary * tempDic = @{@"identifier": imgStr,@"Image":object};
+            [container addObject:tempDic];
             @synchronized(self)
             {
                 dispatch_async(dispatch_get_main_queue(), ^{
