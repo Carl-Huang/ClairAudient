@@ -44,6 +44,7 @@
 		4E96B596188EABC4008EA56F /* CHANGELOG in Resources */ = {isa = PBXBuildFile; fileRef = 4E96B589188EABC4008EA56F /* CHANGELOG */; };
 		4E96B597188EABC4008EA56F /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 4E96B58A188EABC4008EA56F /* VERSION */; };
 		4E96B59A188EC7B0008EA56F /* TrachBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E96B599188EC7B0008EA56F /* TrachBtn.m */; };
+		4EAC1DA818B0B46100C8DA2E /* GobalMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EAC1DA718B0B46100C8DA2E /* GobalMethod.m */; };
 		4EAF29FA18A9FA8D007A8F70 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EAF29F918A9FA8D007A8F70 /* SystemConfiguration.framework */; };
 		4EAF2A0718A9FE60007A8F70 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EAF29FB18A9FAD2007A8F70 /* CoreTelephony.framework */; };
 		4EAF2A0818A9FE6E007A8F70 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EAF29FF18A9FB05007A8F70 /* libicucore.dylib */; };
@@ -577,6 +578,8 @@
 		4E96B58A188EABC4008EA56F /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
 		4E96B598188EC7B0008EA56F /* TrachBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrachBtn.h; sourceTree = "<group>"; };
 		4E96B599188EC7B0008EA56F /* TrachBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrachBtn.m; sourceTree = "<group>"; };
+		4EAC1DA618B0B46100C8DA2E /* GobalMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GobalMethod.h; sourceTree = "<group>"; };
+		4EAC1DA718B0B46100C8DA2E /* GobalMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GobalMethod.m; sourceTree = "<group>"; };
 		4EAF29F718A9FA6C007A8F70 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		4EAF29F918A9FA8D007A8F70 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4EAF29FB18A9FAD2007A8F70 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -2268,6 +2271,8 @@
 				C3D4FCB7187CFD64001A7223 /* UIViewController+CustomBarItemPosition.m */,
 				4EFF165218A7D19C005E4802 /* AutoCompletedOperation.h */,
 				4EFF165318A7D19C005E4802 /* AutoCompletedOperation.m */,
+				4EAC1DA618B0B46100C8DA2E /* GobalMethod.h */,
+				4EAC1DA718B0B46100C8DA2E /* GobalMethod.m */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -2805,6 +2810,7 @@
 				C341171A188B8B080070EAB4 /* AFHttp.m in Sources */,
 				4EB43E6D18AB15B6004CCC85 /* MyUploadDetailCell.m in Sources */,
 				4E2A13811891474800D8CB65 /* AudioRecorder.m in Sources */,
+				4EAC1DA818B0B46100C8DA2E /* GobalMethod.m in Sources */,
 				C32D4FB1187FAB320090730B /* SoundCatalogCell.m in Sources */,
 				4E96B59A188EC7B0008EA56F /* TrachBtn.m in Sources */,
 				4E96B593188EABC4008EA56F /* EZPlot.m in Sources */,

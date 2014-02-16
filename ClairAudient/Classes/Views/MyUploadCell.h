@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *rubbishButton;
 @property (weak, nonatomic) IBOutlet UIButton *controlButton;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *downloadNumberCount;
 
 @property (weak, nonatomic) IBOutlet UISlider *playSlider;
 @end

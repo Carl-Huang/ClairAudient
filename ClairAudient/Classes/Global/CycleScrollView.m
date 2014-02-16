@@ -83,6 +83,7 @@
 -(void)startTimer
 {
     [self stopTimer];
+    NSLog(@"timer is valid");
     timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(runTimePage) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:timer
                                  forMode:NSRunLoopCommonModes];
@@ -90,7 +91,9 @@
 
 -(void)stopTimer
 {
+    
     if (timer&&[timer isValid]) {
+        NSLog(@"timer is invalidate");
         [timer invalidate];
         timer = nil;
     }
@@ -136,19 +139,28 @@
 }
 
 - (void)getDisplayImagesWithCurpage:(int)page {
-    int pre     = [self validPageValue:curPage-1];
-    int last    = [self validPageValue:curPage+1];
-    //    NSLog(@"current page :%d",curPage);
-    //    NSLog(@"pre :%d",pre);
-    //    NSLog(@"last :%d",last);
-    //    NSLog(@"totalPage :%d",totalPage);
-    if([curImages count] != 0) [curImages removeAllObjects];
-    
-    if ([imagesArray count]) {
-        [curImages addObject:[imagesArray objectAtIndex:pre-1]];
-        [curImages addObject:[imagesArray objectAtIndex:curPage-1]];
-        [curImages addObject:[imagesArray objectAtIndex:last-1]];
+    @try {
+        int pre     = [self validPageValue:curPage-1];
+        int last    = [self validPageValue:curPage+1];
+        //    NSLog(@"current page :%d",curPage);
+        //    NSLog(@"pre :%d",pre);
+        //    NSLog(@"last :%d",last);
+        //    NSLog(@"totalPage :%d",totalPage);
+        if([curImages count] != 0) [curImages removeAllObjects];
+        
+        if ([imagesArray count]) {
+            [curImages addObject:[imagesArray objectAtIndex:pre-1]];
+            [curImages addObject:[imagesArray objectAtIndex:curPage-1]];
+            [curImages addObject:[imagesArray objectAtIndex:last-1]];
+        }
     }
+    @catch (NSException *exception) {
+        NSLog(@"%@",exception.description);
+    }
+    @finally {
+        ;
+    }
+    
 }
 
 - (int)validPageValue:(NSInteger)value {
@@ -203,20 +215,33 @@
     [self stopTimer];
     
     if ([images count]) {
-        if (self.contentIdentifier) {
-            [imagesArray removeAllObjects];
-            for (NSDictionary * dic in images) {
-                UIImage * tempImage =[dic valueForKey:self.contentIdentifier];
-                if (tempImage) {
-                    [imagesArray addObject:tempImage];
+        @try {
+            if (self.contentIdentifier) {
+                @synchronized(self)
+                {
+                    [imagesArray removeAllObjects];
+                    for (NSDictionary * dic in images) {
+                        UIImage * tempImage =[dic valueForKey:self.contentIdentifier];
+                        if (tempImage) {
+                            [imagesArray addObject:tempImage];
+                        }
+                    }
+                    totalPage = [imagesArray count];
+                    if (totalPage == 1) {
+                        scrollView.scrollEnabled = NO;
+                    }
+                    pageControl.numberOfPages = totalPage;
+                    curPage = 1;
                 }
+                
             }
-            totalPage = [images count];
-            if (totalPage == 1) {
-                scrollView.scrollEnabled = NO;
-            }
-            pageControl.numberOfPages = totalPage;
-            curPage = 1;
+
+        }
+        @catch (NSException *exception) {
+            NSLog(@"error");
+        }
+        @finally {
+            ;
         }
         [self startTimer];
     }

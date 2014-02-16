@@ -20,7 +20,7 @@
 #import "AudioStreamer.h"
 #import "MBProgressHUD.h"
 #import "AFNetworking.h"
-
+#import "GobalMethod.h"
 static NSString * cellIdentifier = @"cellIdentifier";
 @interface MyUploadDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -175,7 +175,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
          }
      }];
     [streamPlayer stop];
-    NSURL * musciURL = [self getMusicUrl:self.voiceItem.url];
+    NSURL * musciURL = [GobalMethod getMusicUrl:self.voiceItem.url];
     if (musciURL) {
         
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -197,11 +197,11 @@ static NSString * cellIdentifier = @"cellIdentifier";
 -(void)downloadMusic:(id)sender
 {
     if (!isDowning) {
-        NSURLRequest * request = [NSURLRequest requestWithURL:[self getMusicUrl:self.voiceItem.url]];
+        NSURLRequest * request = [NSURLRequest requestWithURL:[GobalMethod getMusicUrl:self.voiceItem.url]];
         if (request) {
             __weak MyUploadDetailViewController * weakSelf = self;
             
-            [self getExportPath:[_voiceItem.vl_name stringByAppendingPathExtension:@"mp3"] completedBlock:^(BOOL isDownloaded, NSString *exportFilePath) {
+            [GobalMethod getExportPath:[_voiceItem.vl_name stringByAppendingPathExtension:@"mp3"] completedBlock:^(BOOL isDownloaded, NSString *exportFilePath) {
                 if (isDowning) {
                     [self showAlertViewWithMessage:@"已经下载"];
                 }else
@@ -231,36 +231,6 @@ static NSString * cellIdentifier = @"cellIdentifier";
    
 }
 
--(void)getExportPath:(NSString *)fileName completedBlock:(void (^)(BOOL isDownloaded,NSString * exportFilePath))block
-{
-    NSArray *dirs = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
-    NSString *documentsDirectoryPath = [dirs objectAtIndex:0];
-    
-    NSString * fileFloder = [documentsDirectoryPath stringByAppendingPathComponent:@"我的下载"];
-    NSString *exportPath = [fileFloder stringByAppendingPathComponent:fileName];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:fileFloder]) {
-        NSError * error = nil;
-        [[NSFileManager defaultManager] createDirectoryAtPath:fileFloder withIntermediateDirectories:NO attributes:nil error:&error];
-        
-    }
-    if ([[NSFileManager defaultManager] fileExistsAtPath:exportPath]) {
-        block(YES,nil);
-    }
-    block(NO,exportPath);
-}
-
--(NSURL *)getMusicUrl:(NSString *)path
-{
-    NSString * prefixStr = nil;
-    if ([path rangeOfString:@"voice_data"].location!= NSNotFound) {
-        prefixStr = SoundValleyPrefix;
-    }else
-    {
-        prefixStr = VoccPrefix;
-    }
-    NSURL * url = [NSURL URLWithString:[prefixStr stringByAppendingString:path]];
-    return url;
-}
 
 -(void)buffering
 {

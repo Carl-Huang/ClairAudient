@@ -16,7 +16,7 @@
 #import "MyUploadDetailViewController.h"
 #import "AudioStreamer.h"
 #import "AudioPlayer.h"
-#define Cell_Height 65.0f
+#define Cell_Height 40.0f
 @interface MyUploadViewController ()
 {
     AudioPlayer * streamPlayer;
@@ -144,8 +144,6 @@
     [streamPlayer stop];
     NSURL * musciURL = [self getMusicUrl:object.url];
     if (musciURL) {
-        
-//        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         streamPlayer.url = musciURL;
         [streamPlayer play];
         
@@ -217,6 +215,8 @@
     Voice * voice = [_dataSource objectAtIndex:indexPath.row];
     cell.nameLabel.text = voice.vl_name;
     cell.controlButton.tag = indexPath.row;
+    cell.downloadNumberCount.text = voice.download_num;
+    
     if (indexPath.row != currentPlayItemIndex) {
         cell.playSlider.value = 0.0;
         cell.controlButton.selected = NO;
