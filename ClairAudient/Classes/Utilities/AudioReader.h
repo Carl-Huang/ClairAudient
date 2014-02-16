@@ -44,4 +44,6 @@
 - (void)play;
 - (void)pause;
 - (void)stop;
+
+- (float)getDuration;
 @end

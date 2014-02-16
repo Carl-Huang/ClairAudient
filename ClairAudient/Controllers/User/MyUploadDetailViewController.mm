@@ -24,7 +24,7 @@
 #import "AudioReader.h"
 #import "AudioManager.h"
 static NSString * cellIdentifier = @"cellIdentifier";
-@interface MyUploadDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface MyUploadDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AudioReaderDelegate,UIAlertViewDelegate>
 {
     CycleScrollView * advertisementImageView;
     NSArray * descriptionArray;
@@ -33,9 +33,12 @@ static NSString * cellIdentifier = @"cellIdentifier";
     UIView * headerView;
     
     AudioPlayer * streamPlayer;
-    NSInteger currentPlayFileLength;
+    CGFloat currentPlayFileLength;
     NSThread * bufferingThread;
     BOOL isDowning;
+    BOOL isPlayLocalFile;
+    BOOL isPlayStreamFile;
+    BOOL isPlaying;
 }
 @property (strong ,nonatomic) UISlider * currentPlaySlider;
 @property (strong ,nonatomic) UIButton * currentControllBtn;
@@ -60,17 +63,15 @@ static NSString * cellIdentifier = @"cellIdentifier";
 {
     [super viewDidLoad];
     [self setLeftAndRightBarItem];
+    [self initializationInterface];
     
-    CGRect rect = self.scrollAdView.frame;
-    rect.origin.x = rect.origin.y = 0;
-    
-    advertisementImageView = [[CycleScrollView alloc]initWithFrame:rect cycleDirection:CycleDirectionLandscape pictures:@[[UIImage imageNamed:@"testImage.png"],[UIImage imageNamed:@"testImage.png"]] autoScroll:YES];
-    [self.scrollAdView addSubview:advertisementImageView];
-    
+    currentPlaySlider = playView.playSlider;
+    currentPlaySlider.maximumValue = 1.0;
+    currentPlaySlider.minimumValue = 0.0;
+    currentPlaySlider.value = 0.0;
     
     self.musicInfoTable.scrollEnabled = NO;
     descriptionArray = @[@"时长",@"比特率",@"采样率",@"录入时间",@"下载次数",@"用户"];
-    
     if (self.voiceItem) {
         contentArray  = [self objectPropertyValueToArray:self.voiceItem];
     }else
@@ -78,28 +79,10 @@ static NSString * cellIdentifier = @"cellIdentifier";
         //No music info
         [self showAlertViewWithMessage:@"读取音乐文件错误"];
     }
-    
-    [self.contentScrollView setContentSize:CGSizeMake(420, 600)];
-    self.contentScrollView.scrollEnabled = YES;
-
-    [self.musicInfoTable setBackgroundView:nil];
-    if ([OSHelper iOS7]) {
-        self.musicInfoTable.separatorInset = UIEdgeInsetsZero;
-    }
-    
-    UINib * cellNib = [UINib nibWithNibName:@"MyUploadDetailCell" bundle:[NSBundle bundleForClass:[MyUploadDetailCell class]]];
-    [self.musicInfoTable registerNib:cellNib forCellReuseIdentifier:cellIdentifier];
-    
-    
-    playView = [[[NSBundle mainBundle]loadNibNamed:@"PlayItemView" owner:self options:nil]objectAtIndex:0];
-    [playView.playBtn addTarget:self action:@selector(playMusic:) forControlEvents:UIControlEventTouchUpInside];
-    [playView.downloadBtn addTarget:self action:@selector(downloadMusic:) forControlEvents:UIControlEventTouchUpInside];
-    currentPlaySlider = playView.playSlider;
-    currentPlaySlider.maximumValue = 1.0;
-    currentPlaySlider.minimumValue = 0.0;
-    currentPlaySlider.value = 0.0;
-    
     isDowning = NO;
+    isPlayLocalFile = NO;
+    isPlayStreamFile= NO;
+    isPlaying = NO;
     currentPlayFileLength = 0;
     // Do any additional setup after loading the view from its nib.
 }
@@ -113,10 +96,45 @@ static NSString * cellIdentifier = @"cellIdentifier";
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    [streamPlayer stop];
-    streamPlayer = nil;
+    if (isPlayLocalFile) {
+        [self.audioMng pause];
+        if ([self.reader playing]) {
+            [self.reader stop];
+        }
+    }else
+    {
+        if (streamPlayer) {
+            [streamPlayer stop];
+            streamPlayer = nil;
+        }
+    }
 }
 #pragma mark - Private Method
+-(void)initializationInterface
+{
+    CGRect rect = self.scrollAdView.frame;
+    rect.origin.x = rect.origin.y = 0;
+    
+    advertisementImageView = [[CycleScrollView alloc]initWithFrame:rect cycleDirection:CycleDirectionLandscape pictures:@[[UIImage imageNamed:@"testImage.png"],[UIImage imageNamed:@"testImage.png"]] autoScroll:YES];
+    [self.scrollAdView addSubview:advertisementImageView];
+
+    [self.contentScrollView setContentSize:CGSizeMake(420, 600)];
+    self.contentScrollView.scrollEnabled = YES;
+    
+    [self.musicInfoTable setBackgroundView:nil];
+    if ([OSHelper iOS7]) {
+        self.musicInfoTable.separatorInset = UIEdgeInsetsZero;
+    }
+    
+    UINib * cellNib = [UINib nibWithNibName:@"MyUploadDetailCell" bundle:[NSBundle bundleForClass:[MyUploadDetailCell class]]];
+    [self.musicInfoTable registerNib:cellNib forCellReuseIdentifier:cellIdentifier];
+    
+    
+    playView = [[[NSBundle mainBundle]loadNibNamed:@"PlayItemView" owner:self options:nil]objectAtIndex:0];
+    [playView.playBtn addTarget:self action:@selector(playMusic:) forControlEvents:UIControlEventTouchUpInside];
+    [playView.downloadBtn addTarget:self action:@selector(downloadMusic:) forControlEvents:UIControlEventTouchUpInside];
+}
+
 -(NSArray *)objectPropertyValueToArray:(id)object
 {
     NSMutableArray * tempPropertyList = [NSMutableArray array];
@@ -139,56 +157,91 @@ static NSString * cellIdentifier = @"cellIdentifier";
     currentControllBtn = (UIButton *)sender;
     [currentControllBtn setSelected:!currentControllBtn.selected];
     if (currentControllBtn.selected) {
-        [self playMusicStream];
+        if (isPlaying) {
+            [self updatePlayerStatus:currentControllBtn.selected];
+        }else
+        {
+            [self playMusic];
+        }
+        
     }else
     {
-        if (streamPlayer) {
-            [streamPlayer stop];
-            streamPlayer = nil;
+        if (isPlayLocalFile) {
+            [self.audioMng pause];
+        }else if(isPlayStreamFile)
+        {
+            if (streamPlayer) {
+                [streamPlayer stop];
+            }
         }
     }
 }
 
--(void)playMusicStream
+-(void)playMusic
 {
-    
+    isPlaying = YES;
     __weak MyUploadDetailViewController * weakSelf = self;
     [GobalMethod getExportPath:[_voiceItem.vl_name stringByAppendingPathExtension:@"mp3"] completedBlock:^(BOOL isDownloaded, NSString *exportFilePath) {
         if (isDownloaded) {
-            weakSelf.audioMng = [AudioManager shareAudioManager];
-            [weakSelf.audioMng pause];
-            if ([weakSelf.reader playing]) {
-                [weakSelf.reader stop];
-            }
-            
-            NSURL *inputFileURL = [NSURL fileURLWithPath:exportFilePath];
-            currentPlayFileLength = [GobalMethod getMusicLength:inputFileURL];
-            if (weakSelf.reader) {
-                weakSelf.reader = nil;
-            }
-            weakSelf.reader = [[AudioReader alloc]
-                           initWithAudioFileURL:inputFileURL
-                           samplingRate:weakSelf.audioMng.samplingRate
-                           numChannels:weakSelf.audioMng.numOutputChannels];
-            
-            //太累了，要记住一定要设置currentime = 0.0,表示开始时间   :]
-            weakSelf.reader.currentTime = 0.0;
-            
-            
-            [weakSelf.audioMng setOutputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels)
-             {
-                 [weakSelf.reader retrieveFreshAudio:data numFrames:numFrames numChannels:numChannels];
-             }];
-            [weakSelf.audioMng play];
+            isPlayLocalFile = YES;
+            [weakSelf startLocalPlayerWithPath:exportFilePath];
         }else
         {
+            isPlayStreamFile = YES;
             [weakSelf startStreamPlayer];
         }
         
     }];
+}
 
+-(void)updatePlayerStatus:(BOOL)sign
+{
+    if (isPlayLocalFile) {
+        if (self.audioMng) {
+            [self.audioMng play];
+        }
+    }else if(isPlayStreamFile)
+    {
+        if (streamPlayer) {
+            [streamPlayer play];
+        }
+    }
+}
 
+-(void)startLocalPlayerWithPath:(NSString *)path
+{
+    __weak MyUploadDetailViewController * weakSelf = self;
+    weakSelf.audioMng = [AudioManager shareAudioManager];
+    [weakSelf.audioMng pause];
+    if ([weakSelf.reader playing]) {
+        [weakSelf.reader stop];
+    }
     
+    NSURL *inputFileURL = [NSURL fileURLWithPath:path];
+    
+    //TODO:不知道是不是音乐文件问题，下面的方法读取文件长度不正确   :[
+    currentPlayFileLength = [GobalMethod getMusicLength:inputFileURL];
+    
+    
+    if (weakSelf.reader) {
+        weakSelf.reader = nil;
+    }
+    weakSelf.reader = [[AudioReader alloc]
+                       initWithAudioFileURL:inputFileURL
+                       samplingRate:weakSelf.audioMng.samplingRate
+                       numChannels:weakSelf.audioMng.numOutputChannels];
+    currentPlayFileLength = floor([weakSelf.reader getDuration]);
+    weakSelf.reader.delegate = self;
+    
+    //太累了，要记住一定要设置currentime = 0.0,表示开始时间   :]
+    weakSelf.reader.currentTime = 0.0;
+    
+    
+    [weakSelf.audioMng setOutputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels)
+     {
+         [weakSelf.reader retrieveFreshAudio:data numFrames:numFrames numChannels:numChannels];
+     }];
+    [weakSelf.audioMng play];
 }
 
 -(void)startStreamPlayer
@@ -243,33 +296,9 @@ static NSString * cellIdentifier = @"cellIdentifier";
 -(void)downloadMusic:(id)sender
 {
     if (!isDowning) {
-        NSURLRequest * request = [NSURLRequest requestWithURL:[GobalMethod getMusicUrl:self.voiceItem.url]];
-        if (request) {
-            __weak MyUploadDetailViewController * weakSelf = self;
-            
-            [GobalMethod getExportPath:[_voiceItem.vl_name stringByAppendingPathExtension:@"mp3"] completedBlock:^(BOOL isDownloaded, NSString *exportFilePath) {
-                if (isDowning) {
-                    [self showAlertViewWithMessage:@"已经下载"];
-                }else
-                {
-                    AFURLConnectionOperation * downloadOperation = [[AFURLConnectionOperation alloc]initWithRequest:request];
-                    downloadOperation.completionBlock = ^()
-                    {
-                        //下载完成
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            [weakSelf showAlertViewWithMessage:@"下载完成"];
-                            isDowning = NO;
-                        });
-                    };
-                    downloadOperation.outputStream = [NSOutputStream outputStreamToFileAtPath:exportFilePath append:NO];
-                    [downloadOperation start];
-                }
-                
-            }];
-        }else
-        {
-            //文件路径错误
-        }
+        UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:_voiceItem.vl_name message:@"是否下载该声音" delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"确定", nil];
+        [alertView show];
+        alertView = nil;
     }else
     {
         [self showAlertViewWithMessage:@"正在下载"];
@@ -277,6 +306,36 @@ static NSString * cellIdentifier = @"cellIdentifier";
    
 }
 
+-(void)startDownloadMusic
+{
+    NSURLRequest * request = [NSURLRequest requestWithURL:[GobalMethod getMusicUrl:self.voiceItem.url]];
+    if (request) {
+        __weak MyUploadDetailViewController * weakSelf = self;
+        
+        [GobalMethod getExportPath:[_voiceItem.vl_name stringByAppendingPathExtension:@"mp3"] completedBlock:^(BOOL isDownloaded, NSString *exportFilePath) {
+            if (isDowning) {
+                [self showAlertViewWithMessage:@"已经下载"];
+            }else
+            {
+                AFURLConnectionOperation * downloadOperation = [[AFURLConnectionOperation alloc]initWithRequest:request];
+                downloadOperation.completionBlock = ^()
+                {
+                    //下载完成
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [weakSelf showAlertViewWithMessage:@"下载完成"];
+                        isDowning = NO;
+                    });
+                };
+                downloadOperation.outputStream = [NSOutputStream outputStreamToFileAtPath:exportFilePath append:NO];
+                [downloadOperation start];
+            }
+            
+        }];
+    }else
+    {
+        //文件路径错误
+    }
+}
 
 -(void)buffering
 {
@@ -331,17 +390,30 @@ static NSString * cellIdentifier = @"cellIdentifier";
 #pragma mark - AudioReader Delegate
 -(void)currentFileLocation:(CGFloat)location
 {
-    if (location == currentPlayFileLength) {
-        [self.audioMng pause];
-//        [currentPlayItemControlBtn setSelected:NO];
-//        currentSelectedItemSlider.value = 0.0f;
-    }else
-    {
-        NSLog(@"%f",location);
-        dispatch_async(dispatch_get_main_queue(), ^{
-//            currentSelectedItemSlider.value = ceil(location);
-        });
+    @autoreleasepool {
+        if (location >= currentPlayFileLength) {
+            [self.audioMng pause];
+            //        [currentPlayItemControlBtn setSelected:NO];
+            //        currentSelectedItemSlider.value = 0.0f;
+            self.playView.playSlider.value = 0.0;
+            [self.playView.playBtn setSelected:NO];
+        }else
+        {
+            NSLog(@"%f",location);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                CGFloat process = [[NSString stringWithFormat:@"%0.2f",location/currentPlayFileLength]floatValue];
+                self.playView.playSlider.value = process;
+            });
+        }
     }
-    
+   
+}
+
+#pragma mark - UIAlertView Deleagte
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [self startDownloadMusic];
+    }
 }
 @end

@@ -91,7 +91,7 @@
     if (streamer.progress <= streamer.duration ) {
         if (self.block) {
             
-             self.block(streamer.progress/streamer.duration,[streamer isFinishing]);
+             self.block(streamer.progress/streamer.duration,[streamer isIdle]);
         }
        
 //        [button setProgress:streamer.progress/streamer.duration];        
