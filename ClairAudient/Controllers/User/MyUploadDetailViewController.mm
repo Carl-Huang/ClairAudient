@@ -23,6 +23,8 @@
 #import "GobalMethod.h"
 #import "AudioReader.h"
 #import "AudioManager.h"
+#import "DownloadMusicInfo.h"
+#import "PersistentStore.h"
 static NSString * cellIdentifier = @"cellIdentifier";
 @interface MyUploadDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AudioReaderDelegate,UIAlertViewDelegate>
 {
@@ -312,11 +314,12 @@ static NSString * cellIdentifier = @"cellIdentifier";
     if (request) {
         __weak MyUploadDetailViewController * weakSelf = self;
         
-        [GobalMethod getExportPath:[_voiceItem.vl_name stringByAppendingPathExtension:@"mp3"] completedBlock:^(BOOL isDownloaded, NSString *exportFilePath) {
-            if (isDowning) {
+        [GobalMethod getExportPath:[[GobalMethod userCurrentTimeAsFileName] stringByAppendingPathExtension:@"mp3"] completedBlock:^(BOOL isDownloaded, NSString *exportFilePath) {
+            if (isDownloaded) {
                 [self showAlertViewWithMessage:@"已经下载"];
             }else
             {
+                isDowning = YES;
                 AFURLConnectionOperation * downloadOperation = [[AFURLConnectionOperation alloc]initWithRequest:request];
                 downloadOperation.completionBlock = ^()
                 {
@@ -324,6 +327,14 @@ static NSString * cellIdentifier = @"cellIdentifier";
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [weakSelf showAlertViewWithMessage:@"下载完成"];
                         isDowning = NO;
+                        DownloadMusicInfo * info = [DownloadMusicInfo MR_createEntity];
+                        info.title = weakSelf.voiceItem.vl_name;
+                        info.makeTime = [GobalMethod getMakeTime];
+                        info.localPath= exportFilePath;
+                        info.length   = [NSString stringWithFormat:@"0"];
+                        info.isFavorite = @"0";
+                        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+                        
                     });
                 };
                 downloadOperation.outputStream = [NSOutputStream outputStreamToFileAtPath:exportFilePath append:NO];

@@ -9,9 +9,14 @@
 #import "MyDownloadViewController.h"
 #import "MyDownloadCell.h"
 #import "UIViewController+CustomBarItemPosition.h"
+#import "PersistentStore.h"
+#import "DownloadMusicInfo.h"
+#import "GobalMethod.h"
 #define Cell_Height 65.0f
 @interface MyDownloadViewController ()
-
+{
+    NSArray * dataSource;
+}
 @end
 
 @implementation MyDownloadViewController
@@ -29,6 +34,8 @@
 {
     [super viewDidLoad];
     [self initUI];
+    
+    dataSource = [PersistentStore getAllObjectWithType:[DownloadMusicInfo class]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,7 +64,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return [dataSource count];
 }
 
 
@@ -70,6 +77,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MyDownloadCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    DownloadMusicInfo * object = [dataSource objectAtIndex:indexPath.row];
+    
+    cell.nameLabel.text = object.title;
+    cell.downloadTimeLabel.text = [GobalMethod customiseTimeFormat:object.makeTime];
+    
     return cell;
 }
 #pragma mark - UITableViewDelegate Methods

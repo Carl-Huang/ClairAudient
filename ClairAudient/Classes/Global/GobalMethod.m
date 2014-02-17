@@ -51,4 +51,34 @@
     float audioDurationSeconds =CMTimeGetSeconds(audioDuration)/60.0f;
     return audioDurationSeconds;
 }
+
++(NSString *)getMakeTime;
+{
+    NSDate * currentDate = [NSDate date];
+    NSDateFormatter * format = [[NSDateFormatter alloc]init];
+    [format setDateFormat:@"yyyyMMddhhmmss"];
+    NSString * dateStr = [format stringFromDate:currentDate];
+    return dateStr;
+}
+
++(NSString *)userCurrentTimeAsFileName
+{
+    NSDate * date = [NSDate date];
+    NSDateFormatter * format = [[NSDateFormatter alloc]init];
+    [format setDateFormat:@"yyyyMMddhhmmss"];
+    NSString * tempFileName = [format stringFromDate:date];
+    return tempFileName;
+}
+
++(NSString *)customiseTimeFormat:(NSString *)date
+{
+    NSDateFormatter * format  = [[NSDateFormatter alloc]init];
+    [format setDateFormat:@"yyyyMMddhhmmss"];
+    NSDate * tempDate = [format dateFromString:date];
+    
+    NSDateFormatter * customiseFormat  = [[NSDateFormatter alloc]init];
+    [customiseFormat setDateFormat:@"yyyy-MM-dd"];
+    NSString * dateStr = [customiseFormat stringFromDate:tempDate];
+    return dateStr;
+}
 @end

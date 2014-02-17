@@ -15,4 +15,10 @@
 
 //获取音乐长度
 +(CGFloat)getMusicLength:(NSURL *)url;
+
++(NSString *)getMakeTime;
+
++(NSString *)userCurrentTimeAsFileName;
+
++(NSString *)customiseTimeFormat:(NSString *)date;
 @end
