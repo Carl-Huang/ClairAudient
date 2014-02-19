@@ -13,6 +13,7 @@
 #import "AudioManager.h"
 #import "EditMusicInfo.h"
 #import "GobalMethod.h"
+#import "PersistentStore.h"
 @interface MutiMixingViewController ()
 {
     AudioPlotView * plotViewUp;
@@ -107,13 +108,20 @@
         [MusicMixerOutput mixAudio:sourceA andAudio:sourceB toFile:tempFilePath preferedSampleRate:10000 withCompletedBlock:^(id object, NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                //转换caf to mp3 格式
-                weakSelf.audioManager = [AudioManager shareAudioManager];
-                [weakSelf.audioManager audio_PCMtoMP3WithSourceFile:tempFilePath destinationFile:destinationFilePath];
+//                //转换caf to mp3 格式
+//                weakSelf.audioManager = [AudioManager shareAudioManager];
+//                [weakSelf.audioManager audio_PCMtoMP3WithSourceFile:tempFilePath destinationFile:destinationFilePath];
+                
+                //保存信息到本地
+                EditMusicInfo * info = [EditMusicInfo MR_createEntity];
+                info.localFilePath = destinationFilePath;
+                info.makeTime = [GobalMethod getMakeTime];
+                info.length = [NSString stringWithFormat:@"%0.2f",[GobalMethod getMusicLength:[NSURL fileURLWithPath:destinationFilePath]]];
+                [PersistentStore save];
                 
 //                //删除caf 格式文件
 //                [[NSFileManager defaultManager]removeItemAtPath:tempFilePath error:nil];
-//                
+                
                 [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
             });
         }];

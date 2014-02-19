@@ -63,5 +63,8 @@
     return isSuccess;
 }
 
-
++(void)save
+{
+    [[NSManagedObjectContext MR_defaultContext]MR_saveOnlySelfAndWait];
+}
 @end

@@ -530,6 +530,19 @@ void sessionPropertyListener(void *                  inClientData,
 }
 
 - (void)checkAudioSource {
+    
+    OSStatus result = noErr;
+
+    UInt32 speakerRoute = kAudioSessionOverrideAudioRoute_Speaker;
+    UInt32 dataSize = sizeof(speakerRoute);
+    result = AudioSessionSetProperty (
+                                      // This requires iPhone OS 3.1
+                                      kAudioSessionProperty_OverrideCategoryDefaultToSpeaker,
+                                      dataSize,
+                                      &speakerRoute
+                                      );
+    
+    
     // Check what the incoming audio route is.
     UInt32 propertySize = sizeof(CFStringRef);
     CFStringRef route;
@@ -537,8 +550,7 @@ void sessionPropertyListener(void *                  inClientData,
     self.inputRoute = (__bridge NSString *)route;
     CFRelease(route);
     NSLog(@"AudioRoute: %@", self.inputRoute);
-    
-    
+
     // Check if there's input available.
     // TODO: check if checking for available input is redundant.
     //          Possibly there's a different property ID change?
