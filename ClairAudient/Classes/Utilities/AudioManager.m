@@ -322,9 +322,9 @@ static AudioManager * audioManager = nil;
     @try {
         int read, write;
         
-        FILE *pcm = fopen([cafFilePath cStringUsingEncoding:1], "rb");  //source 被转换的音频文件位置
+        FILE *pcm = fopen([cafFilePath cStringUsingEncoding:NSUTF8StringEncoding], "rb");  //source 被转换的音频文件位置
         fseek(pcm, 4*1024, SEEK_CUR);                                   //skip file header
-        FILE *mp3 = fopen([mp3FilePath cStringUsingEncoding:1], "wb");  //output 输出生成的Mp3文件位置
+        FILE *mp3 = fopen([mp3FilePath cStringUsingEncoding:NSUTF8StringEncoding], "wb");  //output 输出生成的Mp3文件位置
         
         const int PCM_SIZE = 8192*2;
         const int MP3_SIZE = 8192*2;

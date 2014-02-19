@@ -10,6 +10,7 @@
 #import "ControlCenter.h"
 #import "HttpService.h"
 #import "CycleScrollView.h"
+#import "User.h"
 
 @interface MainViewController ()
 @property (strong ,nonatomic)CycleScrollView * advertisementImageView;
@@ -86,7 +87,13 @@
 
 - (IBAction)showAccountVC:(id)sender
 {
-    [ControlCenter showLoginVC];
+    User * user = [User userFromLocal];
+    if (user == nil) {
+        [ControlCenter showLoginVC];
+    }else
+    {
+        [ControlCenter showUserCenterVC];
+    }
 }
 
 - (IBAction)showSettingVC:(id)sender

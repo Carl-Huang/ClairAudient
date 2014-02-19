@@ -327,11 +327,12 @@ static NSString * cellIdentifier = @"cellIdentifier";
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [weakSelf showAlertViewWithMessage:@"下载完成"];
                         isDowning = NO;
+                        CGFloat musicLength = [GobalMethod getMusicLength:[NSURL fileURLWithPath:exportFilePath]];
                         DownloadMusicInfo * info = [DownloadMusicInfo MR_createEntity];
                         info.title = weakSelf.voiceItem.vl_name;
                         info.makeTime = [GobalMethod getMakeTime];
                         info.localPath= exportFilePath;
-                        info.length   = [NSString stringWithFormat:@"0"];
+                        info.length   = [NSString stringWithFormat:@"%0.2f",musicLength];
                         info.isFavorite = @"0";
                         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
                         

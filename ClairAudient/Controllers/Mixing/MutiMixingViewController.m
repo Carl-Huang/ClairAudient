@@ -11,7 +11,8 @@
 #import "MBProgressHUD.h"
 #import "MusicMixerOutput.h"
 #import "AudioManager.h"
-
+#import "EditMusicInfo.h"
+#import "GobalMethod.h"
 @interface MutiMixingViewController ()
 {
     AudioPlotView * plotViewUp;
@@ -90,10 +91,14 @@
 
 - (IBAction)startMixingAction:(id)sender {
     __weak MutiMixingViewController * weakSelf = self;
-    NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *tempFilePath = [NSString stringWithFormat: @"%@/MixingMusic.caf", documentsDirectory];
-    NSString *destinationFilePath = [NSString stringWithFormat: @"%@/MixingMusic2.mp3", documentsDirectory];
+    
+    NSString *tempFilePath = [GobalMethod getExportPath:@"temp.caf"];
+    
+    
+    NSString * mixingFileName = [GobalMethod userCurrentTimeAsFileName];
+    mixingFileName = [mixingFileName stringByAppendingPathExtension:@"mp3"];
+    NSString *destinationFilePath = [GobalMethod getExportPath:mixingFileName];
+    
     NSString *sourceA = [currentEditMusicInfo valueForKey:@"musicURL"];
     NSString *sourceB = [self.mutiMixingInfo valueForKey:@"musicURL"];
     
@@ -106,9 +111,9 @@
                 weakSelf.audioManager = [AudioManager shareAudioManager];
                 [weakSelf.audioManager audio_PCMtoMP3WithSourceFile:tempFilePath destinationFile:destinationFilePath];
                 
-                //删除caf 格式文件
-                [[NSFileManager defaultManager]removeItemAtPath:tempFilePath error:nil];
-                
+//                //删除caf 格式文件
+//                [[NSFileManager defaultManager]removeItemAtPath:tempFilePath error:nil];
+//                
                 [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
             });
         }];

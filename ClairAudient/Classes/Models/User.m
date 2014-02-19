@@ -19,7 +19,13 @@
 + (User *)userFromLocal
 {
     NSDictionary * userInfo = [[NSUserDefaults standardUserDefaults] objectForKey:User_Key];
-    User * user = [[self class] fromDictionary:userInfo withClass:[User class]];
-    return user;
+    if (userInfo) {
+        User * user = [[self class] fromDictionary:userInfo withClass:[User class]];
+        return user;
+    }else
+    {
+        return  nil;
+    }
+
 }
 @end

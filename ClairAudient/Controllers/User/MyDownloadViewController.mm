@@ -2,7 +2,7 @@
 //  MyDownloadViewController.m
 //  ClairAudient
 //
-//  Created by Vedon on 14-1-12.
+//  Created by vedon on 14-1-12.
 //  Copyright (c) 2014年 helloworld. All rights reserved.
 //
 
@@ -136,7 +136,10 @@
 //    cell.downloadTimeLabel.text = [GobalMethod customiseTimeFormat:object.makeTime];
     cell.nameLabel.text         = object.title;
     cell.recordTimeLabel.text   = object.makeTime;
-    cell.playTimeLabel.text     = object.length;
+    
+    NSURL * musicURL = [NSURL fileURLWithPath:object.localPath];
+    cell.playTimeLabel.text     = [NSString stringWithFormat:@"%0.2f",[GobalMethod getMusicLength:musicURL]];
+    
     cell.delegate               = self;
     cell.musicInfo              = object;
     
