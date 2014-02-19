@@ -249,7 +249,7 @@
     //1）转换格式
     NSString * destinationFileName = [[self getDocumentDirectory] stringByAppendingPathComponent:[defaultFileName stringByAppendingPathExtension:@"mp3"]];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [audioManager audio_PCMtoMP3WithSourceFile:recordFilePath destinationFile:destinationFileName];
+    [audioManager audio_PCMtoMP3WithSourceFile:recordFilePath destinationFile:destinationFileName withSampleRate:44100];
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     
     //2）保存录音文件信息

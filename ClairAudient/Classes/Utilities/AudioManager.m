@@ -307,7 +307,7 @@ static AudioManager * audioManager = nil;
 }
 
 //转换
-- (void)audio_PCMtoMP3WithSourceFile:(NSString *)sourceFile destinationFile:(NSString *)desFile
+- (void)audio_PCMtoMP3WithSourceFile:(NSString *)sourceFile destinationFile:(NSString *)desFile withSampleRate:(NSInteger)sampleRate
 {
     NSString *cafFilePath = sourceFile;
     
@@ -332,7 +332,7 @@ static AudioManager * audioManager = nil;
         unsigned char mp3_buffer[MP3_SIZE];
         
         lame_t lame = lame_init();
-        lame_set_in_samplerate(lame, self.samplingRate);
+        lame_set_in_samplerate(lame, sampleRate);
         lame_set_VBR(lame, vbr_default);
         lame_init_params(lame);
         
