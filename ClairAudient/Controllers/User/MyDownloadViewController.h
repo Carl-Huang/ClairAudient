@@ -2,7 +2,7 @@
 //  MyDownloadViewController.h
 //  ClairAudient
 //
-//  Created by Carl on 14-1-12.
+//  Created by Vedon on 14-1-12.
 //  Copyright (c) 2014年 helloworld. All rights reserved.
 //
 

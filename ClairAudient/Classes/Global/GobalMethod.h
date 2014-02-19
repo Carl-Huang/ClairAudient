@@ -21,4 +21,6 @@
 +(NSString *)userCurrentTimeAsFileName;
 
 +(NSString *)customiseTimeFormat:(NSString *)date;
+
++(BOOL)removeItemAtPath:(NSString *)path;
 @end

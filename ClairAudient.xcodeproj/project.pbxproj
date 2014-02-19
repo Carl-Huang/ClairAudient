@@ -26,7 +26,6 @@
 		4E2A13811891474800D8CB65 /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A13801891474800D8CB65 /* AudioRecorder.m */; };
 		4E2A1384189152F900D8CB65 /* AudioReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A1383189152F900D8CB65 /* AudioReader.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4E2A13871891531C00D8CB65 /* RingBuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A13861891531C00D8CB65 /* RingBuffer.mm */; };
-		4E2AD2F01891EC3600020135 /* CloneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2AD2EF1891EC3600020135 /* CloneView.m */; };
 		4E96B56C188EA003008EA56F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E96B56B188EA003008EA56F /* MediaPlayer.framework */; };
 		4E96B56E188EAB88008EA56F /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E96B56D188EAB88008EA56F /* GLKit.framework */; };
 		4E96B570188EAB90008EA56F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E96B56F188EAB90008EA56F /* AudioToolbox.framework */; };
@@ -93,6 +92,8 @@
 		4EB43E8718AB39AA004CCC85 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EB43E8018AB39AA004CCC85 /* play.png */; };
 		4EB43E8818AB39AA004CCC85 /* screenshots.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EB43E8118AB39AA004CCC85 /* screenshots.png */; };
 		4EB43E8918AB39AA004CCC85 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EB43E8218AB39AA004CCC85 /* stop.png */; };
+		4EB4AC9C18B33AAB008A4DDC /* MyDownloadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB4AC9A18B33AAB008A4DDC /* MyDownloadCell.m */; };
+		4EB4AC9D18B33AAB008A4DDC /* MyDownloadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EB4AC9B18B33AAB008A4DDC /* MyDownloadCell.xib */; };
 		4EB6FAC518A8F67300482613 /* CycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB6FAC418A8F67300482613 /* CycleScrollView.m */; };
 		4ED1751A18925322000EC483 /* AudioPlotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1751918925322000EC483 /* AudioPlotView.m */; };
 		4ED1752018925CC2000EC483 /* MutiMixingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1751E18925CC2000EC483 /* MutiMixingViewController.m */; };
@@ -218,7 +219,7 @@
 		C32F400E1882876A00681953 /* UserCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32F400C1882876A00681953 /* UserCenterViewController.xib */; };
 		C32F40121882878600681953 /* MyUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32F40101882878600681953 /* MyUploadViewController.m */; };
 		C32F40131882878600681953 /* MyUploadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32F40111882878600681953 /* MyUploadViewController.xib */; };
-		C32F4017188287B600681953 /* MyDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32F4015188287B600681953 /* MyDownloadViewController.m */; };
+		C32F4017188287B600681953 /* MyDownloadViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C32F4015188287B600681953 /* MyDownloadViewController.mm */; };
 		C32F4018188287B600681953 /* MyDownloadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32F4016188287B600681953 /* MyDownloadViewController.xib */; };
 		C32F401C188287D300681953 /* PersonalHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C32F401A188287D300681953 /* PersonalHomePageViewController.m */; };
 		C32F401D188287D300681953 /* PersonalHomePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32F401B188287D300681953 /* PersonalHomePageViewController.xib */; };
@@ -235,8 +236,6 @@
 		C3411730188C2C2B0070EAB4 /* VoiceComment.m in Sources */ = {isa = PBXBuildFile; fileRef = C341172F188C2C2B0070EAB4 /* VoiceComment.m */; };
 		C3456CE018877077009329D2 /* MyUploadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3456CDF18877077009329D2 /* MyUploadCell.m */; };
 		C3456CE218877089009329D2 /* MyUploadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3456CE118877089009329D2 /* MyUploadCell.xib */; };
-		C3456CE51887753E009329D2 /* MyDownloadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3456CE41887753E009329D2 /* MyDownloadCell.m */; };
-		C3456CE718877609009329D2 /* MyDownloadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3456CE618877609009329D2 /* MyDownloadCell.xib */; };
 		C3456CEA18877A3B009329D2 /* MyProductionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3456CE918877A3B009329D2 /* MyProductionCell.m */; };
 		C3456CEC18877A5A009329D2 /* MyProductionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3456CEB18877A5A009329D2 /* MyProductionCell.xib */; };
 		C3456CEF18877DCF009329D2 /* 2kuanf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3456CED18877DCF009329D2 /* 2kuanf@2x.png */; };
@@ -548,8 +547,6 @@
 		4E2A1383189152F900D8CB65 /* AudioReader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AudioReader.mm; sourceTree = "<group>"; };
 		4E2A13851891531C00D8CB65 /* RingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RingBuffer.h; sourceTree = "<group>"; };
 		4E2A13861891531C00D8CB65 /* RingBuffer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RingBuffer.mm; sourceTree = "<group>"; };
-		4E2AD2EE1891EC3600020135 /* CloneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloneView.h; sourceTree = "<group>"; };
-		4E2AD2EF1891EC3600020135 /* CloneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloneView.m; sourceTree = "<group>"; };
 		4E96B56B188EA003008EA56F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		4E96B56D188EAB88008EA56F /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		4E96B56F188EAB90008EA56F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -647,6 +644,9 @@
 		4EB43E8018AB39AA004CCC85 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		4EB43E8118AB39AA004CCC85 /* screenshots.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshots.png; sourceTree = "<group>"; };
 		4EB43E8218AB39AA004CCC85 /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
+		4EB4AC9918B33AAB008A4DDC /* MyDownloadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDownloadCell.h; sourceTree = "<group>"; };
+		4EB4AC9A18B33AAB008A4DDC /* MyDownloadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDownloadCell.m; sourceTree = "<group>"; };
+		4EB4AC9B18B33AAB008A4DDC /* MyDownloadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDownloadCell.xib; sourceTree = "<group>"; };
 		4EB6FAC318A8F67300482613 /* CycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CycleScrollView.h; sourceTree = "<group>"; };
 		4EB6FAC418A8F67300482613 /* CycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CycleScrollView.m; sourceTree = "<group>"; };
 		4ED1751818925322000EC483 /* AudioPlotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlotView.h; sourceTree = "<group>"; };
@@ -804,7 +804,7 @@
 		C32F40101882878600681953 /* MyUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUploadViewController.m; sourceTree = "<group>"; };
 		C32F40111882878600681953 /* MyUploadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyUploadViewController.xib; sourceTree = "<group>"; };
 		C32F4014188287B600681953 /* MyDownloadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDownloadViewController.h; sourceTree = "<group>"; };
-		C32F4015188287B600681953 /* MyDownloadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDownloadViewController.m; sourceTree = "<group>"; };
+		C32F4015188287B600681953 /* MyDownloadViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MyDownloadViewController.mm; sourceTree = "<group>"; };
 		C32F4016188287B600681953 /* MyDownloadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDownloadViewController.xib; sourceTree = "<group>"; };
 		C32F4019188287D300681953 /* PersonalHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalHomePageViewController.h; sourceTree = "<group>"; };
 		C32F401A188287D300681953 /* PersonalHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalHomePageViewController.m; sourceTree = "<group>"; };
@@ -833,9 +833,6 @@
 		C3456CDE18877077009329D2 /* MyUploadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUploadCell.h; sourceTree = "<group>"; };
 		C3456CDF18877077009329D2 /* MyUploadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUploadCell.m; sourceTree = "<group>"; };
 		C3456CE118877089009329D2 /* MyUploadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyUploadCell.xib; sourceTree = "<group>"; };
-		C3456CE31887753E009329D2 /* MyDownloadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDownloadCell.h; sourceTree = "<group>"; };
-		C3456CE41887753E009329D2 /* MyDownloadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDownloadCell.m; sourceTree = "<group>"; };
-		C3456CE618877609009329D2 /* MyDownloadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDownloadCell.xib; sourceTree = "<group>"; };
 		C3456CE818877A3B009329D2 /* MyProductionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProductionCell.h; sourceTree = "<group>"; };
 		C3456CE918877A3B009329D2 /* MyProductionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProductionCell.m; sourceTree = "<group>"; };
 		C3456CEB18877A5A009329D2 /* MyProductionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyProductionCell.xib; sourceTree = "<group>"; };
@@ -1526,6 +1523,9 @@
 		C3164CF218746A9A00301ACA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4EB4AC9918B33AAB008A4DDC /* MyDownloadCell.h */,
+				4EB4AC9A18B33AAB008A4DDC /* MyDownloadCell.m */,
+				4EB4AC9B18B33AAB008A4DDC /* MyDownloadCell.xib */,
 				4EB20FA618A931BE007E5A8B /* EditListCell.h */,
 				4EB20FA718A931BE007E5A8B /* EditListCell.m */,
 				4EB20FA818A931BE007E5A8B /* EditListCell.xib */,
@@ -1554,9 +1554,6 @@
 				C3456CDE18877077009329D2 /* MyUploadCell.h */,
 				C3456CDF18877077009329D2 /* MyUploadCell.m */,
 				C3456CE118877089009329D2 /* MyUploadCell.xib */,
-				C3456CE31887753E009329D2 /* MyDownloadCell.h */,
-				C3456CE41887753E009329D2 /* MyDownloadCell.m */,
-				C3456CE618877609009329D2 /* MyDownloadCell.xib */,
 				C3456CE818877A3B009329D2 /* MyProductionCell.h */,
 				C3456CE918877A3B009329D2 /* MyProductionCell.m */,
 				C3456CEB18877A5A009329D2 /* MyProductionCell.xib */,
@@ -1570,8 +1567,6 @@
 				C34C3406188AB975009CD20B /* RecordListCell.xib */,
 				4E96B598188EC7B0008EA56F /* TrachBtn.h */,
 				4E96B599188EC7B0008EA56F /* TrachBtn.m */,
-				4E2AD2EE1891EC3600020135 /* CloneView.h */,
-				4E2AD2EF1891EC3600020135 /* CloneView.m */,
 				4ED1751818925322000EC483 /* AudioPlotView.h */,
 				4ED1751918925322000EC483 /* AudioPlotView.m */,
 				4ED17522189268AC000EC483 /* AudioPlotViewController.h */,
@@ -2246,8 +2241,11 @@
 				C32F400F1882878600681953 /* MyUploadViewController.h */,
 				C32F40101882878600681953 /* MyUploadViewController.m */,
 				C32F40111882878600681953 /* MyUploadViewController.xib */,
+				4EEA197918AA5F070062D118 /* MyUploadDetailViewController.h */,
+				4EEA197A18AA5F070062D118 /* MyUploadDetailViewController.mm */,
+				4EEA197B18AA5F070062D118 /* MyUploadDetailViewController.xib */,
 				C32F4014188287B600681953 /* MyDownloadViewController.h */,
-				C32F4015188287B600681953 /* MyDownloadViewController.m */,
+				C32F4015188287B600681953 /* MyDownloadViewController.mm */,
 				C32F4016188287B600681953 /* MyDownloadViewController.xib */,
 				C32F4019188287D300681953 /* PersonalHomePageViewController.h */,
 				C32F401A188287D300681953 /* PersonalHomePageViewController.m */,
@@ -2255,9 +2253,6 @@
 				C32F401E188287EE00681953 /* MyProductionViewController.h */,
 				C32F401F188287EE00681953 /* MyProductionViewController.mm */,
 				C32F4020188287EE00681953 /* MyProductionViewController.xib */,
-				4EEA197918AA5F070062D118 /* MyUploadDetailViewController.h */,
-				4EEA197A18AA5F070062D118 /* MyUploadDetailViewController.mm */,
-				4EEA197B18AA5F070062D118 /* MyUploadDetailViewController.xib */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -2430,7 +2425,6 @@
 				C3FEB03E1871C294008EADAA /* record_26@2x.png in Resources */,
 				C3164CAF1874555D00301ACA /* FoundMusic_ab@2x.png in Resources */,
 				C3274997187A5E8200CF7A4A /* AboutScoreViewController.xib in Resources */,
-				C3456CE718877609009329D2 /* MyDownloadCell.xib in Resources */,
 				C39A97A4189247AE00F41CBB /* catalog_icon_bpng@2x.png in Resources */,
 				C3FEB0041871C294008EADAA /* hunyin_26@2x.png in Resources */,
 				C3FEB04B1871C294008EADAA /* record_38@2x.png in Resources */,
@@ -2541,6 +2535,7 @@
 				C3FEB0751871C294008EADAA /* user_18@2x.png in Resources */,
 				C3FEB0DC1871CAC5008EADAA /* RecordViewController.xib in Resources */,
 				C326CDAD187C5E44006DD97C /* CatalogRankViewController.xib in Resources */,
+				4EB4AC9D18B33AAB008A4DDC /* MyDownloadCell.xib in Resources */,
 				C3164CB81874555D00301ACA /* FoundMusic_g@2x.png in Resources */,
 				C3FEB08C1871C294008EADAA /* user_注册 高级会员.png in Resources */,
 				4EB20FAA18A931BE007E5A8B /* EditListCell.xib in Resources */,
@@ -2753,6 +2748,7 @@
 				C3FEAF301871C156008EADAA /* AppDelegate.m in Sources */,
 				C39A97BD189265A200F41CBB /* VoiceViewController.m in Sources */,
 				C3FEB0BA1871C801008EADAA /* UIImage+Util.m in Sources */,
+				4EB4AC9C18B33AAB008A4DDC /* MyDownloadCell.m in Sources */,
 				C327499B187A5EBD00CF7A4A /* ThemeViewController.m in Sources */,
 				C39BBE581893DF5C00FC8F72 /* TSPopoverTouchView.m in Sources */,
 				4EEA197C18AA5F070062D118 /* MyUploadDetailViewController.mm in Sources */,
@@ -2771,7 +2767,6 @@
 				C3456CEA18877A3B009329D2 /* MyProductionCell.m in Sources */,
 				C32F400D1882876A00681953 /* UserCenterViewController.m in Sources */,
 				4EFF165418A7D19C005E4802 /* AutoCompletedOperation.m in Sources */,
-				4E2AD2F01891EC3600020135 /* CloneView.m in Sources */,
 				C32F401C188287D300681953 /* PersonalHomePageViewController.m in Sources */,
 				C3FEB0B41871C801008EADAA /* IO.m in Sources */,
 				4EB6FAC518A8F67300482613 /* CycleScrollView.m in Sources */,
@@ -2788,7 +2783,7 @@
 				4E96B58C188EABC4008EA56F /* EZAudio.m in Sources */,
 				C3FEB0BB1871C801008EADAA /* UIViewController+BarItem.m in Sources */,
 				C3D4FCC4187D6194001A7223 /* IntegralChampionCell.m in Sources */,
-				C32F4017188287B600681953 /* MyDownloadViewController.m in Sources */,
+				C32F4017188287B600681953 /* MyDownloadViewController.mm in Sources */,
 				4E2A13651890BC6300D8CB65 /* ClairDataSource.xcdatamodeld in Sources */,
 				C3FEB0D61871CAA2008EADAA /* MusicFansViewController.m in Sources */,
 				C3456CFD18883C17009329D2 /* TMSoundEffectCell.m in Sources */,
@@ -2851,7 +2846,6 @@
 				4E96B58D188EABC4008EA56F /* EZAudioFile.m in Sources */,
 				C34C3405188AB967009CD20B /* RecordListCell.m in Sources */,
 				4E96B590188EABC4008EA56F /* EZAudioPlotGLKViewController.m in Sources */,
-				C3456CE51887753E009329D2 /* MyDownloadCell.m in Sources */,
 				C3FEB0B71871C801008EADAA /* NSString+Utils.m in Sources */,
 				4E11796D188F6DA000FB619F /* TSLibraryImport.m in Sources */,
 				C32F4021188287EE00681953 /* MyProductionViewController.mm in Sources */,
@@ -3022,7 +3016,7 @@
 					"$(SRCROOT)/Classes/Utilities",
 				);
 				INFOPLIST_FILE = "ClairAudient/ClairAudient-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/ClairAudient/Classes/Utilities/lame",
@@ -3063,7 +3057,7 @@
 					"$(SRCROOT)/Classes/Utilities",
 				);
 				INFOPLIST_FILE = "ClairAudient/ClairAudient-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/ClairAudient/Classes/Utilities/lame",

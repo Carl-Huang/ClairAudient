@@ -50,7 +50,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self.navigationController.navigationBar setHidden:YES];
     self.bigTitleLabel.text     = [self.musicInfo valueForKey:@"Artist"];
     self.littleTitleLabel.text  = [self.musicInfo valueForKey:@"Title"];
 #if TARGET_IPHONE_SIMULATOR

@@ -81,4 +81,18 @@
     NSString * dateStr = [customiseFormat stringFromDate:tempDate];
     return dateStr;
 }
+
++(BOOL)removeItemAtPath:(NSString *)path
+{
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:nil]) {
+        NSError * error;
+        [[NSFileManager defaultManager] removeItemAtPath:path error: &error];
+        if (error) {
+            NSLog(@"RemoveItem Error: %@",[error description]);
+            return NO;
+        }
+        return YES;
+    }
+    return NO;
+}
 @end
