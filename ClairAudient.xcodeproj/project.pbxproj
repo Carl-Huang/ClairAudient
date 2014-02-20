@@ -26,6 +26,7 @@
 		4E2A13811891474800D8CB65 /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A13801891474800D8CB65 /* AudioRecorder.m */; };
 		4E2A1384189152F900D8CB65 /* AudioReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A1383189152F900D8CB65 /* AudioReader.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4E2A13871891531C00D8CB65 /* RingBuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A13861891531C00D8CB65 /* RingBuffer.mm */; };
+		4E58621718B5E510004D80B6 /* NSTimer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E58621618B5E510004D80B6 /* NSTimer+Addition.m */; };
 		4E96B56C188EA003008EA56F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E96B56B188EA003008EA56F /* MediaPlayer.framework */; };
 		4E96B56E188EAB88008EA56F /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E96B56D188EAB88008EA56F /* GLKit.framework */; };
 		4E96B570188EAB90008EA56F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E96B56F188EAB90008EA56F /* AudioToolbox.framework */; };
@@ -547,6 +548,8 @@
 		4E2A1383189152F900D8CB65 /* AudioReader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AudioReader.mm; sourceTree = "<group>"; };
 		4E2A13851891531C00D8CB65 /* RingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RingBuffer.h; sourceTree = "<group>"; };
 		4E2A13861891531C00D8CB65 /* RingBuffer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RingBuffer.mm; sourceTree = "<group>"; };
+		4E58621518B5E510004D80B6 /* NSTimer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Addition.h"; sourceTree = "<group>"; };
+		4E58621618B5E510004D80B6 /* NSTimer+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Addition.m"; sourceTree = "<group>"; };
 		4E96B56B188EA003008EA56F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		4E96B56D188EAB88008EA56F /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		4E96B56F188EAB90008EA56F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -1425,6 +1428,8 @@
 		4EFF164E18A7D134005E4802 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				4E58621518B5E510004D80B6 /* NSTimer+Addition.h */,
+				4E58621618B5E510004D80B6 /* NSTimer+Addition.m */,
 				4EFF164F18A7D134005E4802 /* NSString+Levenshtein.h */,
 				4EFF165018A7D134005E4802 /* NSString+Levenshtein.m */,
 			);
@@ -2797,6 +2802,7 @@
 				C3D4FCB8187CFD64001A7223 /* UIViewController+CustomBarItemPosition.m in Sources */,
 				C3456CF91887D2BC009329D2 /* SoundEffectViewController.m in Sources */,
 				4EB43E8418AB39AA004CCC85 /* AudioPlayer.m in Sources */,
+				4E58621718B5E510004D80B6 /* NSTimer+Addition.m in Sources */,
 				4ED1751A18925322000EC483 /* AudioPlotView.m in Sources */,
 				C3FEB0EB1871D2FC008EADAA /* ControlCenter.m in Sources */,
 				4E96B592188EABC4008EA56F /* EZOutput.m in Sources */,

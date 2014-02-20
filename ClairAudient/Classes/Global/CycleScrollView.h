@@ -30,7 +30,7 @@ typedef enum {
     NSInteger currentPage;
     BOOL isAutoScroll;
     
-    
+    NSInteger timerDuration;
 }
 
 @property (nonatomic, weak) id<CycleScrollViewDelegate> delegate;
@@ -46,7 +46,6 @@ typedef enum {
            pictures:(NSArray *)pictureArray
          autoScroll:(BOOL)shouldScroll;
 
-- (void)getDisplayImagesWithCurpage:(int)page;
 - (void)refreshScrollView;
 - (void)updateImageArrayWithImageArray:(NSArray *)images;
 

@@ -44,6 +44,7 @@
     [advertisementImageView setIdentifier:@"identifier" andContentIdenifier:@"Image"];
     [advertisementImageView setHidden:YES];
     [self.adScrollView addSubview:advertisementImageView];
+    [self.view bringSubviewToFront:self.adScrollView];
 }
 
 - (void)viewWillAppear:(BOOL)animated

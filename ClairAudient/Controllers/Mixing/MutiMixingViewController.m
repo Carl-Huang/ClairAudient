@@ -41,12 +41,23 @@
     [super viewDidLoad];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     __weak MutiMixingViewController * weakSelf = self;
-    plotViewUp = [[AudioPlotView alloc]initWithFrame:CGRectMake(0, 80, 320, 140)];
+    plotViewUp = [[AudioPlotView alloc]initWithFrame:CGRectMake(0, 80, 320, 130)];
     currentEditMusicInfo = [[NSUserDefaults standardUserDefaults]dictionaryForKey:@"currentEditingMusic"];
+    [plotViewUp setLocationBlock:^(NSDictionary * locationInfo)
+     {
+         NSLog(@"%@",locationInfo);
+         [weakSelf updateInterfaceWithUpperInfo:locationInfo];
+     }];
+    
     if (currentEditMusicInfo) {
         [plotViewUp setupAudioPlotViewWitnNimber:[[currentEditMusicInfo valueForKey:@"count"] integerValue] type:OutputTypeDefautl musicPath:[currentEditMusicInfo valueForKey:@"musicURL"] withCompletedBlock:^(BOOL isFinish) {
             if (isFinish) {
-                plotViewDown = [[AudioPlotView alloc]initWithFrame:CGRectMake(0, 80+plotViewUp.frame.size.height, 320, 140)];
+                plotViewDown = [[AudioPlotView alloc]initWithFrame:CGRectMake(0, 80+plotViewUp.frame.size.height, 320, 130)];
+                [plotViewDown setLocationBlock:^(NSDictionary * locationInfo)
+                 {
+                     NSLog(@"%@",locationInfo);
+                     [weakSelf updateInterfaceWithDownnInfo:locationInfo];
+                 }];
                 [plotViewDown setupAudioPlotViewWitnNimber:1 type:OutputTypeHelper musicPath:[weakSelf.mutiMixingInfo valueForKey:@"musicURL"] withCompletedBlock:^(BOOL isFinish) {
                     [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
                 }];
@@ -70,7 +81,30 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark - Private Method
+-(void)updateInterfaceWithUpperInfo:(NSDictionary*)info
+{
+    NSNumber * start = [info valueForKey:@"startLocation"];
+    NSNumber * end   = [info valueForKey:@"endLocation"];
+    self.startTimeLabel.text = [NSString stringWithFormat:@"%0.2f",start.floatValue];
+    self.endTimeLabel.text   = [NSString stringWithFormat:@"%0.2f",end.floatValue];
+    
+    CGFloat cutLength = end.floatValue - start.floatValue;
+    self.lengthLabel.text = [NSString stringWithFormat:@"%0.2f",cutLength];
+    self.musicObject.text = @"音频一";
+}
 
+-(void)updateInterfaceWithDownnInfo:(NSDictionary*)info
+{
+    NSNumber * start = [info valueForKey:@"startLocation"];
+    NSNumber * end   = [info valueForKey:@"endLocation"];
+    self.startTimeLabel.text = [NSString stringWithFormat:@"%0.2f",start.floatValue];
+    self.endTimeLabel.text   = [NSString stringWithFormat:@"%0.2f",end.floatValue];
+    
+    CGFloat cutLength = end.floatValue - start.floatValue;
+    self.lengthLabel.text = [NSString stringWithFormat:@"%0.2f",cutLength];
+    self.musicObject.text = @"音频二";
+}
 #pragma  mark - Outlet Action
 - (IBAction)backAction:(id)sender {
      [self popVIewController];

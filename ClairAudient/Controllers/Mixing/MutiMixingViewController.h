@@ -14,6 +14,10 @@
 
 @property (strong ,nonatomic) NSDictionary * mutiMixingInfo;
 
+@property (weak, nonatomic) IBOutlet UILabel *startTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *endTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *lengthLabel;
+@property (weak, nonatomic) IBOutlet UILabel *musicObject;
 
 
 
