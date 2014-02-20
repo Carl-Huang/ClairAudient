@@ -15,6 +15,20 @@
 {
     
     NSURL *songURL      = [NSURL fileURLWithPath:musicSourcePath];
+    
+    //获取音乐文件的长度
+    AVURLAsset* audioAsset =[AVURLAsset assetWithURL:songURL];
+    CMTime audioDuration = audioAsset.duration;
+    float audioDurationSeconds =CMTimeGetSeconds(audioDuration);
+
+    [self startCropMusicWithExportFileName:exportedFileName songURL:songURL startTime:timeS endTime:timeE completedBlock:^(AVAssetExportSessionStatus status, NSError *error, NSString *localPath) {
+        completedBlock(status,error,localPath);
+    }];
+    
+}
+
++(void)startCropMusicWithExportFileName:(NSString *)exportedFileName songURL:(NSURL *)songURL startTime:(CGFloat)timeS endTime:(CGFloat)timeE completedBlock:(void (^)(AVAssetExportSessionStatus status,NSError *error,NSString * localPath))completedBlock
+{
     AVURLAsset *musicAsset = [AVURLAsset URLAssetWithURL:songURL options:nil];
     NSString * path     = [self getExportPath:exportedFileName];
     NSURL *exportURL    = [NSURL fileURLWithPath:path];
@@ -57,7 +71,9 @@
             NSLog(@"Export Session Status: %d", exportSession.status);
         }
     }];
+
 }
+
 
 +(NSString *)getExportPath:(NSString *)fileName
 {

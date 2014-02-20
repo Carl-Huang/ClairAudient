@@ -7,8 +7,81 @@
 //
 
 #import "MusicMixerOutput.h"
-
+#import <AVFoundation/AVFoundation.h>
 @implementation MusicMixerOutput
+
++(void)appendAudioFile:(NSString *)filePath toFile:(NSString *)appendedFile compositionPath:(NSString *)compositionPath compositionTimes:(NSInteger)times withCompletedBlock:(void (^)(NSError * error,BOOL isFinish))block
+{
+    AVMutableComposition * composition = [AVMutableComposition composition];
+    AVMutableCompositionTrack * compoitionTrack = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+    
+    AVURLAsset * originalAsset  = [[AVURLAsset alloc]initWithURL:[NSURL fileURLWithPath:appendedFile] options:nil];
+    AVURLAsset * newAsset       = [[AVURLAsset alloc]initWithURL:[NSURL fileURLWithPath:filePath] options:nil];
+    
+    AVAssetTrack * originalAudioTrack = [[originalAsset tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0];
+    AVAssetTrack * newAssetAudioTrack = [[newAsset tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0];
+    
+    NSError * error = nil;
+    CMTimeRange timeRange = CMTimeRangeMake(kCMTimeZero, originalAsset.duration);
+    [compoitionTrack insertTimeRange:timeRange
+                                ofTrack:originalAudioTrack
+                                 atTime:kCMTimeZero
+                                  error:&error];
+    
+    if (error)
+    {
+        block(error,NO);
+    }
+    
+    
+    CMTime startTime = originalAsset.duration;
+    CMTimeRange newAssetTimeRange = CMTimeRangeMake(kCMTimeZero, newAsset.duration);
+    for (int i = 1; i < times; i++) {
+        
+        [compoitionTrack insertTimeRange:newAssetTimeRange
+                                 ofTrack:newAssetAudioTrack
+                                  atTime:originalAsset.duration
+                                   error:&error];
+        startTime = CMTimeAdd(startTime, newAsset.duration);
+    }
+    
+    if (error)
+    {
+        block(error,NO);
+    }
+    AVAssetExportSession* exportSession = [AVAssetExportSession
+                                           exportSessionWithAsset:composition
+                                           presetName:AVAssetExportPresetPassthrough];
+    
+
+    exportSession.outputURL = [NSURL fileURLWithPath:compositionPath];
+    exportSession.outputFileType = @"com.apple.quicktime-movie";
+    [exportSession exportAsynchronouslyWithCompletionHandler:^{
+        
+        // exported successfully?
+        switch (exportSession.status)
+        {
+            case AVAssetExportSessionStatusFailed:
+                break;
+            case AVAssetExportSessionStatusCompleted:
+            {
+                block(nil,YES);
+            }
+                
+                // you should now have the appended audio file
+                break;
+            case AVAssetExportSessionStatusWaiting:
+                break;
+            default:
+                break;
+        }
+        
+    }];
+    
+    originalAsset   = nil;
+    newAsset        = nil;
+}
+
 
 + (OSStatus)mixAudio:(NSString *)audioPath1
             andAudio:(NSString *)audioPath2

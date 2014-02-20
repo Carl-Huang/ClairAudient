@@ -136,7 +136,17 @@
     return exportPath;
 }
 
-
++(NSString *)getTempPath:(NSString *)fileName
+{
+    NSArray *dirs = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
+    NSString *documentsDirectoryPath = [dirs objectAtIndex:0];
+    
+    NSString *exportPath = [documentsDirectoryPath stringByAppendingPathComponent:fileName];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:exportPath]) {
+        [[NSFileManager defaultManager] removeItemAtPath:exportPath error:nil];
+    }
+    return exportPath;
+}
 #pragma mark - OSStatus Utility
 +(void)checkResult:(OSStatus)result
          operation:(const char *)operation {

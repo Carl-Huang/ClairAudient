@@ -19,7 +19,8 @@
 #import "MixingEffectViewController.h"
 #import "AudioPlotView.h"
 #import "EditMusicInfo.h"
-
+#import "MusicMixerOutput.h"
+#import "GobalMethod.h"
 @interface MixingViewController ()
 
 {
@@ -138,6 +139,38 @@
     CGFloat totalTime = minute * 60 + second;
     return totalTime;
 }
+
+-(void)newPlotViewWithNumber:(NSInteger )number
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (plotView) {
+            [plotView removeFromSuperview];
+            plotView  =  nil;
+        }
+        
+        plotView = [[AudioPlotView alloc]initWithFrame:CGRectMake(0, 80, 320, 245)];
+        
+        __weak MixingViewController * weakSelf = self;
+        [plotView setupAudioPlotViewWitnNimber:number type:OutputTypeDefautl musicPath:edittingMusicFile withCompletedBlock:^(BOOL isFinish) {
+            if (isFinish) {
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+            }
+        }];
+        
+        [plotView setLocationBlock:^(NSDictionary * locationInfo)
+         {
+             [weakSelf updateInterfaceWithInfo:locationInfo];
+         }];
+        self.endTime.text   = [NSString stringWithFormat:@"%0.2f",[plotView getMusicLength]];
+        self.cutLength.text = self.endTime.text;
+        
+        NSDictionary * currentEditMusicInfo = @{@"music": edittingMusicFile,@"count":[NSNumber numberWithInteger:number]};
+        [[NSUserDefaults standardUserDefaults]setObject:currentEditMusicInfo forKey:@"currentEditingMusic"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+        [self.view addSubview:plotView];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    });
+}
 #pragma mark - Outlet Action
 - (IBAction)playMusic:(id)sender {
     if (![plotView isPlaying]) {
@@ -157,9 +190,12 @@
     // * Crop the music
     NSString * tempFileName = [self getTimeAsFileName];
     CGFloat musicLength = self.endTime.text.floatValue  - self.startTime.text.floatValue;
+    
+    
+    NSString * tempFile = [GobalMethod getTempPath:@"tempCopyFile.mp3"];
     if (tempFileName) {
         tempFileName = [tempFileName stringByAppendingPathExtension:@"mov"];
-        [MusicCutter cropMusic:edittingMusicFile exportFileName:tempFileName withStartTime:self.startTime.text.floatValue*60 endTime:self.endTime.text.floatValue*60 withCompletedBlock:^(AVAssetExportSessionStatus status, NSError *error,NSString * localPath) {
+        [MusicCutter cropMusic:tempFile exportFileName:tempFileName withStartTime:self.startTime.text.floatValue*60 endTime:self.endTime.text.floatValue*60 withCompletedBlock:^(AVAssetExportSessionStatus status, NSError *error,NSString * localPath) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 //保存信息到数据库
@@ -198,35 +234,25 @@
 
 - (IBAction)copyMusicAction:(id)sender {
     NSInteger copyNumber = 3;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        if (plotView) {
-            [plotView removeFromSuperview];
-            plotView  =  nil;
-        }
-        
-        plotView = [[AudioPlotView alloc]initWithFrame:CGRectMake(0, 80, 320, 245)];
-        
-        __weak MixingViewController * weakSelf = self;
-        [plotView setupAudioPlotViewWitnNimber:copyNumber type:OutputTypeDefautl musicPath:edittingMusicFile withCompletedBlock:^(BOOL isFinish) {
+    __weak MixingViewController * weakSelf = self;
+    
+    
+    NSString * tempFile = [GobalMethod getTempPath:@"tempCopyFile.mov"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [MusicMixerOutput appendAudioFile:edittingMusicFile toFile:edittingMusicFile compositionPath:tempFile compositionTimes:copyNumber withCompletedBlock:^(NSError *error, BOOL isFinish) {
             if (isFinish) {
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                NSFileManager *manage   = [NSFileManager defaultManager];
+                NSString * convertedFilePath = [NSString stringWithString:tempFile];
+                NSString *mp3Path       = [[convertedFilePath stringByDeletingPathExtension] stringByAppendingPathExtension:@"mp3"];
+                NSError *error = nil;
+                [manage moveItemAtPath:tempFile toPath:mp3Path error:&error];
+                
+                
+                [weakSelf newPlotViewWithNumber:copyNumber];
             }
         }];
-        
-        [plotView setLocationBlock:^(NSDictionary * locationInfo)
-         {
-             [weakSelf updateInterfaceWithInfo:locationInfo];
-         }];
-        self.endTime.text   = [NSString stringWithFormat:@"%0.2f",[plotView getMusicLength]];
-        self.cutLength.text = self.endTime.text;
-        
-        NSDictionary * currentEditMusicInfo = @{@"music": edittingMusicFile,@"count":[NSNumber numberWithInteger:copyNumber]};
-        [[NSUserDefaults standardUserDefaults]setObject:currentEditMusicInfo forKey:@"currentEditingMusic"];
-        [[NSUserDefaults standardUserDefaults]synchronize];
-        [self.view addSubview:plotView];
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     });
+
    
     
 }
