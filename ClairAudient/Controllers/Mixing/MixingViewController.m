@@ -30,6 +30,7 @@
     AudioPlotView * plotView;
     
     MBProgressHUD * progressView;
+    NSString * currentEditedFile;
 }
 
 @property (assign ,nonatomic)CGFloat currentPositionOfFile;
@@ -192,24 +193,34 @@
     CGFloat musicLength = self.endTime.text.floatValue  - self.startTime.text.floatValue;
     
     
-    NSString * tempFile = [GobalMethod getTempPath:@"tempCopyFile.mp3"];
     if (tempFileName) {
         tempFileName = [tempFileName stringByAppendingPathExtension:@"mov"];
-        [MusicCutter cropMusic:tempFile exportFileName:tempFileName withStartTime:self.startTime.text.floatValue*60 endTime:self.endTime.text.floatValue*60 withCompletedBlock:^(AVAssetExportSessionStatus status, NSError *error,NSString * localPath) {
+        [MusicCutter cropMusic:currentEditedFile exportFileName:tempFileName withStartTime:self.startTime.text.floatValue*60 endTime:self.endTime.text.floatValue*60 withCompletedBlock:^(AVAssetExportSessionStatus status, NSError *error,NSString * localPath) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                //保存信息到数据库
-                EditMusicInfo * info    = [EditMusicInfo MR_createEntity];
-                info.title              = [weakSelf.musicInfo valueForKey:@"Title"];;
-                info.artist             = [weakSelf.musicInfo valueForKey:@"Artist"];
-                info.makeTime           = [self getMakeTime];
-                info.localFilePath      = localPath;
-                info.length             = [NSString stringWithFormat:@"%0.2f",[self convertMinuteToSecond:musicLength]];
-                [[NSManagedObjectContext MR_defaultContext]MR_saveOnlySelfAndWait];
+                if (status == AVAssetExportSessionStatusCompleted) {
+                    //保存信息到数据库
+                    EditMusicInfo * info    = [EditMusicInfo MR_createEntity];
+                    info.title              = [weakSelf.musicInfo valueForKey:@"Title"];;
+                    info.artist             = [weakSelf.musicInfo valueForKey:@"Artist"];
+                    info.makeTime           = [self getMakeTime];
+                    info.localFilePath      = localPath;
+                    info.length             = [NSString stringWithFormat:@"%0.2f",[self convertMinuteToSecond:musicLength]];
+                    [[NSManagedObjectContext MR_defaultContext]MR_saveOnlySelfAndWait];
+                    
+                    //删除临时数据
+                    NSError * error = nil;
+                    [[NSFileManager defaultManager]removeItemAtPath:currentEditedFile error:&error];
+                    
+                    
+                    [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+                    [self showAlertViewWithMessage:@"裁剪成功"];
+                }else
+                {
+                    [self showAlertViewWithMessage:@"裁剪失败"];
+                }
                 
-                
-                [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-                [self showAlertViewWithMessage:@"裁剪成功"];
+               
             });
             
         }];
@@ -237,15 +248,15 @@
     __weak MixingViewController * weakSelf = self;
     
     
-    NSString * tempFile = [GobalMethod getTempPath:@"tempCopyFile.mov"];
+    currentEditedFile = [GobalMethod getTempPath:@"tempCopyFile.mov"];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [MusicMixerOutput appendAudioFile:edittingMusicFile toFile:edittingMusicFile compositionPath:tempFile compositionTimes:copyNumber withCompletedBlock:^(NSError *error, BOOL isFinish) {
+        [MusicMixerOutput appendAudioFile:edittingMusicFile toFile:edittingMusicFile compositionPath:currentEditedFile compositionTimes:copyNumber withCompletedBlock:^(NSError *error, BOOL isFinish) {
             if (isFinish) {
-                NSFileManager *manage   = [NSFileManager defaultManager];
-                NSString * convertedFilePath = [NSString stringWithString:tempFile];
-                NSString *mp3Path       = [[convertedFilePath stringByDeletingPathExtension] stringByAppendingPathExtension:@"mp3"];
-                NSError *error = nil;
-                [manage moveItemAtPath:tempFile toPath:mp3Path error:&error];
+//                NSFileManager *manage   = [NSFileManager defaultManager];
+//                NSString * convertedFilePath = [NSString stringWithString:tempFile];
+//                NSString *mp3Path       = [[convertedFilePath stringByDeletingPathExtension] stringByAppendingPathExtension:@"mp3"];
+//                NSError *error = nil;
+//                [manage moveItemAtPath:tempFile toPath:mp3Path error:&error];
                 
                 
                 [weakSelf newPlotViewWithNumber:copyNumber];

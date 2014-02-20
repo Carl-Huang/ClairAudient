@@ -15,11 +15,6 @@
 {
     
     NSURL *songURL      = [NSURL fileURLWithPath:musicSourcePath];
-    
-    //获取音乐文件的长度
-    AVURLAsset* audioAsset =[AVURLAsset assetWithURL:songURL];
-    CMTime audioDuration = audioAsset.duration;
-    float audioDurationSeconds =CMTimeGetSeconds(audioDuration);
 
     [self startCropMusicWithExportFileName:exportedFileName songURL:songURL startTime:timeS endTime:timeE completedBlock:^(AVAssetExportSessionStatus status, NSError *error, NSString *localPath) {
         completedBlock(status,error,localPath);
