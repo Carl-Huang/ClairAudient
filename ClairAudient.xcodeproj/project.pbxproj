@@ -98,6 +98,9 @@
 		4EB6FAC518A8F67300482613 /* CycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB6FAC418A8F67300482613 /* CycleScrollView.m */; };
 		4EB7C4EB18B6FC2800BCF0E8 /* MixingCatalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB7C4E918B6FC2800BCF0E8 /* MixingCatalogViewController.m */; };
 		4EB7C4EC18B6FC2800BCF0E8 /* MixingCatalogViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EB7C4EA18B6FC2800BCF0E8 /* MixingCatalogViewController.xib */; };
+		4EB7C4F018B72BF700BCF0E8 /* MixingMusicOnlineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB7C4EE18B72BF700BCF0E8 /* MixingMusicOnlineCell.m */; };
+		4EB7C4F118B72BF700BCF0E8 /* MixingMusicOnlineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EB7C4EF18B72BF700BCF0E8 /* MixingMusicOnlineCell.xib */; };
+		4EB7C4F418B72E8600BCF0E8 /* MixingOnlineBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB7C4F318B72E8600BCF0E8 /* MixingOnlineBtn.m */; };
 		4ED1751A18925322000EC483 /* AudioPlotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1751918925322000EC483 /* AudioPlotView.m */; };
 		4ED1752018925CC2000EC483 /* MutiMixingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1751E18925CC2000EC483 /* MutiMixingViewController.m */; };
 		4ED1752118925CC2000EC483 /* MutiMixingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ED1751F18925CC2000EC483 /* MutiMixingViewController.xib */; };
@@ -657,6 +660,11 @@
 		4EB7C4E818B6FC2800BCF0E8 /* MixingCatalogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixingCatalogViewController.h; sourceTree = "<group>"; };
 		4EB7C4E918B6FC2800BCF0E8 /* MixingCatalogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixingCatalogViewController.m; sourceTree = "<group>"; };
 		4EB7C4EA18B6FC2800BCF0E8 /* MixingCatalogViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MixingCatalogViewController.xib; sourceTree = "<group>"; };
+		4EB7C4ED18B72BF700BCF0E8 /* MixingMusicOnlineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixingMusicOnlineCell.h; sourceTree = "<group>"; };
+		4EB7C4EE18B72BF700BCF0E8 /* MixingMusicOnlineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixingMusicOnlineCell.m; sourceTree = "<group>"; };
+		4EB7C4EF18B72BF700BCF0E8 /* MixingMusicOnlineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MixingMusicOnlineCell.xib; sourceTree = "<group>"; };
+		4EB7C4F218B72E8600BCF0E8 /* MixingOnlineBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixingOnlineBtn.h; sourceTree = "<group>"; };
+		4EB7C4F318B72E8600BCF0E8 /* MixingOnlineBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixingOnlineBtn.m; sourceTree = "<group>"; };
 		4ED1751818925322000EC483 /* AudioPlotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlotView.h; sourceTree = "<group>"; };
 		4ED1751918925322000EC483 /* AudioPlotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlotView.m; sourceTree = "<group>"; };
 		4ED1751D18925CC2000EC483 /* MutiMixingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutiMixingViewController.h; sourceTree = "<group>"; };
@@ -1533,6 +1541,9 @@
 		C3164CF218746A9A00301ACA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4EB7C4ED18B72BF700BCF0E8 /* MixingMusicOnlineCell.h */,
+				4EB7C4EE18B72BF700BCF0E8 /* MixingMusicOnlineCell.m */,
+				4EB7C4EF18B72BF700BCF0E8 /* MixingMusicOnlineCell.xib */,
 				4EB4AC9918B33AAB008A4DDC /* MyDownloadCell.h */,
 				4EB4AC9A18B33AAB008A4DDC /* MyDownloadCell.m */,
 				4EB4AC9B18B33AAB008A4DDC /* MyDownloadCell.xib */,
@@ -1588,6 +1599,8 @@
 				4EB43E7018AB26BC004CCC85 /* PlayItemView.h */,
 				4EB43E7118AB26BC004CCC85 /* PlayItemView.m */,
 				4EB43E7318AB26D4004CCC85 /* PlayItemView.xib */,
+				4EB7C4F218B72E8600BCF0E8 /* MixingOnlineBtn.h */,
+				4EB7C4F318B72E8600BCF0E8 /* MixingOnlineBtn.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2479,6 +2492,7 @@
 				C3FEB0261871C294008EADAA /* first_3@2x.png in Resources */,
 				C3164CBD1874555D00301ACA /* FoundMusic_jk@2x.png in Resources */,
 				C3FEB0501871C294008EADAA /* record_5@2x.png in Resources */,
+				4EB7C4F118B72BF700BCF0E8 /* MixingMusicOnlineCell.xib in Resources */,
 				C3164CEE1874555D00301ACA /* MusicFans_xc@2x.png in Resources */,
 				C351B692187E381900630408 /* RecommendSoundCell.xib in Resources */,
 				C3FEB08B1871C294008EADAA /* user_@2x.png in Resources */,
@@ -2799,6 +2813,7 @@
 				C3D4FCC4187D6194001A7223 /* IntegralChampionCell.m in Sources */,
 				C32F4017188287B600681953 /* MyDownloadViewController.mm in Sources */,
 				4E2A13651890BC6300D8CB65 /* ClairDataSource.xcdatamodeld in Sources */,
+				4EB7C4F018B72BF700BCF0E8 /* MixingMusicOnlineCell.m in Sources */,
 				C3FEB0D61871CAA2008EADAA /* MusicFansViewController.m in Sources */,
 				C3456CFD18883C17009329D2 /* TMSoundEffectCell.m in Sources */,
 				C341171B188B8B080070EAB4 /* HttpService.m in Sources */,
@@ -2849,6 +2864,7 @@
 				C3FEB0E01871CAF4008EADAA /* MixingMusicListViewController.m in Sources */,
 				4EB20FA918A931BE007E5A8B /* EditListCell.m in Sources */,
 				C3456CF31887CA1D009329D2 /* MixingMusicListCell.m in Sources */,
+				4EB7C4F418B72E8600BCF0E8 /* MixingOnlineBtn.m in Sources */,
 				C39BBE571893DF5C00FC8F72 /* TSPopoverPopoverView.m in Sources */,
 				4E11796A188F627F00FB619F /* MusicCutter.m in Sources */,
 				4EFF165118A7D134005E4802 /* NSString+Levenshtein.m in Sources */,

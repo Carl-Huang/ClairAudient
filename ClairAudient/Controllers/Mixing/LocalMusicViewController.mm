@@ -353,6 +353,7 @@
     
     
     cell.firstBtn.tag           = indexPath.row;
+    cell.secondBtn.tag          = indexPath.row;
     cell.bigTitleLabel.text     = [dic valueForKey:@"Artist"];
     cell.littleTitleLabel.text  = [dic valueForKey:@"Title"];
     

@@ -19,15 +19,16 @@
 #import "DownloadMusicInfo.h"
 #import "PersistentStore.h"
 #import "GobalMethod.h"
+#import "MixingMusicOnlineCell.h"
 
-#import <objc/runtime.h>
+
 
 #define Section_Height 48.0f
 #define Cell_Height 44.0f
 @interface MixingCatalogViewController ()<SortPopoverViewControllerDelegate,UIAlertViewDelegate>
 {
     Catalog * currentSelectedCatalog;
-    NSInteger currentSelectedIndex;
+    Voice * currentSelectedItem;
     
     BOOL isDowning;
 }
@@ -85,7 +86,7 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self setLeftAndRightBarItem];
     _tableView.backgroundColor = [UIColor clearColor];
-    UINib * nib = [UINib nibWithNibName:@"SoundCatalogCell" bundle:[NSBundle bundleForClass:[SoundCatalogCell class]]];
+    UINib * nib = [UINib nibWithNibName:@"MixingMusicOnlineCell" bundle:[NSBundle bundleForClass:[MixingMusicOnlineCell class]]];
     [_tableView registerNib:nib forCellReuseIdentifier:@"Cell"];
     UIView * footView = [UIView new];
     footView.backgroundColor = [UIColor clearColor];
@@ -156,6 +157,26 @@
         //文件路径错误
     }
 }
+
+-(void)editMusic:(id)sender
+{
+    MixingOnlineBtn * btn = (MixingOnlineBtn *)sender;
+    currentSelectedCatalog = [_catalogs objectAtIndex:btn.index.section];
+     NSArray * voices = [_catalogSoundsInfo objectForKey:currentSelectedCatalog.vlt_name];
+    currentSelectedItem = [voices objectAtIndex:btn.index.row];
+    
+    
+    
+    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:currentSelectedItem.vl_name message:@"添加音效需要先下载，确定是否下载" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alertView show];
+    alertView = nil;
+}
+
+-(void)playMusic:(id)sender
+{
+    NSLog(@"%s",__FUNCTION__);
+}
+
 
 #pragma mark - Action Methods
 - (void)tapSection:(UITapGestureRecognizer *)gesture
@@ -367,23 +388,28 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SoundCatalogCell * cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     Catalog * catalog = [_catalogs objectAtIndex:indexPath.section];
     NSArray * voices = [_catalogSoundsInfo objectForKey:catalog.vlt_name];
     Voice * voice = [voices objectAtIndex:indexPath.row];
-    cell.nameLabel.text = voice.vl_name;
-    cell.downloadCountLabel.text = [NSString stringWithFormat:@"下载%@次",voice.download_num];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    MixingMusicOnlineCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    [cell.firstBtn setImage:[UIImage imageNamed:@"hunyin_45.png"] forState:UIControlStateNormal];
+    [cell.secondBtn setImage:[UIImage imageNamed:@"hunyin_46.png"] forState:UIControlStateNormal];
+    [cell.firstBtn addTarget:self action:@selector(playMusic:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.secondBtn addTarget:self action:@selector(editMusic:) forControlEvents:UIControlEventTouchUpInside];
+    
+    cell.secondBtn.index          = indexPath;
+    cell.firstBtn.index           = indexPath;
+    cell.littleTitleLabel.text  = voice.vl_name;
+    cell.selectionStyle         = UITableViewCellSelectionStyleNone;
+    
+    
     return cell;
 }
 #pragma mark - UITableViewDelegate Methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    currentSelectedCatalog = [_catalogs objectAtIndex:indexPath.section];
-    currentSelectedIndex = indexPath.row;
-    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:currentSelectedCatalog.vlt_name message:@"添加音效需要先下载，确定是否下载" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-    [alertView show];
-    alertView = nil;
+    
 }
 
 
@@ -474,9 +500,8 @@
         case 1:
             {
                 //下载音频文件
-                NSArray * voices = [_catalogSoundsInfo objectForKey:currentSelectedCatalog.vlt_name];
-                Voice * voice = [voices objectAtIndex:currentSelectedIndex];
-                [self startDownloadMusicWithObj:@{@"URL": voice.url,@"Name":voice.vl_name} completedBlock:^(NSError *error, NSDictionary *info) {
+
+                [self startDownloadMusicWithObj:@{@"URL": currentSelectedItem.url,@"Name":currentSelectedItem.vl_name} completedBlock:^(NSError *error, NSDictionary *info) {
                     ;
                 }];
 
