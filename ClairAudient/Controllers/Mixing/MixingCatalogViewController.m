@@ -20,7 +20,7 @@
 #import "PersistentStore.h"
 #import "GobalMethod.h"
 #import "MixingMusicOnlineCell.h"
-
+#import "MutiMixingViewController.h"
 
 
 #define Section_Height 48.0f
@@ -134,7 +134,7 @@
                 {
                     //下载完成
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [weakSelf showAlertViewWithMessage:@"下载完成"];
+                        [weakSelf showAlertViewWithMessage:[NSString stringWithFormat:@"%@下载完成",[musicObj valueForKey:@"Name"]]];
                         block (nil,nil);
                         CGFloat musicLength = [GobalMethod getMusicLength:[NSURL fileURLWithPath:exportFilePath]];
                         DownloadMusicInfo * info = [DownloadMusicInfo MR_createEntity];
@@ -162,14 +162,30 @@
 {
     MixingOnlineBtn * btn = (MixingOnlineBtn *)sender;
     currentSelectedCatalog = [_catalogs objectAtIndex:btn.index.section];
-     NSArray * voices = [_catalogSoundsInfo objectForKey:currentSelectedCatalog.vlt_name];
+    NSArray * voices = [_catalogSoundsInfo objectForKey:currentSelectedCatalog.vlt_name];
     currentSelectedItem = [voices objectAtIndex:btn.index.row];
     
+    NSArray * downloadsMusics = [PersistentStore getAllObjectWithType:[DownloadMusicInfo class]];
+    BOOL isDownloaded = NO;
+    NSString * editedFilePath = nil;
+    for (DownloadMusicInfo * object in downloadsMusics) {
+        if ([object.title isEqualToString:currentSelectedItem.vl_name]) {
+            isDownloaded = YES;
+            editedFilePath = object.localPath;
+            break;
+        }
+    }
+    if (!isDownloaded) {
+        UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:currentSelectedItem.vl_name message:@"添加音效需要先下载，确定是否下载" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alertView show];
+        alertView = nil;
+    }else
+    {
+        //已经下载，进行编辑
+        [self editItemWithPath:editedFilePath];
+    }
     
     
-    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:currentSelectedItem.vl_name message:@"添加音效需要先下载，确定是否下载" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-    [alertView show];
-    alertView = nil;
 }
 
 -(void)playMusic:(id)sender
@@ -177,6 +193,13 @@
     NSLog(@"%s",__FUNCTION__);
 }
 
+-(void)editItemWithPath:(NSString *)path
+{
+    MutiMixingViewController * viewController = [[MutiMixingViewController alloc]initWithNibName:@"MutiMixingViewController" bundle:nil];
+    [viewController setMutiMixingInfo:@{@"musicURL":path}];
+    [self.navigationController pushViewController:viewController animated:YES];
+    viewController = nil;
+}
 
 #pragma mark - Action Methods
 - (void)tapSection:(UITapGestureRecognizer *)gesture
