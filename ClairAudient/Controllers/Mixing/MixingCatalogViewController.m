@@ -21,7 +21,8 @@
 #import "GobalMethod.h"
 #import "MixingMusicOnlineCell.h"
 #import "MutiMixingViewController.h"
-
+#import "AudioPlayer.h"
+#import "AudioStreamer.h"
 
 #define Section_Height 48.0f
 #define Cell_Height 44.0f
@@ -31,6 +32,7 @@
     Voice * currentSelectedItem;
     
     BOOL isDowning;
+    AudioPlayer * streamPlayer;
 }
 @property (nonatomic,strong) NSArray * catalogs;
 @property (nonatomic,strong) NSMutableDictionary * catalogSoundsInfo;
@@ -68,6 +70,12 @@
 {
     [super viewWillAppear:animated];
     [self dismissPopoverController];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [streamPlayer stop];
+    streamPlayer = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -190,7 +198,11 @@
 
 -(void)playMusic:(id)sender
 {
-    NSLog(@"%s",__FUNCTION__);
+    MixingOnlineBtn * btn = (MixingOnlineBtn *)sender;
+    currentSelectedCatalog = [_catalogs objectAtIndex:btn.index.section];
+    NSArray * voices = [_catalogSoundsInfo objectForKey:currentSelectedCatalog.vlt_name];
+    currentSelectedItem = [voices objectAtIndex:btn.index.row];
+    [self playMusicStreamWithData:currentSelectedItem];
 }
 
 -(void)editItemWithPath:(NSString *)path
@@ -200,6 +212,29 @@
     [self.navigationController pushViewController:viewController animated:YES];
     viewController = nil;
 }
+
+-(void)playMusicStreamWithData:(Voice *)object
+{
+    if (streamPlayer) {
+        [streamPlayer stop];
+        streamPlayer = nil;
+    }
+    streamPlayer = [[AudioPlayer alloc]init];
+    [streamPlayer setBlock:^(double processOffset,BOOL isFinished)
+     {
+         
+         if (processOffset > 0) {
+             
+         }
+     }];
+    [streamPlayer stop];
+    NSURL * musciURL = [GobalMethod getMusicUrl:object.url];
+    if (musciURL) {
+        streamPlayer.url = musciURL;
+        [streamPlayer play];
+    }
+}
+
 
 #pragma mark - Action Methods
 - (void)tapSection:(UITapGestureRecognizer *)gesture

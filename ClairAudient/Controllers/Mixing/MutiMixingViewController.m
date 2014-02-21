@@ -31,6 +31,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.title = @"混音制作";
         // Custom initialization
     }
     return self;
@@ -74,6 +75,11 @@
     CGRect rect = self.controlBtnView.frame;
     rect.origin.x = plotViewUp.frame.size.height * 2;
     self.controlBtnView.frame = rect;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController.navigationBar setHidden:YES];
 }
 
 - (void)didReceiveMemoryWarning
