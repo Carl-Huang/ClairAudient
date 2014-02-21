@@ -101,6 +101,7 @@
 		4EB7C4F018B72BF700BCF0E8 /* MixingMusicOnlineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB7C4EE18B72BF700BCF0E8 /* MixingMusicOnlineCell.m */; };
 		4EB7C4F118B72BF700BCF0E8 /* MixingMusicOnlineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EB7C4EF18B72BF700BCF0E8 /* MixingMusicOnlineCell.xib */; };
 		4EB7C4F418B72E8600BCF0E8 /* MixingOnlineBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB7C4F318B72E8600BCF0E8 /* MixingOnlineBtn.m */; };
+		4EB7C4F718B7414800BCF0E8 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB7C4F618B7414800BCF0E8 /* UIDevice+Hardware.m */; };
 		4ED1751A18925322000EC483 /* AudioPlotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1751918925322000EC483 /* AudioPlotView.m */; };
 		4ED1752018925CC2000EC483 /* MutiMixingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1751E18925CC2000EC483 /* MutiMixingViewController.m */; };
 		4ED1752118925CC2000EC483 /* MutiMixingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ED1751F18925CC2000EC483 /* MutiMixingViewController.xib */; };
@@ -665,6 +666,8 @@
 		4EB7C4EF18B72BF700BCF0E8 /* MixingMusicOnlineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MixingMusicOnlineCell.xib; sourceTree = "<group>"; };
 		4EB7C4F218B72E8600BCF0E8 /* MixingOnlineBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixingOnlineBtn.h; sourceTree = "<group>"; };
 		4EB7C4F318B72E8600BCF0E8 /* MixingOnlineBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixingOnlineBtn.m; sourceTree = "<group>"; };
+		4EB7C4F518B7414800BCF0E8 /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
+		4EB7C4F618B7414800BCF0E8 /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Hardware.m"; sourceTree = "<group>"; };
 		4ED1751818925322000EC483 /* AudioPlotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlotView.h; sourceTree = "<group>"; };
 		4ED1751918925322000EC483 /* AudioPlotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlotView.m; sourceTree = "<group>"; };
 		4ED1751D18925CC2000EC483 /* MutiMixingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutiMixingViewController.h; sourceTree = "<group>"; };
@@ -1416,6 +1419,8 @@
 		4EB43E7718AB39AA004CCC85 /* AudioPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				4EB7C4F518B7414800BCF0E8 /* UIDevice+Hardware.h */,
+				4EB7C4F618B7414800BCF0E8 /* UIDevice+Hardware.m */,
 				4EB43E7818AB39AA004CCC85 /* AudioButton.h */,
 				4EB43E7918AB39AA004CCC85 /* AudioButton.m */,
 				4EB43E7A18AB39AA004CCC85 /* AudioPlayer.h */,
@@ -2836,6 +2841,7 @@
 				4EB43E7218AB26BC004CCC85 /* PlayItemView.m in Sources */,
 				4E2A1384189152F900D8CB65 /* AudioReader.mm in Sources */,
 				4E1CDE0318900BA000C046ED /* AudioWriter.m in Sources */,
+				4EB7C4F718B7414800BCF0E8 /* UIDevice+Hardware.m in Sources */,
 				C39BBE561893DF5C00FC8F72 /* TSPopoverController.m in Sources */,
 				C341171A188B8B080070EAB4 /* AFHttp.m in Sources */,
 				4EB43E6D18AB15B6004CCC85 /* MyUploadDetailCell.m in Sources */,
