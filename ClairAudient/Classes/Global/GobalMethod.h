@@ -28,4 +28,10 @@
 /*                 Audio                  */
 +(CGFloat)getMusicLength:(NSURL *)url;
 +(CGFloat)getAudioFileLength:(NSURL *)fileURL;
+
+/**
+ @desc: 本地通知
+ */
++(void)localNotificationBody:(NSString *)body;
+
 @end

@@ -58,6 +58,18 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification*)notification{
+
+    
+    NSDictionary* dic = [[NSDictionary alloc]init];
+    //这里可以接受到本地通知中心发送的消息
+    dic = notification.userInfo;
+    NSLog(@"user info = %@",[dic objectForKey:@"content"]);
+    
+    // 图标上的数字减1
+    application.applicationIconBadgeNumber -= 1;
+}
+
 - (void)custonNavigationBar
 {
     if([OSHelper iOS7])

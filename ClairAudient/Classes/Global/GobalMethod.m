@@ -180,4 +180,29 @@
     NSLog (@"  Channels per Frame:  %10d",    (unsigned int)asbd.mChannelsPerFrame);
     NSLog (@"  Bits per Channel:    %10d",    (unsigned int)asbd.mBitsPerChannel);
 }
+
++(void)localNotificationBody:(NSString *)body
+{
+    UILocalNotification *notification=[[UILocalNotification alloc] init];
+    if (notification!=nil) {
+        
+        NSDate *now=[NSDate new];
+        notification.fireDate=[now dateByAddingTimeInterval:2]; //触发通知的时间
+        notification.repeatInterval=0; //循环次数，kCFCalendarUnitWeekday一周一次
+        
+        notification.timeZone=[NSTimeZone defaultTimeZone];
+        notification.soundName = UILocalNotificationDefaultSoundName;
+        notification.alertBody=body;
+        
+        notification.hasAction = NO; //是否显示额外的按钮，为no时alertAction消失
+        
+        notification.applicationIconBadgeNumber = 1; //设置app图标右上角的数字
+        
+        //下面设置本地通知发送的消息，这个消息可以接受
+        NSDictionary* infoDic = [NSDictionary dictionaryWithObject:body forKey:@"content"];
+        notification.userInfo = infoDic;
+        //发送通知
+        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    }
+}
 @end
