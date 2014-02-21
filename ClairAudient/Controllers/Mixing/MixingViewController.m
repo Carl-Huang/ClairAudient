@@ -252,13 +252,16 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [MusicMixerOutput appendAudioFile:edittingMusicFile toFile:edittingMusicFile compositionPath:currentEditedFile compositionTimes:copyNumber withCompletedBlock:^(NSError *error, BOOL isFinish) {
             if (isFinish) {
-//                NSFileManager *manage   = [NSFileManager defaultManager];
-//                NSString * convertedFilePath = [NSString stringWithString:tempFile];
-//                NSString *mp3Path       = [[convertedFilePath stringByDeletingPathExtension] stringByAppendingPathExtension:@"mp3"];
-//                NSError *error = nil;
-//                [manage moveItemAtPath:tempFile toPath:mp3Path error:&error];
                 
+                //更改文件的格式
+                NSFileManager *manage   = [NSFileManager defaultManager];
+                NSString * convertedFilePath = [NSString stringWithString:currentEditedFile];
+                NSString *mp3Path       = [[convertedFilePath stringByDeletingPathExtension] stringByAppendingPathExtension:@"mp3"];
+                NSError *error = nil;
+                [manage moveItemAtPath:currentEditedFile toPath:mp3Path error:&error];
+                currentEditedFile = nil;
                 
+                //建立新的plotView
                 [weakSelf newPlotViewWithNumber:copyNumber];
             }
         }];

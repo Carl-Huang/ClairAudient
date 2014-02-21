@@ -1,16 +1,16 @@
 //
-//  MixingEffectViewController.h
+//  FIndSoundViewController.h
 //  ClairAudient
 //
-//  Created by vedon on 24/1/14.
-//  Copyright (c) 2014 helloworld. All rights reserved.
+//  Created by Carl on 13-12-30.
+//  Copyright (c) 2013年 helloworld. All rights reserved.
 //
 
 #import "CommonViewController.h"
 
 @interface MixingEffectViewController : CommonViewController
-@property (weak, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet UITextField *searchField;
+- (IBAction)searchAction:(id)sender;
+- (IBAction)finishType:(id)sender;
 
-@property (strong ,nonatomic) NSDictionary * musicInfo;
-- (IBAction)backAction:(id)sender;
 @end

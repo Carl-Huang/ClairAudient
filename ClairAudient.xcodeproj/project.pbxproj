@@ -96,6 +96,8 @@
 		4EB4AC9C18B33AAB008A4DDC /* MyDownloadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB4AC9A18B33AAB008A4DDC /* MyDownloadCell.m */; };
 		4EB4AC9D18B33AAB008A4DDC /* MyDownloadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EB4AC9B18B33AAB008A4DDC /* MyDownloadCell.xib */; };
 		4EB6FAC518A8F67300482613 /* CycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB6FAC418A8F67300482613 /* CycleScrollView.m */; };
+		4EB7C4EB18B6FC2800BCF0E8 /* MixingCatalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB7C4E918B6FC2800BCF0E8 /* MixingCatalogViewController.m */; };
+		4EB7C4EC18B6FC2800BCF0E8 /* MixingCatalogViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EB7C4EA18B6FC2800BCF0E8 /* MixingCatalogViewController.xib */; };
 		4ED1751A18925322000EC483 /* AudioPlotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1751918925322000EC483 /* AudioPlotView.m */; };
 		4ED1752018925CC2000EC483 /* MutiMixingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1751E18925CC2000EC483 /* MutiMixingViewController.m */; };
 		4ED1752118925CC2000EC483 /* MutiMixingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ED1751F18925CC2000EC483 /* MutiMixingViewController.xib */; };
@@ -652,6 +654,9 @@
 		4EB4AC9B18B33AAB008A4DDC /* MyDownloadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDownloadCell.xib; sourceTree = "<group>"; };
 		4EB6FAC318A8F67300482613 /* CycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CycleScrollView.h; sourceTree = "<group>"; };
 		4EB6FAC418A8F67300482613 /* CycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CycleScrollView.m; sourceTree = "<group>"; };
+		4EB7C4E818B6FC2800BCF0E8 /* MixingCatalogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixingCatalogViewController.h; sourceTree = "<group>"; };
+		4EB7C4E918B6FC2800BCF0E8 /* MixingCatalogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixingCatalogViewController.m; sourceTree = "<group>"; };
+		4EB7C4EA18B6FC2800BCF0E8 /* MixingCatalogViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MixingCatalogViewController.xib; sourceTree = "<group>"; };
 		4ED1751818925322000EC483 /* AudioPlotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlotView.h; sourceTree = "<group>"; };
 		4ED1751918925322000EC483 /* AudioPlotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlotView.m; sourceTree = "<group>"; };
 		4ED1751D18925CC2000EC483 /* MutiMixingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutiMixingViewController.h; sourceTree = "<group>"; };
@@ -2140,6 +2145,9 @@
 		C3FEB0BF1871C9AA008EADAA /* Mixing */ = {
 			isa = PBXGroup;
 			children = (
+				4EB7C4E818B6FC2800BCF0E8 /* MixingCatalogViewController.h */,
+				4EB7C4E918B6FC2800BCF0E8 /* MixingCatalogViewController.m */,
+				4EB7C4EA18B6FC2800BCF0E8 /* MixingCatalogViewController.xib */,
 				C3FEB0DD1871CAF4008EADAA /* MixingMusicListViewController.h */,
 				C3FEB0DE1871CAF4008EADAA /* MixingMusicListViewController.m */,
 				C3FEB0DF1871CAF4008EADAA /* MixingMusicListViewController.xib */,
@@ -2444,6 +2452,7 @@
 				C3FEB0671871C294008EADAA /* setting_6@2x.png in Resources */,
 				C351B69B187E3E0F00630408 /* sd@2x.png in Resources */,
 				C3FEB0231871C294008EADAA /* hunyin_8@2x.png in Resources */,
+				4EB7C4EC18B6FC2800BCF0E8 /* MixingCatalogViewController.xib in Resources */,
 				C3164CB61874555D00301ACA /* FoundMusic_f@2x.png in Resources */,
 				C3FEB0691871C294008EADAA /* setting_8@2x.png in Resources */,
 				C39A97A5189247AE00F41CBB /* catalog_icon_cpng@2x.png in Resources */,
@@ -2870,6 +2879,7 @@
 				4E96B594188EABC4008EA56F /* EZRecorder.m in Sources */,
 				C3FEB0D11871CA5E008EADAA /* SettingViewController.m in Sources */,
 				C32D4FA7187F953C0090730B /* TMQuiltView.m in Sources */,
+				4EB7C4EB18B6FC2800BCF0E8 /* MixingCatalogViewController.m in Sources */,
 				C3D4FCC7187D6786001A7223 /* DownloadRankCell.m in Sources */,
 				4ED1752018925CC2000EC483 /* MutiMixingViewController.m in Sources */,
 			);

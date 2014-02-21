@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 helloworld. All rights reserved.
 //
 
-#import "SoundCatalogViewController.h"
+#import "MixingCatalogViewController.h"
 #import "UIViewController+CustomBarItemPosition.h"
 #import "SoundCatalogCell.h"
 #import "Catalog.h"
@@ -18,7 +18,7 @@
 #import "SortPopoverViewController.h"
 #define Section_Height 48.0f
 #define Cell_Height 44.0f
-@interface SoundCatalogViewController ()<SortPopoverViewControllerDelegate>
+@interface MixingCatalogViewController ()<SortPopoverViewControllerDelegate>
 @property (nonatomic,strong) NSArray * catalogs;
 @property (nonatomic,strong) NSMutableDictionary * catalogSoundsInfo;
 @property (nonatomic,strong) Catalog * selectedCatalog;
@@ -27,7 +27,7 @@
 @property (nonatomic,assign) BOOL isSortConditionChange;
 @end
 
-@implementation SoundCatalogViewController
+@implementation MixingCatalogViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
