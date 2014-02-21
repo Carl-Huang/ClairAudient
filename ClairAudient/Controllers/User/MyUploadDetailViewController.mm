@@ -349,6 +349,50 @@ static NSString * cellIdentifier = @"cellIdentifier";
     }
 }
 
+-(void)startDownloadMusicWithObj:(NSDictionary *)musicObj completedBlock:(void (^)(NSError * error,NSDictionary * info))block;
+{
+    NSString * url = [musicObj valueForKey:@"URL"];
+    NSURLRequest * request = [NSURLRequest requestWithURL:[GobalMethod getMusicUrl:url]];
+    NSString * fileExtention = [url pathExtension];
+    
+    NSString * fileName = [[musicObj valueForKey:@"Name"]stringByAppendingPathExtension:fileExtention];
+    if (request) {
+        __weak MyUploadDetailViewController * weakSelf = self;
+        
+        [GobalMethod getExportPath:fileName completedBlock:^(BOOL isDownloaded, NSString *exportFilePath) {
+            if (isDownloaded) {
+                [self showAlertViewWithMessage:@"已经下载"];
+            }else
+            {
+                AFURLConnectionOperation * downloadOperation = [[AFURLConnectionOperation alloc]initWithRequest:request];
+                downloadOperation.completionBlock = ^()
+                {
+                    //下载完成
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [weakSelf showAlertViewWithMessage:@"下载完成"];
+                        block (nil,nil);
+                        CGFloat musicLength = [GobalMethod getMusicLength:[NSURL fileURLWithPath:exportFilePath]];
+                        DownloadMusicInfo * info = [DownloadMusicInfo MR_createEntity];
+                        info.title    = [musicObj valueForKey:@"Name"];
+                        info.makeTime = [GobalMethod getMakeTime];
+                        info.localPath= exportFilePath;
+                        info.length   = [NSString stringWithFormat:@"%0.2f",musicLength];
+                        info.isFavorite = @"0";
+                        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+                        
+                    });
+                };
+                downloadOperation.outputStream = [NSOutputStream outputStreamToFileAtPath:exportFilePath append:NO];
+                [downloadOperation start];
+            }
+            
+        }];
+    }else
+    {
+        //文件路径错误
+    }
+}
+
 -(void)buffering
 {
     do {
@@ -425,7 +469,9 @@ static NSString * cellIdentifier = @"cellIdentifier";
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
-        [self startDownloadMusic];
+        [self startDownloadMusicWithObj:@{@"URL": self.voiceItem.url,@"Name":self.voiceItem.vl_name} completedBlock:^(NSError *error, NSDictionary *info) {
+            ;
+        }];
     }
 }
 @end

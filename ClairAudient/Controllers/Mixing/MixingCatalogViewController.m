@@ -16,9 +16,21 @@
 #import "ControlCenter.h"
 #import "TSPopoverController.h"
 #import "SortPopoverViewController.h"
+#import "DownloadMusicInfo.h"
+#import "PersistentStore.h"
+#import "GobalMethod.h"
+
+#import <objc/runtime.h>
+
 #define Section_Height 48.0f
 #define Cell_Height 44.0f
 @interface MixingCatalogViewController ()<SortPopoverViewControllerDelegate,UIAlertViewDelegate>
+{
+    Catalog * currentSelectedCatalog;
+    NSInteger currentSelectedIndex;
+    
+    BOOL isDowning;
+}
 @property (nonatomic,strong) NSArray * catalogs;
 @property (nonatomic,strong) NSMutableDictionary * catalogSoundsInfo;
 @property (nonatomic,strong) Catalog * selectedCatalog;
@@ -47,6 +59,8 @@
 {
     [super viewDidLoad];
     [self initUI];
+    currentSelectedCatalog = nil;
+    isDowning = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -97,6 +111,50 @@
         }];
     }
     
+}
+
+-(void)startDownloadMusicWithObj:(NSDictionary *)musicObj completedBlock:(void (^)(NSError * error,NSDictionary * info))block;
+{
+    NSString * url = [musicObj valueForKey:@"URL"];
+    NSURLRequest * request = [NSURLRequest requestWithURL:[GobalMethod getMusicUrl:url]];
+    NSString * fileExtention = [url pathExtension];
+    
+    NSString * fileName = [[musicObj valueForKey:@"Name"]stringByAppendingPathExtension:fileExtention];
+    if (request) {
+        __weak MixingCatalogViewController * weakSelf = self;
+        
+        [GobalMethod getExportPath:fileName completedBlock:^(BOOL isDownloaded, NSString *exportFilePath) {
+            if (isDownloaded) {
+                [self showAlertViewWithMessage:@"已经下载"];
+            }else
+            {
+                AFURLConnectionOperation * downloadOperation = [[AFURLConnectionOperation alloc]initWithRequest:request];
+                downloadOperation.completionBlock = ^()
+                {
+                    //下载完成
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [weakSelf showAlertViewWithMessage:@"下载完成"];
+                        block (nil,nil);
+                        CGFloat musicLength = [GobalMethod getMusicLength:[NSURL fileURLWithPath:exportFilePath]];
+                        DownloadMusicInfo * info = [DownloadMusicInfo MR_createEntity];
+                        info.title    = [musicObj valueForKey:@"Name"];
+                        info.makeTime = [GobalMethod getMakeTime];
+                        info.localPath= exportFilePath;
+                        info.length   = [NSString stringWithFormat:@"%0.2f",musicLength];
+                        info.isFavorite = @"0";
+                        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+                        
+                    });
+                };
+                downloadOperation.outputStream = [NSOutputStream outputStreamToFileAtPath:exportFilePath append:NO];
+                [downloadOperation start];
+            }
+            
+        }];
+    }else
+    {
+        //文件路径错误
+    }
 }
 
 #pragma mark - Action Methods
@@ -321,10 +379,11 @@
 #pragma mark - UITableViewDelegate Methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Catalog * catalog = [_catalogs objectAtIndex:indexPath.section];
-    NSArray * voices = [_catalogSoundsInfo objectForKey:catalog.vlt_name];
-    Voice * voice = [voices objectAtIndex:indexPath.row];
-    [ControlCenter showVoiceVC:voice];
+    currentSelectedCatalog = [_catalogs objectAtIndex:indexPath.section];
+    currentSelectedIndex = indexPath.row;
+    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:currentSelectedCatalog.vlt_name message:@"添加音效需要先下载，确定是否下载" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alertView show];
+    alertView = nil;
 }
 
 
@@ -405,7 +464,28 @@
     }
 }
 
+#pragma mark - UIAlertView Delegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            //do nothing
+            break;
+        case 1:
+            {
+                //下载音频文件
+                NSArray * voices = [_catalogSoundsInfo objectForKey:currentSelectedCatalog.vlt_name];
+                Voice * voice = [voices objectAtIndex:currentSelectedIndex];
+                [self startDownloadMusicWithObj:@{@"URL": voice.url,@"Name":voice.vl_name} completedBlock:^(NSError *error, NSDictionary *info) {
+                    ;
+                }];
 
+            }
+            break;
+        default:
+            break;
+    }
+}
 
 
 
