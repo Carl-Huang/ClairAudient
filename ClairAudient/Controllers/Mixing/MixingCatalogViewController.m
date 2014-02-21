@@ -18,7 +18,7 @@
 #import "SortPopoverViewController.h"
 #define Section_Height 48.0f
 #define Cell_Height 44.0f
-@interface MixingCatalogViewController ()<SortPopoverViewControllerDelegate>
+@interface MixingCatalogViewController ()<SortPopoverViewControllerDelegate,UIAlertViewDelegate>
 @property (nonatomic,strong) NSArray * catalogs;
 @property (nonatomic,strong) NSMutableDictionary * catalogSoundsInfo;
 @property (nonatomic,strong) Catalog * selectedCatalog;
