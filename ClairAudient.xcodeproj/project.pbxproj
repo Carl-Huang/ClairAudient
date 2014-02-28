@@ -3054,7 +3054,7 @@
 					"$(SRCROOT)/Classes/Utilities",
 				);
 				INFOPLIST_FILE = "ClairAudient/ClairAudient-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/ClairAudient/Classes/Utilities/lame",
@@ -3063,6 +3063,7 @@
 					/Users/vedon/Documents/GitHub/ClairAudient/ClairAudient/Libs/ShareSDK/Extend/WeChatSDK,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos7.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3095,7 +3096,7 @@
 					"$(SRCROOT)/Classes/Utilities",
 				);
 				INFOPLIST_FILE = "ClairAudient/ClairAudient-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/ClairAudient/Classes/Utilities/lame",
@@ -3104,6 +3105,7 @@
 					/Users/vedon/Documents/GitHub/ClairAudient/ClairAudient/Libs/ShareSDK/Extend/WeChatSDK,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos7.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

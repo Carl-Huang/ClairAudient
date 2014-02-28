@@ -122,7 +122,6 @@
     if (counter == nil) {
         counter = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(increateTime) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop]addTimer:counter forMode:NSRunLoopCommonModes];
-        
         [counter fire];
         
     }

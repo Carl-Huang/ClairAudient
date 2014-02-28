@@ -202,6 +202,7 @@
         UILabel * label     = [[UILabel alloc]initWithFrame:CGRectMake((50)*page+rect.size.width * pageOffset, 5, 50, 30)];
         label.textAlignment = NSTextAlignmentLeft;
         label.textColor     = [UIColor whiteColor];
+        label.backgroundColor = [UIColor clearColor];
         label.font          = [UIFont systemFontOfSize:12];
         label.text          = [NSString stringWithFormat:@"%0.2f",timeSlice*i];
         [self.timeLabelView addSubview:label];
