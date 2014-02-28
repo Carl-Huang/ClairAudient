@@ -159,30 +159,51 @@
     self.audioPlot.shouldFill      = YES;
     self.audioPlot.shouldMirror    = YES;
     
-    [self.audioFile getWaveformDataWithCompletionBlock:^(float *waveformData, UInt32 length) {
-        [self.audioPlot updateBuffer:waveformData withBufferSize:length];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            dispatch_group_t group = dispatch_group_create();
+    dispatch_barrier_async(dispatch_get_main_queue(), ^{
+        [self.audioFile getWaveformDataWithCompletionBlock:^(float *waveformData, UInt32 length) {
+            [self.audioPlot updateBuffer:waveformData withBufferSize:length];
+            
+        }];
 
-            dispatch_group_async(group,dispatch_get_main_queue(), ^ {
-                if (number > 1) {
-                    [self addPlotViewWithNumber:number completed:^(BOOL isCompleted) {
-                        if (isCompleted) {
-                            block(YES);
-                        }
-                    }];
-                }else
-                {
-                    block (YES);
+    });
+    
+    
+    dispatch_barrier_async(dispatch_get_main_queue(), ^{
+        if (number > 1) {
+            [self addPlotViewWithNumber:number completed:^(BOOL isCompleted) {
+                if (isCompleted) {
+                    block(YES);
                 }
-            });
-            dispatch_group_notify(group,dispatch_get_main_queue(), ^ {
-                //TODO: 如何保证嵌套的block 完成后执行到这里
-//                block(YES);
-            });
-        });
-        
-    }];
+            }];
+        }else
+        {
+            block (YES);
+        }
+
+    });
+//    [self.audioFile getWaveformDataWithCompletionBlock:^(float *waveformData, UInt32 length) {
+//        [self.audioPlot updateBuffer:waveformData withBufferSize:length];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            dispatch_group_t group = dispatch_group_create();
+//            
+//            dispatch_group_async(group,dispatch_get_main_queue(), ^ {
+//                if (number > 1) {
+//                    [self addPlotViewWithNumber:number completed:^(BOOL isCompleted) {
+//                        if (isCompleted) {
+//                            block(YES);
+//                        }
+//                    }];
+//                }else
+//                {
+//                    block (YES);
+//                }
+//            });
+//            dispatch_group_notify(group,dispatch_get_main_queue(), ^ {
+//            });
+//        });
+//        
+//    }];
+    
     
     CGFloat slideNum = 6.0 * number;
     CGFloat timeSlice = musicLength / slideNum;

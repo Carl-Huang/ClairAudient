@@ -157,8 +157,11 @@
             [plotView removeFromSuperview];
             plotView  =  nil;
         }
-        
-        plotView = [[AudioPlotView alloc]initWithFrame:CGRectMake(0, 80, 320, 245)];
+        CGRect rect = CGRectMake(0, 60, 320, 245);
+        if ([OSHelper iOS7]) {
+            rect.origin.y +=20;
+        }
+        plotView = [[AudioPlotView alloc]initWithFrame:rect];
         
         __weak MixingViewController * weakSelf = self;
         [plotView setupAudioPlotViewWitnNimber:number type:OutputTypeDefautl musicPath:edittingMusicFile withCompletedBlock:^(BOOL isFinish) {
