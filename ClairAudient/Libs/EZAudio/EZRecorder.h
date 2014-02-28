@@ -62,7 +62,8 @@
  @return The newly created EZRecorder instance.
  */
 +(EZRecorder*)recorderWithDestinationURL:(NSURL*)url
-                         andSourceFormat:(AudioStreamBasicDescription)sourceFormat;
+                         andSourceFormat:(AudioStreamBasicDescription)sourceFormat
+                  destinateFileExtension:(NSString *)ext;
 
 #pragma mark - Class Methods
 ///-----------------------------------------------------------

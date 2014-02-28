@@ -314,7 +314,6 @@
 -(void)setBackgroundColor:(UIColor *)backgroundColor {
   // Set the background color
   _backgroundColor = backgroundColor;
-
   // Refresh background color (map to GL vector)
   [self _refreshWithBackgroundColor:backgroundColor];
 }
@@ -334,8 +333,6 @@
                     green:&green
                      blue:&blue
                     alpha:&alpha];
-//    UIColor * customeColor = [UIColor whiteColor];
-//    [customeColor getRed:&red green:&green blue:&blue alpha:&alpha];
   // Set them on the context
   glClearColor((GLclampf)red,(GLclampf)green,(GLclampf)blue,(GLclampf)alpha);
 }
@@ -347,7 +344,6 @@
           green:&green
            blue:&blue
           alpha:&alpha];
-    
   // Set them on the base shader
   self.baseEffect.constantColor = GLKVector4Make((GLclampf)red,(GLclampf)green,(GLclampf)blue,(GLclampf)alpha);
 }

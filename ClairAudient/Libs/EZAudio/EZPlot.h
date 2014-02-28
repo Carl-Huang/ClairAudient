@@ -52,7 +52,6 @@ typedef NS_ENUM(NSInteger,EZPlotType){
 #if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
 @interface EZPlot : UIView
-
 #elif TARGET_OS_MAC
 #import <Cocoa/Cocoa.h>
 @interface EZPlot : NSView

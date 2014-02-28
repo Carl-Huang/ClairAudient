@@ -26,6 +26,7 @@
 #import "EZRecorder.h"
 
 #import "EZAudio.h"
+#import "lame.h"
 
 @interface EZRecorder (){
   AudioConverterRef           _audioConverter;
@@ -34,6 +35,13 @@
   CFURLRef                    _destinationFileURL;
   AudioStreamBasicDescription _destinationFormat;
   AudioStreamBasicDescription _sourceFormat;
+    
+    NSError     * lameFileError;
+    NSString    * lameFilePath;
+    lame_t      lame;
+    FILE        *fileHandler;
+    int         write;
+    unsigned char * mp3_buffer;
 }
 
 typedef struct {
@@ -46,9 +54,21 @@ typedef struct {
 
 #pragma mark - Initializers
 -(EZRecorder*)initWithDestinationURL:(NSURL*)url
-                     andSourceFormat:(AudioStreamBasicDescription)sourceFormat {
+                     andSourceFormat:(AudioStreamBasicDescription)sourceFormat withExtension:(NSString *)audioFileExtension{
   self = [super init];
   if(self){
+      //<<Add by vedon 2014-2-25
+      lameFilePath = [url path];
+      NSLog(@"out path: %@", lameFilePath);
+      NSString * tempFilePath = [lameFilePath stringByDeletingPathExtension];
+      lameFilePath = [tempFilePath stringByAppendingPathExtension:audioFileExtension];
+      
+      fileHandler = fopen([lameFilePath cStringUsingEncoding:NSASCIIStringEncoding], "wb");
+      if (fileHandler == NULL) {
+          lameFileError = [NSError errorWithDomain:@"OpenFileError" code:100 userInfo:nil];
+          NSLog(@"fopen file Error");
+      }
+      
     _destinationFileURL = (__bridge CFURLRef)url;
     _sourceFormat = sourceFormat;
     _destinationFormat = [EZRecorder defaultDestinationFormat];
@@ -59,9 +79,10 @@ typedef struct {
 
 #pragma mark - Class Initializers
 +(EZRecorder*)recorderWithDestinationURL:(NSURL*)url
-                         andSourceFormat:(AudioStreamBasicDescription)sourceFormat {
+                         andSourceFormat:(AudioStreamBasicDescription)sourceFormat
+                  destinateFileExtension:(NSString *)ext{
   return [[EZRecorder alloc] initWithDestinationURL:url
-                                    andSourceFormat:sourceFormat];
+                                    andSourceFormat:sourceFormat withExtension:ext];
 }
 
 #pragma mark - Class Format Helper
@@ -84,6 +105,7 @@ typedef struct {
 #pragma mark - Private Configuation
 -(void)_configureRecorder {
   
+    
   // Create the extended audio file
   [EZAudio checkResult:ExtAudioFileCreateWithURL(_destinationFileURL,
                                                kAudioFileCAFType,
@@ -114,22 +136,38 @@ typedef struct {
   // Setup the audio converter
   [EZAudio checkResult:AudioConverterNew(&_sourceFormat, &_clientFormat, &_audioConverter)
              operation:"Failed to create new audio converter"];
-  
+  [self initLameCoder];
+}
+
+#pragma mark - Lame
+-(void)initLameCoder
+{
+    lame = lame_init();
+    lame_set_num_channels(lame,_clientFormat.mChannelsPerFrame);
+    lame_set_in_samplerate(lame, _clientFormat.mSampleRate);
+    lame_set_brate(lame, 88);
+    lame_set_mode(lame, 1);
+    lame_set_quality(lame, 2);
+    lame_init_params(lame);
+    
+    const int MP3_SIZE  = 32 * 1024;
+    mp3_buffer = malloc(sizeof(unsigned char)* MP3_SIZE);
 }
 
 #pragma mark - Events
 -(void)appendDataFromBufferList:(AudioBufferList*)bufferList
                  withBufferSize:(UInt32)bufferSize {
-  
+    
   // Setup output buffers
-  UInt32 outputBufferSize = 32 * 1024; // 32 KB
+  const int MP3_SIZE  = 32 * 1024; // 32 KB
   AudioBufferList *convertedData = [EZAudio audioBufferList];
   convertedData->mNumberBuffers = 1;
   convertedData->mBuffers[0].mNumberChannels = _clientFormat.mChannelsPerFrame;
-  convertedData->mBuffers[0].mDataByteSize   = outputBufferSize;
-  convertedData->mBuffers[0].mData           = (UInt8*)malloc(sizeof(UInt8)*outputBufferSize);
-  
-  [EZAudio checkResult:AudioConverterFillComplexBuffer(_audioConverter,
+  convertedData->mBuffers[0].mDataByteSize   = MP3_SIZE;
+  convertedData->mBuffers[0].mData           = (UInt8*)malloc(sizeof(UInt8)*MP3_SIZE);
+    
+    //Start Audio convert asyn
+      [EZAudio checkResult:AudioConverterFillComplexBuffer(_audioConverter,
                                                        complexInputDataProc,
                                                        &(EZRecorderConverterStruct){ .sourceBuffer = bufferList },
                                                        &bufferSize,
@@ -139,7 +177,23 @@ typedef struct {
   // Write the destination audio buffer list into t
   [EZAudio checkResult:ExtAudioFileWriteAsync(_destinationFile, bufferSize, convertedData)
              operation:"Failed to write audio data to file"];
-  
+
+    if (lameFileError == nil) {
+        //
+        
+        
+        if (_clientFormat.mFormatFlags != kAudioFormatFlagIsNonInterleaved) {
+            write = lame_encode_buffer(lame, convertedData->mBuffers[0].mData, convertedData->mBuffers[0].mData, bufferSize, mp3_buffer, 2*bufferSize);
+            
+        }else
+            
+        {
+            write = lame_encode_buffer_interleaved(lame, convertedData->mBuffers[0].mData, convertedData->mBuffers[0].mDataByteSize, mp3_buffer, convertedData->mBuffers[0].mDataByteSize/2);
+        }
+        
+        fwrite(mp3_buffer,write, 1, fileHandler);
+    }
+    
   // Free resources
   [EZAudio freeBufferList:convertedData];
   
@@ -166,6 +220,9 @@ static OSStatus complexInputDataProc(AudioConverterRef             inAudioConver
 
 #pragma mark - Cleanup
 -(void)dealloc {
+    free(mp3_buffer);
+    fclose(fileHandler);
+    lame_close(lame);
   [EZAudio checkResult:AudioConverterDispose(_audioConverter)
              operation:"Failed to dispose audio converter in recorder"];
   [EZAudio checkResult:ExtAudioFileDispose(_destinationFile)

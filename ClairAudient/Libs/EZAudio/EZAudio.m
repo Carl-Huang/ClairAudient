@@ -90,7 +90,6 @@
 		// no, format it as an integer
 		sprintf(errorString, "%d", (int)result);
 	fprintf(stderr, "Error: %s (%s)\n", operation, errorString);
-    return;
 	exit(1);
 }
 

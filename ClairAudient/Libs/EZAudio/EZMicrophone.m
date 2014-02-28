@@ -245,6 +245,7 @@ static OSStatus inputCallback(void                          *inRefCon,
   // Enable I/O on microphone input unit
   UInt32         disableFlag = 1; UInt32         enableFlag = 1;
   AudioUnitScope outputBus   = 0; AudioUnitScope inputBus   = 1;
+    
   [EZAudio checkResult:AudioUnitSetProperty(microphone->microphoneInput,
                                             kAudioOutputUnitProperty_EnableIO,
                                             kAudioUnitScope_Input,
@@ -260,7 +261,7 @@ static OSStatus inputCallback(void                          *inRefCon,
                                             outputBus,
                                             &disableFlag,
                                             sizeof(disableFlag))
-             operation:"Couldn't enable input on the remote i/o unit"];
+             operation:"Couldn't enable output on the remote i/o unit"];
   
   // Get the hardware sample rate
   Float64 hardwareSampleRate = 44100;
@@ -280,7 +281,7 @@ static OSStatus inputCallback(void                          *inRefCon,
   microphone->streamFormat.mFormatFlags      = kAudioFormatFlagsCanonical | kAudioFormatFlagIsNonInterleaved;
   microphone->streamFormat.mFormatID         = kAudioFormatLinearPCM;
   microphone->streamFormat.mFramesPerPacket  = 1;
-	microphone->streamFormat.mSampleRate       = hardwareSampleRate;
+microphone->streamFormat.mSampleRate       = hardwareSampleRate;
   
   // Get the buffer duration (approximate for simulator, real device will have it's preferred value set)
   Float32 bufferDuration = 0.0232;

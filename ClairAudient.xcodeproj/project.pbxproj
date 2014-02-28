@@ -26,6 +26,11 @@
 		4E2A13811891474800D8CB65 /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A13801891474800D8CB65 /* AudioRecorder.m */; };
 		4E2A1384189152F900D8CB65 /* AudioReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A1383189152F900D8CB65 /* AudioReader.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4E2A13871891531C00D8CB65 /* RingBuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A13861891531C00D8CB65 /* RingBuffer.mm */; };
+		4E37255318C02F3E00AAB235 /* MusicMixer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E37254D18C02F3E00AAB235 /* MusicMixer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4E37255418C02F3E00AAB235 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E37255018C02F3E00AAB235 /* libmp3lame.a */; };
+		4E37255C18C0306700AAB235 /* AudioFloatPointReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E37255618C0306700AAB235 /* AudioFloatPointReader.m */; };
+		4E37255D18C0306700AAB235 /* AsynEncodeAudioRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E37255818C0306700AAB235 /* AsynEncodeAudioRecord.m */; };
+		4E37255E18C0306700AAB235 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E37255B18C0306700AAB235 /* libmp3lame.a */; };
 		4E58621718B5E510004D80B6 /* NSTimer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E58621618B5E510004D80B6 /* NSTimer+Addition.m */; };
 		4E96B56C188EA003008EA56F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E96B56B188EA003008EA56F /* MediaPlayer.framework */; };
 		4E96B56E188EAB88008EA56F /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E96B56D188EAB88008EA56F /* GLKit.framework */; };
@@ -554,6 +559,16 @@
 		4E2A1383189152F900D8CB65 /* AudioReader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AudioReader.mm; sourceTree = "<group>"; };
 		4E2A13851891531C00D8CB65 /* RingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RingBuffer.h; sourceTree = "<group>"; };
 		4E2A13861891531C00D8CB65 /* RingBuffer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RingBuffer.mm; sourceTree = "<group>"; };
+		4E37254C18C02F3E00AAB235 /* MusicMixer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicMixer.h; sourceTree = "<group>"; };
+		4E37254D18C02F3E00AAB235 /* MusicMixer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicMixer.m; sourceTree = "<group>"; };
+		4E37254F18C02F3E00AAB235 /* lame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lame.h; sourceTree = "<group>"; };
+		4E37255018C02F3E00AAB235 /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmp3lame.a; sourceTree = "<group>"; };
+		4E37255518C0306700AAB235 /* AudioFloatPointReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFloatPointReader.h; sourceTree = "<group>"; };
+		4E37255618C0306700AAB235 /* AudioFloatPointReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFloatPointReader.m; sourceTree = "<group>"; };
+		4E37255718C0306700AAB235 /* AsynEncodeAudioRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsynEncodeAudioRecord.h; sourceTree = "<group>"; };
+		4E37255818C0306700AAB235 /* AsynEncodeAudioRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsynEncodeAudioRecord.m; sourceTree = "<group>"; };
+		4E37255A18C0306700AAB235 /* lame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lame.h; sourceTree = "<group>"; };
+		4E37255B18C0306700AAB235 /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmp3lame.a; sourceTree = "<group>"; };
 		4E58621518B5E510004D80B6 /* NSTimer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Addition.h"; sourceTree = "<group>"; };
 		4E58621618B5E510004D80B6 /* NSTimer+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Addition.m"; sourceTree = "<group>"; };
 		4E96B56B188EA003008EA56F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -1197,6 +1212,7 @@
 				4E1CDE07189012D000C046ED /* Accelerate.framework in Frameworks */,
 				4EAF2A5318A9FE90007A8F70 /* ShareSDKiPhoneDefaultShareViewUI.framework in Frameworks */,
 				4EAF2A5018A9FE90007A8F70 /* ShareSDKiPadSimpleShareViewUI.framework in Frameworks */,
+				4E37255E18C0306700AAB235 /* libmp3lame.a in Frameworks */,
 				4E1CDE05189012CB00C046ED /* CoreAudio.framework in Frameworks */,
 				4EAF2A4A18A9FE90007A8F70 /* libTCWeiboSDK.a in Frameworks */,
 				4EAF2A4B18A9FE90007A8F70 /* libWeChatSDK.a in Frameworks */,
@@ -1212,6 +1228,7 @@
 				4EAF2A3C18A9FE90007A8F70 /* RenRenConnection.framework in Frameworks */,
 				C3FEAF201871C156008EADAA /* Foundation.framework in Frameworks */,
 				3A213A19BF144FE19FC80A52 /* libPods-ClairAudient.a in Frameworks */,
+				4E37255418C02F3E00AAB235 /* libmp3lame.a in Frameworks */,
 				4EAF2A3D18A9FE90007A8F70 /* SinaWeiboConnection.framework in Frameworks */,
 				4EAF2A3A18A9FE90007A8F70 /* CopyConnection.framework in Frameworks */,
 			);
@@ -1233,6 +1250,14 @@
 		4E117967188F627F00FB619F /* Audio Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				4E37255518C0306700AAB235 /* AudioFloatPointReader.h */,
+				4E37255618C0306700AAB235 /* AudioFloatPointReader.m */,
+				4E37255718C0306700AAB235 /* AsynEncodeAudioRecord.h */,
+				4E37255818C0306700AAB235 /* AsynEncodeAudioRecord.m */,
+				4E37255918C0306700AAB235 /* lame */,
+				4E37254C18C02F3E00AAB235 /* MusicMixer.h */,
+				4E37254D18C02F3E00AAB235 /* MusicMixer.m */,
+				4E37254E18C02F3E00AAB235 /* lame */,
 				4E079C2E189B557900B0BB5F /* MusicMixerOutput.h */,
 				4E079C2F189B557900B0BB5F /* MusicMixerOutput.m */,
 				4E2A137B189125DB00D8CB65 /* lame */,
@@ -1262,6 +1287,24 @@
 			children = (
 				4E2A137C189125DB00D8CB65 /* lame.h */,
 				4E2A137D189125DB00D8CB65 /* libmp3lame.a */,
+			);
+			path = lame;
+			sourceTree = "<group>";
+		};
+		4E37254E18C02F3E00AAB235 /* lame */ = {
+			isa = PBXGroup;
+			children = (
+				4E37254F18C02F3E00AAB235 /* lame.h */,
+				4E37255018C02F3E00AAB235 /* libmp3lame.a */,
+			);
+			path = lame;
+			sourceTree = "<group>";
+		};
+		4E37255918C0306700AAB235 /* lame */ = {
+			isa = PBXGroup;
+			children = (
+				4E37255A18C0306700AAB235 /* lame.h */,
+				4E37255B18C0306700AAB235 /* libmp3lame.a */,
 			);
 			path = lame;
 			sourceTree = "<group>";
@@ -2818,6 +2861,7 @@
 				C3D4FCC4187D6194001A7223 /* IntegralChampionCell.m in Sources */,
 				C32F4017188287B600681953 /* MyDownloadViewController.mm in Sources */,
 				4E2A13651890BC6300D8CB65 /* ClairDataSource.xcdatamodeld in Sources */,
+				4E37255318C02F3E00AAB235 /* MusicMixer.m in Sources */,
 				4EB7C4F018B72BF700BCF0E8 /* MixingMusicOnlineCell.m in Sources */,
 				C3FEB0D61871CAA2008EADAA /* MusicFansViewController.m in Sources */,
 				C3456CFD18883C17009329D2 /* TMSoundEffectCell.m in Sources */,
@@ -2866,6 +2910,7 @@
 				C32749A0187A5ED400CF7A4A /* HelpViewController.m in Sources */,
 				C3FEB0B51871C801008EADAA /* NSDate+Utils.m in Sources */,
 				C326CDB1187C5E7B006DD97C /* ChampionHomePageViewController.m in Sources */,
+				4E37255D18C0306700AAB235 /* AsynEncodeAudioRecord.m in Sources */,
 				C3411727188BEC5A0070EAB4 /* Catalog.m in Sources */,
 				C3FEB0E01871CAF4008EADAA /* MixingMusicListViewController.m in Sources */,
 				4EB20FA918A931BE007E5A8B /* EditListCell.m in Sources */,
@@ -2896,6 +2941,7 @@
 				4EAF2A0C18A9FE83007A8F70 /* ShareManager.m in Sources */,
 				C3FEB0CC1871CA45008EADAA /* LoginViewController.m in Sources */,
 				C39BBE551893DF5C00FC8F72 /* TSActionSheet.m in Sources */,
+				4E37255C18C0306700AAB235 /* AudioFloatPointReader.m in Sources */,
 				C3B53E46188C3000004EA4A7 /* IntegralRankUser.m in Sources */,
 				4ED17525189268AC000EC483 /* AudioPlotViewController.m in Sources */,
 				4E96B594188EABC4008EA56F /* EZRecorder.m in Sources */,
@@ -3061,6 +3107,7 @@
 					/Users/vedon/Documents/GitHub/ClairAudient/ClairAudient/Libs/ShareSDK/Extend/SinaWeiboSDK,
 					/Users/vedon/Documents/GitHub/ClairAudient/ClairAudient/Libs/ShareSDK/Extend/TencentWeiboSDK,
 					/Users/vedon/Documents/GitHub/ClairAudient/ClairAudient/Libs/ShareSDK/Extend/WeChatSDK,
+					/Users/vedon/Documents/GitHub/ClairAudient/ClairAudient/Classes/Utilities/lame,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos7.0;
@@ -3103,6 +3150,7 @@
 					/Users/vedon/Documents/GitHub/ClairAudient/ClairAudient/Libs/ShareSDK/Extend/SinaWeiboSDK,
 					/Users/vedon/Documents/GitHub/ClairAudient/ClairAudient/Libs/ShareSDK/Extend/TencentWeiboSDK,
 					/Users/vedon/Documents/GitHub/ClairAudient/ClairAudient/Libs/ShareSDK/Extend/WeChatSDK,
+					/Users/vedon/Documents/GitHub/ClairAudient/ClairAudient/Classes/Utilities/lame,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos7.0;
