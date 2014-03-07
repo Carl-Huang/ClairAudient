@@ -225,7 +225,13 @@
 
 + (MainViewController *)mainViewController
 {
-    MainViewController * vc = [[MainViewController alloc] initWithNibName:NSStringFromClass([MainViewController class]) bundle:[NSBundle mainBundle]];
+    NSString * nibName = NSStringFromClass([MainViewController class]);
+    if ([OSHelper iPhone5]) {
+        nibName = [nibName stringByAppendingString:@"4inch"];
+    }
+    
+    
+    MainViewController * vc = [[MainViewController alloc] initWithNibName:nibName bundle:[NSBundle mainBundle]];
     return vc;
 }
 

@@ -49,6 +49,7 @@
 		4E96B596188EABC4008EA56F /* CHANGELOG in Resources */ = {isa = PBXBuildFile; fileRef = 4E96B589188EABC4008EA56F /* CHANGELOG */; };
 		4E96B597188EABC4008EA56F /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 4E96B58A188EABC4008EA56F /* VERSION */; };
 		4E96B59A188EC7B0008EA56F /* TrachBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E96B599188EC7B0008EA56F /* TrachBtn.m */; };
+		4EAACB5318CA0C8300E380A7 /* MainViewController4inch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EAACB5218CA0C8300E380A7 /* MainViewController4inch.xib */; };
 		4EAC1DA818B0B46100C8DA2E /* GobalMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EAC1DA718B0B46100C8DA2E /* GobalMethod.m */; };
 		4EAF29FA18A9FA8D007A8F70 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EAF29F918A9FA8D007A8F70 /* SystemConfiguration.framework */; };
 		4EAF2A0718A9FE60007A8F70 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EAF29FB18A9FAD2007A8F70 /* CoreTelephony.framework */; };
@@ -600,6 +601,7 @@
 		4E96B58A188EABC4008EA56F /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
 		4E96B598188EC7B0008EA56F /* TrachBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrachBtn.h; sourceTree = "<group>"; };
 		4E96B599188EC7B0008EA56F /* TrachBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrachBtn.m; sourceTree = "<group>"; };
+		4EAACB5218CA0C8300E380A7 /* MainViewController4inch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController4inch.xib; sourceTree = "<group>"; };
 		4EAC1DA618B0B46100C8DA2E /* GobalMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GobalMethod.h; sourceTree = "<group>"; };
 		4EAC1DA718B0B46100C8DA2E /* GobalMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GobalMethod.m; sourceTree = "<group>"; };
 		4EAF29F718A9FA6C007A8F70 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -2196,6 +2198,7 @@
 				C3FEB0C41871CA19008EADAA /* MainViewController.h */,
 				C3FEB0C51871CA19008EADAA /* MainViewController.m */,
 				C3FEB0C61871CA19008EADAA /* MainViewController.xib */,
+				4EAACB5218CA0C8300E380A7 /* MainViewController4inch.xib */,
 				C32F4028188390A100681953 /* IntegralViewController.h */,
 				C32F4029188390A100681953 /* IntegralViewController.m */,
 				C32F402A188390A100681953 /* IntegralViewController.xib */,
@@ -2638,6 +2641,7 @@
 				C3164CB91874555D00301ACA /* FoundMusic_h@2x.png in Resources */,
 				C3FEB01D1871C294008EADAA /* hunyin_4@2x.png in Resources */,
 				C3FEB02E1871C294008EADAA /* record_10@2x.png in Resources */,
+				4EAACB5318CA0C8300E380A7 /* MainViewController4inch.xib in Resources */,
 				C3FEAFF81871C294008EADAA /* hunyin_15@2x.png in Resources */,
 				C3FEAFF71871C294008EADAA /* hunyin_14@2x.png in Resources */,
 				C3FEB0301871C294008EADAA /* record_12@2x.png in Resources */,

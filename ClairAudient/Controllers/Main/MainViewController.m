@@ -13,11 +13,16 @@
 #import "User.h"
 
 @interface MainViewController ()
-@property (strong ,nonatomic)CycleScrollView * advertisementImageView;
+{
+
+}
+@property (strong ,nonatomic)CycleScrollView * autoScrollView;
+@property (strong ,nonatomic)NSMutableArray * productImages;
 @end
 
 @implementation MainViewController
-@synthesize advertisementImageView;
+@synthesize autoScrollView,productImages;
+
 #pragma mark - Life Cycle
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,10 +45,30 @@
     
     CGRect rect = self.adScrollView.frame;
     rect.origin.x = rect.origin.y = 0;
-    advertisementImageView = [[CycleScrollView alloc]initWithFrame:rect cycleDirection:CycleDirectionLandscape pictures:@[] autoScroll:YES];
-    [advertisementImageView setIdentifier:@"identifier" andContentIdenifier:@"Image"];
-    [advertisementImageView setHidden:YES];
-    [self.adScrollView addSubview:advertisementImageView];
+    autoScrollView = [[CycleScrollView alloc] initWithFrame:rect animationDuration:2];
+    autoScrollView.backgroundColor = [UIColor clearColor];
+    
+    NSMutableArray * images = [NSMutableArray array];
+    //Placehoder Image
+    if ([productImages count] == 0) {
+        productImages = [NSMutableArray arrayWithArray: @[[UIImage imageNamed:@"first_2.png"]]];
+    }
+    for (UIImage * image in productImages) {
+        UIImageView * tempImageView = [[UIImageView alloc]initWithImage:image];
+        [tempImageView setFrame:rect];
+        [images addObject:tempImageView];
+        tempImageView = nil;
+    }
+    autoScrollView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
+        return images[pageIndex];
+    };
+    autoScrollView.totalPagesCount = ^NSInteger(void){
+        return [images count];
+    };
+    autoScrollView.TapActionBlock = ^(NSInteger pageIndex){
+        NSLog(@"点击了第%ld个",(long)pageIndex);
+    };
+    [self.adScrollView addSubview:autoScrollView];
     [self.view bringSubviewToFront:self.adScrollView];
 }
 
@@ -103,6 +128,18 @@
 }
 
 #pragma mark - Private Methods
+-(void)updateAutoScrollViewItem
+{
+    __weak MainViewController * weakSelf = self;
+    autoScrollView.totalPagesCount = ^NSInteger(void){
+        return [weakSelf.productImages count];
+    };
+    autoScrollView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
+        return weakSelf.productImages[pageIndex];
+    };
+   
+}
+
 - (void)testAPI
 {
     [[HttpService sharedInstance] findCatalog:@{@"parentId":@"0"} completionBlock:^(id obj) {
@@ -178,14 +215,11 @@
     [[HttpService sharedInstance]getImageWithResourcePath:imgStr completedBlock:^(id object) {
         if (object) {
             NSDictionary * tempDic = @{@"identifier": imgStr,@"Image":object};
-            [container addObject:tempDic];
-            @synchronized(self)
-            {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [weakSelf.advertisementImageView setHidden:NO];
-                    [weakSelf.advertisementImageView updateImageArrayWithImageArray:container];
-                    [weakSelf.advertisementImageView refreshScrollView];
-                });
+            UIImageView * imageView = nil;
+            [weakSelf.productImages addObject:tempDic];
+            if ([object isKindOfClass:[UIImage class]]) {
+                imageView = [[UIImageView alloc]initWithImage:object];
+                [productImages addObject:imageView];
             }
         }
     } failureBlock:^(NSError * error) {

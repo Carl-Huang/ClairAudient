@@ -117,8 +117,8 @@ static NSString * cellIdentifier = @"cellIdentifier";
     CGRect rect = self.scrollAdView.frame;
     rect.origin.x = rect.origin.y = 0;
     
-    advertisementImageView = [[CycleScrollView alloc]initWithFrame:rect cycleDirection:CycleDirectionLandscape pictures:@[[UIImage imageNamed:@"testImage.png"],[UIImage imageNamed:@"testImage.png"]] autoScroll:YES];
-    [self.scrollAdView addSubview:advertisementImageView];
+//    advertisementImageView = [[CycleScrollView alloc]initWithFrame:rect cycleDirection:CycleDirectionLandscape pictures:@[[UIImage imageNamed:@"testImage.png"],[UIImage imageNamed:@"testImage.png"]] autoScroll:YES];
+//    [self.scrollAdView addSubview:advertisementImageView];
 
     [self.contentScrollView setContentSize:CGSizeMake(420, 600)];
     self.contentScrollView.scrollEnabled = YES;

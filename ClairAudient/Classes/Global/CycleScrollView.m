@@ -1,375 +1,213 @@
 //
 //  CycleScrollView
-//  AStore
+//  EasyBuyBuy
 //
-//  Created by vedon on 5/11/13.
-//  Copyright (c) 2013 carl. All rights reserved.
+//  Created by vedon on 3/3/14.
+//  Copyright (c) 2014 helloworld. All rights reserved.
 //
 
 #import "CycleScrollView.h"
 #import "NSTimer+Addition.h"
-@implementation CycleScrollView
-@synthesize delegate;
-@synthesize pageControl;
-@synthesize timer;
-@synthesize imagesArray;
 
-#pragma mark - Public Method
-- (id)initWithFrame:(CGRect)frame cycleDirection:(CycleDirection)direction pictures:(NSArray *)pictureArray autoScroll:(BOOL)shouldScroll
+@interface CycleScrollView () <UIScrollViewDelegate>
+
+@property (nonatomic , assign) NSInteger currentPageIndex;
+@property (nonatomic , assign) NSInteger totalPageCount;
+@property (nonatomic , strong) NSMutableArray *contentViews;
+@property (nonatomic , strong) UIScrollView *scrollView;
+@property (nonatomic , strong) UIPageControl * pageController;
+@property (nonatomic , strong) NSTimer *animationTimer;
+@property (nonatomic , assign) NSTimeInterval animationDuration;
+
+@end
+
+@implementation CycleScrollView
+
+- (void)setTotalPagesCount:(NSInteger (^)(void))totalPagesCount
 {
-    self = [super initWithFrame:frame];
-    if(self)
-    {
-        timerDuration = 2;
-        rect = frame;
-        scrollFrame = frame;
-        scrollDirection = direction;
-        
-        curPage = 1;
-        curImages = [[NSMutableArray alloc] init];
-        imagesArray = [NSMutableArray arrayWithArray:pictureArray];
-        
-        scrollView = [[UIScrollView alloc] initWithFrame:frame];
-        scrollView.backgroundColor = [UIColor blackColor];
-        scrollView.showsHorizontalScrollIndicator = NO;
-        scrollView.showsVerticalScrollIndicator = NO;
-        scrollView.pagingEnabled = YES;
-        scrollView.delegate = self;
-        [self addSubview:scrollView];
-        
-        totalPage = 0;
-        if(pictureArray != nil)
-        {
-            totalPage = pictureArray.count;
-        }
-        if (totalPage == 1) {
-            scrollView.scrollEnabled = NO;
-        }
-        int pageControlWidth = totalPage * 20;
-        int pageControlHeight = 30;
-        pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake((frame.size.width-pageControlWidth)/2, frame.size.height - pageControlHeight, pageControlWidth , pageControlHeight)];
-        pageControl.currentPageIndicatorTintColor = [UIColor orangeColor];
-        pageControl.numberOfPages = totalPage;
-        pageControl.currentPage = 0;
-        currentPage = 0;
-        [pageControl addTarget:self action:@selector(turnPage) forControlEvents:UIControlEventValueChanged];
-        
-        // 定时器 循环
-        isAutoScroll = shouldScroll;
-        if (shouldScroll) {
-            [self startTimerWithDuration:timerDuration];
-        }
-        [self addSubview:pageControl];
-        
-        // 在水平方向滚动
-        if(scrollDirection == CycleDirectionLandscape) {
-            scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * 3,
-                                                scrollView.frame.size.height);
-        }
-        // 在垂直方向滚动
-        if(scrollDirection == CycleDirectionPortait) {
-            scrollView.contentSize = CGSizeMake(scrollView.frame.size.width,
-                                                scrollView.frame.size.height * 3);
-        }
-        
-        
-        if (totalPage != 0) {
-            [self refreshScrollView];
-        }
-    }
+    _pageController.numberOfPages = totalPagesCount();
+    NSInteger width = 10*_pageController.numberOfPages;
+    _pageController.frame = CGRectMake((self.bounds.size.width - width)/2, self.bounds.size.height/4*3, width, 30);
     
+    _totalPageCount = totalPagesCount();
+    if (_totalPageCount > 0) {
+        [self configContentViews];
+        [self.animationTimer resumeTimerAfterTimeInterval:self.animationDuration];
+    }
+}
+
+- (id)initWithFrame:(CGRect)frame animationDuration:(NSTimeInterval)animationDuration
+{
+    self = [self initWithFrame:frame];
+    if (animationDuration > 0.0) {
+        self.animationTimer = [NSTimer scheduledTimerWithTimeInterval:(self.animationDuration = animationDuration)
+                                                               target:self
+                                                             selector:@selector(animationTimerDidFired:)
+                                                             userInfo:nil
+                                                              repeats:YES];
+        [self.animationTimer pauseTimer];
+    }
     return self;
 }
 
-
-- (void)updateImageArrayWithImageArray:(NSArray *)images
+- (id)initWithFrame:(CGRect)frame
 {
-    NSLog(@"%s",__func__);
-    self.imageArrayInfo = images;
-    [self stopTimer];
-    
-    if ([images count]) {
-        @try {
-            if (self.contentIdentifier) {
-                @synchronized(self)
-                {
-                    [imagesArray removeAllObjects];
-                    for (NSDictionary * dic in images) {
-                        UIImage * tempImage =[dic valueForKey:self.contentIdentifier];
-                        if (tempImage) {
-                            [imagesArray addObject:tempImage];
-                        }
-                    }
-                    totalPage = [imagesArray count];
-                    if (totalPage == 1) {
-                        scrollView.scrollEnabled = NO;
-                    }else
-                    {
-                        scrollView.scrollEnabled = YES;
-                    }
-                    pageControl.numberOfPages = totalPage;
-                    curPage = 1;
-                }
-                
-            }
-
-        }
-        @catch (NSException *exception) {
-            NSLog(@"error");
-        }
-        @finally {
-            ;
-        }
-        [self startTimerWithDuration:timerDuration];
-    }
-}
-
-- (void)setIdentifier:(NSString *)iden andContentIdenifier:(NSString *)contentIden
-{
-    self.identifier         = iden;
-    self.contentIdentifier  = contentIden;
-}
-
-
-- (void)refreshScrollView {
-    NSArray *subViews = [scrollView subviews];
-    if([subViews count] != 0) {
-        [subViews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    }
-    
-    [self getDisplayImagesWithCurpage:curPage];
-    if ([curImages count]) {
-        for (int i = 0; i < 3; i++) {
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:scrollFrame];
-            imageView.userInteractionEnabled = YES;
-            imageView.image = [curImages objectAtIndex:i];
-            
-            UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                        action:@selector(handleTap:)];
-            [imageView addGestureRecognizer:singleTap];
-            singleTap  = nil;
-            // 水平滚动
-            if(scrollDirection == CycleDirectionLandscape) {
-                imageView.frame = CGRectOffset(imageView.frame, scrollFrame.size.width * i, 0);
-            }
-            // 垂直滚动
-            if(scrollDirection == CycleDirectionPortait) {
-                imageView.frame = CGRectOffset(imageView.frame, 0, scrollFrame.size.height * i);
-            }
-            
-            
-            [scrollView addSubview:imageView];
-        }
-        if (scrollDirection == CycleDirectionLandscape) {
-            [scrollView setContentOffset:CGPointMake(scrollFrame.size.width, 0)];
-        }
-        if (scrollDirection == CycleDirectionPortait) {
-            [scrollView setContentOffset:CGPointMake(0, scrollFrame.size.height)];
-        }
-    }
-    
-}
-
-#pragma mark - ScrollView Delegate
-
-- (void)scrollViewDidScroll:(UIScrollView *)aScrollView {
-    @autoreleasepool {
-        int x = aScrollView.contentOffset.x;
-        int y = aScrollView.contentOffset.y;
-        NSLog(@"did  x=%d  y=%d", x, y);
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+        self.autoresizesSubviews = YES;
+        self.scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
+        self.scrollView.autoresizingMask = 0xFF;
+        self.scrollView.contentMode = UIViewContentModeCenter;
+        self.scrollView.contentSize = CGSizeMake(3 * CGRectGetWidth(self.scrollView.frame), CGRectGetHeight(self.scrollView.frame));
+        self.scrollView.delegate = self;
+        self.scrollView.contentOffset = CGPointMake(CGRectGetWidth(self.scrollView.frame), 0);
+        self.scrollView.pagingEnabled = YES;
+        [self addSubview:self.scrollView];
+        self.currentPageIndex = 0;
         
-        if(scrollDirection == CycleDirectionLandscape) {
-            // 往下翻一张
-            if(x >= (2*scrollFrame.size.width-20)) {
-                curPage = [self validPageValue:curPage+1];
-                [self refreshScrollView];
-            }
-            if(x <= 0) {
-                curPage = [self validPageValue:curPage-1];
-                [self refreshScrollView];
-            }
-        }
         
-        // 垂直滚动
-        if(scrollDirection == CycleDirectionPortait) {
-            // 往下翻一张
-            if(y >= 2 * (scrollFrame.size.height)) {
-                curPage = [self validPageValue:curPage+1];
-                [self refreshScrollView];
-            }
-            if(y <= 0) {
-                curPage = [self validPageValue:curPage-1];
-                [self refreshScrollView];
-            }
-        }
-        
-        if ([delegate respondsToSelector:@selector(cycleScrollViewDelegate:didScrollImageView:)]) {
-            [delegate cycleScrollViewDelegate:self didScrollImageView:curPage];
-        }
-    }
-}
-
-
--(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
-{
-    isAutoScroll = YES;
-//    [timer pauseTimer];
-}
-
--(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    isAutoScroll = NO;
-//    [timer resumeTimerAfterTimeInterval:timerDuration];
-}
-
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)aScrollView {
-    
-    //    int x = aScrollView.contentOffset.x;
-    //    int y = aScrollView.contentOffset.y;
-    //    NSLog(@"--end  x=%d  y=%d", x, y);
-    
-    if (scrollDirection == CycleDirectionLandscape) {
-        [scrollView setContentOffset:CGPointMake(scrollFrame.size.width, 0) animated:YES];
-    }
-    if (scrollDirection == CycleDirectionPortait) {
-        [scrollView setContentOffset:CGPointMake(0, scrollFrame.size.height) animated:YES];
-    }
-}
-
-#pragma mark - Private Method
--(void)startTimerWithDuration:(NSInteger)duration
-{
-    [self stopTimer];
-    NSLog(@"timer is valid");
-//    timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(runTimePage) userInfo:nil repeats:YES];
-//    [[NSRunLoop currentRunLoop] addTimer:timer
-//                                 forMode:NSRunLoopCommonModes];
-    
-    
-    if (duration > 0.0) {
-        timer = [NSTimer scheduledTimerWithTimeInterval: duration
-                                                               target:self
-                                                             selector:@selector(runTimePage)
-                                                             userInfo:nil
-                                                              repeats:YES];
-        [timer resumeTimerAfterTimeInterval:timerDuration];
-    }
-
-}
-
--(void)stopTimer
-{
-    
-    if (timer&&[timer isValid]) {
-        NSLog(@"timer is invalidate");
-        [timer invalidate];
-        timer = nil;
-    }
-}
-
-- (void)getDisplayImagesWithCurpage:(int)page {
-    @try {
-        int pre     = [self validPageValue:curPage-1];
-        int last    = [self validPageValue:curPage+1];
-        //    NSLog(@"current page :%d",curPage);
-        //    NSLog(@"pre :%d",pre);
-        //    NSLog(@"last :%d",last);
-        //    NSLog(@"totalPage :%d",totalPage);
-        if([curImages count] != 0) [curImages removeAllObjects];
-        
-        if ([imagesArray count]) {
-            [curImages addObject:[imagesArray objectAtIndex:pre-1]];
-            [curImages addObject:[imagesArray objectAtIndex:curPage-1]];
-            [curImages addObject:[imagesArray objectAtIndex:last-1]];
-        }
-    }
-    @catch (NSException *exception) {
-        NSLog(@"%@",exception.description);
-    }
-    @finally {
-        ;
-    }
-    
-}
-
-- (int)validPageValue:(NSInteger)value {
-    
-    if(value == 0) value = totalPage;
-    if(value == totalPage + 1) value = 1;
-    
-    return value;
-}
-
-- (void)runTimePage
-{
-    if ([timer isValid]) {
-        if (totalPage!=0) {
-            currentPage++;
-            currentPage = currentPage > totalPage-1 ? 0 : currentPage ;
-            if (isAutoScroll) {
-                [self turnPage];
-            }
-        }
-    }
-}
-
-- (void)turnPage
-{
-    pageControl.currentPage = currentPage;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self autoScroll];
-    });
-    
-}
-
--(void)autoScroll
-{
-    
-    if(scrollDirection == CycleDirectionLandscape) {
-        // 往下翻一张
-        if(isAutoScroll) {
-            curPage = [self validPageValue:curPage+1];
-            [self refreshScrollView];
-        }
-    }
-    
-    // 垂直滚动
-    if(scrollDirection == CycleDirectionPortait) {
-        // 往下翻一张
-        if(isAutoScroll) {
-            curPage = [self validPageValue:curPage+1];
-            [self refreshScrollView];
-        }
-    }
-    
-    if ([delegate respondsToSelector:@selector(cycleScrollViewDelegate:didScrollImageView:)]) {
-        [delegate cycleScrollViewDelegate:self didScrollImageView:curPage];
-    }
-}
-
--(void)autoScrollToNextPage
-{
-//    [scrollView scrollRectToVisible:CGRectMake(curPage * scrollFrame.size.width, 0, 320, scrollFrame.size.height) animated:YES];
-    CGPoint newOffset = CGPointMake(scrollView.contentOffset.x + CGRectGetWidth(scrollView.frame), scrollView.contentOffset.y);
-    [scrollView setContentOffset:newOffset animated:YES];
-}
-
-- (void)handleTap:(UITapGestureRecognizer *)tap {
-    
-    if ([delegate respondsToSelector:@selector(cycleScrollViewDelegate:didSelectImageView:)]) {
-        NSInteger itemNum = curPage;
-        if (itemNum >= [self.imageArrayInfo count]) {
-            itemNum = self.imageArrayInfo.count -1;
-        }
-        NSString * tempIdentifier = nil;
-        if (self.identifier) {
-            tempIdentifier = [[self.imageArrayInfo objectAtIndex:itemNum]valueForKey:self.identifier];
-            [delegate cycleScrollViewDelegate:self didSelectImageView:tempIdentifier];
-        }
+        _pageController = [[UIPageControl alloc]initWithFrame:CGRectMake(self.bounds.size.width/2 - 50, self.bounds.size.height/4*3, 100, 30)];
+        _pageController.currentPageIndicatorTintColor = [UIColor redColor];
+        _pageController.pageIndicatorTintColor        = [UIColor darkGrayColor];
+        [self addSubview:_pageController];
+        _pageController.currentPage = 0;
         
     }
+    return self;
 }
 
+-(void)dealloc
+{
+    if ([self.animationTimer isValid]) {
+        [self.animationTimer invalidate];
+        self.animationTimer = nil;
+    }
+}
+#pragma mark - Private
+
+- (void)configContentViews
+{
+    [self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self setScrollViewContentDataSource];
+    
+    NSInteger counter = 0;
+    for (UIImageView *contentView in self.contentViews) {
+        contentView.frame = self.bounds;
+        contentView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(contentViewTapAction:)];
+        [contentView addGestureRecognizer:tapGesture];
+        CGRect rightRect = contentView.frame;
+        rightRect.origin = CGPointMake(CGRectGetWidth(self.scrollView.frame) * (counter ++), 0);
+        
+        contentView.frame = rightRect;
+        [self.scrollView addSubview:contentView];
+        if (_totalPageCount == 1) {
+            break;
+        }
+    }
+    if (_totalPageCount != 1) {
+        [_scrollView setContentOffset:CGPointMake(_scrollView.frame.size.width, 0)];
+        _scrollView.scrollEnabled = YES;
+    }else
+    {
+        [_scrollView setContentOffset:CGPointMake(0, 0)];
+        _scrollView.scrollEnabled = NO;
+    }
+    
+
+    
+}
+
+- (void)setScrollViewContentDataSource
+{
+    NSInteger previousPageIndex = [self getValidNextPageIndexWithPageIndex:self.currentPageIndex - 1];
+    NSInteger rearPageIndex = [self getValidNextPageIndexWithPageIndex:self.currentPageIndex + 1];
+    if (self.contentViews == nil) {
+        self.contentViews = [@[] mutableCopy];
+    }
+    [self.contentViews removeAllObjects];
+    
+    if (self.fetchContentViewAtIndex) {
+        [self.contentViews addObject:self.fetchContentViewAtIndex(previousPageIndex)];
+        [self.contentViews addObject:self.fetchContentViewAtIndex(_currentPageIndex)];
+        [self.contentViews addObject:self.fetchContentViewAtIndex(rearPageIndex)];
+    }
+}
+
+- (NSInteger)getValidNextPageIndexWithPageIndex:(NSInteger)currentPageIndex;
+{
+    if(currentPageIndex == -1) {
+        return self.totalPageCount - 1;
+    } else if (currentPageIndex == self.totalPageCount) {
+        return 0;
+    } else {
+        return currentPageIndex;
+    }
+}
+
+#pragma mark -
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.animationTimer pauseTimer];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    [self.animationTimer resumeTimerAfterTimeInterval:self.animationDuration];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    int contentOffsetX = scrollView.contentOffset.x;
+    if(contentOffsetX >= (2 * CGRectGetWidth(scrollView.frame))) {
+        self.currentPageIndex = [self getValidNextPageIndexWithPageIndex:self.currentPageIndex + 1];
+         _pageController.currentPage = self.currentPageIndex;
+//        NSLog(@"next，当前页:%d",self.currentPageIndex);
+        [self configContentViews];
+    }
+    if(contentOffsetX <= 0) {
+        self.currentPageIndex = [self getValidNextPageIndexWithPageIndex:self.currentPageIndex - 1];
+        _pageController.currentPage = self.currentPageIndex;
+//        NSLog(@"previous，当前页:%d",self.currentPageIndex);
+        [self configContentViews];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if (_totalPageCount != 1) {
+        [scrollView setContentOffset:CGPointMake(CGRectGetWidth(scrollView.frame), 0) animated:YES];
+    }
+
+}
+
+- (void)animationTimerDidFired:(NSTimer *)timer
+{
+    if (_totalPageCount != 1) {
+        CGPoint newOffset = CGPointMake(self.scrollView.contentOffset.x + CGRectGetWidth(self.scrollView.frame), self.scrollView.contentOffset.y);
+        [self.scrollView setContentOffset:newOffset animated:YES];
+    }
+
+}
+
+- (void)contentViewTapAction:(UITapGestureRecognizer *)tap
+{
+    if (self.TapActionBlock) {
+        self.TapActionBlock(self.currentPageIndex);
+    }
+}
+
+
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+*/
 
 @end
