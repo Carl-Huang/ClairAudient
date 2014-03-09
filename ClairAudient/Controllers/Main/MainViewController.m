@@ -2,26 +2,30 @@
 //  MainViewController.m
 //  ClairAudient
 //
-//  Created by Carl on 13-12-30.
+//  Created by vedon on 13-12-30.
 //  Copyright (c) 2013年 helloworld. All rights reserved.
 //
 
 #import "MainViewController.h"
+#import "CustomiseImageObj.h"
+#import "SDWebImageManager.h"
+#import "UserDefaultMacro.h"
+#import "CycleScrollView.h"
 #import "ControlCenter.h"
 #import "HttpService.h"
-#import "CycleScrollView.h"
 #import "User.h"
 
 @interface MainViewController ()
 {
-
+    BOOL isDownloadImage;
 }
 @property (strong ,nonatomic)CycleScrollView * autoScrollView;
 @property (strong ,nonatomic)NSMutableArray * productImages;
+@property (strong ,nonatomic)NSMutableArray * customiseImages;
 @end
 
 @implementation MainViewController
-@synthesize autoScrollView,productImages;
+@synthesize autoScrollView,productImages,customiseImages;
 
 #pragma mark - Life Cycle
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -38,13 +42,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self.navigationController setNavigationBarHidden:YES];
+    [self loadStartImage];
     
-//    [self testAPI];
+    productImages      = [NSMutableArray array];
+    customiseImages    = [NSMutableArray array];
+    [self getAdvertisementImage];
+    [self downloadCustomiseImage];
     
-    [self showAdvertisementImage];
-    
-    CGRect rect = self.adScrollView.frame;
-    rect.origin.x = rect.origin.y = 0;
+    CGRect rect = self.adScrollView.bounds;
     autoScrollView = [[CycleScrollView alloc] initWithFrame:rect animationDuration:2];
     autoScrollView.backgroundColor = [UIColor clearColor];
     
@@ -69,7 +74,8 @@
         NSLog(@"点击了第%ld个",(long)pageIndex);
     };
     [self.adScrollView addSubview:autoScrollView];
-    [self.view bringSubviewToFront:self.adScrollView];
+    
+    isDownloadImage = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -127,16 +133,21 @@
     [ControlCenter showSettingVC];
 }
 
+- (IBAction)hideStartPageAction:(id)sender {
+    [_startPageContainer setHidden:YES];
+}
+
 #pragma mark - Private Methods
 -(void)updateAutoScrollViewItem
 {
     __weak MainViewController * weakSelf = self;
-    autoScrollView.totalPagesCount = ^NSInteger(void){
-        return [weakSelf.productImages count];
-    };
     autoScrollView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
         return weakSelf.productImages[pageIndex];
     };
+    autoScrollView.totalPagesCount = ^NSInteger(void){
+        return [weakSelf.productImages count];
+    };
+    
    
 }
 
@@ -192,7 +203,7 @@
     }];
 }
 
--(void)showAdvertisementImage
+-(void)getAdvertisementImage
 {
     __weak MainViewController * weakSelf = self;
     __block NSMutableArray * imgArray = [NSMutableArray array];
@@ -200,7 +211,9 @@
         if ([object count]) {
             for (NSString * imgStr in object) {
                 //获取图片
-                [weakSelf getImage:imgStr withContainer:imgArray];
+                if (![imgStr isKindOfClass:[NSNull class]]) {
+                    [weakSelf getImage:imgStr withContainer:imgArray];
+                }
             }
         }
     } failureBlock:^(NSError *error, NSString *responseString) {
@@ -214,16 +227,76 @@
 
     [[HttpService sharedInstance]getImageWithResourcePath:imgStr completedBlock:^(id object) {
         if (object) {
-            NSDictionary * tempDic = @{@"identifier": imgStr,@"Image":object};
             UIImageView * imageView = nil;
-            [weakSelf.productImages addObject:tempDic];
+            if (!isDownloadImage) {
+                isDownloadImage = YES;
+                [productImages removeAllObjects];
+            }
+            
             if ([object isKindOfClass:[UIImage class]]) {
                 imageView = [[UIImageView alloc]initWithImage:object];
                 [productImages addObject:imageView];
             }
+            [self updateAutoScrollViewItem];
         }
     } failureBlock:^(NSError * error) {
         ;
     }];
+}
+
+-(void)downloadCustomiseImage
+{
+    __weak MainViewController * weakSelf = self;
+    [[HttpService sharedInstance]getCustomiseImageWithCompletedBlock:^(id object) {
+        if ([object count]) {
+            for (CustomiseImageObj * obj in object) {
+                NSString * str =[NSString stringWithFormat:@"%@%@",URL_PREFIX,obj.common_image];
+                str = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                [[SDWebImageManager sharedManager]downloadWithURL:[NSURL URLWithString:str] options:SDWebImageCacheMemoryOnly progress:^(NSUInteger receivedSize, long long expectedSize) {
+                    ;
+                } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
+                    [weakSelf.customiseImages addObject:@{@"image_type": obj.image_type,@"common_image":image}];
+                    [weakSelf updateInterface];
+                }];
+            }
+            
+        }
+    } failureBlock:^(NSError *error, NSString *responseString) {
+        ;
+    }];
+}
+
+-(void)updateInterface
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        for (NSDictionary * dic in customiseImages) {
+            if ([dic[@"image_type"]isEqualToString:@"积分图片"]) {
+                [_jifenBtn setImage:dic[@"common_image"] forState:UIControlStateNormal];
+            }else if([dic[@"image_type"]isEqualToString:@"寻音图片"])
+            {
+                [_xunyinBtn setImage:dic[@"common_image"] forState:UIControlStateNormal];
+            }else if([dic[@"image_type"]isEqualToString:@"欢迎图片"])
+            {
+                //save the startImage to local
+                UIImage * image = dic[@"common_image"];
+                
+                
+                [[NSUserDefaults standardUserDefaults]setObject:UIImagePNGRepresentation(image) forKey:StartImage];
+                [[NSUserDefaults standardUserDefaults]synchronize];
+            }
+            
+        }
+    });
+}
+
+-(void)loadStartImage
+{
+    NSData* imageData = [[NSUserDefaults standardUserDefaults]objectForKey:StartImage];
+    UIImage* image = [UIImage imageWithData:imageData];
+    if (image) {
+        _startImage.image = image;
+        image = nil;
+    }
+
 }
 @end

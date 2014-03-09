@@ -7,20 +7,10 @@
 //
 
 #import "AFHttp.h"
+#import "ActionMacro.h"
+
 #define URL_PREFIX @"http://app.hfapp.cn/soundValley/"
-#define User_Login                                  @"login"
-#define User_Register                               @"user_register"
-#define Find_Catalog                                @"FindVltByParentId"
-#define Find_Voice_By_Catalog                       @"FindVoiceLibraryAction"
-#define Find_Comment_By_Voice                       @"GetCommentByVlId"
-#define Find_MyUpload                               @"MyUploadAction"
-#define Find_Integral_Rank_User                     @"FindTop10IntegralUserAction"
-#define Find_Recommend_By_Catalog                   @"getVlTuiJianTop10Action"
-#define Find_Download_Rank_Voice                    @"getVoiceLibraryTop10Action"
-#define Find_Catalog_Rank_Voice                     @"getVoiceLibraryTop10Action"
-#define Search_Voice                                @"SerachVlAction"
-#define Upload_Voice                                @"UploadAction"
-#define GetMainImagesAction                         @"GetMainImagesAction"
+
 @interface HttpService : AFHttp
 
 + (HttpService *)sharedInstance;
@@ -91,4 +81,13 @@
 - (void)getAdvertisementImageWithCompletedBlock:(void (^)(id object))success failureBlock:(void (^)(NSError * error,NSString * responseString))failure;
 
 -(void)getImageWithResourcePath:(NSString *)path completedBlock:(void (^)(id object))success failureBlock:(void (^)(NSError * error))failure;
+
+
+
+/**
+ @desc 自定义图片接口：包括启动界面图片，寻音和积分按钮图片
+ */
+-(void)getCustomiseImageWithCompletedBlock:(void (^)(id object))success failureBlock:(void (^)(NSError * error,NSString * responseString))failure;
+
+-(void)getCustiomiseImageWithResourcePath:(NSString *)path completedBlock:(void (^)(id object))success failureBlock:(void (^)(NSError * error))failure;
 @end

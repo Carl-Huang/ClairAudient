@@ -297,15 +297,6 @@
         }
     }failureBlock:failure];
 }
--(void)getAdvertisementImageWithCompletedBlock:(void (^)(id object))success failureBlock:(void (^)(NSError *, NSString *))failure
-{
-    [self post:[self mergeURL:GetMainImagesAction] withParams:nil completionBlock:^(id obj) {
-        if ([obj count]) {
-            NSArray * items = [obj valueForKey:@"ad_image"];
-            success(items);
-        }
-    } failureBlock:failure];
-}
 
 /**
  @desc 上传音频
@@ -317,13 +308,43 @@
     } failureBlock:failure];
 }
 
+-(void)getAdvertisementImageWithCompletedBlock:(void (^)(id object))success failureBlock:(void (^)(NSError *, NSString *))failure
+{
+    [self post:[self mergeURL:GetMainImagesAction] withParams:nil completionBlock:^(id obj) {
+        if ([obj count]) {
+            NSArray * items = [obj valueForKey:@"ad_image"];
+            success(items);
+        }
+    } failureBlock:failure];
+}
+
+
+
 -(void)getImageWithResourcePath:(NSString *)path completedBlock:(void (^)(id object))success failureBlock:(void (^)(NSError * error))failure
 {
-//    [self post:[self mergeURL:path] withParams:nil completionBlock:^(id obj) {
-//        if (obj) {
-//            success(obj);
-//        }
-//    } failureBlock:nil];
+    
+    NSURL * imageUrl = [NSURL URLWithString:[self mergeURL:path]];
+    NSURLRequest * request = [NSURLRequest requestWithURL:imageUrl];
+    NSOperationQueue * queue = [[NSOperationQueue alloc]init];
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        UIImage * image = [UIImage imageWithData:data];
+        success (image);
+    }];
+    
+}
+
+-(void)getCustomiseImageWithCompletedBlock:(void (^)(id))success failureBlock:(void (^)(NSError *, NSString *))failure
+{
+    [self post:[self mergeURL:WelcomeImageAction] withParams:nil completionBlock:^(id obj) {
+        if ([obj count]) {
+            NSArray * object = [self mapModelsProcess:obj withClass:[CustomiseImageObj class]];
+            success(object);
+        }
+    } failureBlock:failure];
+}
+
+-(void)getCustiomiseImageWithResourcePath:(NSString *)path completedBlock:(void (^)(id object))success failureBlock:(void (^)(NSError * error))failure
+{
     
     NSURL * imageUrl = [NSURL URLWithString:[self mergeURL:path]];
     NSURLRequest * request = [NSURLRequest requestWithURL:imageUrl];

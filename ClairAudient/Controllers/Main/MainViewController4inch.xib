@@ -8,7 +8,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController">
             <connections>
                 <outlet property="adScrollView" destination="YhZ-hm-VCp" id="BnU-H6-Hyf"/>
+                <outlet property="jifenBtn" destination="TBl-i8-309" id="LV2-iA-KHR"/>
+                <outlet property="startImage" destination="sB2-IX-hkl" id="BFK-31-FuC"/>
+                <outlet property="startPageContainer" destination="k8O-W2-eur" id="SEx-a2-0uc"/>
                 <outlet property="view" destination="1" id="3"/>
+                <outlet property="xunyinBtn" destination="2sI-SR-Hgr" id="Lbn-5S-IyK"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -48,7 +52,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2sI-SR-Hgr">
-                            <rect key="frame" x="12" y="105" width="150" height="130"/>
+                            <rect key="frame" x="16" y="112" width="143" height="116"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" image="first_4.png">
@@ -59,7 +63,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="k1T-Y0-fFI">
-                            <rect key="frame" x="163" y="106" width="150" height="130"/>
+                            <rect key="frame" x="167" y="114" width="143" height="114"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" image="first_5.png">
@@ -81,7 +85,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="TBl-i8-309">
-                            <rect key="frame" x="163" y="230" width="150" height="130"/>
+                            <rect key="frame" x="167" y="237" width="143" height="115"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" image="first_7.png">
@@ -123,6 +127,27 @@
                     </subviews>
                     <color key="backgroundColor" red="0.29411764709999999" green="0.3294117647" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
+                <view contentMode="scaleToFill" id="k8O-W2-eur">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="startDefaultPage.png" id="sB2-IX-hkl">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Slb-VH-vZp">
+                            <rect key="frame" x="236" y="481" width="46" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="跳过">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="hideStartPageAction:" destination="-1" eventType="touchUpInside" id="AYP-w1-iSf"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -138,5 +163,6 @@
         <image name="first_7.png" width="143" height="115"/>
         <image name="first_8.png" width="145" height="59"/>
         <image name="first_9.png" width="146" height="59"/>
+        <image name="startDefaultPage.png" width="480" height="800"/>
     </resources>
 </document>
