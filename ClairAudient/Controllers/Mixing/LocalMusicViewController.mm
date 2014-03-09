@@ -90,6 +90,12 @@
     isSearchResultDataSource    = NO;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -106,7 +112,7 @@
 #pragma mark - Private Methods
 - (void)initUI
 {
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+//    [self.navigationController setNavigationBarHidden:YES animated:YES];
     self.contentTable.backgroundColor = [UIColor clearColor];
     UINib * nib = [UINib nibWithNibName:@"MixingMusicListCell" bundle:[NSBundle bundleForClass:[MixingMusicListCell class]]];
     [self.contentTable registerNib:nib forCellReuseIdentifier:@"Cell"];

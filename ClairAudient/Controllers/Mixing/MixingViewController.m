@@ -21,10 +21,13 @@
 #import "EditMusicInfo.h"
 #import "MusicMixerOutput.h"
 #import "GobalMethod.h"
+#import "CopyMusicView.h"
+#import "AppDelegate.h"
 @interface MixingViewController ()
 
 {
     BOOL isSimulator;
+    BOOL isCopyMusic;
     CGFloat     cuttedMusicLength;
     NSString    * edittingMusicFile;
     AudioPlotView * plotView;
@@ -52,7 +55,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController.navigationBar setHidden:YES];
     self.bigTitleLabel.text     = [self.musicInfo valueForKey:@"Artist"];
     self.littleTitleLabel.text  = [self.musicInfo valueForKey:@"Title"];
 #if TARGET_IPHONE_SIMULATOR
@@ -91,6 +93,8 @@
     self.cutLength.text = self.endTime.text;
     [self.view addSubview:plotView];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    isCopyMusic = NO;
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -102,7 +106,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self.navigationController.navigationBar setHidden:YES];
+    [super viewWillAppear:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -184,6 +189,33 @@
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     });
 }
+
+-(void)synthesizeNewAudioFileWithNumber:(NSInteger)copyNumber
+{
+    __weak MixingViewController * weakSelf = self;
+    
+    
+    currentEditedFile = [GobalMethod getDocumentPath:@"tempCopyFile.mov"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [MusicMixerOutput appendAudioFile:edittingMusicFile toFile:edittingMusicFile compositionPath:currentEditedFile compositionTimes:copyNumber withCompletedBlock:^(NSError *error, BOOL isFinish) {
+            if (isFinish) {
+                
+                //更改文件的格式
+                NSFileManager *manage   = [NSFileManager defaultManager];
+                NSString * convertedFilePath = [NSString stringWithString:currentEditedFile];
+                NSString *mp3Path       = [[convertedFilePath stringByDeletingPathExtension] stringByAppendingPathExtension:@"mp3"];
+                NSError *error = nil;
+                [manage moveItemAtPath:currentEditedFile toPath:mp3Path error:&error];
+                currentEditedFile = nil;
+                
+                //建立新的plotView
+                [weakSelf newPlotViewWithNumber:copyNumber];
+            }
+        }];
+    });
+
+}
+
 #pragma mark - Outlet Action
 - (IBAction)playMusic:(id)sender {
     if (![plotView isPlaying]) {
@@ -203,11 +235,17 @@
     // * Crop the music
     NSString * tempFileName = [self getTimeAsFileName];
     CGFloat musicLength = self.endTime.text.floatValue  - self.startTime.text.floatValue;
-    
+    NSString * sourceFilePath = nil;
+    if (isCopyMusic) {
+        sourceFilePath = currentEditedFile;
+    }else
+    {
+        sourceFilePath = edittingMusicFile;
+    }
     
     if (tempFileName) {
         tempFileName = [tempFileName stringByAppendingPathExtension:@"mov"];
-        [MusicCutter cropMusic:currentEditedFile exportFileName:tempFileName withStartTime:self.startTime.text.floatValue*60 endTime:self.endTime.text.floatValue*60 withCompletedBlock:^(AVAssetExportSessionStatus status, NSError *error,NSString * localPath) {
+        [MusicCutter cropMusic:sourceFilePath exportFileName:tempFileName withStartTime:self.startTime.text.floatValue*60 endTime:self.endTime.text.floatValue*60 withCompletedBlock:^(AVAssetExportSessionStatus status, NSError *error,NSString * localPath) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 if (status == AVAssetExportSessionStatusCompleted) {
@@ -229,6 +267,7 @@
                     [self showAlertViewWithMessage:@"裁剪成功"];
                 }else
                 {
+                    [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
                     [self showAlertViewWithMessage:@"裁剪失败"];
                 }
                 
@@ -256,29 +295,19 @@
 }
 
 - (IBAction)copyMusicAction:(id)sender {
-    NSInteger copyNumber = 3;
+    
+    CopyMusicView * copyView = [[[NSBundle mainBundle]loadNibNamed:@"CopyMusicView" owner:self options:nil]objectAtIndex:0];
+    [copyView initalizationContainerViewContent];
     __weak MixingViewController * weakSelf = self;
-    
-    
-    currentEditedFile = [GobalMethod getTempPath:@"tempCopyFile.mov"];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [MusicMixerOutput appendAudioFile:edittingMusicFile toFile:edittingMusicFile compositionPath:currentEditedFile compositionTimes:copyNumber withCompletedBlock:^(NSError *error, BOOL isFinish) {
-            if (isFinish) {
-                
-                //更改文件的格式
-                NSFileManager *manage   = [NSFileManager defaultManager];
-                NSString * convertedFilePath = [NSString stringWithString:currentEditedFile];
-                NSString *mp3Path       = [[convertedFilePath stringByDeletingPathExtension] stringByAppendingPathExtension:@"mp3"];
-                NSError *error = nil;
-                [manage moveItemAtPath:currentEditedFile toPath:mp3Path error:&error];
-                currentEditedFile = nil;
-                
-                //建立新的plotView
-                [weakSelf newPlotViewWithNumber:copyNumber];
-            }
-        }];
-    });
-
+    [copyView setBlock:^(NSInteger number)
+     {
+         dispatch_async(dispatch_get_main_queue(), ^{
+             [weakSelf synthesizeNewAudioFileWithNumber:number];
+         });
+         
+     }];
+    AppDelegate * myDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    [myDelegate.window addSubview:copyView];
    
     
 }

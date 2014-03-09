@@ -136,7 +136,7 @@
     return exportPath;
 }
 
-+(NSString *)getTempPath:(NSString *)fileName
++(NSString *)getDocumentPath:(NSString *)fileName
 {
     NSArray *dirs = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
     NSString *documentsDirectoryPath = [dirs objectAtIndex:0];

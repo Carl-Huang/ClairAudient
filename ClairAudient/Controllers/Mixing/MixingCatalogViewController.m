@@ -69,6 +69,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     [self dismissPopoverController];
 }
 
@@ -91,7 +92,6 @@
     {
         self.title = self.parentCatalog.vlt_name;
     }
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self setLeftAndRightBarItem];
     _tableView.backgroundColor = [UIColor clearColor];
     UINib * nib = [UINib nibWithNibName:@"MixingMusicOnlineCell" bundle:[NSBundle bundleForClass:[MixingMusicOnlineCell class]]];

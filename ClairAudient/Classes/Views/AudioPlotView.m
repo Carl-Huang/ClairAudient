@@ -96,7 +96,7 @@
     
     //设置contentScrollView
     self.contentScrollView = [[UIScrollView alloc]initWithFrame:rect];
-    [self.contentScrollView setContentSize:CGSizeMake(60 + (number*rect.size.width * 1.5), self.contentScrollView.frame.size.height)];
+    [self.contentScrollView setContentSize:CGSizeMake(60 + (number*rect.size.width + 100), self.contentScrollView.frame.size.height)];
     self.contentScrollView.showsHorizontalScrollIndicator = NO;
     self.contentScrollView.scrollEnabled = YES;
     
@@ -446,7 +446,7 @@
     self.currentPositionOfTimeLine  = point.x;
     self.currentPositionOfFile      = position;
     [self seekToPostionWithValue:position];
-    
+    [self play];
 }
 
 -(void)seekToPostionWithValue:(CGFloat)offset
@@ -663,7 +663,6 @@ withNumberOfChannels:(UInt32)numberOfChannels {
             CGFloat position    = self.startLocation/roundDownRectWidth * totalLengthOfTheFile;
             
             [self.audioFile seekToFrame:position];
-            self.eof = NO;
             
             //更新当前时间轴的位置
             self.currentPositionOfTimeLine = self.currentPage * roundDownRectWidth + self.currentPositionOfTimeLine;
@@ -674,8 +673,9 @@ withNumberOfChannels:(UInt32)numberOfChannels {
                 self.currentPositionOfTimeLine  = self.startLocation;
                 self.currentPage = self.startLocation/roundDownRectWidth;
             }
-            
+            self.eof = NO;
         }
+        
         AudioBufferList *bufferList = [EZAudio audioBufferList];
         BOOL eof;
         [self.audioFile readFrames:frames
@@ -689,6 +689,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
             return nil;
         }
         return bufferList;
+       
         
     }
     return nil;

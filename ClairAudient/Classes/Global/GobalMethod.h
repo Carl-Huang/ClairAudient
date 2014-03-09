@@ -23,7 +23,7 @@
 
 +(NSString *)getExportPath:(NSString *)fileName;
 
-+(NSString *)getTempPath:(NSString *)fileName;
++(NSString *)getDocumentPath:(NSString *)fileName;
 
 /*                 Audio                  */
 +(CGFloat)getMusicLength:(NSURL *)url;

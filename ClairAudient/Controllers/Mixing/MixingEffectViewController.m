@@ -38,8 +38,14 @@
 
 - (void)viewDidLoad
 {
+
     [super viewDidLoad];
     [self initUI];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,7 +68,7 @@
 - (void)initUI
 {
     self.title = @"寻音";
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+
     [self setLeftAndRightBarItem];
     _quiltView = [[TMQuiltView alloc] initWithFrame:CGRectMake(0, 108, self.view.frame.size.width, self.view.frame.size.height - 108)];
     _quiltView.dataSource = self;
@@ -73,17 +79,24 @@
     [self.view addSubview:_quiltView];
     //[_quiltView reloadData];
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [[HttpService sharedInstance] findCatalog:@{@"parentId":@"0"} completionBlock:^(id obj) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        if(obj)
-        {
-            [_catalogs addObjectsFromArray:obj];
-            [_quiltView reloadData];
-        }
-    } failureBlock:^(NSError *error, NSString *responseString) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-    }];
+    if (![OSHelper isReachable]) {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [[HttpService sharedInstance] findCatalog:@{@"parentId":@"0"} completionBlock:^(id obj) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            if(obj)
+            {
+                [_catalogs addObjectsFromArray:obj];
+                [_quiltView reloadData];
+            }
+        } failureBlock:^(NSError *error, NSString *responseString) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        }];
+    }else
+    {
+        //网络问题
+
+    }
+   
     
 }
 

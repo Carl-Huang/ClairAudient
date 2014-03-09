@@ -15,7 +15,6 @@
 {
     
     NSURL *songURL      = [NSURL fileURLWithPath:musicSourcePath];
-
     [self startCropMusicWithExportFileName:exportedFileName songURL:songURL startTime:timeS endTime:timeE completedBlock:^(AVAssetExportSessionStatus status, NSError *error, NSString *localPath) {
         completedBlock(status,error,localPath);
     }];

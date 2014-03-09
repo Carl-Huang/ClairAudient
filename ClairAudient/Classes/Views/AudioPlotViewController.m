@@ -251,7 +251,9 @@
     [self updateTimeLinePosition:point.x];
     CGFloat position        = point.x / waveLength * totalLengthOfTheFile;
     NSLog(@"position :%f totalLengthOfTheFile:%f ",position,totalLengthOfTheFile);
-    self.currentPositionOfFile   = position;
+    self.currentPositionOfFile  = position;
+    //start play
+    [self play];
     [self seekToPostionWithValue:position];
     
 }

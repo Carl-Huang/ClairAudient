@@ -22,12 +22,10 @@
 		4E2A136B1890BDEC00D8CB65 /* MusicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A136A1890BDEC00D8CB65 /* MusicInfo.m */; };
 		4E2A13711890BFF600D8CB65 /* PersistentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A13701890BFF600D8CB65 /* PersistentStore.m */; };
 		4E2A137A1891257600D8CB65 /* RecordMusicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A13791891257600D8CB65 /* RecordMusicInfo.m */; };
-		4E2A137E189125DB00D8CB65 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E2A137D189125DB00D8CB65 /* libmp3lame.a */; };
 		4E2A13811891474800D8CB65 /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A13801891474800D8CB65 /* AudioRecorder.m */; };
 		4E2A1384189152F900D8CB65 /* AudioReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A1383189152F900D8CB65 /* AudioReader.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4E2A13871891531C00D8CB65 /* RingBuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A13861891531C00D8CB65 /* RingBuffer.mm */; };
 		4E37255318C02F3E00AAB235 /* MusicMixer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E37254D18C02F3E00AAB235 /* MusicMixer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		4E37255418C02F3E00AAB235 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E37255018C02F3E00AAB235 /* libmp3lame.a */; };
 		4E37255C18C0306700AAB235 /* AudioFloatPointReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E37255618C0306700AAB235 /* AudioFloatPointReader.m */; };
 		4E37255D18C0306700AAB235 /* AsynEncodeAudioRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E37255818C0306700AAB235 /* AsynEncodeAudioRecord.m */; };
 		4E37255E18C0306700AAB235 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E37255B18C0306700AAB235 /* libmp3lame.a */; };
@@ -121,6 +119,8 @@
 		4EEA197C18AA5F070062D118 /* MyUploadDetailViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4EEA197A18AA5F070062D118 /* MyUploadDetailViewController.mm */; };
 		4EEA197D18AA5F070062D118 /* MyUploadDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EEA197B18AA5F070062D118 /* MyUploadDetailViewController.xib */; };
 		4EEA197F18AA72540062D118 /* testImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EEA197E18AA72540062D118 /* testImage.png */; };
+		4EFE1F6E18CC11310099BD93 /* CopyMusicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EFE1F6D18CC11310099BD93 /* CopyMusicView.m */; };
+		4EFE1F7018CC11530099BD93 /* CopyMusicView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EFE1F6F18CC11530099BD93 /* CopyMusicView.xib */; };
 		4EFF165118A7D134005E4802 /* NSString+Levenshtein.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EFF165018A7D134005E4802 /* NSString+Levenshtein.m */; };
 		4EFF165418A7D19C005E4802 /* AutoCompletedOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EFF165318A7D19C005E4802 /* AutoCompletedOperation.m */; };
 		C3164CAD1874555D00301ACA /* FoundMusic_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3164C691874555D00301ACA /* FoundMusic_@2x.png */; };
@@ -552,8 +552,6 @@
 		4E2A13701890BFF600D8CB65 /* PersistentStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentStore.m; sourceTree = "<group>"; };
 		4E2A13781891257600D8CB65 /* RecordMusicInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordMusicInfo.h; sourceTree = "<group>"; };
 		4E2A13791891257600D8CB65 /* RecordMusicInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordMusicInfo.m; sourceTree = "<group>"; };
-		4E2A137C189125DB00D8CB65 /* lame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lame.h; sourceTree = "<group>"; };
-		4E2A137D189125DB00D8CB65 /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmp3lame.a; sourceTree = "<group>"; };
 		4E2A137F1891474800D8CB65 /* AudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecorder.h; sourceTree = "<group>"; };
 		4E2A13801891474800D8CB65 /* AudioRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecorder.m; sourceTree = "<group>"; };
 		4E2A1382189152F900D8CB65 /* AudioReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioReader.h; sourceTree = "<group>"; };
@@ -562,8 +560,6 @@
 		4E2A13861891531C00D8CB65 /* RingBuffer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RingBuffer.mm; sourceTree = "<group>"; };
 		4E37254C18C02F3E00AAB235 /* MusicMixer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicMixer.h; sourceTree = "<group>"; };
 		4E37254D18C02F3E00AAB235 /* MusicMixer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicMixer.m; sourceTree = "<group>"; };
-		4E37254F18C02F3E00AAB235 /* lame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lame.h; sourceTree = "<group>"; };
-		4E37255018C02F3E00AAB235 /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmp3lame.a; sourceTree = "<group>"; };
 		4E37255518C0306700AAB235 /* AudioFloatPointReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFloatPointReader.h; sourceTree = "<group>"; };
 		4E37255618C0306700AAB235 /* AudioFloatPointReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFloatPointReader.m; sourceTree = "<group>"; };
 		4E37255718C0306700AAB235 /* AsynEncodeAudioRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsynEncodeAudioRecord.h; sourceTree = "<group>"; };
@@ -705,6 +701,9 @@
 		4EEA197A18AA5F070062D118 /* MyUploadDetailViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MyUploadDetailViewController.mm; sourceTree = "<group>"; };
 		4EEA197B18AA5F070062D118 /* MyUploadDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyUploadDetailViewController.xib; sourceTree = "<group>"; };
 		4EEA197E18AA72540062D118 /* testImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testImage.png; sourceTree = "<group>"; };
+		4EFE1F6C18CC11310099BD93 /* CopyMusicView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CopyMusicView.h; sourceTree = "<group>"; };
+		4EFE1F6D18CC11310099BD93 /* CopyMusicView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CopyMusicView.m; sourceTree = "<group>"; };
+		4EFE1F6F18CC11530099BD93 /* CopyMusicView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CopyMusicView.xib; sourceTree = "<group>"; };
 		4EFF164F18A7D134005E4802 /* NSString+Levenshtein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Levenshtein.h"; sourceTree = "<group>"; };
 		4EFF165018A7D134005E4802 /* NSString+Levenshtein.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Levenshtein.m"; sourceTree = "<group>"; };
 		4EFF165218A7D19C005E4802 /* AutoCompletedOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoCompletedOperation.h; sourceTree = "<group>"; };
@@ -1226,11 +1225,9 @@
 				C3164CF11874660100301ACA /* QuartzCore.framework in Frameworks */,
 				C3FEAF221871C156008EADAA /* CoreGraphics.framework in Frameworks */,
 				C3FEAF241871C156008EADAA /* UIKit.framework in Frameworks */,
-				4E2A137E189125DB00D8CB65 /* libmp3lame.a in Frameworks */,
 				4EAF2A3C18A9FE90007A8F70 /* RenRenConnection.framework in Frameworks */,
 				C3FEAF201871C156008EADAA /* Foundation.framework in Frameworks */,
 				3A213A19BF144FE19FC80A52 /* libPods-ClairAudient.a in Frameworks */,
-				4E37255418C02F3E00AAB235 /* libmp3lame.a in Frameworks */,
 				4EAF2A3D18A9FE90007A8F70 /* SinaWeiboConnection.framework in Frameworks */,
 				4EAF2A3A18A9FE90007A8F70 /* CopyConnection.framework in Frameworks */,
 			);
@@ -1259,10 +1256,8 @@
 				4E37255918C0306700AAB235 /* lame */,
 				4E37254C18C02F3E00AAB235 /* MusicMixer.h */,
 				4E37254D18C02F3E00AAB235 /* MusicMixer.m */,
-				4E37254E18C02F3E00AAB235 /* lame */,
 				4E079C2E189B557900B0BB5F /* MusicMixerOutput.h */,
 				4E079C2F189B557900B0BB5F /* MusicMixerOutput.m */,
-				4E2A137B189125DB00D8CB65 /* lame */,
 				4E2A136F1890BFF600D8CB65 /* PersistentStore.h */,
 				4E2A13701890BFF600D8CB65 /* PersistentStore.m */,
 				4E1CDDFE18900BA000C046ED /* AudioManager.h */,
@@ -1282,24 +1277,6 @@
 			);
 			name = "Audio Utilities";
 			path = Utilities;
-			sourceTree = "<group>";
-		};
-		4E2A137B189125DB00D8CB65 /* lame */ = {
-			isa = PBXGroup;
-			children = (
-				4E2A137C189125DB00D8CB65 /* lame.h */,
-				4E2A137D189125DB00D8CB65 /* libmp3lame.a */,
-			);
-			path = lame;
-			sourceTree = "<group>";
-		};
-		4E37254E18C02F3E00AAB235 /* lame */ = {
-			isa = PBXGroup;
-			children = (
-				4E37254F18C02F3E00AAB235 /* lame.h */,
-				4E37255018C02F3E00AAB235 /* libmp3lame.a */,
-			);
-			path = lame;
 			sourceTree = "<group>";
 		};
 		4E37255918C0306700AAB235 /* lame */ = {
@@ -1651,6 +1628,9 @@
 				4EB43E7318AB26D4004CCC85 /* PlayItemView.xib */,
 				4EB7C4F218B72E8600BCF0E8 /* MixingOnlineBtn.h */,
 				4EB7C4F318B72E8600BCF0E8 /* MixingOnlineBtn.m */,
+				4EFE1F6C18CC11310099BD93 /* CopyMusicView.h */,
+				4EFE1F6D18CC11310099BD93 /* CopyMusicView.m */,
+				4EFE1F6F18CC11530099BD93 /* CopyMusicView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2624,6 +2604,7 @@
 				C3164CD71874555D00301ACA /* MusicFans_cvb@2x.png in Resources */,
 				C3FEB0051871C294008EADAA /* hunyin_27@2x.png in Resources */,
 				C351B699187E3E0F00630408 /* fhjh@2x.png in Resources */,
+				4EFE1F7018CC11530099BD93 /* CopyMusicView.xib in Resources */,
 				C3FEB0621871C294008EADAA /* setting_23@2x.png in Resources */,
 				4EEA197F18AA72540062D118 /* testImage.png in Resources */,
 				C3FEB0441871C294008EADAA /* record_31@2x.png in Resources */,
@@ -2912,6 +2893,7 @@
 				C3411730188C2C2B0070EAB4 /* VoiceComment.m in Sources */,
 				C34C3401188AB430009CD20B /* RecordListViewController.mm in Sources */,
 				C32749A0187A5ED400CF7A4A /* HelpViewController.m in Sources */,
+				4EFE1F6E18CC11310099BD93 /* CopyMusicView.m in Sources */,
 				C3FEB0B51871C801008EADAA /* NSDate+Utils.m in Sources */,
 				C326CDB1187C5E7B006DD97C /* ChampionHomePageViewController.m in Sources */,
 				4E37255D18C0306700AAB235 /* AsynEncodeAudioRecord.m in Sources */,
