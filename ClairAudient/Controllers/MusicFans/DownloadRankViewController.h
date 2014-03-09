@@ -11,4 +11,5 @@
 @interface DownloadRankViewController : CommonViewController
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (weak, nonatomic) IBOutlet UIImageView *bgView;
 @end

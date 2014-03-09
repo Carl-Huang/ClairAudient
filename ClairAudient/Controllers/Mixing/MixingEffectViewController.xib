@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MixingEffectViewController">
             <connections>
+                <outlet property="bgView" destination="JDh-Ne-3dE" id="Ucp-8S-4d5"/>
                 <outlet property="searchField" destination="scO-lQ-7Ja" id="k9u-tl-8Vz"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>

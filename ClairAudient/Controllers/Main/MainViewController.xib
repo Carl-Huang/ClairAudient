@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController">
             <connections>
                 <outlet property="adScrollView" destination="YhZ-hm-VCp" id="BnU-H6-Hyf"/>
+                <outlet property="bgView" destination="3EP-oL-6bK" id="eYN-yX-7a1"/>
                 <outlet property="jifenBtn" destination="TBl-i8-309" id="hEl-aT-ZBj"/>
                 <outlet property="startImage" destination="mxm-90-Fu7" id="Ge1-Vz-eoI"/>
                 <outlet property="startPageContainer" destination="BSU-QG-Cac" id="Ub6-Vx-pVo"/>
@@ -36,6 +37,10 @@
                     <rect key="frame" x="0.0" y="99" width="320" height="381"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="3EP-oL-6bK">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="381"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eI8-Q2-Ufy">
                             <rect key="frame" x="20" y="9" width="280" height="69"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -48,7 +53,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2sI-SR-Hgr">
-                            <rect key="frame" x="15" y="85" width="143" height="116"/>
+                            <rect key="frame" x="15" y="93" width="136" height="101"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" image="first_4.png">
@@ -70,7 +75,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1pU-CP-oR9">
-                            <rect key="frame" x="19" y="202" width="135" height="100"/>
+                            <rect key="frame" x="19" y="202" width="135" height="101"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" image="first_6.png">
@@ -81,7 +86,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="TBl-i8-309">
-                            <rect key="frame" x="159" y="193" width="143" height="115"/>
+                            <rect key="frame" x="159" y="202" width="135" height="101"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" image="first_7.png">
@@ -123,7 +128,7 @@
                     </subviews>
                     <color key="backgroundColor" red="0.29411764709999999" green="0.3294117647" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
-                <view contentMode="scaleToFill" id="BSU-QG-Cac">
+                <view hidden="YES" contentMode="scaleToFill" id="BSU-QG-Cac">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>

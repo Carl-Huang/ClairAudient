@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecordListViewController">
             <connections>
+                <outlet property="bgView" destination="jpt-tJ-TFe" id="0EA-K3-XiG"/>
                 <outlet property="tableView" destination="xgX-vG-lBc" id="dzb-bb-wb5"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>

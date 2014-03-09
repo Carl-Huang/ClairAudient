@@ -8,6 +8,8 @@
 
 #import "CommonViewController.h"
 #import "HWSDK_Constants.h"
+#import <objc/runtime.h>
+#import "UserDefaultMacro.h"
 @interface CommonViewController ()
 
 @end
@@ -21,6 +23,51 @@
         // Custom initialization
     }
     return self;
+}
+
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        Class class = [self class];
+        
+        SEL originalSelector = @selector(viewWillAppear:);
+        SEL replaceSelector = @selector(setBackground_viewDidLoad:);
+        
+        Method originalMethod = class_getInstanceMethod(class, originalSelector);
+        Method swizzledMethod = class_getInstanceMethod(class, replaceSelector);
+        
+        BOOL didAddMethod =
+        class_addMethod(class,
+                        originalSelector,
+                        method_getImplementation(swizzledMethod),
+                        method_getTypeEncoding(swizzledMethod));
+        
+        if (didAddMethod) {
+            class_replaceMethod(class,
+                                replaceSelector,
+                                method_getImplementation(originalMethod),
+                                method_getTypeEncoding(originalMethod));
+        } else {
+            method_exchangeImplementations(originalMethod, swizzledMethod);
+        }
+    });
+}
+
+-(void)setBackground_viewDidLoad:(BOOL)aninmation
+{
+    [self setBackground_viewDidLoad:YES];
+
+    objc_property_t property = class_getProperty([self class], "bgView");
+    NSString * propertyName = [NSString stringWithUTF8String:property_getName(property)];
+    
+    if (propertyName) {
+        UIImageView * imageView = [self valueForKey:propertyName];
+        NSString * imageName = [[NSUserDefaults standardUserDefaults]stringForKey:ThemeImage];
+        if (imageName == nil) {
+            imageName = @"hunyin_6.png";
+        }
+        imageView.image = [UIImage imageNamed:imageName];
+    }
 }
 
 - (void)viewDidLoad
@@ -40,7 +87,6 @@
     }
 #endif
 //    self.wantsFullScreenLayout = NO;
-
     
 }
 
@@ -69,5 +115,6 @@
         alertView = nil;
     });
 }
+
 
 @end

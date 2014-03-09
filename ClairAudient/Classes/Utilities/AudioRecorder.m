@@ -56,8 +56,8 @@
     [recorder prepareToRecord];
     
 
-    meterTimer = [NSTimer timerWithTimeInterval:0.2 target:self selector:@selector(updateMeterLevel) userInfo:nil repeats:YES];
-    [meterTimer fire];
+//    meterTimer = [NSTimer timerWithTimeInterval:0.2 target:self selector:@selector(updateMeterLevel) userInfo:nil repeats:YES];
+    meterTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(updateMeterLevel) userInfo:nil repeats:YES];
     isTimeStop = NO;
 }
 
@@ -76,13 +76,6 @@
 -(void)stopRecord
 {
     isTimeStop = YES;
-    if (meterTimer) {
-        [meterTimer invalidate];
-        meterTimer = nil;
-    }
-    if (recorder) {
-        recorder = nil;
-    }
     [recorder stop];
 }
 
@@ -100,6 +93,9 @@
     {
         [recorder updateMeters];
         currentMeter = [recorder peakPowerForChannel:0];
+    }
+    if (_meterLevelBlock) {
+        _meterLevelBlock(currentMeter+55);
     }
 }
 @end

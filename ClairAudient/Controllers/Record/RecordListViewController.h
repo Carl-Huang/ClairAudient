@@ -10,6 +10,7 @@
 
 @interface RecordListViewController : CommonViewController<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIImageView *bgView;
 - (IBAction)backAction:(id)sender;
 
 - (IBAction)rightItemAction:(id)sender;

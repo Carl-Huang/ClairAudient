@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MixingMusicListViewController">
             <connections>
+                <outlet property="bgView" destination="nC1-BD-Gc8" id="f10-at-tej"/>
                 <outlet property="searchBtn" destination="qev-Uq-j4P" id="FsN-8n-MZ5"/>
                 <outlet property="searchField" destination="dva-Rs-LWe" id="p8s-6Y-3MV"/>
                 <outlet property="tableView" destination="yB5-se-Fw2" id="eqo-XY-0LU"/>

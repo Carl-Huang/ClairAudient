@@ -14,4 +14,5 @@
 - (IBAction)showCatalogRankVC:(id)sender;
 - (IBAction)showDownloadRankVC:(id)sender;
 - (IBAction)showRecommendSoundVC:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *bgView;
 @end

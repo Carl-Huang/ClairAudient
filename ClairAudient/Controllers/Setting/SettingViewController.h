@@ -13,4 +13,5 @@
 - (IBAction)pushBack:(id)sender;
 - (IBAction)rightItemAction:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIImageView *bgView;
 @end

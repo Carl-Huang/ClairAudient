@@ -9,5 +9,6 @@
 #import "CommonViewController.h"
 
 @interface ChampionHomePageViewController : CommonViewController
+@property (weak, nonatomic) IBOutlet UIImageView *bgView;
 
 @end

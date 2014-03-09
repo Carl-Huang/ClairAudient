@@ -10,4 +10,10 @@
 
 @interface ThemeViewController : CommonViewController
 
+@property (weak, nonatomic) IBOutlet UIImageView *bgView;
+
+- (IBAction)defaultTheme:(id)sender;
+- (IBAction)simpleTheme:(id)sender;
+- (IBAction)paowenTheme:(id)sender;
+- (IBAction)froestTheme:(id)sender;
 @end

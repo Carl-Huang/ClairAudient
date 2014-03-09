@@ -19,11 +19,6 @@
     [ControlCenter setNavigationTitleWhiteColor];
     [self custonNavigationBar];
     
-//    MutiMixingViewController * viewController = [[MutiMixingViewController alloc]initWithNibName:@"MutiMixingViewController" bundle:nil];
-//    self.window.rootViewController = viewController;
-//    [self.window makeKeyAndVisible];
-//    viewController = nil;
-    
     //分享配置
 //    [self setupShareStuff];
     
@@ -81,6 +76,8 @@
         [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"setting_bar"] forBarMetrics:UIBarMetricsDefault];
     }
 }
+
+
 //
 //-(void)setupShareStuff
 //{

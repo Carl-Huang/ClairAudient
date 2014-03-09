@@ -17,24 +17,25 @@
 @interface RecordViewController ()<UIAlertViewDelegate>
 {
     AudioManager    * audioManager;
-    NSTimer         * counter;
+    AudioRecorder   * recorder;
     
+    NSTimer         * counter;
     NSInteger       hour;
     NSInteger       minute;
     NSInteger       second;
-    
     NSString * defaultFileName;
     NSURL    * recordFileURL;
     NSString * recordMakeTime;
     NSString * recordFilePath;
     
-    AudioRecorder * recorder;
+    UIImage * stretchImage;
 }
 @property (strong ,nonatomic) AudioWriter * writer;
+@property (assign ,nonatomic) CGFloat maximumWidth;
 @end
 
 @implementation RecordViewController
-@synthesize writer;
+@synthesize writer,maximumWidth;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,10 +51,39 @@
     [super viewDidLoad];
     audioManager = [AudioManager shareAudioManager];
     recorder = [AudioRecorder shareAudioRecord];
+    __weak RecordViewController * weakSelf = self;
+    [recorder setMeterLevelBlock:^(CGFloat meter)
+    {
+        CGRect rect = weakSelf.indicatorView.frame;
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            weakSelf.indicatorView.transform = CGAffineTransformMakeScale(meter/rect.size.width, 1);
+//        });
+        
+        CGFloat  meterLevel = (CGFloat)abs(meter);
+        if(meterLevel > weakSelf.maximumWidth)
+        {
+            weakSelf.maximumWidth = meterLevel;
+        }
+        NSLog(@"%f",meterLevel);
+        rect.size.width = meterLevel/weakSelf.maximumWidth * weakSelf.maximumWidth;
+        weakSelf.indicatorView.frame = rect;
+    }];
     
     
     
+    
+    
+//    UIImage * tempImage = [UIImage imageNamed:@"record_35.png"]; //41 * 41
+//    stretchImage = [tempImage resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5) resizingMode:UIImageResizingModeTile];
+    
+    CGRect rect = _indicatorView.frame;
+    maximumWidth = rect.size.width;
+    rect.size.width = 0;
+    _indicatorView.frame = rect;
+    
+//    _indicatorView.transform = CGAffineTransformMakeScale(0.2, 0.5);
     [self.beginRecordView setHidden:YES];
+    
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -76,25 +106,29 @@
             minute = 0;
         }
     }
-    @autoreleasepool {
-        NSString * hourStr = [NSString stringWithFormat:@"%ld",(long)hour];
-        if ([hourStr length] == 1) {
-            hourStr = [@"0" stringByAppendingString:hourStr];
-        }
         
-        NSString * minuteStr = [NSString stringWithFormat:@"%ld",(long)minute];
-        if ([minuteStr length] == 1) {
-            minuteStr = [@"0" stringByAppendingString:minuteStr];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        @autoreleasepool {
+            NSString * hourStr = [NSString stringWithFormat:@"%ld",(long)hour];
+            if ([hourStr length] == 1) {
+                hourStr = [@"0" stringByAppendingString:hourStr];
+            }
+            
+            NSString * minuteStr = [NSString stringWithFormat:@"%ld",(long)minute];
+            if ([minuteStr length] == 1) {
+                minuteStr = [@"0" stringByAppendingString:minuteStr];
+            }
+            
+            NSString * secondStr = [NSString stringWithFormat:@"%ld",(long)second];
+            if ([secondStr length] == 1) {
+                secondStr = [@"0" stringByAppendingString:secondStr];
+            }
+            NSString * timeStr = [NSString stringWithFormat:@"%@:%@:%@",hourStr,minuteStr,secondStr];
+            self.clocker.text = timeStr;
         }
-        
-        NSString * secondStr = [NSString stringWithFormat:@"%ld",(long)second];
-        if ([secondStr length] == 1) {
-            secondStr = [@"0" stringByAppendingString:secondStr];
-        }
-        NSString * timeStr = [NSString stringWithFormat:@"%@:%@:%@",hourStr,minuteStr,secondStr];
-        self.clocker.text = timeStr;
+    });
+       
 
-    }
 }
 
 -(void)resetClocker

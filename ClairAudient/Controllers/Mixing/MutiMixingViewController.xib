@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MutiMixingViewController">
             <connections>
+                <outlet property="bgView" destination="ZNu-Cv-Tsp" id="bjc-1T-pft"/>
                 <outlet property="contentView" destination="jv5-7c-axM" id="Kyp-7f-5An"/>
                 <outlet property="endTimeLabel" destination="5gb-Uy-ePr" id="RAt-sn-sZz"/>
                 <outlet property="lengthLabel" destination="3Od-D6-4bS" id="vSb-y8-qNU"/>

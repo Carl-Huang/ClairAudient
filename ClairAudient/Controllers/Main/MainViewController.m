@@ -37,6 +37,7 @@
     return self;
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -82,7 +83,6 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -211,6 +211,13 @@
         if ([object count]) {
             for (NSString * imgStr in object) {
                 //获取图片
+                NSInteger last = [self.productImages count] - [object count];
+                if (last >=0) {
+                    for (int i = [object count]-1;i < last ; ++i) {
+                        UIImageView * imageView = [weakSelf.productImages objectAtIndex:i];
+                        [weakSelf.productImages removeObject:imageView];
+                    }
+                }
                 if (![imgStr isKindOfClass:[NSNull class]]) {
                     [weakSelf getImage:imgStr withContainer:imgArray];
                 }
@@ -219,6 +226,7 @@
     } failureBlock:^(NSError *error, NSString *responseString) {
         ;
     }];
+
 }
 
 -(void)getImage:(NSString *)imgStr withContainer:(NSMutableArray *)container
@@ -230,12 +238,12 @@
             UIImageView * imageView = nil;
             if (!isDownloadImage) {
                 isDownloadImage = YES;
-                [productImages removeAllObjects];
+                [weakSelf.productImages removeAllObjects];
             }
             
             if ([object isKindOfClass:[UIImage class]]) {
                 imageView = [[UIImageView alloc]initWithImage:object];
-                [productImages addObject:imageView];
+                [weakSelf.productImages addObject:imageView];
             }
             [self updateAutoScrollViewItem];
         }

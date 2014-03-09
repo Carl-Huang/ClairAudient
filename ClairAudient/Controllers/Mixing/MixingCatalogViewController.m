@@ -142,8 +142,6 @@
                 {
                     //下载完成
                     dispatch_async(dispatch_get_main_queue(), ^{
-//                        [weakSelf showAlertViewWithMessage:[NSString stringWithFormat:@"%@下载完成",[musicObj valueForKey:@"Name"]]];
-//                        
                         [GobalMethod localNotificationBody:[NSString stringWithFormat:@"%@下载完成",[musicObj valueForKey:@"Name"]]];
                         block (nil,nil);
                         CGFloat musicLength = [GobalMethod getMusicLength:[NSURL fileURLWithPath:exportFilePath]];

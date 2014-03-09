@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIView *controlBtnView;
 
 @property (strong ,nonatomic) NSDictionary * mutiMixingInfo;
+@property (weak, nonatomic) IBOutlet UIImageView *bgView;
 
 @property (weak, nonatomic) IBOutlet UILabel *startTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *endTimeLabel;

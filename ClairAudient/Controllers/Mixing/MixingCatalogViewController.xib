@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MixingCatalogViewController">
             <connections>
+                <outlet property="bgView" destination="SYb-Rj-6k4" id="qfd-6F-QuG"/>
                 <outlet property="sortBtn_1" destination="tsZ-0X-ehw" id="KCm-gr-42o"/>
                 <outlet property="sortBtn_2" destination="ZWG-tY-U6G" id="wfa-Or-wjM"/>
                 <outlet property="sortBtn_3" destination="PId-U3-4c2" id="tvl-7b-O8c"/>

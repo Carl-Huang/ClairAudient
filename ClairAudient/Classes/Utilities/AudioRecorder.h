@@ -7,12 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
+typedef void(^GetMeterLevelBlock) (CGFloat meter);
 @interface AudioRecorder : NSObject
 
-
+@property (strong ,nonatomic) GetMeterLevelBlock meterLevelBlock;
 +(AudioRecorder *)shareAudioRecord;
-
 -(void)initRecordWithPath:(NSString *)localFilePath;
 -(void)startRecord;
 -(void)pauseRecord;

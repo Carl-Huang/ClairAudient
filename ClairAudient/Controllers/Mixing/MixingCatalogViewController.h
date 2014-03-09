@@ -14,6 +14,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *sortBtn_3;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) Catalog * parentCatalog;
+@property (weak, nonatomic) IBOutlet UIImageView *bgView;
+
+
 - (IBAction)sortByUpload:(id)sender;
 - (IBAction)sourtByAction:(id)sender;
 - (IBAction)sortBySampel:(id)sender;

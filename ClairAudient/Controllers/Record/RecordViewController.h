@@ -24,5 +24,8 @@
 @property (weak, nonatomic) IBOutlet UIView *beginRecordView;
 
 @property (weak, nonatomic) IBOutlet UIView *beforeRecordView;
+@property (weak, nonatomic) IBOutlet UIView *indicatorView;
+@property (weak, nonatomic) IBOutlet UIImageView *bgView;
+
 
 @end

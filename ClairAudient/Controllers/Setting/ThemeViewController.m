@@ -8,6 +8,7 @@
 
 #import "ThemeViewController.h"
 #import "UIViewController+CustomBarItemPosition.h"
+#import "UserDefaultMacro.h"
 @interface ThemeViewController ()
 
 @end
@@ -40,6 +41,31 @@
 {
     self.title = @"关于积分";
     [self setLeftAndRightBarItem];
+}
+
+
+- (IBAction)defaultTheme:(id)sender {
+    [[NSUserDefaults standardUserDefaults]setObject:@"hunyin_6.png" forKey:ThemeImage];
+    [[NSUserDefaults standardUserDefaults ]synchronize];
+    [self.bgView setImage:[UIImage imageNamed:@"hunyin_6.png"]];
+}
+
+- (IBAction)simpleTheme:(id)sender {
+    [[NSUserDefaults standardUserDefaults]setObject:@"hunyin_6.png" forKey:ThemeImage];
+    [[NSUserDefaults standardUserDefaults ]synchronize];
+    [self.bgView setImage:[UIImage imageNamed:@"hunyin_6.png"]];
+}
+
+- (IBAction)paowenTheme:(id)sender {
+    [[NSUserDefaults standardUserDefaults]setObject:@"hunyin_6.png" forKey:ThemeImage];
+    [[NSUserDefaults standardUserDefaults ]synchronize];
+    [self.bgView setImage:[UIImage imageNamed:@"hunyin_6.png"]];
+}
+
+- (IBAction)froestTheme:(id)sender {
+    [[NSUserDefaults standardUserDefaults]setObject:@"hunyin_6.png" forKey:ThemeImage];
+    [[NSUserDefaults standardUserDefaults ]synchronize];
+    [self.bgView setImage:[UIImage imageNamed:@"hunyin_6.png"]];
 }
 
 @end

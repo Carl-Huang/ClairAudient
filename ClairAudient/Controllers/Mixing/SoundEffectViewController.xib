@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SoundEffectViewController">
             <connections>
+                <outlet property="bgView" destination="pv9-3s-ENO" id="RfO-y8-Qtq"/>
                 <outlet property="containView" destination="dQ9-mS-rp7" id="qKz-NT-ufV"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>

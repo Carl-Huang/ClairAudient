@@ -10,5 +10,5 @@
 #define ClairAudient_UserDefaultMacro_h
 
 #define StartImage  @"StartImage"
-
+#define ThemeImage  @"ThemeImage"
 #endif

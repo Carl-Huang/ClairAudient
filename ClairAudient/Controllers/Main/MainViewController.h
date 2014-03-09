@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *xunyinBtn;
 @property (weak, nonatomic) IBOutlet UIButton *jifenBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *startImage;
+@property (weak, nonatomic) IBOutlet UIImageView *bgView;
 
 
 

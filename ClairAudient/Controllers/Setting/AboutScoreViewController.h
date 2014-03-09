@@ -9,6 +9,7 @@
 #import "CommonViewController.h"
 
 @interface AboutScoreViewController : CommonViewController
+@property (weak, nonatomic) IBOutlet UIImageView *bgView;
 
 
 @end

@@ -11,4 +11,5 @@
 @interface CatalogRankViewController : CommonViewController<UITableViewDataSource,UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIImageView *bgView;
 @end

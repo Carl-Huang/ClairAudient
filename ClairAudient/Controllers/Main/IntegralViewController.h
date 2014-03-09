@@ -13,4 +13,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *integralLabel;
 - (IBAction)showAboutScoreVC:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIImageView *bgView;
 @end

@@ -10,6 +10,7 @@
 
 @interface MixingEffectViewController : CommonViewController
 @property (weak, nonatomic) IBOutlet UITextField *searchField;
+@property (weak, nonatomic) IBOutlet UIImageView *bgView;
 - (IBAction)searchAction:(id)sender;
 - (IBAction)finishType:(id)sender;
 

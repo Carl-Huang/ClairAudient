@@ -10,6 +10,8 @@
 
 @interface SoundEffectViewController : CommonViewController
 @property (weak, nonatomic) IBOutlet UIView *containView;
+@property (weak, nonatomic) IBOutlet UIImageView *bgView;
+
 
 - (IBAction)backAction:(id)sender;
 @end
