@@ -17,6 +17,8 @@
 {
     [ControlCenter makeKeyAndVisible];
     [ControlCenter setNavigationTitleWhiteColor];
+    
+    [self initializationDownloadQueue];
     [self custonNavigationBar];
     
     //分享配置
@@ -77,7 +79,16 @@
     }
 }
 
+-(void)initializationDownloadQueue
+{
+    self.downloadOperateQueue = [[NSOperationQueue alloc]init];
+}
 
+-(void)addnewOperation:(NSOperation *)operation
+{
+    [self.downloadOperateQueue addOperation:operation];
+    
+}
 //
 //-(void)setupShareStuff
 //{

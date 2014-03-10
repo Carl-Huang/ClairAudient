@@ -84,14 +84,20 @@
 -(void)playItemWithPath:(NSString *)localFilePath length:(NSString *)length
 {
     NSURL *inputFileURL = [NSURL fileURLWithPath:localFilePath];
-    currentPlayFileLength = length.floatValue;
     if (self.reader) {
-        self.reader = nil;
+        if ([self.reader.audioFileURL.absoluteString isEqualToString:inputFileURL.absoluteString]) {
+            [self.audioMng play];
+            [self.reader play];
+            return;
+        }
     }
+    currentSelectedItemSlider.value = 0.0;
+    currentSelectedItemSlider.maximumValue = 1.0;
     self.reader = [[AudioReader alloc]
                    initWithAudioFileURL:inputFileURL
                    samplingRate:self.audioMng.samplingRate
                    numChannels:self.audioMng.numOutputChannels];
+    currentPlayFileLength = floor([_reader getDuration]);
     self.reader.delegate = self;
     //太累了，要记住一定要设置currentime = 0.0,表示开始时间   :]
     self.reader.currentTime = 0.0;
@@ -170,8 +176,6 @@
                 MyDownloadCell * cell = (MyDownloadCell *)[self.tableView cellForRowAtIndexPath:index];
                 [cell.controlBtn setSelected:!cell.controlBtn.selected];
                 currentSelectedItemSlider = cell.playSlider;
-                currentSelectedItemSlider.value = 0.0;
-                currentSelectedItemSlider.maximumValue = info.length.floatValue;
                 currentPlayItemControlBtn = cell.controlBtn;
                 if (cell.controlBtn.selected) {
                     [self playItemWithPath:info.localPath length:info.length];
@@ -180,9 +184,6 @@
                 }else
                 {
                     [self.audioMng  pause];
-                    if ([self.reader playing]) {
-                        [self.reader stop];
-                    }
                 }
             }
         }
@@ -242,7 +243,8 @@
     {
         NSLog(@"%f",location);
         dispatch_async(dispatch_get_main_queue(), ^{
-            currentSelectedItemSlider.value = ceil(location);
+            CGFloat process = [[NSString stringWithFormat:@"%0.3f",location/currentPlayFileLength]floatValue];
+            currentSelectedItemSlider.value = process;
         });
     }
     

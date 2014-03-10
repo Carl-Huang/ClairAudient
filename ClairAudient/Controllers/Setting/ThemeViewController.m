@@ -51,21 +51,21 @@
 }
 
 - (IBAction)simpleTheme:(id)sender {
-    [[NSUserDefaults standardUserDefaults]setObject:@"hunyin_6.png" forKey:ThemeImage];
+    [[NSUserDefaults standardUserDefaults]setObject:@"简约.png" forKey:ThemeImage];
     [[NSUserDefaults standardUserDefaults ]synchronize];
-    [self.bgView setImage:[UIImage imageNamed:@"hunyin_6.png"]];
+    [self.bgView setImage:[UIImage imageNamed:@"简约.png"]];
 }
 
 - (IBAction)paowenTheme:(id)sender {
-    [[NSUserDefaults standardUserDefaults]setObject:@"hunyin_6.png" forKey:ThemeImage];
+    [[NSUserDefaults standardUserDefaults]setObject:@"豹纹主题.png" forKey:ThemeImage];
     [[NSUserDefaults standardUserDefaults ]synchronize];
-    [self.bgView setImage:[UIImage imageNamed:@"hunyin_6.png"]];
+    [self.bgView setImage:[UIImage imageNamed:@"豹纹主题.png"]];
 }
 
 - (IBAction)froestTheme:(id)sender {
-    [[NSUserDefaults standardUserDefaults]setObject:@"hunyin_6.png" forKey:ThemeImage];
+    [[NSUserDefaults standardUserDefaults]setObject:@"绿野仙踪.png" forKey:ThemeImage];
     [[NSUserDefaults standardUserDefaults ]synchronize];
-    [self.bgView setImage:[UIImage imageNamed:@"hunyin_6.png"]];
+    [self.bgView setImage:[UIImage imageNamed:@"绿野仙踪.png"]];
 }
 
 @end

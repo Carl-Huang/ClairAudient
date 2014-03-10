@@ -136,9 +136,9 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Slb-VH-vZp">
-                            <rect key="frame" x="236" y="481" width="46" height="30"/>
+                            <rect key="frame" x="175" y="476" width="118" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="跳过">
+                            <state key="normal" backgroundImage="startBtn.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -163,6 +163,7 @@
         <image name="first_7.png" width="143" height="115"/>
         <image name="first_8.png" width="145" height="59"/>
         <image name="first_9.png" width="146" height="59"/>
+        <image name="startBtn.png" width="238" height="54"/>
         <image name="startDefaultPage.png" width="480" height="800"/>
     </resources>
 </document>

@@ -48,8 +48,8 @@
 {
     AVURLAsset* audioAsset =[AVURLAsset assetWithURL:url];
     CMTime audioDuration = audioAsset.duration;
-    float audioDurationSeconds =CMTimeGetSeconds(audioDuration)/60.0f;
-    return audioDurationSeconds;
+    float audioDurationMinute =CMTimeGetSeconds(audioDuration)/60.0f;
+    return audioDurationMinute;
 }
 
 +(NSString *)getMakeTime;

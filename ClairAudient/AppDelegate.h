@@ -13,5 +13,7 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UINavigationController * navigationController;
 
-@property (strong, nonatomic) AFURLConnectionOperation * downloadOperation;
+@property (strong, nonatomic) NSOperationQueue * downloadOperateQueue;
+
+-(void)addnewOperation:(NSOperation *)operation;
 @end

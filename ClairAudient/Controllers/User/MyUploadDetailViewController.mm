@@ -224,7 +224,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
     NSURL *inputFileURL = [NSURL fileURLWithPath:path];
     
     //TODO:不知道是不是音乐文件问题，下面的方法读取文件长度不正确   :[
-    currentPlayFileLength = [GobalMethod getMusicLength:inputFileURL];
+//    currentPlayFileLength = [GobalMethod getMusicLength:inputFileURL] * 60;
     
     
     if (weakSelf.reader) {
@@ -323,8 +323,8 @@ static NSString * cellIdentifier = @"cellIdentifier";
             {
                 isDowning = YES;
                 AppDelegate * myDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-                myDelegate.downloadOperation = [[AFURLConnectionOperation alloc]initWithRequest:request];
-                myDelegate.downloadOperation.completionBlock = ^()
+                AFURLConnectionOperation *downloadOperation = [[AFURLConnectionOperation alloc]initWithRequest:request];
+                downloadOperation.completionBlock = ^()
                 {
                     //下载完成
                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -341,8 +341,9 @@ static NSString * cellIdentifier = @"cellIdentifier";
                         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
                     });
                 };
-                myDelegate.downloadOperation.outputStream = [NSOutputStream outputStreamToFileAtPath:exportFilePath append:NO];
-                [myDelegate.downloadOperation start];
+                downloadOperation.outputStream = [NSOutputStream outputStreamToFileAtPath:exportFilePath append:NO];
+                [myDelegate addnewOperation:downloadOperation];
+                downloadOperation = nil;
             }
             
         }];
@@ -367,6 +368,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
                 [self showAlertViewWithMessage:@"已经下载"];
             }else
             {
+                AppDelegate * myDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
                 AFURLConnectionOperation * downloadOperation = [[AFURLConnectionOperation alloc]initWithRequest:request];
                 downloadOperation.completionBlock = ^()
                 {
@@ -386,7 +388,8 @@ static NSString * cellIdentifier = @"cellIdentifier";
                     });
                 };
                 downloadOperation.outputStream = [NSOutputStream outputStreamToFileAtPath:exportFilePath append:NO];
-                [downloadOperation start];
+                [myDelegate addnewOperation:downloadOperation];
+                downloadOperation = nil;
             }
             
         }];

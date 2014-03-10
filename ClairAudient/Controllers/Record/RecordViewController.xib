@@ -23,12 +23,16 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="record_8.png" id="bUW-Zr-NE8">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="bUW-Zr-NE8">
                             <rect key="frame" x="0.0" y="63" width="320" height="505"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="record_.png" id="IPb-Aj-dTN">
                             <rect key="frame" x="0.0" y="-1" width="320" height="64"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="luyin.png" id="P7b-Km-Zdo">
+                            <rect key="frame" x="0.0" y="63" width="320" height="281"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="rMG-6Y-cnw">
@@ -54,7 +58,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yRg-7D-8bZ">
-                            <rect key="frame" x="90" y="209" width="140" height="32"/>
+                            <rect key="frame" x="90" y="289" width="140" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -162,6 +166,7 @@
     </objects>
     <resources>
         <image name="back.png" width="30" height="25"/>
+        <image name="luyin.png" width="320" height="281"/>
         <image name="record_.png" width="320" height="59"/>
         <image name="record_10.png" width="76" height="67"/>
         <image name="record_11.png" width="76" height="67"/>
@@ -169,7 +174,6 @@
         <image name="record_3.png" width="76" height="67"/>
         <image name="record_4.png" width="43" height="43"/>
         <image name="record_5.png" width="320" height="67"/>
-        <image name="record_8.png" width="320" height="474"/>
         <image name="record_9.png" width="76" height="67"/>
     </resources>
 </document>
