@@ -259,19 +259,22 @@
 +(NSString *)convertSecondToMinute:(CGFloat)time
 {
     NSInteger roundDownSecond = floor(time);
-    CGFloat   h = roundDownSecond / (60 * 60);
-    CGFloat   m = floor((time - h * 60) / 60);
-    CGFloat   s = (time - h * 60*60 - m * 60);
+    int   h = roundDownSecond / (60 * 60);
+    int   m = floor((time - h * 60) / 60);
+    int   s = (time - h * 60*60 - m * 60);
     
     NSString * str = nil;
     if (h ==0) {
         if (m == 0 && h == 0) {
-            str = [NSString stringWithFormat:@"0:%0.0f",s];
+            str = [NSString stringWithFormat:@"00:%02d",s];
         }else
-        str = [NSString stringWithFormat:@"%0.f:%0.f",m,s];
+        {
+            str = [NSString stringWithFormat:@"%02d:%02d",m,s];
+        }
+        
     }else
     {
-        str = [NSString stringWithFormat:@"%0.f:%0.f:%0.f",h,m,s];
+        str = [NSString stringWithFormat:@"%02d:%02d:%02d",h,m,s];
     }
     
     

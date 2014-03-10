@@ -89,12 +89,31 @@ static NSString * cellIdentifier = @"cellIdentifier";
     isPlaying = NO;
     currentPlayFileLength = nil;
     myDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+//    __weak MyUploadDetailViewController * weakSelf = self;
+//    [GobalMethod getExportPath:[_voiceItem.vl_name stringByAppendingPathExtension:@"mp3"] completedBlock:^(BOOL isDownloaded, NSString *exportFilePath) {
+//        if (isDownloaded) {
+//            isPlayLocalFile = YES;
+//            [weakSelf startLocalPlayerWithPath:exportFilePath];
+//        }else
+//        {
+//            isPlayStreamFile = YES;
+//            [weakSelf startStreamPlayer];
+//        }
+//    }];
+    
+    
     // Do any additional setup after loading the view from its nib.
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    [myDelegate pause];
+    if ([myDelegate isPlaying]) {
+        [myDelegate pause];
+    }
+    if (streamPlayer) {
+        [streamPlayer stop];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -155,6 +174,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
     playView = [[[NSBundle mainBundle]loadNibNamed:@"PlayItemView" owner:self options:nil]objectAtIndex:0];
     [playView.playBtn addTarget:self action:@selector(playMusic:) forControlEvents:UIControlEventTouchUpInside];
     [playView.downloadBtn addTarget:self action:@selector(downloadMusic:) forControlEvents:UIControlEventTouchUpInside];
+    playView.playTimeLable.text = @"";
 }
 
 -(NSArray *)objectPropertyValueToArray:(id)object
@@ -322,7 +342,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
             }else
             {
                 isDowning = YES;
-                AppDelegate * myDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                myDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
                 AFURLConnectionOperation *downloadOperation = [[AFURLConnectionOperation alloc]initWithRequest:request];
                 downloadOperation.completionBlock = ^()
                 {
