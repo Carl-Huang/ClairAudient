@@ -12,6 +12,7 @@
 @interface CycleScrollView : UIView
 
 @property (nonatomic , readonly) UIScrollView *scrollView;
+@property (strong ,nonatomic) NSTimer * animationTimer;
 /**
  *  初始化
  *
@@ -35,6 +36,6 @@
  **/
 @property (nonatomic , copy) void (^TapActionBlock)(NSInteger pageIndex);
 
-
-
+-(void)startTimer;
+-(void)stopTimer;
 @end

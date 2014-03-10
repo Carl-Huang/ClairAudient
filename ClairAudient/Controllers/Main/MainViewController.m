@@ -290,10 +290,10 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         for (NSDictionary * dic in customiseImages) {
             if ([dic[@"image_type"]isEqualToString:@"积分图片"]) {
-                [_jifenBtn setImage:dic[@"common_image"] forState:UIControlStateNormal];
+                [_jifenBtn setBackgroundImage:dic[@"common_image"] forState:UIControlStateNormal];
             }else if([dic[@"image_type"]isEqualToString:@"寻音图片"])
             {
-                [_xunyinBtn setImage:dic[@"common_image"] forState:UIControlStateNormal];
+                [_xunyinBtn setBackgroundImage:dic[@"common_image"] forState:UIControlStateNormal];
             }else if([dic[@"image_type"]isEqualToString:@"欢迎图片"])
             {
                 //save the startImage to local

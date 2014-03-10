@@ -15,8 +15,8 @@
 /*
  其他
  */
-#define VoccPrefix     @"http://s1.vocc.cc/"
 
+#import "Macro.h"
 
 #import <Availability.h>
 

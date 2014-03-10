@@ -16,7 +16,6 @@
 @property (nonatomic , strong) NSMutableArray *contentViews;
 @property (nonatomic , strong) UIScrollView *scrollView;
 @property (nonatomic , strong) UIPageControl * pageController;
-@property (nonatomic , strong) NSTimer *animationTimer;
 @property (nonatomic , assign) NSTimeInterval animationDuration;
 
 @end
@@ -77,14 +76,22 @@
     return self;
 }
 
--(void)dealloc
+
+-(void)stopTimer
 {
-    if ([self.animationTimer isValid]) {
-        [self.animationTimer invalidate];
-        self.animationTimer = nil;
-    }
+//    if ([self.animationTimer isValid]) {
+//        [self.animationTimer invalidate];
+//        self.animationTimer = nil;
+//    }
+    [self.animationTimer pauseTimer];
+}
+
+-(void)startTimer
+{
+    [self.animationTimer resumeTimerAfterTimeInterval:self.animationDuration];
 }
 #pragma mark - Private
+
 
 - (void)configContentViews
 {

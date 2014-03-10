@@ -255,4 +255,34 @@
     
     obj.frame = frm;
 }
+
++(NSString *)convertSecondToMinute:(CGFloat)time
+{
+    NSInteger roundDownSecond = floor(time);
+    CGFloat   h = roundDownSecond / (60 * 60);
+    CGFloat   m = floor((time - h * 60) / 60);
+    CGFloat   s = (time - h * 60*60 - m * 60);
+    
+    NSString * str = nil;
+    if (h ==0) {
+        if (m == 0 && h == 0) {
+            str = [NSString stringWithFormat:@"0:%0.0f",s];
+        }else
+        str = [NSString stringWithFormat:@"%0.f:%0.f",m,s];
+    }else
+    {
+        str = [NSString stringWithFormat:@"%0.f:%0.f:%0.f",h,m,s];
+    }
+    
+    
+    return str;
+}
+
++(NSString *)convertMinuteToSecond:(CGFloat)time
+{
+    NSInteger minute = floor(time);
+    CGFloat   second = time - minute;
+    CGFloat totalTime = minute * 60 + second;
+    return nil;
+}
 @end

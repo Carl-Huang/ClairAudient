@@ -48,4 +48,7 @@ typedef enum _ANCHOR
 
 +(void)anchor:(UIView*)obj to:(ANCHOR)anchor withOffset:(CGPoint)offset;
 
+
++(NSString *)convertSecondToMinute:(CGFloat)time;
++(NSString *)convertMinuteToSecond:(CGFloat)time;
 @end

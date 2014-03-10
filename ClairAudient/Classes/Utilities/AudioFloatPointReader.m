@@ -5,7 +5,6 @@
 //  Created by vedon on 27/2/14.
 //  Copyright (c) 2014 com.vedon. All rights reserved.
 //
-#define CurrentPlayFilePostionInfo @"CurrentPlayFilePositionInfo"
 #import "AudioFloatPointReader.h"
 
 
@@ -31,10 +30,12 @@
 {
     // Stop playback
     [[EZOutput sharedOutput] stopPlayback];
+    AudioStreamBasicDescription bsd = _audioFile.fileFormat;
     curentPlayFileURL      = filePath;
     self.audioFile         = [EZAudioFile audioFileWithURL:filePath];
     _audioDuration         = (float)_audioFile.totalDuration;
     _totalFrame            = (float)_audioFile.totalFrames;
+    _sampleRate            = bsd.mSampleRate;
     self.audioFile.audioFileDelegate = self;
 }
 

@@ -103,8 +103,8 @@
     }
     
     self.currentPlayMusicLength = _floatReader.audioDuration;
-    self.audioTotalFrame   = _floatReader.totalFrame;
-    self.currentPlayMusicInfo = info;
+    self.audioTotalFrame        = _floatReader.totalFrame;
+    self.currentPlayMusicInfo   = info;
     self.audioMng = [AudioManager shareAudioManager];
     
     NSMutableDictionary * tempInfo = [NSMutableDictionary dictionaryWithDictionary:info];
@@ -129,9 +129,8 @@
     {
         [_floatReader seekToFilePostion:_floatReader.currentPositionOfAudioFile];
     }
-    
-    self.currentPlayMusicLength = _floatReader.audioDuration;
-    self.audioTotalFrame   = _floatReader.totalFrame;
+    self.currentPlayMusicLength     = _floatReader.audioDuration;
+    self.audioTotalFrame            = _floatReader.totalFrame;
     self.audioMng = [AudioManager shareAudioManager];
     
     [self play];
@@ -155,6 +154,12 @@
 -(void)seekToPostion:(CGFloat)postion
 {
     [_floatReader seekToFilePostion:(SInt64)postion];
+}
+
+-(CGFloat)currentPlayTime
+{
+    CGFloat time = _floatReader.audioFile.frameIndex / _floatReader.audioFile.clientFormat.mSampleRate;
+    return time;
 }
 //
 //-(void)setupShareStuff

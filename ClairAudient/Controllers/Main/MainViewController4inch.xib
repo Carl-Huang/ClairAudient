@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController">
             <connections>
                 <outlet property="adScrollView" destination="YhZ-hm-VCp" id="BnU-H6-Hyf"/>
+                <outlet property="bgView" destination="Y7s-WU-f5c" id="aFy-bi-efS"/>
                 <outlet property="jifenBtn" destination="TBl-i8-309" id="LV2-iA-KHR"/>
                 <outlet property="startImage" destination="sB2-IX-hkl" id="BFK-31-FuC"/>
                 <outlet property="startPageContainer" destination="k8O-W2-eur" id="SEx-a2-0uc"/>
@@ -40,6 +41,10 @@
                     <rect key="frame" x="0.0" y="122" width="320" height="446"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Y7s-WU-f5c">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="446"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eI8-Q2-Ufy">
                             <rect key="frame" x="14" y="20" width="293" height="77"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -51,44 +56,44 @@
                                 <action selector="showRecordVC:" destination="-1" eventType="touchUpInside" id="Xpx-I1-xwR"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2sI-SR-Hgr">
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2sI-SR-Hgr">
                             <rect key="frame" x="14" y="114" width="143" height="114"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" image="first_4.png">
+                            <state key="normal" backgroundImage="first_4.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
                                 <action selector="showFoundMusicVC:" destination="-1" eventType="touchUpInside" id="zLn-zz-Tyf"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="k1T-Y0-fFI">
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="k1T-Y0-fFI">
                             <rect key="frame" x="165" y="114" width="143" height="114"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" image="first_5.png">
+                            <state key="normal" backgroundImage="first_5.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
                                 <action selector="showMixingMusicVC:" destination="-1" eventType="touchUpInside" id="GoW-XN-Wh5"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1pU-CP-oR9">
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1pU-CP-oR9">
                             <rect key="frame" x="14" y="230" width="143" height="130"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" image="first_6.png">
+                            <state key="normal" backgroundImage="first_6.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
                                 <action selector="showMusicFansVC:" destination="-1" eventType="touchUpInside" id="App-81-uKK"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="TBl-i8-309">
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="TBl-i8-309">
                             <rect key="frame" x="165" y="230" width="143" height="130"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" image="first_7.png">
+                            <state key="normal" backgroundImage="first_6.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -160,7 +165,6 @@
         <image name="first_4.png" width="143" height="116"/>
         <image name="first_5.png" width="143" height="114"/>
         <image name="first_6.png" width="143" height="114"/>
-        <image name="first_7.png" width="143" height="115"/>
         <image name="first_8.png" width="145" height="59"/>
         <image name="first_9.png" width="146" height="59"/>
         <image name="startBtn.png" width="238" height="54"/>

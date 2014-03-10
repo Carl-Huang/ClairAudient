@@ -121,7 +121,7 @@
 		4ED175311892B570000EC483 /* MixingEffectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ED1752F1892B570000EC483 /* MixingEffectViewController.xib */; };
 		4ED175351892B8F3000EC483 /* LocalMusicViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4ED175331892B8F3000EC483 /* LocalMusicViewController.mm */; };
 		4ED175361892B8F3000EC483 /* LocalMusicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ED175341892B8F3000EC483 /* LocalMusicViewController.xib */; };
-		4EEA197C18AA5F070062D118 /* MyUploadDetailViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4EEA197A18AA5F070062D118 /* MyUploadDetailViewController.mm */; };
+		4EEA197C18AA5F070062D118 /* MyUploadDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEA197A18AA5F070062D118 /* MyUploadDetailViewController.m */; };
 		4EEA197D18AA5F070062D118 /* MyUploadDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EEA197B18AA5F070062D118 /* MyUploadDetailViewController.xib */; };
 		4EEA197F18AA72540062D118 /* testImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EEA197E18AA72540062D118 /* testImage.png */; };
 		4EFE1F6E18CC11310099BD93 /* CopyMusicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EFE1F6D18CC11310099BD93 /* CopyMusicView.m */; };
@@ -539,6 +539,7 @@
 /* Begin PBXFileReference section */
 		4E079C2E189B557900B0BB5F /* MusicMixerOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicMixerOutput.h; sourceTree = "<group>"; };
 		4E079C2F189B557900B0BB5F /* MusicMixerOutput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicMixerOutput.m; sourceTree = "<group>"; };
+		4E1132F218CDD3A2005AB34B /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		4E117965188F5F6200FB619F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4E117968188F627F00FB619F /* MusicCutter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicCutter.h; sourceTree = "<group>"; };
 		4E117969188F627F00FB619F /* MusicCutter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicCutter.m; sourceTree = "<group>"; };
@@ -710,7 +711,7 @@
 		4ED175331892B8F3000EC483 /* LocalMusicViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LocalMusicViewController.mm; sourceTree = "<group>"; };
 		4ED175341892B8F3000EC483 /* LocalMusicViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocalMusicViewController.xib; sourceTree = "<group>"; };
 		4EEA197918AA5F070062D118 /* MyUploadDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUploadDetailViewController.h; sourceTree = "<group>"; };
-		4EEA197A18AA5F070062D118 /* MyUploadDetailViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MyUploadDetailViewController.mm; sourceTree = "<group>"; };
+		4EEA197A18AA5F070062D118 /* MyUploadDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUploadDetailViewController.m; sourceTree = "<group>"; };
 		4EEA197B18AA5F070062D118 /* MyUploadDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyUploadDetailViewController.xib; sourceTree = "<group>"; };
 		4EEA197E18AA72540062D118 /* testImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testImage.png; sourceTree = "<group>"; };
 		4EFE1F6C18CC11310099BD93 /* CopyMusicView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CopyMusicView.h; sourceTree = "<group>"; };
@@ -2324,7 +2325,7 @@
 				C32F40101882878600681953 /* MyUploadViewController.m */,
 				C32F40111882878600681953 /* MyUploadViewController.xib */,
 				4EEA197918AA5F070062D118 /* MyUploadDetailViewController.h */,
-				4EEA197A18AA5F070062D118 /* MyUploadDetailViewController.mm */,
+				4EEA197A18AA5F070062D118 /* MyUploadDetailViewController.m */,
 				4EEA197B18AA5F070062D118 /* MyUploadDetailViewController.xib */,
 				C32F4014188287B600681953 /* MyDownloadViewController.h */,
 				C32F4015188287B600681953 /* MyDownloadViewController.mm */,
@@ -2356,6 +2357,7 @@
 				4EAC1DA618B0B46100C8DA2E /* GobalMethod.h */,
 				4EAC1DA718B0B46100C8DA2E /* GobalMethod.m */,
 				4EFE1F7718CC6ED80099BD93 /* UserDefaultMacro.h */,
+				4E1132F218CDD3A2005AB34B /* Macro.h */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -2844,7 +2846,7 @@
 				4EB4AC9C18B33AAB008A4DDC /* MyDownloadCell.m in Sources */,
 				C327499B187A5EBD00CF7A4A /* ThemeViewController.m in Sources */,
 				C39BBE581893DF5C00FC8F72 /* TSPopoverTouchView.m in Sources */,
-				4EEA197C18AA5F070062D118 /* MyUploadDetailViewController.mm in Sources */,
+				4EEA197C18AA5F070062D118 /* MyUploadDetailViewController.m in Sources */,
 				C3FEAF2C1871C156008EADAA /* main.m in Sources */,
 				4ED175351892B8F3000EC483 /* LocalMusicViewController.mm in Sources */,
 				C351B690187E37FE00630408 /* RecommendSoundCell.m in Sources */,

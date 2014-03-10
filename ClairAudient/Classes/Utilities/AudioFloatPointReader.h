@@ -15,6 +15,7 @@
 @property (nonatomic,strong) EZAudioFile *audioFile;
 @property (assign ,nonatomic) CGFloat audioDuration;
 @property (assign ,nonatomic) CGFloat totalFrame;
+@property (assign ,nonatomic) CGFloat sampleRate;
 @property (assign ,nonatomic) CGFloat currentPositionOfAudioFile;
 @property (strong ,nonatomic) NSArray *playlist;
 @property (assign ,nonatomic) NSInteger currentPlaySongIndex;

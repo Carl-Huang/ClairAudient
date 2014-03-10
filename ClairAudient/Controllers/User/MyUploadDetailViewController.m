@@ -21,38 +21,38 @@
 #import "MBProgressHUD.h"
 #import "AFNetworking.h"
 #import "GobalMethod.h"
-#import "AudioReader.h"
-#import "AudioManager.h"
 #import "DownloadMusicInfo.h"
 #import "PersistentStore.h"
 #import "AppDelegate.h"
 
 static NSString * cellIdentifier = @"cellIdentifier";
-@interface MyUploadDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AudioReaderDelegate,UIAlertViewDelegate>
+@interface MyUploadDetailViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 {
-    CycleScrollView * advertisementImageView;
+    CycleScrollView * autoScrollView;
     NSArray * descriptionArray;
     NSArray * contentArray;
     
     UIView * headerView;
     
     AudioPlayer * streamPlayer;
-    CGFloat currentPlayFileLength;
+    NSString * currentPlayFileLength;
     NSThread * bufferingThread;
     BOOL isDowning;
     BOOL isPlayLocalFile;
     BOOL isPlayStreamFile;
     BOOL isPlaying;
+    
+    AppDelegate * myDelegate;
+    NSArray * upperDataSource;
 }
 @property (strong ,nonatomic) UISlider * currentPlaySlider;
 @property (strong ,nonatomic) UIButton * currentControllBtn;
 @property (strong ,nonatomic) PlayItemView * playView;
-@property (strong ,nonatomic) AudioManager * audioMng;
-@property (strong ,nonatomic) AudioReader  * reader;
+@property (strong ,nonatomic) NSMutableArray * productImages;
 @end
 
 @implementation MyUploadDetailViewController
-@synthesize currentPlaySlider,playView,currentControllBtn;
+@synthesize currentPlaySlider,playView,currentControllBtn,productImages;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -87,10 +87,15 @@ static NSString * cellIdentifier = @"cellIdentifier";
     isPlayLocalFile = NO;
     isPlayStreamFile= NO;
     isPlaying = NO;
-    currentPlayFileLength = 0;
+    currentPlayFileLength = nil;
+    myDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     // Do any additional setup after loading the view from its nib.
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [myDelegate pause];
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -98,31 +103,39 @@ static NSString * cellIdentifier = @"cellIdentifier";
     // Dispose of any resources that can be recreated.
 }
 
--(void)viewWillDisappear:(BOOL)animated
-{
-    if (isPlayLocalFile) {
-        [self.audioMng pause];
-        if ([self.reader playing]) {
-            [self.reader stop];
-        }
-    }else
-    {
-        if (streamPlayer) {
-            [streamPlayer stop];
-            streamPlayer = nil;
-        }
-    }
-}
 #pragma mark - Private Method
 -(void)initializationInterface
 {
-    CGRect rect = self.scrollAdView.frame;
-    rect.origin.x = rect.origin.y = 0;
-    
-//    advertisementImageView = [[CycleScrollView alloc]initWithFrame:rect cycleDirection:CycleDirectionLandscape pictures:@[[UIImage imageNamed:@"testImage.png"],[UIImage imageNamed:@"testImage.png"]] autoScroll:YES];
-//    [self.scrollAdView addSubview:advertisementImageView];
+    CGRect rect = self.scrollAdView.bounds;
 
-    [self.contentScrollView setContentSize:CGSizeMake(420, 600)];
+    autoScrollView = [[CycleScrollView alloc] initWithFrame:rect animationDuration:2];
+    autoScrollView.backgroundColor = [UIColor clearColor];
+    NSMutableArray * images = [NSMutableArray array];
+    productImages = [NSMutableArray array];
+    //Placehoder Image
+    if ([productImages count] == 0) {
+        productImages = [NSMutableArray arrayWithArray: @[[UIImage imageNamed:@"first_2.png"]]];
+    }
+    for (UIImage * image in productImages) {
+        UIImageView * tempImageView = [[UIImageView alloc]initWithImage:image];
+        [tempImageView setFrame:rect];
+        [images addObject:tempImageView];
+        tempImageView = nil;
+    }
+    autoScrollView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
+        return images[pageIndex];
+    };
+    autoScrollView.totalPagesCount = ^NSInteger(void){
+        return [images count];
+    };
+    autoScrollView.TapActionBlock = ^(NSInteger pageIndex){
+        NSLog(@"点击了第%ld个",(long)pageIndex);
+    };
+    [self.scrollAdView addSubview:autoScrollView];
+    
+    
+    
+    [self.contentScrollView setContentSize:CGSizeMake(320, 800)];
     self.contentScrollView.scrollEnabled = YES;
     
     [self.musicInfoTable setBackgroundView:nil];
@@ -161,7 +174,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
     currentControllBtn = (UIButton *)sender;
     [currentControllBtn setSelected:!currentControllBtn.selected];
     if (currentControllBtn.selected) {
-        if (isPlaying) {
+        if (isPlayLocalFile) {
             [self updatePlayerStatus:currentControllBtn.selected];
         }else
         {
@@ -171,7 +184,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
     }else
     {
         if (isPlayLocalFile) {
-            [self.audioMng pause];
+            [myDelegate pause];
         }else if(isPlayStreamFile)
         {
             if (streamPlayer) {
@@ -201,9 +214,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
 -(void)updatePlayerStatus:(BOOL)sign
 {
     if (isPlayLocalFile) {
-        if (self.audioMng) {
-            [self.audioMng play];
-        }
+        [myDelegate play];
     }else if(isPlayStreamFile)
     {
         if (streamPlayer) {
@@ -215,38 +226,21 @@ static NSString * cellIdentifier = @"cellIdentifier";
 -(void)startLocalPlayerWithPath:(NSString *)path
 {
     NSURL *inputFileURL = [NSURL fileURLWithPath:path];
-//    __weak MyUploadDetailViewController * weakSelf = self;
-//    weakSelf.audioMng = [AudioManager shareAudioManager];
-//    [weakSelf.audioMng pause];
-//    if ([weakSelf.reader playing]) {
-//        [weakSelf.reader stop];
-//    }
-//    
-//    //TODO:不知道是不是音乐文件问题，下面的方法读取文件长度不正确   :[
-////    currentPlayFileLength = [GobalMethod getMusicLength:inputFileURL] * 60;
-//    
-//    
-//    if (weakSelf.reader) {
-//        weakSelf.reader = nil;
-//    }
-//    weakSelf.reader = [[AudioReader alloc]
-//                       initWithAudioFileURL:inputFileURL
-//                       samplingRate:weakSelf.audioMng.samplingRate
-//                       numChannels:weakSelf.audioMng.numOutputChannels];
-//    currentPlayFileLength = floor([weakSelf.reader getDuration]);
-//    weakSelf.reader.delegate = self;
-//    
-//    //太累了，要记住一定要设置currentime = 0.0,表示开始时间   :]
-//    weakSelf.reader.currentTime = 0.0;
-//    
-//    
-//    [weakSelf.audioMng setOutputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels)
-//     {
-//         [weakSelf.reader retrieveFreshAudio:data numFrames:numFrames numChannels:numChannels];
-//     }];
-//    [weakSelf.audioMng play];
-    AppDelegate * myDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
     [myDelegate playItemWithURL:inputFileURL withMusicInfo:nil withPlaylist:nil];
+    self.playView.playSlider.maximumValue = myDelegate.audioTotalFrame;
+    [self.playView.playSlider addTarget:self action:@selector(updateCurrentPlayMusicPosition:) forControlEvents:UIControlEventTouchUpInside];
+    self.playView.playSlider.continuous = NO;
+    currentPlayFileLength = [GobalMethod convertSecondToMinute:myDelegate.currentPlayMusicLength];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateProcessingLocation:) name:CurrentPlayFilePostionInfo object:nil];
+}
+
+-(void)updateCurrentPlayMusicPosition:(id)sender
+{
+    UISlider * slider = (UISlider*)sender;
+    if (slider.touchInside) {
+        [myDelegate seekToPostion:slider.value];
+    }
 }
 
 -(void)startStreamPlayer
@@ -369,7 +363,6 @@ static NSString * cellIdentifier = @"cellIdentifier";
                 [self showAlertViewWithMessage:@"已经下载"];
             }else
             {
-                AppDelegate * myDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
                 AFURLConnectionOperation * downloadOperation = [[AFURLConnectionOperation alloc]initWithRequest:request];
                 downloadOperation.completionBlock = ^()
                 {
@@ -417,6 +410,55 @@ static NSString * cellIdentifier = @"cellIdentifier";
     
 }
 
+-(void)downloadUpperImage
+{
+    NSMutableArray * imageArray = [NSMutableArray array];
+    NSInteger last = [self.productImages count] - [upperDataSource count];
+    if (last >=0) {
+        for (int i = [upperDataSource count]-1;i < last ; ++i) {
+            UIImageView * imageView = [self.productImages objectAtIndex:i];
+            [self.productImages removeObject:imageView];
+        }
+    }
+    
+    for (int i =0 ;i<[upperDataSource count];i++) {
+//        UIImageView * info = [[UIImageView alloc]initWithImage:image];
+//        info.tag = tagNum;
+//        
+//        NSInteger count = weakSelf.autoScrollviewDataSource.count;
+//        if (i < count) {
+//            [weakSelf.autoScrollviewDataSource replaceObjectAtIndex:i withObject:info];
+//        }else
+//        {
+//            [weakSelf.autoScrollviewDataSource addObject:info];
+//        }
+        
+        [self updateAutoScrollViewItem];
+    }
+}
+
+-(void)updateAutoScrollViewItem
+{
+    __weak MyUploadDetailViewController * weakSelf = self;
+    autoScrollView.totalPagesCount = ^NSInteger(void){
+        return [weakSelf.productImages count];
+    };
+    autoScrollView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
+        return weakSelf.productImages[pageIndex];
+    };
+}
+#pragma  mark - Audio Notification
+-(void)updateProcessingLocation:(NSNotification *)noti
+{
+    
+    
+    if (!self.playView.playSlider.touchInside) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.playView.playTimeLable.text = [NSString stringWithFormat:@"%@/%@",currentPlayFileLength,[GobalMethod convertSecondToMinute:[myDelegate currentPlayTime]]];
+            self.playView.playSlider.value = [noti.object floatValue];
+        });
+    }
+}
 #pragma mark - UITableView Delegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -448,28 +490,6 @@ static NSString * cellIdentifier = @"cellIdentifier";
         [headerView setBackgroundColor:[UIColor clearColor]];
     }
     return headerView;
-}
-
-#pragma mark - AudioReader Delegate
--(void)currentFileLocation:(CGFloat)location
-{
-    @autoreleasepool {
-        if (location >= currentPlayFileLength) {
-            [self.audioMng pause];
-            //        [currentPlayItemControlBtn setSelected:NO];
-            //        currentSelectedItemSlider.value = 0.0f;
-            self.playView.playSlider.value = 0.0;
-            [self.playView.playBtn setSelected:NO];
-        }else
-        {
-            NSLog(@"%f",location);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                CGFloat process = [[NSString stringWithFormat:@"%0.2f",location/currentPlayFileLength]floatValue];
-                self.playView.playSlider.value = process;
-            });
-        }
-    }
-   
 }
 
 #pragma mark - UIAlertView Deleagte
