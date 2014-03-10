@@ -214,38 +214,39 @@ static NSString * cellIdentifier = @"cellIdentifier";
 
 -(void)startLocalPlayerWithPath:(NSString *)path
 {
-    __weak MyUploadDetailViewController * weakSelf = self;
-    weakSelf.audioMng = [AudioManager shareAudioManager];
-    [weakSelf.audioMng pause];
-    if ([weakSelf.reader playing]) {
-        [weakSelf.reader stop];
-    }
-    
     NSURL *inputFileURL = [NSURL fileURLWithPath:path];
-    
-    //TODO:不知道是不是音乐文件问题，下面的方法读取文件长度不正确   :[
-//    currentPlayFileLength = [GobalMethod getMusicLength:inputFileURL] * 60;
-    
-    
-    if (weakSelf.reader) {
-        weakSelf.reader = nil;
-    }
-    weakSelf.reader = [[AudioReader alloc]
-                       initWithAudioFileURL:inputFileURL
-                       samplingRate:weakSelf.audioMng.samplingRate
-                       numChannels:weakSelf.audioMng.numOutputChannels];
-    currentPlayFileLength = floor([weakSelf.reader getDuration]);
-    weakSelf.reader.delegate = self;
-    
-    //太累了，要记住一定要设置currentime = 0.0,表示开始时间   :]
-    weakSelf.reader.currentTime = 0.0;
-    
-    
-    [weakSelf.audioMng setOutputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels)
-     {
-         [weakSelf.reader retrieveFreshAudio:data numFrames:numFrames numChannels:numChannels];
-     }];
-    [weakSelf.audioMng play];
+//    __weak MyUploadDetailViewController * weakSelf = self;
+//    weakSelf.audioMng = [AudioManager shareAudioManager];
+//    [weakSelf.audioMng pause];
+//    if ([weakSelf.reader playing]) {
+//        [weakSelf.reader stop];
+//    }
+//    
+//    //TODO:不知道是不是音乐文件问题，下面的方法读取文件长度不正确   :[
+////    currentPlayFileLength = [GobalMethod getMusicLength:inputFileURL] * 60;
+//    
+//    
+//    if (weakSelf.reader) {
+//        weakSelf.reader = nil;
+//    }
+//    weakSelf.reader = [[AudioReader alloc]
+//                       initWithAudioFileURL:inputFileURL
+//                       samplingRate:weakSelf.audioMng.samplingRate
+//                       numChannels:weakSelf.audioMng.numOutputChannels];
+//    currentPlayFileLength = floor([weakSelf.reader getDuration]);
+//    weakSelf.reader.delegate = self;
+//    
+//    //太累了，要记住一定要设置currentime = 0.0,表示开始时间   :]
+//    weakSelf.reader.currentTime = 0.0;
+//    
+//    
+//    [weakSelf.audioMng setOutputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels)
+//     {
+//         [weakSelf.reader retrieveFreshAudio:data numFrames:numFrames numChannels:numChannels];
+//     }];
+//    [weakSelf.audioMng play];
+    AppDelegate * myDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [myDelegate playItemWithURL:inputFileURL withMusicInfo:nil withPlaylist:nil];
 }
 
 -(void)startStreamPlayer

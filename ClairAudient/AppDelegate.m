@@ -10,6 +10,8 @@
 #import "ControlCenter.h"
 #import "HWConnect.h"
 #import "MutiMixingViewController.h"
+#import "AudioFloatPointReader.h"
+#import "AudioManager.h"
 //#import <ShareSDK/ShareSDK.h>
 //#import "WXApi.h"
 @implementation AppDelegate
@@ -88,6 +90,71 @@
 {
     [self.downloadOperateQueue addOperation:operation];
     
+}
+
+#pragma mark - Audio Stuff
+-(void)playItemWithURL:(NSURL *)inputFileURL withMusicInfo:(NSDictionary *)info withPlaylist:(NSArray *)list
+{
+
+    _floatReader = [AudioFloatPointReader shareAudioFloatPointReader];
+    [_floatReader playAudioFile:inputFileURL];
+    if ([list count]) {
+        [_floatReader setPlaylist:list];
+    }
+    
+    self.currentPlayMusicLength = _floatReader.audioDuration;
+    self.audioTotalFrame   = _floatReader.totalFrame;
+    self.currentPlayMusicInfo = info;
+    self.audioMng = [AudioManager shareAudioManager];
+    
+    NSMutableDictionary * tempInfo = [NSMutableDictionary dictionaryWithDictionary:info];
+    [tempInfo setValue:inputFileURL.path forKey:@"FileURL"];
+    [tempInfo setObject:[NSNumber numberWithFloat:0] forKey:@"CurrentPosition"];
+    [tempInfo setObject:[NSNumber numberWithFloat:_floatReader.totalFrame] forKey:@"TotalFrame"];
+    tempInfo = nil;
+    
+    [self play];
+    
+}
+
+-(void)playCurrentSongWithInfo:(NSDictionary *)info
+{
+    _floatReader = [AudioFloatPointReader shareAudioFloatPointReader];
+    [_floatReader playAudioFile:[NSURL fileURLWithPath:[info valueForKey:@"FileURL"]]];
+    CGFloat recordPostion = [[info valueForKey:@"CurrentPosition"] floatValue];
+    
+    if (recordPostion >= _floatReader.currentPositionOfAudioFile) {
+        [_floatReader seekToFilePostion:[[info valueForKey:@"CurrentPosition"] floatValue]];
+    }else
+    {
+        [_floatReader seekToFilePostion:_floatReader.currentPositionOfAudioFile];
+    }
+    
+    self.currentPlayMusicLength = _floatReader.audioDuration;
+    self.audioTotalFrame   = _floatReader.totalFrame;
+    self.audioMng = [AudioManager shareAudioManager];
+    
+    [self play];
+}
+
+-(void)play
+{
+    [_floatReader startReader];
+    [self.audioMng setForceOutputToSpeaker:YES];
+}
+
+-(void)pause
+{
+    [_floatReader stopReader];
+}
+
+-(BOOL)isPlaying
+{
+    return _floatReader.playing;
+}
+-(void)seekToPostion:(CGFloat)postion
+{
+    [_floatReader seekToFilePostion:(SInt64)postion];
 }
 //
 //-(void)setupShareStuff

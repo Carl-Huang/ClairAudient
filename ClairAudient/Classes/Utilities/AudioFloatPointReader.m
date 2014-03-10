@@ -5,11 +5,14 @@
 //  Created by vedon on 27/2/14.
 //  Copyright (c) 2014 com.vedon. All rights reserved.
 //
-
+#define CurrentPlayFilePostionInfo @"CurrentPlayFilePositionInfo"
 #import "AudioFloatPointReader.h"
+
+
 @interface AudioFloatPointReader()
 {
     NSURL * curentPlayFileURL;
+    
 }
 @end
 @implementation AudioFloatPointReader
@@ -53,7 +56,7 @@
         [EZOutput sharedOutput].outputDataSource = nil;
         [[EZOutput sharedOutput] stopPlayback];
     }
-
+    
 }
 
 -(void)stopReader
@@ -61,7 +64,7 @@
     if ([[EZOutput sharedOutput] isPlaying]) {
         [EZOutput sharedOutput].outputDataSource = nil;
         [[EZOutput sharedOutput] stopPlayback];
-
+        
     }
 }
 
@@ -78,22 +81,22 @@
 #pragma mark - Private
 -(void)playNextSong
 {
-//    dispatch_async(dispatch_get_main_queue(), ^{
-        for (int i =0 ;i < [_playlist count];++i) {
-            NSURL * localPath  = [_playlist objectAtIndex:i];
-            if ([localPath.path isEqualToString:curentPlayFileURL.path]) {
-                [self stopReader];
-                if (i == [_playlist count]-1) {
-                    [self playAudioFile:[_playlist objectAtIndex:0]];
-                }else
-                {
-                    [self playAudioFile:[_playlist objectAtIndex:i+1]];
-                }
-                [self startReader];
-                break;
+    //    dispatch_async(dispatch_get_main_queue(), ^{
+    for (int i =0 ;i < [_playlist count];++i) {
+        NSURL * localPath  = [_playlist objectAtIndex:i];
+        if ([localPath.path isEqualToString:curentPlayFileURL.path]) {
+            [self stopReader];
+            if (i == [_playlist count]-1) {
+                [self playAudioFile:[_playlist objectAtIndex:0]];
+            }else
+            {
+                [self playAudioFile:[_playlist objectAtIndex:i+1]];
             }
+            [self startReader];
+            break;
         }
-//    });
+    }
+    //    });
 }
 
 
@@ -110,14 +113,14 @@
        readAudio:(float **)buffer
   withBufferSize:(UInt32)bufferSize
 withNumberOfChannels:(UInt32)numberOfChannels {
-//    NSLog(@"%f",*buffer[0]);
+    //    NSLog(@"%f",*buffer[0]);
 }
 
 -(void)audioFile:(EZAudioFile *)audioFile
  updatedPosition:(SInt64)framePosition {
-        _currentPositionOfAudioFile = (float)framePosition;
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"AudioProcessingLocation" object:[NSNumber numberWithFloat:_currentPositionOfAudioFile]];
-
+    _currentPositionOfAudioFile = (float)framePosition;
+    [[NSNotificationCenter defaultCenter]postNotificationName:CurrentPlayFilePostionInfo object:[NSNumber numberWithFloat:_currentPositionOfAudioFile]];
+    
 }
 
 #pragma mark - EZOutputDataSource
