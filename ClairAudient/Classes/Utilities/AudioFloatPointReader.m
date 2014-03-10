@@ -9,12 +9,10 @@
 
 
 @interface AudioFloatPointReader()
-{
-    NSURL * curentPlayFileURL;
-    
-}
+
 @end
 @implementation AudioFloatPointReader
+@synthesize curentPlayFileURL;
 
 +(id)shareAudioFloatPointReader
 {

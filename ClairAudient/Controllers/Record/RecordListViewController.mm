@@ -196,6 +196,12 @@
                     }
                 }
             }
+        }else
+        {
+            NSIndexPath *index = [NSIndexPath indexPathForRow:i inSection:0] ;
+            RecordListCell * cell = (RecordListCell *)[self.tableView cellForRowAtIndexPath:index];
+            [cell.controlBtn setSelected:NO];
+            cell.playSlider.value = 0.0;
         }
     }
 }

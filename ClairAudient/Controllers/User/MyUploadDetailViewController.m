@@ -103,6 +103,11 @@ static NSString * cellIdentifier = @"cellIdentifier";
     // Dispose of any resources that can be recreated.
 }
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
 #pragma mark - Private Method
 -(void)initializationInterface
 {

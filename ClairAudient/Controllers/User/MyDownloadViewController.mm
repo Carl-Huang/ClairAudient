@@ -15,7 +15,7 @@
 #import "AudioManager.h"
 #import "AudioReader.h"
 #import "MixingViewController.h"
-
+#import "AppDelegate.h"
 #define Cell_Height 91.0f
 @interface MyDownloadViewController ()<ItemDidSelectedDelegate,AudioReaderDelegate>
 {
@@ -25,6 +25,9 @@
     UISlider * currentSelectedItemSlider;
     UIButton * currentPlayItemControlBtn;
     NSTimer  * sliderTimer;
+    
+    AppDelegate * myDelegate;
+    NSString * currentPlayItem;
 }
 @property (strong ,nonatomic) AudioReader   * reader;
 @property (strong ,nonatomic) AudioManager  * audioMng;
@@ -48,6 +51,7 @@
     sliderTimer = nil;
     self.audioMng = [AudioManager shareAudioManager];
     dataSource = [PersistentStore getAllObjectWithType:[DownloadMusicInfo class]];
+    myDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -57,9 +61,8 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    [self.audioMng pause];
-    if ([self.reader playing]) {
-        [self.reader stop];
+    if ([myDelegate isPlaying]) {
+        [myDelegate pause];
     }
     
 }
@@ -68,6 +71,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 #pragma mark - Private Methods
@@ -83,31 +91,30 @@
 
 -(void)playItemWithPath:(NSString *)localFilePath length:(NSString *)length
 {
+    
     NSURL *inputFileURL = [NSURL fileURLWithPath:localFilePath];
-    if (self.reader) {
-        if ([self.reader.audioFileURL.absoluteString isEqualToString:inputFileURL.absoluteString]) {
-            [self.audioMng play];
-            [self.reader play];
-            return;
-        }
+    if([inputFileURL.absoluteString isEqualToString:[myDelegate currentPlayFilePath]])
+    {
+        //同一文件
+        [myDelegate play];
+    }else
+    {
+        [myDelegate playItemWithURL:inputFileURL withMusicInfo:nil withPlaylist:nil];
+        currentSelectedItemSlider.maximumValue = myDelegate.audioTotalFrame;
+        [currentSelectedItemSlider addTarget:self action:@selector(updateCurrentPlayMusicPosition:) forControlEvents:UIControlEventTouchUpInside];
+        currentSelectedItemSlider.continuous = NO;
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateProcessingLocation:) name:CurrentPlayFilePostionInfo object:nil];
     }
-    currentSelectedItemSlider.value = 0.0;
-    currentSelectedItemSlider.maximumValue = 1.0;
-    self.reader = [[AudioReader alloc]
-                   initWithAudioFileURL:inputFileURL
-                   samplingRate:self.audioMng.samplingRate
-                   numChannels:self.audioMng.numOutputChannels];
-    currentPlayFileLength = floor([_reader getDuration]);
-    self.reader.delegate = self;
-    //太累了，要记住一定要设置currentime = 0.0,表示开始时间   :]
-    self.reader.currentTime = 0.0;
-    __weak MyDownloadViewController * weakSelf =self;
     
-    [self.audioMng setOutputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels)
-     {
-         [weakSelf.reader retrieveFreshAudio:data numFrames:numFrames numChannels:numChannels];
-     }];
     
+}
+
+-(void)updateCurrentPlayMusicPosition:(id)sender
+{
+    UISlider * slider = (UISlider*)sender;
+    if (slider.touchInside) {
+        [myDelegate seekToPostion:slider.value];
+    }
 }
 
 -(void)updateDataSource
@@ -115,6 +122,16 @@
     dataSource = [PersistentStore getAllObjectWithType:[DownloadMusicInfo class]];
     [self.tableView reloadData];
 }
+#pragma  mark - Audio Notification
+-(void)updateProcessingLocation:(NSNotification *)noti
+{
+    if (!currentSelectedItemSlider.touchInside) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            currentSelectedItemSlider.value = [noti.object floatValue];
+        });
+    }
+}
+
 #pragma mark - UITableViewDataSource Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -178,14 +195,20 @@
                 currentSelectedItemSlider = cell.playSlider;
                 currentPlayItemControlBtn = cell.controlBtn;
                 if (cell.controlBtn.selected) {
+                    
                     [self playItemWithPath:info.localPath length:info.length];
-                    [self.audioMng play];
                     NSLog(@"%@",info.title);
                 }else
                 {
-                    [self.audioMng  pause];
+                    [myDelegate pause];
                 }
             }
+        }else
+        {
+            NSIndexPath *index = [NSIndexPath indexPathForRow:i inSection:0] ;
+            MyDownloadCell * cell = (MyDownloadCell *)[self.tableView cellForRowAtIndexPath:index];
+            cell.playSlider.value = 0.0;
+            [cell.controlBtn setSelected:NO];
         }
     }
 }

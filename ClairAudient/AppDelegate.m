@@ -161,6 +161,11 @@
     CGFloat time = _floatReader.audioFile.frameIndex / _floatReader.audioFile.clientFormat.mSampleRate;
     return time;
 }
+
+-(NSString *)currentPlayFilePath
+{
+    return _floatReader.curentPlayFileURL.absoluteString;
+}
 //
 //-(void)setupShareStuff
 //{

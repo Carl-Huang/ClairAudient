@@ -20,7 +20,7 @@
 @property (strong ,nonatomic) NSArray *playlist;
 @property (assign ,nonatomic) NSInteger currentPlaySongIndex;
 @property (assign ,nonatomic) CGFloat previousPlayFilePosition;
-
+@property (strong ,nonatomic)  NSURL * curentPlayFileURL;
 
 @property (assign ,nonatomic) BOOL isShouldPlayPlaylist;
 @property (assign ,nonatomic,getter = isEof) BOOL eof;
