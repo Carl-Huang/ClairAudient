@@ -25,4 +25,5 @@
 @property (nonatomic,strong) NSString * qq;
 + (void)saveToLocal:(User *)user;
 + (User *)userFromLocal;
++(void)deleteUserInfo;
 @end

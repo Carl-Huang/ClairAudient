@@ -114,7 +114,18 @@
 
 - (IBAction)showIntegralVC:(id)sender
 {
-    [ControlCenter showIntegralVC];
+    User * userInfo = [User userFromLocal];
+    if (userInfo ) {
+        IntegralViewController * viewController = [[IntegralViewController alloc]initWithNibName:@"IntegralViewController" bundle:nil];
+        [viewController setUserInfo:userInfo];
+        [self.navigationController pushViewController:viewController animated:YES];
+        viewController = nil;
+
+    }else
+    {
+        [self showAlertViewWithMessage:@"请先登陆"];
+    }
+    
 }
 
 - (IBAction)showAccountVC:(id)sender

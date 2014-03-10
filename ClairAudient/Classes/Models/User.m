@@ -26,6 +26,11 @@
     {
         return  nil;
     }
+}
 
++(void)deleteUserInfo
+{
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:User_Key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 @end

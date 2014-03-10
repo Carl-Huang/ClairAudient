@@ -58,15 +58,18 @@
     [self setBackground_viewDidLoad:YES];
 
     objc_property_t property = class_getProperty([self class], "bgView");
-    NSString * propertyName = [NSString stringWithUTF8String:property_getName(property)];
-    
-    if (propertyName) {
-        UIImageView * imageView = [self valueForKey:propertyName];
-        NSString * imageName = [[NSUserDefaults standardUserDefaults]stringForKey:ThemeImage];
-        if (imageName == nil) {
-            imageName = @"hunyin_6.png";
+    if (property) {
+        NSString * propertyName = [NSString stringWithUTF8String:property_getName(property)];
+        
+        if (propertyName) {
+            UIImageView * imageView = [self valueForKey:propertyName];
+            NSString * imageName = [[NSUserDefaults standardUserDefaults]stringForKey:ThemeImage];
+            if (imageName == nil) {
+                imageName = @"hunyin_6.png";
+            }
+            imageView.image = [UIImage imageNamed:imageName];
         }
-        imageView.image = [UIImage imageNamed:imageName];
+
     }
 }
 

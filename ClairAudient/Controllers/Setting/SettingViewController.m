@@ -147,6 +147,9 @@
     else if(indexPath.row == 3)
     {
         [ControlCenter showHelpVC];
+    }else if (indexPath.row == 4)
+    {
+        [User deleteUserInfo];
     }
 }
 @end

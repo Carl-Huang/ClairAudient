@@ -9,6 +9,7 @@
 #import "IntegralViewController.h"
 #import "UIViewController+CustomBarItemPosition.h"
 #import "ControlCenter.h"
+#import "User.h"
 @interface IntegralViewController ()
 
 @end
@@ -47,6 +48,14 @@
     self.title = @"积分";
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self setLeftAndRightBarItem];
+    
+    NSString * userName = nil;
+    if (self.userInfo.userName) {
+        userName = self.userInfo.userName;
+    }
+    _userNameLabel.text = userName;
+    
+    _integralLabel.text = self.userInfo.integral;
 }
 
 #pragma mark - Action Methods

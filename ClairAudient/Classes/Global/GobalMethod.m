@@ -205,4 +205,54 @@
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     }
 }
+
++(void)anchor:(UIView*)obj to:(ANCHOR)anchor withOffset:(CGPoint)offset
+{
+    NSInteger statusHeight = 20;
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    CGRect frm = obj.frame;
+    
+    if (![[UIApplication sharedApplication] isStatusBarHidden]) {
+        screenSize.height -=statusHeight;
+    }
+    switch (anchor) {
+        case TOP_LEFT:
+            frm.origin = offset;
+            break;
+        case TOP:
+            frm.origin.x = (screenSize.width - frm.size.width) / 2 + offset.x;
+            frm.origin.y = offset.y;
+            break;
+        case TOP_RIGHT:
+            frm.origin.x = screenSize.width - frm.size.width - offset.x;
+            frm.origin.y = offset.y;
+            break;
+        case LEFT:
+            frm.origin.x = offset.x;
+            frm.origin.y = (screenSize.height - frm.size.height) / 2 + offset.y;
+            break;
+        case CENTER:
+            frm.origin.x = (screenSize.width - frm.size.width) / 2 + offset.x;
+            frm.origin.y = (screenSize.height - frm.size.height) / 2 + offset.y;
+            break;
+        case RIGHT:
+            frm.origin.x = screenSize.width - frm.size.width - offset.x;
+            frm.origin.y = (screenSize.height - frm.size.height) / 2 + offset.y;
+            break;
+        case BOTTOM_LEFT:
+            frm.origin.x = offset.x;
+            frm.origin.y = screenSize.height - frm.size.height - offset.y;
+            break;
+        case BOTTOM: // 保证贴屏底
+            frm.origin.x = (screenSize.width - frm.size.width) / 2 + offset.x;
+            frm.origin.y = screenSize.height - frm.size.height - offset.y;
+            break;
+        case BOTTOM_RIGHT:
+            frm.origin.x = screenSize.width - frm.size.width - offset.x;
+            frm.origin.y = screenSize.height - frm.size.height - offset.y;
+            break;
+    }
+    
+    obj.frame = frm;
+}
 @end

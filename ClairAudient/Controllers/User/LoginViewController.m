@@ -43,6 +43,8 @@
 - (IBAction)backAction:(id)sender
 {
     [self popVIewController];
+    
+   
 }
 
 - (IBAction)loginAction:(id)sender

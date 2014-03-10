@@ -17,4 +17,6 @@ typedef void(^GetMeterLevelBlock) (CGFloat meter);
 -(void)pauseRecord;
 -(void)stopRecord;
 -(CGFloat)meterLevel;
+
+-(void)cleanRecordResource;
 @end

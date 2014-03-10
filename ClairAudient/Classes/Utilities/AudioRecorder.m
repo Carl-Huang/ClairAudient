@@ -54,9 +54,7 @@
     recorder = [[AVAudioRecorder alloc] initWithURL:recordedFile settings:settings error:nil];
     recorder.meteringEnabled = YES;
     [recorder prepareToRecord];
-    
 
-//    meterTimer = [NSTimer timerWithTimeInterval:0.2 target:self selector:@selector(updateMeterLevel) userInfo:nil repeats:YES];
     meterTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(updateMeterLevel) userInfo:nil repeats:YES];
     isTimeStop = NO;
 }
@@ -77,6 +75,17 @@
 {
     isTimeStop = YES;
     [recorder stop];
+}
+
+-(void)cleanRecordResource
+{
+    [self stopRecord];
+    if ([meterTimer isValid]) {
+        [meterTimer invalidate];
+        meterTimer = nil;
+    }
+    
+    recorder = nil;
 }
 
 -(CGFloat)meterLevel

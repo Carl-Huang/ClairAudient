@@ -5,14 +5,14 @@
 //  Created by Carl on 13-12-30.
 //  Copyright (c) 2013年 helloworld. All rights reserved.
 //
-
+#import "RecordListViewController.h"
 #import "RecordViewController.h"
+#import "RecordMusicInfo.h"
+#import "MBProgressHUD.h"
+#import "AudioRecorder.h"
 #import "AudioManager.h"
 #import "AudioWriter.h"
-#import "RecordMusicInfo.h"
-#import "AudioRecorder.h"
-#import "MBProgressHUD.h"
-#import "RecordListViewController.h"
+#import "GobalMethod.h"
 
 @interface RecordViewController ()<UIAlertViewDelegate>
 {
@@ -55,37 +55,32 @@
     [recorder setMeterLevelBlock:^(CGFloat meter)
     {
         CGRect rect = weakSelf.indicatorView.frame;
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            weakSelf.indicatorView.transform = CGAffineTransformMakeScale(meter/rect.size.width, 1);
-//        });
-        
         CGFloat  meterLevel = (CGFloat)abs(meter);
         if(meterLevel > weakSelf.maximumWidth)
         {
             weakSelf.maximumWidth = meterLevel;
         }
-        NSLog(@"%f",meterLevel);
         rect.size.width = meterLevel/weakSelf.maximumWidth * weakSelf.maximumWidth;
         weakSelf.indicatorView.frame = rect;
     }];
     
     
     
-    
-    
-//    UIImage * tempImage = [UIImage imageNamed:@"record_35.png"]; //41 * 41
-//    stretchImage = [tempImage resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5) resizingMode:UIImageResizingModeTile];
-    
     CGRect rect = _indicatorView.frame;
     maximumWidth = rect.size.width;
     rect.size.width = 0;
     _indicatorView.frame = rect;
-    
-//    _indicatorView.transform = CGAffineTransformMakeScale(0.2, 0.5);
     [self.beginRecordView setHidden:YES];
     
     
+    
     // Do any additional setup after loading the view from its nib.
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:YES];
+    [recorder cleanRecordResource];
 }
 
 - (void)didReceiveMemoryWarning

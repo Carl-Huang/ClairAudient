@@ -37,7 +37,12 @@
 #pragma mark - Action Methods
 - (IBAction)backAction:(id)sender
 {
-    [self popVIewController];
+    NSArray * controllers = self.navigationController.viewControllers;
+    for (UIViewController * vc in controllers) {
+        if ([vc isKindOfClass:[MainViewController class]]) {
+            [self.navigationController popToViewController:vc animated:YES];
+        }
+    }
 }
 
 - (IBAction)messageInviteAction:(id)sender

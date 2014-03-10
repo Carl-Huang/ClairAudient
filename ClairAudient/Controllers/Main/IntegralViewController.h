@@ -7,10 +7,11 @@
 //
 
 #import "CommonViewController.h"
-
+@class User;
 @interface IntegralViewController : CommonViewController
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *integralLabel;
+@property (strong ,nonatomic) User * userInfo;
 - (IBAction)showAboutScoreVC:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIImageView *bgView;
