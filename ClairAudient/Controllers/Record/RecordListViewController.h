@@ -8,8 +8,7 @@
 
 #import "CommonViewController.h"
 
-@interface RecordListViewController : CommonViewController<UITableViewDelegate,UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@interface RecordListViewController : CommonViewController
 @property (weak, nonatomic) IBOutlet UIImageView *bgView;
 - (IBAction)backAction:(id)sender;
 

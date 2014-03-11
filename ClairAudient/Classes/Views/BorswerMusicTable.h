@@ -10,10 +10,14 @@
 
 @interface BorswerMusicTable : UITableView
 
-@property (strong ,nonatomic) NSArray * dataSource;
+@property (strong ,nonatomic) NSArray * borswerDataSource;
 @property (assign ,nonatomic) CGFloat cell_Height;
 @property (assign ,nonatomic) Class   type;
 @property (strong ,nonatomic) id info;
 
 @property (weak ,nonatomic) UIViewController * parentController;
+
+-(void)initailzationDataSource:(NSArray *)data cellHeight:(CGFloat)cellHeight type:(Class)objectType parentViewController:(UIViewController *)parent;
+
+-(void)stopPlayer;
 @end

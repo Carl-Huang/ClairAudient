@@ -15,6 +15,7 @@
 #import "EditMusicInfo.h"
 #import "AudioReader.h"
 #import "AudioManager.h"
+#import "BorswerMusicTable.h"
 
 #define Cell_Height 90.0f
 @interface MyProductionViewController ()<ItemDidSelectedDelegate,AudioReaderDelegate>
@@ -24,6 +25,8 @@
     NSTimer  * sliderTimer;
     UIButton * currentPlayItemControlBtn;
     CGFloat currentPlayFileLength;
+    
+    BorswerMusicTable * borswerTable;
 }
 @property (strong ,nonatomic) AudioReader   * reader;
 @property (strong ,nonatomic) AudioManager  * audioMng;
@@ -46,10 +49,8 @@
     [super viewDidLoad];
     [self initUI];
     self.audioMng = [AudioManager shareAudioManager];
-    dataSource = [PersistentStore getAllObjectWithType:[EditMusicInfo class]];
-    if ([dataSource count]) {
-        [self.tableView reloadData];
-    }
+    [self updateDataSource];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -148,7 +149,17 @@
 -(void)updateDataSource
 {
     dataSource = [PersistentStore getAllObjectWithType:[EditMusicInfo class]];
-    [self.tableView reloadData];
+    NSInteger height = 504;
+    NSInteger orginalY = 0;
+//    if (![OSHelper iPhone5]) {
+//        height  -=88;
+//    }
+//    if (![OSHelper iOS7]) {
+//        orginalY -=20;
+//    }
+    borswerTable = [[BorswerMusicTable alloc]initWithFrame:CGRectMake(0,orginalY, 320, height)];
+    [borswerTable initailzationDataSource:dataSource cellHeight:91.0f type:[EditMusicInfo class] parentViewController:self];
+    [self.view addSubview:borswerTable];
 }
 
 
@@ -235,7 +246,7 @@
                 currentSelectedItemSlider.maximumValue = info.length.floatValue;
                 currentPlayItemControlBtn = cell.controlBtn;
                 if (cell.controlBtn.selected) {
-                    [self playItemWithPath:info.localFilePath length:info.length];
+                    [self playItemWithPath:info.localPath length:info.length];
                     [self.audioMng play];
                     NSLog(@"%@",info.title);
                 }else

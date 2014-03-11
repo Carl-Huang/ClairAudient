@@ -68,6 +68,7 @@
     {
         edittingMusicFile = [self.musicInfo valueForKey:@"musicURL"];;
     }
+    edittingMusicFile = [self.musicInfo valueForKey:@"musicURL"];;
     NSDictionary * currentEditMusicInfo = @{@"musicURL": edittingMusicFile,@"count":@"1"};
     [[NSUserDefaults standardUserDefaults]setObject:currentEditMusicInfo forKey:@"currentEditingMusic"];
     [[NSUserDefaults standardUserDefaults]synchronize];
@@ -254,7 +255,7 @@
                     info.title              = [weakSelf.musicInfo valueForKey:@"Title"];;
                     info.artist             = [weakSelf.musicInfo valueForKey:@"Artist"];
                     info.makeTime           = [self getMakeTime];
-                    info.localFilePath      = localPath;
+                    info.localPath      = localPath;
                     info.length             = [NSString stringWithFormat:@"%0.2f",[self convertMinuteToSecond:musicLength]];
                     [[NSManagedObjectContext MR_defaultContext]MR_saveOnlySelfAndWait];
                     

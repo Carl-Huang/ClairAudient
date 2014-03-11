@@ -156,7 +156,7 @@
                 
                 //保存信息到本地
                 EditMusicInfo * info = [EditMusicInfo MR_createEntity];
-                info.localFilePath = destinationFilePath;
+                info.localPath = destinationFilePath;
                 info.makeTime = [GobalMethod getMakeTime];
                 info.length = [NSString stringWithFormat:@"%0.2f",[GobalMethod getMusicLength:[NSURL fileURLWithPath:destinationFilePath]]];
                 [PersistentStore save];

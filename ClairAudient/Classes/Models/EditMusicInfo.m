@@ -2,7 +2,7 @@
 //  EditMusicInfo.m
 //  ClairAudient
 //
-//  Created by vedon on 10/2/14.
+//  Created by vedon on 11/3/14.
 //  Copyright (c) 2014 helloworld. All rights reserved.
 //
 
@@ -12,9 +12,9 @@
 @implementation EditMusicInfo
 
 @dynamic artist;
-@dynamic localFilePath;
-@dynamic length;
 @dynamic isFavirote;
+@dynamic length;
+@dynamic localPath;
 @dynamic makeTime;
 @dynamic title;
 

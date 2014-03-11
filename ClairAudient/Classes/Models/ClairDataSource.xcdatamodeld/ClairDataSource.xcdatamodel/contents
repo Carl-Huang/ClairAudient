@@ -11,7 +11,7 @@
         <attribute name="artist" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isFavirote" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="length" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="localFilePath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="localPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="makeTime" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
@@ -31,9 +31,9 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
+        <element name="DownloadMusicInfo" positionX="0" positionY="0" width="0" height="0"/>
         <element name="EditMusicInfo" positionX="0" positionY="0" width="0" height="0"/>
         <element name="MusicInfo" positionX="0" positionY="0" width="0" height="0"/>
         <element name="RecordMusicInfo" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="DownloadMusicInfo" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

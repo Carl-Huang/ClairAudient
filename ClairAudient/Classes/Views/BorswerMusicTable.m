@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "PersistentStore.h"
 #import "MixingViewController.h"
+#import "OSHelper.h"
 
 @interface BorswerMusicTable()<ItemDidSelectedDelegate,UITableViewDataSource,UITableViewDelegate>
 {
@@ -24,7 +25,7 @@
 
 
 @implementation BorswerMusicTable
-@synthesize dataSource;
+@synthesize borswerDataSource;
 @synthesize cell_Height;
 
 - (id)initWithFrame:(CGRect)frame
@@ -32,13 +33,38 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        UINib * nib = [UINib nibWithNibName:@"MyDownloadCell" bundle:[NSBundle bundleForClass:[MyDownloadCell class]]];
-        [self registerNib:nib forCellReuseIdentifier:@"Cell"];
-        [self setBackgroundColor:[UIColor clearColor]];
-        [self setBackgroundView:nil];
+        
     }
     return self;
 }
+
+-(void)initailzationDataSource:(NSArray *)data cellHeight:(CGFloat)cellHeight type:(Class)objectType parentViewController:(UIViewController *)parent
+{
+    borswerDataSource = data;
+    cell_Height = cellHeight;
+    _type = objectType;
+    
+    UINib * nib = [UINib nibWithNibName:@"MyDownloadCell" bundle:[NSBundle bundleForClass:[MyDownloadCell class]]];
+    [self registerNib:nib forCellReuseIdentifier:@"Cell"];
+    [self setBackgroundColor:[UIColor clearColor]];
+    [self setBackgroundView:nil];
+    self.dataSource = self;
+    self.delegate  = self;
+    
+    if ([OSHelper iOS7]) {
+        self.separatorInset = UIEdgeInsetsZero;
+    }
+    _parentController = parent;
+    myDelegate = [[UIApplication sharedApplication]delegate];
+}
+
+-(void)stopPlayer
+{
+    if ([myDelegate isPlaying]) {
+        [myDelegate pause];
+    }
+}
+
 
 -(void)playItemWithPath:(NSString *)localFilePath length:(NSString *)length
 {
@@ -83,7 +109,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [dataSource count];
+    return [borswerDataSource count];
 }
 
 
@@ -96,11 +122,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MyDownloadCell * cell   = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    id  object              = [dataSource objectAtIndex:indexPath.row];
+    id  object              = [borswerDataSource objectAtIndex:indexPath.row];
     
     cell.nameLabel.text = [object valueForKey:@"title"];
     //    cell.downloadTimeLabel.text = [GobalMethod customiseTimeFormat:object.makeTime];
-    cell.recordTimeLabel.text   = [object valueForKey:@"makeTime"];
+    cell.recordTimeLabel.text   =[GobalMethod customiseTimeFormat:[object valueForKey:@"makeTime"]];
     
     NSURL * musicURL = [NSURL fileURLWithPath:[object valueForKey:@"localPath"]];
     cell.playTimeLabel.text     = [NSString stringWithFormat:@"%0.2f",[GobalMethod getMusicLength:musicURL]];
@@ -127,9 +153,9 @@
 -(void)playItem:(id)object
 {
     id  info = object;
-    for (int i =0; i < [dataSource count]; i++) {
-        id tempObj = [dataSource objectAtIndex:i];
-        if ([[tempObj valueForKey:@"makeTime"] isEqualToString:[info valueForKey:@"title"]]) {
+    for (int i =0; i < [borswerDataSource count]; i++) {
+        id tempObj = [borswerDataSource objectAtIndex:i];
+        if ([[tempObj valueForKey:@"makeTime"] isEqualToString:[info valueForKey:@"makeTime"]]) {
             @autoreleasepool {
                 NSIndexPath *index = [NSIndexPath indexPathForRow:i inSection:0] ;
                 MyDownloadCell * cell = (MyDownloadCell *)[self cellForRowAtIndexPath:index];
@@ -193,7 +219,7 @@
 
 -(void)updateDataSource
 {
-    dataSource = [PersistentStore getAllObjectWithType:_type];
+    borswerDataSource = [PersistentStore getAllObjectWithType:_type];
     [self reloadData];
 }
 
