@@ -16,6 +16,9 @@
 #import "ControlCenter.h"
 #import "TSPopoverController.h"
 #import "SortPopoverViewController.h"
+#import "MixingOnlineBtn.h"
+#import "StreamPlayer.h"
+#import "GobalMethod.h"
 #define Section_Height 48.0f
 #define Cell_Height 44.0f
 @interface SoundCatalogViewController ()<SortPopoverViewControllerDelegate>
@@ -53,6 +56,11 @@
 {
     [super viewWillAppear:animated];
     [self dismissPopoverController];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [[StreamPlayer shareStreamPlayer]stop];
 }
 
 - (void)didReceiveMemoryWarning
@@ -99,6 +107,18 @@
     
 }
 
+-(void)playSong:(id)sender
+{
+    MixingOnlineBtn * btn = (MixingOnlineBtn *)sender;
+    
+    Catalog * catalog = [_catalogs objectAtIndex:btn.index.section];
+    NSArray * voices = [_catalogSoundsInfo objectForKey:catalog.vlt_name];
+    Voice * voice = [voices objectAtIndex:btn.index.row];
+    
+    NSURL * musciURL = [GobalMethod getMusicUrl:voice.url];
+    [[StreamPlayer shareStreamPlayer]playFile:musciURL];
+    
+}
 #pragma mark - Action Methods
 - (void)tapSection:(UITapGestureRecognizer *)gesture
 {
@@ -313,8 +333,12 @@
     Catalog * catalog = [_catalogs objectAtIndex:indexPath.section];
     NSArray * voices = [_catalogSoundsInfo objectForKey:catalog.vlt_name];
     Voice * voice = [voices objectAtIndex:indexPath.row];
+    
     cell.nameLabel.text = voice.vl_name;
     cell.downloadCountLabel.text = [NSString stringWithFormat:@"下载%@次",voice.download_num];
+    cell.playBtn.index = indexPath;
+    [cell.playBtn addTarget:self action:@selector(playSong:) forControlEvents:UIControlEventTouchUpInside];
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }

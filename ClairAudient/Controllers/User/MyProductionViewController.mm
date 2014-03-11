@@ -150,14 +150,7 @@
 {
     dataSource = [PersistentStore getAllObjectWithType:[EditMusicInfo class]];
     NSInteger height = 504;
-    NSInteger orginalY = 0;
-//    if (![OSHelper iPhone5]) {
-//        height  -=88;
-//    }
-//    if (![OSHelper iOS7]) {
-//        orginalY -=20;
-//    }
-    borswerTable = [[BorswerMusicTable alloc]initWithFrame:CGRectMake(0,orginalY, 320, height)];
+    borswerTable = [[BorswerMusicTable alloc]initWithFrame:CGRectMake(0,0, 320, height)];
     [borswerTable initailzationDataSource:dataSource cellHeight:91.0f type:[EditMusicInfo class] parentViewController:self];
     [self.view addSubview:borswerTable];
 }

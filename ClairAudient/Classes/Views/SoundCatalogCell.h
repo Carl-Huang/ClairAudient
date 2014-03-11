@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MixingOnlineBtn.h"
 @interface SoundCatalogCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *downloadCountLabel;
 
+@property (weak, nonatomic) IBOutlet MixingOnlineBtn *playBtn;
 @end

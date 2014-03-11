@@ -130,6 +130,7 @@
 		4EEA197C18AA5F070062D118 /* MyUploadDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEA197A18AA5F070062D118 /* MyUploadDetailViewController.m */; };
 		4EEA197D18AA5F070062D118 /* MyUploadDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EEA197B18AA5F070062D118 /* MyUploadDetailViewController.xib */; };
 		4EEA197F18AA72540062D118 /* testImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EEA197E18AA72540062D118 /* testImage.png */; };
+		4EF30A9918CF59D000376FFA /* StreamPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EF30A9818CF59CF00376FFA /* StreamPlayer.m */; };
 		4EFE1F6E18CC11310099BD93 /* CopyMusicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EFE1F6D18CC11310099BD93 /* CopyMusicView.m */; };
 		4EFE1F7018CC11530099BD93 /* CopyMusicView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EFE1F6F18CC11530099BD93 /* CopyMusicView.xib */; };
 		4EFE1F7218CC62C00099BD93 /* startDefaultPage.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFE1F7118CC62C00099BD93 /* startDefaultPage.png */; };
@@ -727,6 +728,8 @@
 		4EEA197A18AA5F070062D118 /* MyUploadDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUploadDetailViewController.m; sourceTree = "<group>"; };
 		4EEA197B18AA5F070062D118 /* MyUploadDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyUploadDetailViewController.xib; sourceTree = "<group>"; };
 		4EEA197E18AA72540062D118 /* testImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testImage.png; sourceTree = "<group>"; };
+		4EF30A9718CF59CF00376FFA /* StreamPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamPlayer.h; sourceTree = "<group>"; };
+		4EF30A9818CF59CF00376FFA /* StreamPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamPlayer.m; sourceTree = "<group>"; };
 		4EFE1F6C18CC11310099BD93 /* CopyMusicView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CopyMusicView.h; sourceTree = "<group>"; };
 		4EFE1F6D18CC11310099BD93 /* CopyMusicView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CopyMusicView.m; sourceTree = "<group>"; };
 		4EFE1F6F18CC11530099BD93 /* CopyMusicView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CopyMusicView.xib; sourceTree = "<group>"; };
@@ -1304,6 +1307,8 @@
 				4E2A13801891474800D8CB65 /* AudioRecorder.m */,
 				4E2A13851891531C00D8CB65 /* RingBuffer.h */,
 				4E2A13861891531C00D8CB65 /* RingBuffer.mm */,
+				4EF30A9718CF59CF00376FFA /* StreamPlayer.h */,
+				4EF30A9818CF59CF00376FFA /* StreamPlayer.m */,
 			);
 			name = "Audio Utilities";
 			path = Utilities;
@@ -2898,6 +2903,7 @@
 				C32F3FFE188286CE00681953 /* VipRegisterViewController.m in Sources */,
 				4E2A13871891531C00D8CB65 /* RingBuffer.mm in Sources */,
 				C39BBE481893DE4E00FC8F72 /* SortPopoverViewController.m in Sources */,
+				4EF30A9918CF59D000376FFA /* StreamPlayer.m in Sources */,
 				C326CDAC187C5E44006DD97C /* CatalogRankViewController.m in Sources */,
 				C34C340B188AE6F7009CD20B /* ShareViewController.m in Sources */,
 				C3274996187A5E8200CF7A4A /* AboutScoreViewController.m in Sources */,
