@@ -292,9 +292,12 @@
     [[NSFileManager defaultManager]removeItemAtPath:recordFilePath error:nil];
     
     
-    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"保存成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    [alertView show];
-    alertView = nil;
+//    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"保存成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//    [alertView show];
+//    alertView = nil;
+    RecordListViewController * viewController = [[RecordListViewController alloc]initWithNibName:@"RecordListViewController" bundle:nil];
+    [self.navigationController pushViewController:viewController animated:YES];
+    viewController = nil;
 }
 
 - (IBAction)cancelRecordAction:(id)sender {

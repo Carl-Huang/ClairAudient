@@ -79,7 +79,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1pU-CP-oR9">
-                            <rect key="frame" x="14" y="230" width="143" height="130"/>
+                            <rect key="frame" x="14" y="240" width="143" height="114"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" backgroundImage="first_6.png">
@@ -90,7 +90,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="TBl-i8-309">
-                            <rect key="frame" x="165" y="230" width="143" height="130"/>
+                            <rect key="frame" x="165" y="240" width="143" height="114"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" backgroundImage="first_6.png">
@@ -101,7 +101,7 @@
                             </connections>
                         </button>
                         <view contentMode="scaleToFill" id="FJS-Xd-Csm">
-                            <rect key="frame" x="0.0" y="381" width="320" height="65"/>
+                            <rect key="frame" x="0.0" y="375" width="320" height="65"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dFi-2N-E6n">

@@ -355,4 +355,27 @@
     }];
     
 }
+
+
+-(void)getMusicImageWithParams:(NSDictionary *)params completionBlock:(void (^)(id object))success failureBlock:(void (^)(NSError * error,NSString * responseString))failure;
+{
+    [self post:[self mergeURL:GetAdAction] withParams:params completionBlock:^(id obj) {
+        if ([obj count]) {
+            NSArray * images = [obj valueForKey:@"ad_images"];
+            success(images);
+        }
+    } failureBlock:failure];
+}
+
+-(void)getMusicImageWithResoucePath:(NSString *)path CompletedBlock:(void (^)(id))success failureBlock:(void (^)(NSError *, NSString *))failure
+{
+    NSURL * imageUrl = [NSURL URLWithString:[self mergeURL:path]];
+    NSURLRequest * request = [NSURLRequest requestWithURL:imageUrl];
+    NSOperationQueue * queue = [[NSOperationQueue alloc]init];
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        UIImage * image = [UIImage imageWithData:data];
+        success (image);
+    }];
+}
+
 @end

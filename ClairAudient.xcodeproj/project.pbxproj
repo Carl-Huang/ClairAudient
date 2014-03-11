@@ -121,6 +121,12 @@
 		4ED175311892B570000EC483 /* MixingEffectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ED1752F1892B570000EC483 /* MixingEffectViewController.xib */; };
 		4ED175351892B8F3000EC483 /* LocalMusicViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4ED175331892B8F3000EC483 /* LocalMusicViewController.mm */; };
 		4ED175361892B8F3000EC483 /* LocalMusicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ED175341892B8F3000EC483 /* LocalMusicViewController.xib */; };
+		4EE3AE2E18CF3BC600D09F79 /* def1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EE3AE2918CF3BC600D09F79 /* def1.mp3 */; };
+		4EE3AE2F18CF3BC600D09F79 /* def2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EE3AE2A18CF3BC600D09F79 /* def2.mp3 */; };
+		4EE3AE3018CF3BC600D09F79 /* def3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EE3AE2B18CF3BC600D09F79 /* def3.mp3 */; };
+		4EE3AE3118CF3BC600D09F79 /* def4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EE3AE2C18CF3BC600D09F79 /* def4.mp3 */; };
+		4EE3AE3218CF3BC600D09F79 /* def5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EE3AE2D18CF3BC600D09F79 /* def5.mp3 */; };
+		4EE3AE3518CF3E3000D09F79 /* BorswerMusicTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EE3AE3418CF3E3000D09F79 /* BorswerMusicTable.m */; };
 		4EEA197C18AA5F070062D118 /* MyUploadDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEA197A18AA5F070062D118 /* MyUploadDetailViewController.m */; };
 		4EEA197D18AA5F070062D118 /* MyUploadDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EEA197B18AA5F070062D118 /* MyUploadDetailViewController.xib */; };
 		4EEA197F18AA72540062D118 /* testImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EEA197E18AA72540062D118 /* testImage.png */; };
@@ -710,6 +716,13 @@
 		4ED175321892B8F3000EC483 /* LocalMusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalMusicViewController.h; sourceTree = "<group>"; };
 		4ED175331892B8F3000EC483 /* LocalMusicViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LocalMusicViewController.mm; sourceTree = "<group>"; };
 		4ED175341892B8F3000EC483 /* LocalMusicViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocalMusicViewController.xib; sourceTree = "<group>"; };
+		4EE3AE2918CF3BC600D09F79 /* def1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = def1.mp3; sourceTree = "<group>"; };
+		4EE3AE2A18CF3BC600D09F79 /* def2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = def2.mp3; sourceTree = "<group>"; };
+		4EE3AE2B18CF3BC600D09F79 /* def3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = def3.mp3; sourceTree = "<group>"; };
+		4EE3AE2C18CF3BC600D09F79 /* def4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = def4.mp3; sourceTree = "<group>"; };
+		4EE3AE2D18CF3BC600D09F79 /* def5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = def5.mp3; sourceTree = "<group>"; };
+		4EE3AE3318CF3E3000D09F79 /* BorswerMusicTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorswerMusicTable.h; sourceTree = "<group>"; };
+		4EE3AE3418CF3E3000D09F79 /* BorswerMusicTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorswerMusicTable.m; sourceTree = "<group>"; };
 		4EEA197918AA5F070062D118 /* MyUploadDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUploadDetailViewController.h; sourceTree = "<group>"; };
 		4EEA197A18AA5F070062D118 /* MyUploadDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUploadDetailViewController.m; sourceTree = "<group>"; };
 		4EEA197B18AA5F070062D118 /* MyUploadDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyUploadDetailViewController.xib; sourceTree = "<group>"; };
@@ -1308,6 +1321,11 @@
 		4E96B568188E9CBA008EA56F /* 歌曲 */ = {
 			isa = PBXGroup;
 			children = (
+				4EE3AE2918CF3BC600D09F79 /* def1.mp3 */,
+				4EE3AE2A18CF3BC600D09F79 /* def2.mp3 */,
+				4EE3AE2B18CF3BC600D09F79 /* def3.mp3 */,
+				4EE3AE2C18CF3BC600D09F79 /* def4.mp3 */,
+				4EE3AE2D18CF3BC600D09F79 /* def5.mp3 */,
 				4E248CF818A5D59E003445B2 /* 权利游戏.mp3 */,
 			);
 			path = "歌曲";
@@ -1648,6 +1666,8 @@
 				4EFE1F6C18CC11310099BD93 /* CopyMusicView.h */,
 				4EFE1F6D18CC11310099BD93 /* CopyMusicView.m */,
 				4EFE1F6F18CC11530099BD93 /* CopyMusicView.xib */,
+				4EE3AE3318CF3E3000D09F79 /* BorswerMusicTable.h */,
+				4EE3AE3418CF3E3000D09F79 /* BorswerMusicTable.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2514,6 +2534,7 @@
 				C3164CAF1874555D00301ACA /* FoundMusic_ab@2x.png in Resources */,
 				C3274997187A5E8200CF7A4A /* AboutScoreViewController.xib in Resources */,
 				C39A97A4189247AE00F41CBB /* catalog_icon_bpng@2x.png in Resources */,
+				4EE3AE3118CF3BC600D09F79 /* def4.mp3 in Resources */,
 				C3FEB0041871C294008EADAA /* hunyin_26@2x.png in Resources */,
 				C3FEB04B1871C294008EADAA /* record_38@2x.png in Resources */,
 				C3486CCE18866B1E00EB7AD0 /* geren@2x.png in Resources */,
@@ -2586,6 +2607,7 @@
 				C3164CE11874555D00301ACA /* MusicFans_kjk@2x.png in Resources */,
 				C3FEB0601871C294008EADAA /* setting_21@2x.png in Resources */,
 				C3FEB03C1871C294008EADAA /* record_24@2x.png in Resources */,
+				4EE3AE2F18CF3BC600D09F79 /* def2.mp3 in Resources */,
 				C3FEB07E1871C294008EADAA /* user_27@2x.png in Resources */,
 				C3164CBB1874555D00301ACA /* FoundMusic_i@2x.png in Resources */,
 				C3FEB06B1871C294008EADAA /* setting_@2x.png in Resources */,
@@ -2596,6 +2618,7 @@
 				C39A97AF189247AE00F41CBB /* catalog_section_apng@2x.png in Resources */,
 				4EB43E8718AB39AA004CCC85 /* play.png in Resources */,
 				C3164CE71874555D00301ACA /* MusicFans_sfjh@2x.png in Resources */,
+				4EE3AE3218CF3BC600D09F79 /* def5.mp3 in Resources */,
 				C32749A5187A5FB500CF7A4A /* setting_bar@2x.png in Resources */,
 				C3FEAFF41871C294008EADAA /* hunyin_11@2x.png in Resources */,
 				4EAF2A4D18A9FE90007A8F70 /* ShareSDKiPadDefaultShareViewUI.bundle in Resources */,
@@ -2648,6 +2671,7 @@
 				C32F402C188390A100681953 /* IntegralViewController.xib in Resources */,
 				C3164CEB1874555D00301ACA /* MusicFans_three@2x.png in Resources */,
 				C3164CDE1874555D00301ACA /* MusicFans_hj@2x.png in Resources */,
+				4EE3AE2E18CF3BC600D09F79 /* def1.mp3 in Resources */,
 				C3FEB0401871C294008EADAA /* record_28@2x.png in Resources */,
 				C3FEB0181871C294008EADAA /* hunyin_45@2x.png in Resources */,
 				C3164CB91874555D00301ACA /* FoundMusic_h@2x.png in Resources */,
@@ -2662,6 +2686,7 @@
 				C3FEB0541871C294008EADAA /* record_9@2x.png in Resources */,
 				4EAF2A4218A9FE90007A8F70 /* ShareSDKLocalizable.strings in Resources */,
 				C3164CD31874555D00301ACA /* FoundMusic_y@2x.png in Resources */,
+				4EE3AE3018CF3BC600D09F79 /* def3.mp3 in Resources */,
 				C351B69A187E3E0F00630408 /* MusicFans_hkbg@2x.png in Resources */,
 				C3FEB0491871C294008EADAA /* record_36@2x.png in Resources */,
 				C3164CAD1874555D00301ACA /* FoundMusic_@2x.png in Resources */,
@@ -2843,6 +2868,7 @@
 				C3FEAF301871C156008EADAA /* AppDelegate.m in Sources */,
 				C39A97BD189265A200F41CBB /* VoiceViewController.m in Sources */,
 				C3FEB0BA1871C801008EADAA /* UIImage+Util.m in Sources */,
+				4EE3AE3518CF3E3000D09F79 /* BorswerMusicTable.m in Sources */,
 				4EB4AC9C18B33AAB008A4DDC /* MyDownloadCell.m in Sources */,
 				C327499B187A5EBD00CF7A4A /* ThemeViewController.m in Sources */,
 				C39BBE581893DF5C00FC8F72 /* TSPopoverTouchView.m in Sources */,

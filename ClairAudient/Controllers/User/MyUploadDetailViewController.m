@@ -24,6 +24,7 @@
 #import "DownloadMusicInfo.h"
 #import "PersistentStore.h"
 #import "AppDelegate.h"
+#import "HttpService.h"
 
 static NSString * cellIdentifier = @"cellIdentifier";
 @interface MyUploadDetailViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
@@ -113,7 +114,11 @@ static NSString * cellIdentifier = @"cellIdentifier";
     if (streamPlayer) {
         [streamPlayer stop];
     }
+    streamPlayer = nil;
     
+    [autoScrollView stopTimer];
+    autoScrollView = nil;
+    productImages = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -134,31 +139,27 @@ static NSString * cellIdentifier = @"cellIdentifier";
 
     autoScrollView = [[CycleScrollView alloc] initWithFrame:rect animationDuration:2];
     autoScrollView.backgroundColor = [UIColor clearColor];
-    NSMutableArray * images = [NSMutableArray array];
     productImages = [NSMutableArray array];
     //Placehoder Image
     if ([productImages count] == 0) {
-        productImages = [NSMutableArray arrayWithArray: @[[UIImage imageNamed:@"first_2.png"]]];
-    }
-    for (UIImage * image in productImages) {
-        UIImageView * tempImageView = [[UIImageView alloc]initWithImage:image];
-        [tempImageView setFrame:rect];
-        [images addObject:tempImageView];
+
+        UIImageView * tempImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"first_2.png"]];
+        [productImages addObject:tempImageView];
         tempImageView = nil;
     }
+    __weak MyUploadDetailViewController * weakSelf = self;
     autoScrollView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
-        return images[pageIndex];
+        return weakSelf.productImages[pageIndex];
     };
     autoScrollView.totalPagesCount = ^NSInteger(void){
-        return [images count];
+        return [weakSelf.productImages count];
     };
     autoScrollView.TapActionBlock = ^(NSInteger pageIndex){
         NSLog(@"点击了第%ld个",(long)pageIndex);
     };
     [self.scrollAdView addSubview:autoScrollView];
     
-    
-    
+
     [self.contentScrollView setContentSize:CGSizeMake(320, 800)];
     self.contentScrollView.scrollEnabled = YES;
     
@@ -175,6 +176,54 @@ static NSString * cellIdentifier = @"cellIdentifier";
     [playView.playBtn addTarget:self action:@selector(playMusic:) forControlEvents:UIControlEventTouchUpInside];
     [playView.downloadBtn addTarget:self action:@selector(downloadMusic:) forControlEvents:UIControlEventTouchUpInside];
     playView.playTimeLable.text = @"";
+    
+
+    [[HttpService sharedInstance]getMusicImageWithParams:@{@"vltId": @"2"} completionBlock:^(id object) {
+        for (int j = 0;j < [object count]; ++j) {
+            NSString * imgStr = [[object objectAtIndex:j]valueForKey:@"ad_image"];
+            //获取图片
+            NSInteger last = [self.productImages count] - [object count];
+            if (last >=0) {
+                for (int i = [productImages count]-1;i < last ; ++i) {
+                    UIImageView * imageView = [weakSelf.productImages objectAtIndex:i];
+                    [weakSelf.productImages removeObject:imageView];
+                }
+            }
+            if (![imgStr isKindOfClass:[NSNull class]]) {
+                [weakSelf getImage:imgStr withIndex:j];
+            }
+        }
+    } failureBlock:^(NSError *error, NSString *responseString) {
+        ;
+    }];
+    
+}
+
+-(void)getImage:(NSString *)imgStr withIndex:(NSInteger )index
+{
+    __weak MyUploadDetailViewController * weakSelf = self;
+    
+    
+    [[HttpService sharedInstance]getMusicImageWithResoucePath:imgStr CompletedBlock:^(id object) {
+        if (object) {
+            UIImageView * imageView = nil;
+            
+            if ([object isKindOfClass:[UIImage class]]) {
+                imageView = [[UIImageView alloc]initWithImage:object];
+                NSInteger count = weakSelf.productImages.count-1;
+                NSLog(@"index:%d",index);
+                if (index <= count) {
+                    [weakSelf.productImages replaceObjectAtIndex:index withObject:imageView];
+                }else
+                {
+                    [weakSelf.productImages addObject:imageView];
+                }
+            }
+            [self updateAutoScrollViewItem];
+        }
+    } failureBlock:^(NSError *error, NSString *responseString) {
+        ;
+    }];
 }
 
 -(NSArray *)objectPropertyValueToArray:(id)object

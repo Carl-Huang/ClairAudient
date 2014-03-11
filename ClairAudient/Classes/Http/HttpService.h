@@ -90,4 +90,12 @@
 -(void)getCustomiseImageWithCompletedBlock:(void (^)(id object))success failureBlock:(void (^)(NSError * error,NSString * responseString))failure;
 
 -(void)getCustiomiseImageWithResourcePath:(NSString *)path completedBlock:(void (^)(id object))success failureBlock:(void (^)(NSError * error))failure;
+
+
+/**
+ @desc
+ */
+-(void)getMusicImageWithParams:(NSDictionary *)params completionBlock:(void (^)(id object))success failureBlock:(void (^)(NSError * error,NSString * responseString))failure;
+
+-(void)getMusicImageWithResoucePath:(NSString *)path CompletedBlock:(void (^)(id object))success failureBlock:(void (^)(NSError * error,NSString * responseString))failure;
 @end

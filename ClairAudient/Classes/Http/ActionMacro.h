@@ -23,5 +23,5 @@
 #define Upload_Voice                                @"UploadAction"
 #define GetMainImagesAction                         @"GetMainImagesAction"
 #define WelcomeImageAction                          @"WelcomeImageAction"
-
+#define GetAdAction                                 @"GetAdAction"
 #endif

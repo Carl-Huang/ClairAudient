@@ -51,8 +51,10 @@
      }];
     
     if (currentEditMusicInfo) {
+        //初始化第一张频谱图
         [plotViewUp setupAudioPlotViewWitnNimber:[[currentEditMusicInfo valueForKey:@"count"] integerValue] type:OutputTypeDefautl musicPath:[currentEditMusicInfo valueForKey:@"musicURL"] withCompletedBlock:^(BOOL isFinish) {
             if (isFinish) {
+                //初始化第二张频谱图
                 plotViewDown = [[AudioPlotView alloc]initWithFrame:CGRectMake(0, 80+plotViewUp.frame.size.height, 320, 130)];
                 [plotViewDown setLocationBlock:^(NSDictionary * locationInfo)
                  {

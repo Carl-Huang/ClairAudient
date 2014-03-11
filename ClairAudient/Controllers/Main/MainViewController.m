@@ -5,7 +5,7 @@
 //  Created by vedon on 13-12-30.
 //  Copyright (c) 2013年 helloworld. All rights reserved.
 //
-
+#import <AVFoundation/AVFoundation.h>
 #import "MainViewController.h"
 #import "CustomiseImageObj.h"
 #import "SDWebImageManager.h"
@@ -15,9 +15,12 @@
 #import "HttpService.h"
 #import "User.h"
 
+
 @interface MainViewController ()
 {
     BOOL isDownloadImage;
+    UIImageView * placeHolderImage;
+    AVAudioPlayer * player;
 }
 @property (strong ,nonatomic)CycleScrollView * autoScrollView;
 @property (strong ,nonatomic)NSMutableArray * productImages;
@@ -54,22 +57,19 @@
     autoScrollView = [[CycleScrollView alloc] initWithFrame:rect animationDuration:2];
     autoScrollView.backgroundColor = [UIColor clearColor];
     
-    NSMutableArray * images = [NSMutableArray array];
+    
     //Placehoder Image
-    if ([productImages count] == 0) {
-        productImages = [NSMutableArray arrayWithArray: @[[UIImage imageNamed:@"first_2.png"]]];
-    }
-    for (UIImage * image in productImages) {
-        UIImageView * tempImageView = [[UIImageView alloc]initWithImage:image];
-        [tempImageView setFrame:rect];
-        [images addObject:tempImageView];
-        tempImageView = nil;
-    }
+    placeHolderImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"first_2.png"]];
+    [placeHolderImage setFrame:rect];
+    [productImages addObject:placeHolderImage];
+    
+    
+    __weak MainViewController * weakSelf =self;
     autoScrollView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
-        return images[pageIndex];
+        return weakSelf.productImages[pageIndex];
     };
     autoScrollView.totalPagesCount = ^NSInteger(void){
-        return [images count];
+        return [weakSelf.productImages count];
     };
     autoScrollView.TapActionBlock = ^(NSInteger pageIndex){
         NSLog(@"点击了第%ld个",(long)pageIndex);
@@ -77,6 +77,15 @@
     [self.adScrollView addSubview:autoScrollView];
     
     isDownloadImage = NO;
+    int randNum = rand() % 6;
+    if (randNum == 0) {
+        randNum =1;
+    }
+    NSString * fileName = [NSString stringWithFormat:@"def%d",randNum];
+    NSURL * fileURL = [NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:fileName ofType:@"mp3"]];
+    player = [[AVAudioPlayer alloc]initWithContentsOfURL:fileURL error:nil];
+    [player play];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -145,6 +154,8 @@
 }
 
 - (IBAction)hideStartPageAction:(id)sender {
+    [player pause];
+    player = nil;
     [_startPageContainer setHidden:YES];
 }
 
@@ -217,20 +228,25 @@
 -(void)getAdvertisementImage
 {
     __weak MainViewController * weakSelf = self;
-    __block NSMutableArray * imgArray = [NSMutableArray array];
     [[HttpService sharedInstance]getAdvertisementImageWithCompletedBlock:^(id object) {
         if ([object count]) {
-            for (NSString * imgStr in object) {
+            for (int i = [weakSelf.productImages count]; i < [object count]; i ++) {
+                [weakSelf.productImages addObject:placeHolderImage];
+            }
+            
+            
+            
+            for (int i =0; i < [object count]; i++) {
+                NSString * imgStr = [object objectAtIndex:i];
                 //获取图片
                 NSInteger last = [self.productImages count] - [object count];
                 if (last >=0) {
                     for (int i = [object count]-1;i < last ; ++i) {
-                        UIImageView * imageView = [weakSelf.productImages objectAtIndex:i];
-                        [weakSelf.productImages removeObject:imageView];
+                        [weakSelf.productImages removeObjectAtIndex:i];
                     }
                 }
                 if (![imgStr isKindOfClass:[NSNull class]]) {
-                    [weakSelf getImage:imgStr withContainer:imgArray];
+                    [weakSelf getImage:imgStr withIndex:i];
                 }
             }
         }
@@ -240,21 +256,17 @@
 
 }
 
--(void)getImage:(NSString *)imgStr withContainer:(NSMutableArray *)container
+-(void)getImage:(NSString *)imgStr withIndex:(NSInteger)index
 {
     __weak MainViewController * weakSelf = self;
 
     [[HttpService sharedInstance]getImageWithResourcePath:imgStr completedBlock:^(id object) {
         if (object) {
             UIImageView * imageView = nil;
-            if (!isDownloadImage) {
-                isDownloadImage = YES;
-                [weakSelf.productImages removeAllObjects];
-            }
-            
+
             if ([object isKindOfClass:[UIImage class]]) {
                 imageView = [[UIImageView alloc]initWithImage:object];
-                [weakSelf.productImages addObject:imageView];
+                [weakSelf.productImages replaceObjectAtIndex:index withObject:imageView];
             }
             [self updateAutoScrollViewItem];
         }
