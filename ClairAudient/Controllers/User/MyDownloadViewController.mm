@@ -56,6 +56,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:YES];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
@@ -79,7 +80,6 @@
 - (void)initUI
 {
     self.title = @"我的下载";
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self setLeftAndRightBarItem];
 
 }

@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		3A213A19BF144FE19FC80A52 /* libPods-ClairAudient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8746E38BC0442AC8598C419 /* libPods-ClairAudient.a */; };
 		4E079C30189B557900B0BB5F /* MusicMixerOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E079C2F189B557900B0BB5F /* MusicMixerOutput.m */; };
+		4E0DC75318CFFAD000E4E6ED /* beijign.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E0DC75018CFFAD000E4E6ED /* beijign.png */; };
+		4E0DC75418CFFAD000E4E6ED /* commentBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E0DC75118CFFAD000E4E6ED /* commentBg.png */; };
+		4E0DC75518CFFAD000E4E6ED /* shareBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E0DC75218CFFAD000E4E6ED /* shareBg.png */; };
+		4E0DC75818CFFC4400E4E6ED /* AsynCycleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0DC75718CFFC4400E4E6ED /* AsynCycleView.m */; };
 		4E117966188F5F6200FB619F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E117965188F5F6200FB619F /* AVFoundation.framework */; };
 		4E11796A188F627F00FB619F /* MusicCutter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E117969188F627F00FB619F /* MusicCutter.m */; };
 		4E11796D188F6DA000FB619F /* TSLibraryImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E11796C188F6DA000FB619F /* TSLibraryImport.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -546,6 +550,11 @@
 /* Begin PBXFileReference section */
 		4E079C2E189B557900B0BB5F /* MusicMixerOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicMixerOutput.h; sourceTree = "<group>"; };
 		4E079C2F189B557900B0BB5F /* MusicMixerOutput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicMixerOutput.m; sourceTree = "<group>"; };
+		4E0DC75018CFFAD000E4E6ED /* beijign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = beijign.png; path = Common/beijign.png; sourceTree = "<group>"; };
+		4E0DC75118CFFAD000E4E6ED /* commentBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = commentBg.png; path = Common/commentBg.png; sourceTree = "<group>"; };
+		4E0DC75218CFFAD000E4E6ED /* shareBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shareBg.png; path = Common/shareBg.png; sourceTree = "<group>"; };
+		4E0DC75618CFFC4400E4E6ED /* AsynCycleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsynCycleView.h; sourceTree = "<group>"; };
+		4E0DC75718CFFC4400E4E6ED /* AsynCycleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsynCycleView.m; sourceTree = "<group>"; };
 		4E1132F218CDD3A2005AB34B /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		4E117965188F5F6200FB619F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4E117968188F627F00FB619F /* MusicCutter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicCutter.h; sourceTree = "<group>"; };
@@ -1905,6 +1914,9 @@
 		C3FEAF4F1871C294008EADAA /* 2x */ = {
 			isa = PBXGroup;
 			children = (
+				4E0DC75018CFFAD000E4E6ED /* beijign.png */,
+				4E0DC75118CFFAD000E4E6ED /* commentBg.png */,
+				4E0DC75218CFFAD000E4E6ED /* shareBg.png */,
 				4EB669D418CD9C0400CE2212 /* 豹纹主题@2x.png */,
 				4EB669D518CD9C0400CE2212 /* 简约@2x.png */,
 				4EB669D618CD9C0400CE2212 /* 绿野仙踪@2x.png */,
@@ -2383,6 +2395,8 @@
 				4EAC1DA718B0B46100C8DA2E /* GobalMethod.m */,
 				4EFE1F7718CC6ED80099BD93 /* UserDefaultMacro.h */,
 				4E1132F218CDD3A2005AB34B /* Macro.h */,
+				4E0DC75618CFFC4400E4E6ED /* AsynCycleView.h */,
+				4E0DC75718CFFC4400E4E6ED /* AsynCycleView.m */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -2706,6 +2720,7 @@
 				4E96B597188EABC4008EA56F /* VERSION in Resources */,
 				C3164CE91874555D00301ACA /* MusicFans_six@2x.png in Resources */,
 				C351B698187E3E0F00630408 /* dh@2x.png in Resources */,
+				4E0DC75518CFFAD000E4E6ED /* shareBg.png in Resources */,
 				C3FEB05F1871C294008EADAA /* setting_20@2x.png in Resources */,
 				C3FEB08A1871C294008EADAA /* user_9@2x.png in Resources */,
 				4EAF2A4318A9FE90007A8F70 /* Resource.bundle in Resources */,
@@ -2714,6 +2729,7 @@
 				C3FEB0791871C294008EADAA /* user_22@2x.png in Resources */,
 				C3164CC01874555D00301ACA /* FoundMusic_li@2x.png in Resources */,
 				C326CDA8187C5E00006DD97C /* IntegralChampionViewController.xib in Resources */,
+				4E0DC75318CFFAD000E4E6ED /* beijign.png in Resources */,
 				C3FEB0821871C294008EADAA /* user_30@2x.png in Resources */,
 				C3FEB0031871C294008EADAA /* hunyin_25@2x.png in Resources */,
 				C3164CD41874555D00301ACA /* FoundMusic_z@2x.png in Resources */,
@@ -2761,6 +2777,7 @@
 				C3FEAFFE1871C294008EADAA /* hunyin_20@2x.png in Resources */,
 				C3164CBC1874555D00301ACA /* FoundMusic_j@2x.png in Resources */,
 				C3D4FCC9187D679E001A7223 /* DownloadRankCell.xib in Resources */,
+				4E0DC75418CFFAD000E4E6ED /* commentBg.png in Resources */,
 				4ED17526189268AC000EC483 /* AudioPlotViewController.xib in Resources */,
 				C3FEB0811871C294008EADAA /* user_2@2x.png in Resources */,
 				C3FEAFF91871C294008EADAA /* hunyin_16@2x.png in Resources */,
@@ -2922,6 +2939,7 @@
 				C32F40081882873A00681953 /* MessageInviteViewController.m in Sources */,
 				C3FEB0B21871C801008EADAA /* CommonViewController.m in Sources */,
 				C32D4FA9187F953C0090730B /* TMQuiltViewController.m in Sources */,
+				4E0DC75818CFFC4400E4E6ED /* AsynCycleView.m in Sources */,
 				4E96B591188EABC4008EA56F /* EZMicrophone.m in Sources */,
 				4E96B58B188EABC4008EA56F /* AEFloatConverter.m in Sources */,
 				C3D4FCB8187CFD64001A7223 /* UIViewController+CustomBarItemPosition.m in Sources */,

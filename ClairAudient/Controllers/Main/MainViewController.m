@@ -234,8 +234,6 @@
                 [weakSelf.productImages addObject:placeHolderImage];
             }
             
-            
-            
             for (int i =0; i < [object count]; i++) {
                 NSString * imgStr = [object objectAtIndex:i];
                 //获取图片

@@ -31,7 +31,7 @@
         Class class = [self class];
         
         SEL originalSelector = @selector(viewWillAppear:);
-        SEL replaceSelector = @selector(setBackground_viewDidLoad:);
+        SEL replaceSelector = @selector(setBackground_viewWillAppear:);
         
         Method originalMethod = class_getInstanceMethod(class, originalSelector);
         Method swizzledMethod = class_getInstanceMethod(class, replaceSelector);
@@ -53,9 +53,9 @@
     });
 }
 
--(void)setBackground_viewDidLoad:(BOOL)aninmation
+-(void)setBackground_viewWillAppear:(BOOL)aninmation
 {
-    [self setBackground_viewDidLoad:YES];
+    [self setBackground_viewWillAppear:YES];
 
     objc_property_t property = class_getProperty([self class], "bgView");
     if (property) {
@@ -69,7 +69,6 @@
             }
             imageView.image = [UIImage imageNamed:imageName];
         }
-
     }
 }
 
