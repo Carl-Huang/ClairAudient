@@ -11,4 +11,6 @@
 @interface HelpViewController : CommonViewController
 @property (weak, nonatomic) IBOutlet UIImageView *bgView;
 
+@property (weak, nonatomic) IBOutlet UITextView *contentView;
+- (IBAction)submitCommentAction:(id)sender;
 @end

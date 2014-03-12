@@ -82,6 +82,15 @@
     return dateStr;
 }
 
++(NSString *)timeIntervalToDate:(long long)interval
+{
+    NSDate * date = [[NSDate alloc]initWithTimeIntervalSince1970:interval];
+    NSDateFormatter * customiseFormat  = [[NSDateFormatter alloc]init];
+    [customiseFormat setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    NSString * dateStr = [customiseFormat stringFromDate:date];
+    return dateStr;
+}
+
 +(BOOL)removeItemAtPath:(NSString *)path
 {
     if ([[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:nil]) {

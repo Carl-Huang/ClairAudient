@@ -103,5 +103,8 @@
  @desc 获取某歌曲的评论
  */
 -(void)getCommentWithParams:(NSDictionary *)params completionBlock:(void (^)(id object))success failureBlock:(void (^)(NSError * error,NSString * responseString))failure;
-
+/**
+ @desc 反馈
+ */
+-(void)commentWithParams:(NSDictionary *)params completionBlock:(void (^)(BOOL isSucccess))success failureBlock:(void (^)(NSError *, NSString *))failure;
 @end

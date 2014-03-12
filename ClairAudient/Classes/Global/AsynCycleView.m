@@ -64,7 +64,7 @@
         return [weakSelf.placeHolderImages count];
     };
     autoScrollView.TapActionBlock = ^(NSInteger pageIndex){
-        NSLog(@"点击了第%ld个",(long)pageIndex);
+        NSLog(@"You have Touch %ld ",(long)pageIndex);
     };
     
     [cycleViewParentView addSubview:autoScrollView];
@@ -96,12 +96,16 @@
             [weakSelf.placeHolderImages addObject:tempImageView];
             tempImageView = nil;
         }
+        
     }else
     {
         for (int i = [links count]; i < [weakSelf.placeHolderImages count]; i ++) {
             [weakSelf.placeHolderImages removeObjectAtIndex:i];
         }
     }
+    autoScrollView.totalPagesCount = ^NSInteger(void){
+        return [weakSelf.placeHolderImages count];
+    };
 //    networkImages = [placeHolderImages mutableCopy];
 }
 
@@ -113,11 +117,18 @@
         if (object) {
             pthread_mutex_lock(&imagesLock);
             
-            UIImageView * imageView = nil;
+            
             if ([object isKindOfClass:[UIImage class]]) {
-                imageView = [[UIImageView alloc]initWithImage:object];
-                [weakSelf.placeHolderImages replaceObjectAtIndex:index withObject:imageView];
-                [weakSelf updateAutoScrollViewItem];
+                //TODO: Is is the thread issue ,replace with another thread ,
+                //it will responsed very slowly,what the hell.
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"replace");
+                    UIImageView * imageView = nil;
+                    imageView = [[UIImageView alloc]initWithImage:object];
+                    [weakSelf.placeHolderImages replaceObjectAtIndex:index withObject:imageView];
+                    [weakSelf updateAutoScrollViewItem];
+                    imageView = nil;
+                });
                 
             }
             pthread_mutex_unlock(&imagesLock);
@@ -131,12 +142,7 @@
 -(void)updateAutoScrollViewItem
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-//        if (self.placeHolderImages) {
-//            self.placeHolderImages = nil;
-//        }
         __weak AsynCycleView * weakSelf = self;
-        
-        
         autoScrollView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
             return weakSelf.placeHolderImages[pageIndex];
         };
@@ -145,6 +151,15 @@
         };
     });
 }
+
+-(void)dealloc
+{
+    if (autoScrollView) {
+        [autoScrollView stopTimer];
+        autoScrollView = nil;
+    }
+}
+
 -(void)cleanAsynCycleView
 {
     [autoScrollView stopTimer];

@@ -8,11 +8,21 @@
 
 #import "CommentView.h"
 #import "UIBubbleTableView.h"
+#import "MusicComment.h"
+#import "GobalMethod.h"
+#import "MusicCommentItem.h"
+#import "UIBubbleTableViewDataSource.h"
+#import "NSBubbleData.h"
+#import "CommentCell.h"
+#import "HttpService.h"
+#import "User.h"
 
-@interface CommentView ()<UIBubbleTableViewDataSource>
+static NSString * cellIdentifier = @"cellIdentifier";
+@interface CommentView ()<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate>
 {
     NSMutableArray *bubbleData;
 }
+@property (strong ,nonatomic) UITableView * contentTable;
 @end
 
 @implementation CommentView
@@ -26,52 +36,91 @@
     return self;
 }
 
--(void)configureBubbleView
-{
-    bubbleData = [NSMutableArray array];
-    _contentTable.bubbleDataSource = self;
-    _contentTable.snapInterval = 120;
-    _contentTable.showAvatars = NO;
-    _contentTable.bubbleDataSource = self;
-    
-    
-
-    [_contentTable reloadData];
-    [_contentTable scrollBubbleViewToBottomAnimated:YES];
+- (IBAction)submitCommentActon:(id)sender {
 }
 
-//-(NSBubbleData *)toIDBubble:(MessageObject *)object
-//{
-//    NSBubbleData *sayBubble = [NSBubbleData dataWithText:object.content date:[self timeIntervalToDate:object.add_time.integerValue] type:BubbleTypeSomeoneElXse];
-//    UIImageView * imageView = [[UIImageView alloc]init];
-//    [imageView setImageWithURLRequest:[self constructImageUrlWith:_to_id] placeholderImage:[UIImage imageNamed:@"mtxx110.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-//        sayBubble.avatar = image;
-//    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-//        ;
-//    }];
-//    
-//    return sayBubble;
-//}
+-(void)configureBubbleView:(NSArray *)dataSource
+{
+    bubbleData = [NSMutableArray array];
+    _contentTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 200)];
+    _contentTable.delegate = self;
+    _contentTable.dataSource = self;
+    [_contentTable setBackgroundColor:[UIColor clearColor]];
+    [_contentTable setBackgroundView:nil];
+    if ([OSHelper iOS7]) {
+        _contentTable.separatorInset = UIEdgeInsetsZero;
+    }
+    _contentTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    UINib *cellNib = [UINib nibWithNibName:@"CommentCell" bundle:[NSBundle bundleForClass:[CommentCell class]]];
+    [_contentTable registerNib:cellNib forCellReuseIdentifier:cellIdentifier];
+    
+    if ([dataSource count]) {
+        for (MusicCommentItem * commentObject in [[dataSource objectAtIndex:0]valueForKey:@"items"]) {
+            [bubbleData addObject:commentObject];
+        }
+        
+        CGRect rect = self.tableViewContainer.frame;
+        NSInteger totalHeight = [bubbleData count] * 110;
+        if (totalHeight > self.tableViewContainer.frame.size.height) {
+            NSInteger offset = totalHeight - self.tableViewContainer.frame.size.height;
+            rect.size.height = totalHeight;
+            [self.tableViewContainer setFrame:rect];
+            
+            rect.origin.x = 0;
+            rect.origin.y = 0;
+            [_contentTable setFrame:rect];
+            
+            CGRect baiceRect = self.frame;
+            baiceRect.size.height +=offset;
+            self.frame = baiceRect;
+        }
+        
+        
+        [_contentTable reloadData];
+    }
+    
+    _commentTextview.delegate = self;
+    
 
-#pragma mark - UIBubbleTableViewDataSource implementation
 
-- (NSInteger)rowsForBubbleTable:(UIBubbleTableView *)tableView
+    [self.tableViewContainer addSubview:_contentTable];
+}
+
+
+#pragma mark - Table
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [bubbleData count];
 }
 
-- (NSBubbleData *)bubbleTableView:(UIBubbleTableView *)tableView dataForRow:(NSInteger)row
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [bubbleData objectAtIndex:row];
+    return 110.0f;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Drawing code
+    CommentCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    [cell setBackgroundColor:[UIColor clearColor]];
+    MusicCommentItem * object = [bubbleData objectAtIndex:indexPath.row];
+    cell.contentLabel.text = object.content;
+    
+    long long interval = object.date.longLongValue;
+    cell.timeLabel.text = [GobalMethod timeIntervalToDate:interval];
+    cell.userNameLabel.text = object.username;
+    
+    return cell;
 }
-*/
 
+
+#pragma mark - TextView
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
 @end

@@ -13,15 +13,28 @@
 		4E0DC75418CFFAD000E4E6ED /* commentBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E0DC75118CFFAD000E4E6ED /* commentBg.png */; };
 		4E0DC75518CFFAD000E4E6ED /* shareBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E0DC75218CFFAD000E4E6ED /* shareBg.png */; };
 		4E0DC75818CFFC4400E4E6ED /* AsynCycleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0DC75718CFFC4400E4E6ED /* AsynCycleView.m */; };
-		4E0DC76518D0539E00E4E6ED /* NSBubbleData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0DC75B18D0539E00E4E6ED /* NSBubbleData.m */; };
-		4E0DC76618D0539E00E4E6ED /* UIBubbleHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0DC75D18D0539E00E4E6ED /* UIBubbleHeaderTableViewCell.m */; };
-		4E0DC76718D0539E00E4E6ED /* UIBubbleTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0DC75F18D0539E00E4E6ED /* UIBubbleTableView.m */; };
-		4E0DC76818D0539E00E4E6ED /* UIBubbleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0DC76118D0539E00E4E6ED /* UIBubbleTableViewCell.m */; };
-		4E0DC76918D0539E00E4E6ED /* UIBubbleTypingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0DC76418D0539E00E4E6ED /* UIBubbleTypingTableViewCell.m */; };
 		4E0DC76C18D053BD00E4E6ED /* CommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0DC76B18D053BD00E4E6ED /* CommentView.m */; };
 		4E0DC76E18D053CB00E4E6ED /* CommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E0DC76D18D053CB00E4E6ED /* CommentView.xib */; };
 		4E0DC77018D054C400E4E6ED /* tijiaoBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E0DC76F18D054C400E4E6ED /* tijiaoBtn.png */; };
 		4E0DC77318D05B7F00E4E6ED /* MusicComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0DC77218D05B7F00E4E6ED /* MusicComment.m */; };
+		4E0DC77618D09BF400E4E6ED /* MusicCommentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0DC77518D09BF400E4E6ED /* MusicCommentItem.m */; };
+		4E0DC78F18D0B59F00E4E6ED /* bubbleMine.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E0DC77918D0B59F00E4E6ED /* bubbleMine.png */; };
+		4E0DC79018D0B59F00E4E6ED /* bubbleMine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E0DC77A18D0B59F00E4E6ED /* bubbleMine@2x.png */; };
+		4E0DC79118D0B59F00E4E6ED /* bubbleSomeone.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E0DC77B18D0B59F00E4E6ED /* bubbleSomeone.png */; };
+		4E0DC79218D0B59F00E4E6ED /* bubbleSomeone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E0DC77C18D0B59F00E4E6ED /* bubbleSomeone@2x.png */; };
+		4E0DC79318D0B59F00E4E6ED /* missingAvatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E0DC77D18D0B59F00E4E6ED /* missingAvatar.png */; };
+		4E0DC79418D0B59F00E4E6ED /* missingAvatar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E0DC77E18D0B59F00E4E6ED /* missingAvatar@2x.png */; };
+		4E0DC79518D0B59F00E4E6ED /* typingMine.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E0DC77F18D0B59F00E4E6ED /* typingMine.png */; };
+		4E0DC79618D0B59F00E4E6ED /* typingMine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E0DC78018D0B59F00E4E6ED /* typingMine@2x.png */; };
+		4E0DC79718D0B59F00E4E6ED /* typingSomeone.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E0DC78118D0B59F00E4E6ED /* typingSomeone.png */; };
+		4E0DC79818D0B59F00E4E6ED /* typingSomeone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E0DC78218D0B59F00E4E6ED /* typingSomeone@2x.png */; };
+		4E0DC79918D0B59F00E4E6ED /* NSBubbleData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0DC78518D0B59F00E4E6ED /* NSBubbleData.m */; };
+		4E0DC79A18D0B59F00E4E6ED /* UIBubbleHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0DC78718D0B59F00E4E6ED /* UIBubbleHeaderTableViewCell.m */; };
+		4E0DC79B18D0B59F00E4E6ED /* UIBubbleTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0DC78918D0B59F00E4E6ED /* UIBubbleTableView.m */; };
+		4E0DC79C18D0B59F00E4E6ED /* UIBubbleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0DC78B18D0B59F00E4E6ED /* UIBubbleTableViewCell.m */; };
+		4E0DC79D18D0B59F00E4E6ED /* UIBubbleTypingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0DC78E18D0B59F00E4E6ED /* UIBubbleTypingTableViewCell.m */; };
+		4E0DC7A018D0B76B00E4E6ED /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0DC79F18D0B76B00E4E6ED /* CommentCell.m */; };
+		4E0DC7A218D0B77A00E4E6ED /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E0DC7A118D0B77A00E4E6ED /* CommentCell.xib */; };
 		4E117966188F5F6200FB619F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E117965188F5F6200FB619F /* AVFoundation.framework */; };
 		4E11796A188F627F00FB619F /* MusicCutter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E117969188F627F00FB619F /* MusicCutter.m */; };
 		4E11796D188F6DA000FB619F /* TSLibraryImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E11796C188F6DA000FB619F /* TSLibraryImport.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -564,23 +577,38 @@
 		4E0DC75218CFFAD000E4E6ED /* shareBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shareBg.png; path = Common/shareBg.png; sourceTree = "<group>"; };
 		4E0DC75618CFFC4400E4E6ED /* AsynCycleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsynCycleView.h; sourceTree = "<group>"; };
 		4E0DC75718CFFC4400E4E6ED /* AsynCycleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsynCycleView.m; sourceTree = "<group>"; };
-		4E0DC75A18D0539E00E4E6ED /* NSBubbleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSBubbleData.h; sourceTree = "<group>"; };
-		4E0DC75B18D0539E00E4E6ED /* NSBubbleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSBubbleData.m; sourceTree = "<group>"; };
-		4E0DC75C18D0539E00E4E6ED /* UIBubbleHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleHeaderTableViewCell.h; sourceTree = "<group>"; };
-		4E0DC75D18D0539E00E4E6ED /* UIBubbleHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleHeaderTableViewCell.m; sourceTree = "<group>"; };
-		4E0DC75E18D0539E00E4E6ED /* UIBubbleTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTableView.h; sourceTree = "<group>"; };
-		4E0DC75F18D0539E00E4E6ED /* UIBubbleTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleTableView.m; sourceTree = "<group>"; };
-		4E0DC76018D0539E00E4E6ED /* UIBubbleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTableViewCell.h; sourceTree = "<group>"; };
-		4E0DC76118D0539E00E4E6ED /* UIBubbleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleTableViewCell.m; sourceTree = "<group>"; };
-		4E0DC76218D0539E00E4E6ED /* UIBubbleTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTableViewDataSource.h; sourceTree = "<group>"; };
-		4E0DC76318D0539E00E4E6ED /* UIBubbleTypingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTypingTableViewCell.h; sourceTree = "<group>"; };
-		4E0DC76418D0539E00E4E6ED /* UIBubbleTypingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleTypingTableViewCell.m; sourceTree = "<group>"; };
 		4E0DC76A18D053BD00E4E6ED /* CommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentView.h; sourceTree = "<group>"; };
 		4E0DC76B18D053BD00E4E6ED /* CommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentView.m; sourceTree = "<group>"; };
 		4E0DC76D18D053CB00E4E6ED /* CommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentView.xib; sourceTree = "<group>"; };
 		4E0DC76F18D054C400E4E6ED /* tijiaoBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tijiaoBtn.png; path = Common/tijiaoBtn.png; sourceTree = "<group>"; };
 		4E0DC77118D05B7F00E4E6ED /* MusicComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicComment.h; sourceTree = "<group>"; };
 		4E0DC77218D05B7F00E4E6ED /* MusicComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicComment.m; sourceTree = "<group>"; };
+		4E0DC77418D09BF400E4E6ED /* MusicCommentItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicCommentItem.h; sourceTree = "<group>"; };
+		4E0DC77518D09BF400E4E6ED /* MusicCommentItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicCommentItem.m; sourceTree = "<group>"; };
+		4E0DC77918D0B59F00E4E6ED /* bubbleMine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubbleMine.png; sourceTree = "<group>"; };
+		4E0DC77A18D0B59F00E4E6ED /* bubbleMine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubbleMine@2x.png"; sourceTree = "<group>"; };
+		4E0DC77B18D0B59F00E4E6ED /* bubbleSomeone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubbleSomeone.png; sourceTree = "<group>"; };
+		4E0DC77C18D0B59F00E4E6ED /* bubbleSomeone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubbleSomeone@2x.png"; sourceTree = "<group>"; };
+		4E0DC77D18D0B59F00E4E6ED /* missingAvatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missingAvatar.png; sourceTree = "<group>"; };
+		4E0DC77E18D0B59F00E4E6ED /* missingAvatar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "missingAvatar@2x.png"; sourceTree = "<group>"; };
+		4E0DC77F18D0B59F00E4E6ED /* typingMine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = typingMine.png; sourceTree = "<group>"; };
+		4E0DC78018D0B59F00E4E6ED /* typingMine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "typingMine@2x.png"; sourceTree = "<group>"; };
+		4E0DC78118D0B59F00E4E6ED /* typingSomeone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = typingSomeone.png; sourceTree = "<group>"; };
+		4E0DC78218D0B59F00E4E6ED /* typingSomeone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "typingSomeone@2x.png"; sourceTree = "<group>"; };
+		4E0DC78418D0B59F00E4E6ED /* NSBubbleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSBubbleData.h; sourceTree = "<group>"; };
+		4E0DC78518D0B59F00E4E6ED /* NSBubbleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSBubbleData.m; sourceTree = "<group>"; };
+		4E0DC78618D0B59F00E4E6ED /* UIBubbleHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleHeaderTableViewCell.h; sourceTree = "<group>"; };
+		4E0DC78718D0B59F00E4E6ED /* UIBubbleHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleHeaderTableViewCell.m; sourceTree = "<group>"; };
+		4E0DC78818D0B59F00E4E6ED /* UIBubbleTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTableView.h; sourceTree = "<group>"; };
+		4E0DC78918D0B59F00E4E6ED /* UIBubbleTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleTableView.m; sourceTree = "<group>"; };
+		4E0DC78A18D0B59F00E4E6ED /* UIBubbleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTableViewCell.h; sourceTree = "<group>"; };
+		4E0DC78B18D0B59F00E4E6ED /* UIBubbleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleTableViewCell.m; sourceTree = "<group>"; };
+		4E0DC78C18D0B59F00E4E6ED /* UIBubbleTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTableViewDataSource.h; sourceTree = "<group>"; };
+		4E0DC78D18D0B59F00E4E6ED /* UIBubbleTypingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTypingTableViewCell.h; sourceTree = "<group>"; };
+		4E0DC78E18D0B59F00E4E6ED /* UIBubbleTypingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleTypingTableViewCell.m; sourceTree = "<group>"; };
+		4E0DC79E18D0B76B00E4E6ED /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		4E0DC79F18D0B76B00E4E6ED /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
+		4E0DC7A118D0B77A00E4E6ED /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		4E1132F218CDD3A2005AB34B /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		4E117965188F5F6200FB619F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4E117968188F627F00FB619F /* MusicCutter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicCutter.h; sourceTree = "<group>"; };
@@ -1314,22 +1342,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4E0DC75918D0539E00E4E6ED /* BubbleView */ = {
+		4E0DC77718D0B59F00E4E6ED /* BubbleView */ = {
 			isa = PBXGroup;
 			children = (
-				4E0DC75A18D0539E00E4E6ED /* NSBubbleData.h */,
-				4E0DC75B18D0539E00E4E6ED /* NSBubbleData.m */,
-				4E0DC75C18D0539E00E4E6ED /* UIBubbleHeaderTableViewCell.h */,
-				4E0DC75D18D0539E00E4E6ED /* UIBubbleHeaderTableViewCell.m */,
-				4E0DC75E18D0539E00E4E6ED /* UIBubbleTableView.h */,
-				4E0DC75F18D0539E00E4E6ED /* UIBubbleTableView.m */,
-				4E0DC76018D0539E00E4E6ED /* UIBubbleTableViewCell.h */,
-				4E0DC76118D0539E00E4E6ED /* UIBubbleTableViewCell.m */,
-				4E0DC76218D0539E00E4E6ED /* UIBubbleTableViewDataSource.h */,
-				4E0DC76318D0539E00E4E6ED /* UIBubbleTypingTableViewCell.h */,
-				4E0DC76418D0539E00E4E6ED /* UIBubbleTypingTableViewCell.m */,
+				4E0DC77818D0B59F00E4E6ED /* images */,
+				4E0DC78318D0B59F00E4E6ED /* src */,
 			);
 			path = BubbleView;
+			sourceTree = "<group>";
+		};
+		4E0DC77818D0B59F00E4E6ED /* images */ = {
+			isa = PBXGroup;
+			children = (
+				4E0DC77918D0B59F00E4E6ED /* bubbleMine.png */,
+				4E0DC77A18D0B59F00E4E6ED /* bubbleMine@2x.png */,
+				4E0DC77B18D0B59F00E4E6ED /* bubbleSomeone.png */,
+				4E0DC77C18D0B59F00E4E6ED /* bubbleSomeone@2x.png */,
+				4E0DC77D18D0B59F00E4E6ED /* missingAvatar.png */,
+				4E0DC77E18D0B59F00E4E6ED /* missingAvatar@2x.png */,
+				4E0DC77F18D0B59F00E4E6ED /* typingMine.png */,
+				4E0DC78018D0B59F00E4E6ED /* typingMine@2x.png */,
+				4E0DC78118D0B59F00E4E6ED /* typingSomeone.png */,
+				4E0DC78218D0B59F00E4E6ED /* typingSomeone@2x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		4E0DC78318D0B59F00E4E6ED /* src */ = {
+			isa = PBXGroup;
+			children = (
+				4E0DC78418D0B59F00E4E6ED /* NSBubbleData.h */,
+				4E0DC78518D0B59F00E4E6ED /* NSBubbleData.m */,
+				4E0DC78618D0B59F00E4E6ED /* UIBubbleHeaderTableViewCell.h */,
+				4E0DC78718D0B59F00E4E6ED /* UIBubbleHeaderTableViewCell.m */,
+				4E0DC78818D0B59F00E4E6ED /* UIBubbleTableView.h */,
+				4E0DC78918D0B59F00E4E6ED /* UIBubbleTableView.m */,
+				4E0DC78A18D0B59F00E4E6ED /* UIBubbleTableViewCell.h */,
+				4E0DC78B18D0B59F00E4E6ED /* UIBubbleTableViewCell.m */,
+				4E0DC78C18D0B59F00E4E6ED /* UIBubbleTableViewDataSource.h */,
+				4E0DC78D18D0B59F00E4E6ED /* UIBubbleTypingTableViewCell.h */,
+				4E0DC78E18D0B59F00E4E6ED /* UIBubbleTypingTableViewCell.m */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 		4E117967188F627F00FB619F /* Audio Utilities */ = {
@@ -1729,6 +1783,9 @@
 				4E0DC76A18D053BD00E4E6ED /* CommentView.h */,
 				4E0DC76B18D053BD00E4E6ED /* CommentView.m */,
 				4E0DC76D18D053CB00E4E6ED /* CommentView.xib */,
+				4E0DC79E18D0B76B00E4E6ED /* CommentCell.h */,
+				4E0DC79F18D0B76B00E4E6ED /* CommentCell.m */,
+				4E0DC7A118D0B77A00E4E6ED /* CommentCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1787,6 +1844,8 @@
 				4EFE1F7518CC65ED0099BD93 /* CustomiseImageObj.m */,
 				4E0DC77118D05B7F00E4E6ED /* MusicComment.h */,
 				4E0DC77218D05B7F00E4E6ED /* MusicComment.m */,
+				4E0DC77418D09BF400E4E6ED /* MusicCommentItem.h */,
+				4E0DC77518D09BF400E4E6ED /* MusicCommentItem.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2222,7 +2281,7 @@
 		C3FEB0901871C2A8008EADAA /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
-				4E0DC75918D0539E00E4E6ED /* BubbleView */,
+				4E0DC77718D0B59F00E4E6ED /* BubbleView */,
 				4EAF2A0D18A9FE90007A8F70 /* ShareSDK */,
 				C39BBE491893DF5C00FC8F72 /* TSPopover */,
 				4E96B571188EABC4008EA56F /* EZAudio */,
@@ -2608,6 +2667,7 @@
 				C3FEB0041871C294008EADAA /* hunyin_26@2x.png in Resources */,
 				C3FEB04B1871C294008EADAA /* record_38@2x.png in Resources */,
 				C3486CCE18866B1E00EB7AD0 /* geren@2x.png in Resources */,
+				4E0DC79218D0B59F00E4E6ED /* bubbleSomeone@2x.png in Resources */,
 				C3FEB0411871C294008EADAA /* record_29@2x.png in Resources */,
 				C34C3402188AB430009CD20B /* RecordListViewController.xib in Resources */,
 				C32F400E1882876A00681953 /* UserCenterViewController.xib in Resources */,
@@ -2632,6 +2692,7 @@
 				C3FEB0311871C294008EADAA /* record_13@2x.png in Resources */,
 				C3FEB02C1871C294008EADAA /* first_9@2x.png in Resources */,
 				C3164CC71874555D00301ACA /* FoundMusic_p@2x.png in Resources */,
+				4E0DC79818D0B59F00E4E6ED /* typingSomeone@2x.png in Resources */,
 				C3FEAF2A1871C156008EADAA /* InfoPlist.strings in Resources */,
 				C3FEB0201871C294008EADAA /* hunyin_5@2x.png in Resources */,
 				4EAF2A4F18A9FE90007A8F70 /* ShareSDKiPadSimpleShareViewUI.bundle in Resources */,
@@ -2654,6 +2715,7 @@
 				C3B395C61875519800592C92 /* back@2x.png in Resources */,
 				C3FEB03B1871C294008EADAA /* record_23@2x.png in Resources */,
 				C3164CC51874555D00301ACA /* FoundMusic_o@2x.png in Resources */,
+				4E0DC79018D0B59F00E4E6ED /* bubbleMine@2x.png in Resources */,
 				C327499C187A5EBD00CF7A4A /* ThemeViewController.xib in Resources */,
 				C3164CCA1874555D00301ACA /* FoundMusic_r@2x.png in Resources */,
 				C3FEB05D1871C294008EADAA /* setting_17@2x.png in Resources */,
@@ -2687,6 +2749,7 @@
 				C3FEB07F1871C294008EADAA /* user_28@2x.png in Resources */,
 				C39A97AF189247AE00F41CBB /* catalog_section_apng@2x.png in Resources */,
 				4EB43E8718AB39AA004CCC85 /* play.png in Resources */,
+				4E0DC79718D0B59F00E4E6ED /* typingSomeone.png in Resources */,
 				C3164CE71874555D00301ACA /* MusicFans_sfjh@2x.png in Resources */,
 				4EE3AE3218CF3BC600D09F79 /* def5.mp3 in Resources */,
 				C32749A5187A5FB500CF7A4A /* setting_bar@2x.png in Resources */,
@@ -2757,6 +2820,7 @@
 				C3FEB0541871C294008EADAA /* record_9@2x.png in Resources */,
 				4EAF2A4218A9FE90007A8F70 /* ShareSDKLocalizable.strings in Resources */,
 				C3164CD31874555D00301ACA /* FoundMusic_y@2x.png in Resources */,
+				4E0DC79418D0B59F00E4E6ED /* missingAvatar@2x.png in Resources */,
 				4EE3AE3018CF3BC600D09F79 /* def3.mp3 in Resources */,
 				C351B69A187E3E0F00630408 /* MusicFans_hkbg@2x.png in Resources */,
 				C3FEB0491871C294008EADAA /* record_36@2x.png in Resources */,
@@ -2766,7 +2830,9 @@
 				C3164CD61874555D00301ACA /* MusicFans_cv@2x.png in Resources */,
 				C39A97A9189247AE00F41CBB /* catalog_icon_gpng@2x.png in Resources */,
 				C3FEB0361871C294008EADAA /* record_18@2x.png in Resources */,
+				4E0DC79518D0B59F00E4E6ED /* typingMine.png in Resources */,
 				C3FEB0341871C294008EADAA /* record_16@2x.png in Resources */,
+				4E0DC79118D0B59F00E4E6ED /* bubbleSomeone.png in Resources */,
 				C3FEAFF61871C294008EADAA /* hunyin_13@2x.png in Resources */,
 				C3FEB0881871C294008EADAA /* user_7@2x.png in Resources */,
 				4E96B597188EABC4008EA56F /* VERSION in Resources */,
@@ -2777,6 +2843,7 @@
 				C3FEB08A1871C294008EADAA /* user_9@2x.png in Resources */,
 				4EAF2A4318A9FE90007A8F70 /* Resource.bundle in Resources */,
 				4EAF2A5218A9FE90007A8F70 /* ShareSDKiPhoneDefaultShareViewUI.bundle in Resources */,
+				4E0DC79318D0B59F00E4E6ED /* missingAvatar.png in Resources */,
 				C3FEB0121871C294008EADAA /* hunyin_3@2x.png in Resources */,
 				C3FEB0791871C294008EADAA /* user_22@2x.png in Resources */,
 				C3164CC01874555D00301ACA /* FoundMusic_li@2x.png in Resources */,
@@ -2797,6 +2864,7 @@
 				C3FEAFFF1871C294008EADAA /* hunyin_21@2x.png in Resources */,
 				4EB669D318CD9B6900CE2212 /* luyin@2x.png in Resources */,
 				C3FEB0111871C294008EADAA /* hunyin_39@2x.png in Resources */,
+				4E0DC79618D0B59F00E4E6ED /* typingMine@2x.png in Resources */,
 				C3FEB02F1871C294008EADAA /* record_11@2x.png in Resources */,
 				C3FEB0891871C294008EADAA /* user_8@2x.png in Resources */,
 				C3FEB0241871C294008EADAA /* sliderStart.png in Resources */,
@@ -2853,6 +2921,7 @@
 				C39A97B2189247AE00F41CBB /* catalog_section_dpng@2x.png in Resources */,
 				C3D4FCC1187D6181001A7223 /* IntegralChampionCell.xib in Resources */,
 				C3FEB0211871C294008EADAA /* hunyin_6@2x.png in Resources */,
+				4E0DC78F18D0B59F00E4E6ED /* bubbleMine.png in Resources */,
 				C39A97B6189247AE00F41CBB /* catalog_section_hpng@2x.png in Resources */,
 				C3FEB0141871C294008EADAA /* hunyin_41@2x.png in Resources */,
 				C3FEB06E1871C294008EADAA /* user_11@2x.png in Resources */,
@@ -2872,6 +2941,7 @@
 				4EB43E8618AB39AA004CCC85 /* loading.png in Resources */,
 				C39A97B4189247AE00F41CBB /* catalog_section_fpng@2x.png in Resources */,
 				C3164CCE1874555D00301ACA /* FoundMusic_t@2x.png in Resources */,
+				4E0DC7A218D0B77A00E4E6ED /* CommentCell.xib in Resources */,
 				C3164CDD1874555D00301ACA /* MusicFans_gvb @2x.png in Resources */,
 				C3FEB0321871C294008EADAA /* record_14@2x.png in Resources */,
 				C3164CCC1874555D00301ACA /* FoundMusic_sd@2x.png in Resources */,
@@ -2962,6 +3032,7 @@
 				C3FEB0B81871C801008EADAA /* OSHelper.m in Sources */,
 				C39A97C21892CC6B00F41CBB /* SearchResultViewController.m in Sources */,
 				C3456CEA18877A3B009329D2 /* MyProductionCell.m in Sources */,
+				4E0DC79D18D0B59F00E4E6ED /* UIBubbleTypingTableViewCell.m in Sources */,
 				C32F400D1882876A00681953 /* UserCenterViewController.m in Sources */,
 				4EFF165418A7D19C005E4802 /* AutoCompletedOperation.m in Sources */,
 				C32F401C188287D300681953 /* PersonalHomePageViewController.m in Sources */,
@@ -2972,7 +3043,9 @@
 				C32D4FA8187F953C0090730B /* TMQuiltViewCell.m in Sources */,
 				C32F3FFE188286CE00681953 /* VipRegisterViewController.m in Sources */,
 				4E2A13871891531C00D8CB65 /* RingBuffer.mm in Sources */,
+				4E0DC77618D09BF400E4E6ED /* MusicCommentItem.m in Sources */,
 				C39BBE481893DE4E00FC8F72 /* SortPopoverViewController.m in Sources */,
+				4E0DC79C18D0B59F00E4E6ED /* UIBubbleTableViewCell.m in Sources */,
 				4EF30A9918CF59D000376FFA /* StreamPlayer.m in Sources */,
 				C326CDAC187C5E44006DD97C /* CatalogRankViewController.m in Sources */,
 				C34C340B188AE6F7009CD20B /* ShareViewController.m in Sources */,
@@ -2981,6 +3054,7 @@
 				4E96B58C188EABC4008EA56F /* EZAudio.m in Sources */,
 				C3FEB0BB1871C801008EADAA /* UIViewController+BarItem.m in Sources */,
 				C3D4FCC4187D6194001A7223 /* IntegralChampionCell.m in Sources */,
+				4E0DC79A18D0B59F00E4E6ED /* UIBubbleHeaderTableViewCell.m in Sources */,
 				C32F4017188287B600681953 /* MyDownloadViewController.mm in Sources */,
 				4E2A13651890BC6300D8CB65 /* ClairDataSource.xcdatamodeld in Sources */,
 				4E37255318C02F3E00AAB235 /* MusicMixer.m in Sources */,
@@ -2989,7 +3063,6 @@
 				C3456CFD18883C17009329D2 /* TMSoundEffectCell.m in Sources */,
 				C341171B188B8B080070EAB4 /* HttpService.m in Sources */,
 				C326CDBB187C5EDB006DD97C /* DownloadRankViewController.m in Sources */,
-				4E0DC76818D0539E00E4E6ED /* UIBubbleTableViewCell.m in Sources */,
 				C32F40081882873A00681953 /* MessageInviteViewController.m in Sources */,
 				C3FEB0B21871C801008EADAA /* CommonViewController.m in Sources */,
 				C32D4FA9187F953C0090730B /* TMQuiltViewController.m in Sources */,
@@ -3003,6 +3076,7 @@
 				4ED1751A18925322000EC483 /* AudioPlotView.m in Sources */,
 				C3FEB0EB1871D2FC008EADAA /* ControlCenter.m in Sources */,
 				4E96B592188EABC4008EA56F /* EZOutput.m in Sources */,
+				4E0DC7A018D0B76B00E4E6ED /* CommentCell.m in Sources */,
 				4EFE1F7618CC65ED0099BD93 /* CustomiseImageObj.m in Sources */,
 				4E2A136B1890BDEC00D8CB65 /* MusicInfo.m in Sources */,
 				C3411720188BC6710070EAB4 /* BaseModel.m in Sources */,
@@ -3032,7 +3106,6 @@
 				C3FEB0BC1871C801008EADAA /* VersionManager.m in Sources */,
 				C3411730188C2C2B0070EAB4 /* VoiceComment.m in Sources */,
 				C34C3401188AB430009CD20B /* RecordListViewController.mm in Sources */,
-				4E0DC76718D0539E00E4E6ED /* UIBubbleTableView.m in Sources */,
 				C32749A0187A5ED400CF7A4A /* HelpViewController.m in Sources */,
 				4EFE1F6E18CC11310099BD93 /* CopyMusicView.m in Sources */,
 				C3FEB0B51871C801008EADAA /* NSDate+Utils.m in Sources */,
@@ -3052,17 +3125,15 @@
 				C3FEB0C71871CA19008EADAA /* MainViewController.m in Sources */,
 				C3FEB0B61871C801008EADAA /* NSString+MD5_32.m in Sources */,
 				4E96B58D188EABC4008EA56F /* EZAudioFile.m in Sources */,
-				4E0DC76618D0539E00E4E6ED /* UIBubbleHeaderTableViewCell.m in Sources */,
 				C34C3405188AB967009CD20B /* RecordListCell.m in Sources */,
 				4E96B590188EABC4008EA56F /* EZAudioPlotGLKViewController.m in Sources */,
 				C3FEB0B71871C801008EADAA /* NSString+Utils.m in Sources */,
-				4E0DC76518D0539E00E4E6ED /* NSBubbleData.m in Sources */,
 				4E11796D188F6DA000FB619F /* TSLibraryImport.m in Sources */,
 				C32F4021188287EE00681953 /* MyProductionViewController.mm in Sources */,
 				4E0DC77318D05B7F00E4E6ED /* MusicComment.m in Sources */,
 				4E96B58F188EABC4008EA56F /* EZAudioPlotGL.m in Sources */,
+				4E0DC79B18D0B59F00E4E6ED /* UIBubbleTableView.m in Sources */,
 				C32F4003188286EB00681953 /* LoginSuccessViewController.m in Sources */,
-				4E0DC76918D0539E00E4E6ED /* UIBubbleTypingTableViewCell.m in Sources */,
 				C32D4F9E187F8DCD0090730B /* SoundCatalogViewController.m in Sources */,
 				4E2A13711890BFF600D8CB65 /* PersistentStore.m in Sources */,
 				C326CDA7187C5E00006DD97C /* IntegralChampionViewController.m in Sources */,
@@ -3072,6 +3143,7 @@
 				C3FEB0CC1871CA45008EADAA /* LoginViewController.m in Sources */,
 				C39BBE551893DF5C00FC8F72 /* TSActionSheet.m in Sources */,
 				4E37255C18C0306700AAB235 /* AudioFloatPointReader.m in Sources */,
+				4E0DC79918D0B59F00E4E6ED /* NSBubbleData.m in Sources */,
 				C3B53E46188C3000004EA4A7 /* IntegralRankUser.m in Sources */,
 				4ED17525189268AC000EC483 /* AudioPlotViewController.m in Sources */,
 				4E96B594188EABC4008EA56F /* EZRecorder.m in Sources */,

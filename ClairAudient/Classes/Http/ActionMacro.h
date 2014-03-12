@@ -25,4 +25,5 @@
 #define WelcomeImageAction                          @"WelcomeImageAction"
 #define GetAdAction                                 @"GetAdAction"
 #define GetCommentByVlId                            @"GetCommentByVlId"
+#define FacebackAction                              @"FacebackAction"
 #endif

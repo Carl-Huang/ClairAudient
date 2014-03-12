@@ -128,11 +128,10 @@
 
 - (void)setScrollViewContentDataSource
 {
-    NSLog(@"%s",__FUNCTION__);
     NSInteger previousPageIndex = [self getValidNextPageIndexWithPageIndex:self.currentPageIndex - 1];
     NSInteger rearPageIndex = [self getValidNextPageIndexWithPageIndex:self.currentPageIndex + 1];
     if (self.contentViews == nil) {
-        self.contentViews = [@[] mutableCopy];
+        self.contentViews = [NSMutableArray array];
     }
     [self.contentViews removeAllObjects];
     

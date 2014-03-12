@@ -379,10 +379,8 @@
 -(void)getCommentWithParams:(NSDictionary *)params completionBlock:(void (^)(id))success failureBlock:(void (^)(NSError *, NSString *))failure
 {
     [self post:[self mergeURL:GetCommentByVlId] withParams:params completionBlock:^(id obj) {
+        NSMutableArray * models = [NSMutableArray array];
         if ([obj count]) {
-            
-            NSMutableArray * models = [NSMutableArray array];
-                
                 MusicComment * model  = [[MusicComment alloc] init];
                 NSArray * properties = [[self class] propertiesName:[MusicComment class]];
                 for(NSString * property in properties)
@@ -394,7 +392,8 @@
                         if(![value isKindOfClass:[NSString class]])
                         {
                             if ([property isEqualToString:@"items"]) {
-                                model.items = value;
+                                model.items = [self constructMusicCommentModel:value];
+                                
                             }else
                             [model setValue:[value stringValue] forKey:property];
                         }
@@ -404,6 +403,48 @@
                 [models addObject:model];
                 model = nil;
             }
+        success(models);
     } failureBlock:failure];
 }
+
+-(NSArray *)constructMusicCommentModel:(NSArray *)array
+{
+    NSMutableArray * models = [NSMutableArray array];
+    for (NSDictionary * dic  in array) {
+        MusicCommentItem * model  = [[MusicCommentItem alloc] init];
+        NSArray * properties = [[self class] propertiesName:[MusicCommentItem class]];
+        for(NSString * property in properties)
+        {
+            
+            id value = [dic valueForKey:property];
+
+            if(![value isKindOfClass:[NSNull class]])
+            {
+                
+                if ([property isEqualToString:@"id"]) {
+                    [model setValue:[value stringValue] forKey:@"ID"];
+                }else
+                    [model setValue:[NSString stringWithFormat:@"%@",value] forKey:property];
+            }
+        }
+        [models addObject:model];
+        model = nil;
+    }
+    
+    return models;
+}
+
+-(void)commentWithParams:(NSDictionary *)params completionBlock:(void (^)(BOOL isSucccess))success failureBlock:(void (^)(NSError *, NSString *))failure
+{
+    [self post:[self mergeURL:FacebackAction] withParams:params completionBlock:^(id obj) {
+        
+    } failureBlock:^(NSError *error, NSString *responseString) {
+        if ([responseString isEqualToString:@"1"]) {
+            success(YES);
+        }else
+            success(NO);
+    
+    }];
+}
+
 @end
