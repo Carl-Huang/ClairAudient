@@ -128,6 +128,7 @@
 
 - (void)setScrollViewContentDataSource
 {
+    NSLog(@"%s",__FUNCTION__);
     NSInteger previousPageIndex = [self getValidNextPageIndexWithPageIndex:self.currentPageIndex - 1];
     NSInteger rearPageIndex = [self getValidNextPageIndexWithPageIndex:self.currentPageIndex + 1];
     if (self.contentViews == nil) {
@@ -207,7 +208,12 @@
     }
 }
 
-
+-(void)refreshContentAtIndex:(NSInteger)index withObject:(UIImageView *)imageView
+{
+    if ([self.contentViews count] > index) {
+        [self.contentViews replaceObjectAtIndex:index withObject:imageView];
+    }
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

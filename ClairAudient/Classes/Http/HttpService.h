@@ -98,4 +98,10 @@
 -(void)getMusicImageWithParams:(NSDictionary *)params completionBlock:(void (^)(id object))success failureBlock:(void (^)(NSError * error,NSString * responseString))failure;
 
 -(void)getMusicImageWithResoucePath:(NSString *)path CompletedBlock:(void (^)(id object))success failureBlock:(void (^)(NSError * error,NSString * responseString))failure;
+
+/**
+ @desc 获取某歌曲的评论
+ */
+-(void)getCommentWithParams:(NSDictionary *)params completionBlock:(void (^)(id object))success failureBlock:(void (^)(NSError * error,NSString * responseString))failure;
+
 @end

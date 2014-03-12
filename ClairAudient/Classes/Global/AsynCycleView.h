@@ -11,8 +11,10 @@
 @interface AsynCycleView : NSObject
 
 -(id)initAsynCycleViewWithFrame:(CGRect)rect
-               placeHolderImage:(UIImageView *)image
+               placeHolderImage:(UIImage *)image
                  placeHolderNum:(NSInteger)numOfPlaceHoderImages
-   replaceWithNetworkImagesLink:(NSArray *)networkImages
                           addTo:(UIView *)parentView;
+-(void)initializationInterface;
+-(void)updateNetworkImagesLink:(NSArray *)links;
+-(void)cleanAsynCycleView;
 @end

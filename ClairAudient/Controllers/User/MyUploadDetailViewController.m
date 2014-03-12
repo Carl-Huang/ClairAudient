@@ -25,11 +25,12 @@
 #import "PersistentStore.h"
 #import "AppDelegate.h"
 #import "HttpService.h"
+#import "AsynCycleView.h"
 
 static NSString * cellIdentifier = @"cellIdentifier";
 @interface MyUploadDetailViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 {
-    CycleScrollView * autoScrollView;
+    AsynCycleView * autoScrollView;
     NSArray * descriptionArray;
     NSArray * contentArray;
     
@@ -45,15 +46,15 @@ static NSString * cellIdentifier = @"cellIdentifier";
     
     AppDelegate * myDelegate;
     NSArray * upperDataSource;
+    UIImageView * placeHolderImage;
 }
 @property (strong ,nonatomic) UISlider * currentPlaySlider;
 @property (strong ,nonatomic) UIButton * currentControllBtn;
 @property (strong ,nonatomic) PlayItemView * playView;
-@property (strong ,nonatomic) NSMutableArray * productImages;
 @end
 
 @implementation MyUploadDetailViewController
-@synthesize currentPlaySlider,playView,currentControllBtn,productImages;
+@synthesize currentPlaySlider,playView,currentControllBtn;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -70,27 +71,14 @@ static NSString * cellIdentifier = @"cellIdentifier";
     [self setLeftAndRightBarItem];
     [self initializationInterface];
     
-    currentPlaySlider = playView.playSlider;
-    currentPlaySlider.maximumValue = 1.0;
-    currentPlaySlider.minimumValue = 0.0;
-    currentPlaySlider.value = 0.0;
+    [[HttpService sharedInstance]getCommentWithParams:@{@"Vl_id":self.voiceItem.vlt_id} completionBlock:^(id object) {
+        ;
+    } failureBlock:^(NSError *error, NSString *responseString) {
+        ;
+    }];
     
-    self.musicInfoTable.scrollEnabled = NO;
-    descriptionArray = @[@"时长",@"比特率",@"采样率",@"录入时间",@"下载次数",@"用户"];
-    if (self.voiceItem) {
-        contentArray  = [self objectPropertyValueToArray:self.voiceItem];
-    }else
-    {
-        //No music info
-        [self showAlertViewWithMessage:@"读取音乐文件错误"];
-    }
-    isDowning = NO;
-    isPlayLocalFile = NO;
-    isPlayStreamFile= NO;
-    isPlaying = NO;
-    currentPlayFileLength = nil;
-    myDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-//    __weak MyUploadDetailViewController * weakSelf = self;
+    
+    //    __weak MyUploadDetailViewController * weakSelf = self;
 //    [GobalMethod getExportPath:[_voiceItem.vl_name stringByAppendingPathExtension:@"mp3"] completedBlock:^(BOOL isDownloaded, NSString *exportFilePath) {
 //        if (isDownloaded) {
 //            isPlayLocalFile = YES;
@@ -116,9 +104,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
     }
     streamPlayer = nil;
     
-    [autoScrollView stopTimer];
-    autoScrollView = nil;
-    productImages = nil;
+    [autoScrollView cleanAsynCycleView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -135,31 +121,13 @@ static NSString * cellIdentifier = @"cellIdentifier";
 #pragma mark - Private Method
 -(void)initializationInterface
 {
-    CGRect rect = self.scrollAdView.bounds;
-
-    autoScrollView = [[CycleScrollView alloc] initWithFrame:rect animationDuration:2];
-    autoScrollView.backgroundColor = [UIColor clearColor];
-    productImages = [NSMutableArray array];
-    //Placehoder Image
-    if ([productImages count] == 0) {
-
-        UIImageView * tempImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"first_2.png"]];
-        [productImages addObject:tempImageView];
-        tempImageView = nil;
-    }
-    __weak MyUploadDetailViewController * weakSelf = self;
-    autoScrollView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
-        return weakSelf.productImages[pageIndex];
-    };
-    autoScrollView.totalPagesCount = ^NSInteger(void){
-        return [weakSelf.productImages count];
-    };
-    autoScrollView.TapActionBlock = ^(NSInteger pageIndex){
-        NSLog(@"点击了第%ld个",(long)pageIndex);
-    };
-    [self.scrollAdView addSubview:autoScrollView];
+    CGRect rect = self.containerView.bounds;
+    placeHolderImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"first_2.png"]];
+    [placeHolderImage setFrame:rect];
+    [self.containerView addSubview:placeHolderImage];
+    autoScrollView =  [[AsynCycleView alloc]initAsynCycleViewWithFrame:rect placeHolderImage:[UIImage imageNamed:@"first_2.png"] placeHolderNum:3 addTo:self.containerView];
+    [autoScrollView initializationInterface];
     
-
     [self.contentScrollView setContentSize:CGSizeMake(320, 800)];
     self.contentScrollView.scrollEnabled = YES;
     
@@ -167,6 +135,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
     if ([OSHelper iOS7]) {
         self.musicInfoTable.separatorInset = UIEdgeInsetsZero;
     }
+    self.musicInfoTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     UINib * cellNib = [UINib nibWithNibName:@"MyUploadDetailCell" bundle:[NSBundle bundleForClass:[MyUploadDetailCell class]]];
     [self.musicInfoTable registerNib:cellNib forCellReuseIdentifier:cellIdentifier];
@@ -179,52 +148,43 @@ static NSString * cellIdentifier = @"cellIdentifier";
     
 
     [[HttpService sharedInstance]getMusicImageWithParams:@{@"vltId": @"2"} completionBlock:^(id object) {
+        NSMutableArray * tempLinks = [NSMutableArray array];
         for (int j = 0;j < [object count]; ++j) {
             NSString * imgStr = [[object objectAtIndex:j]valueForKey:@"ad_image"];
-            //获取图片
-            NSInteger last = [self.productImages count] - [object count];
-            if (last >=0) {
-                for (int i = [productImages count]-1;i < last ; ++i) {
-                    UIImageView * imageView = [weakSelf.productImages objectAtIndex:i];
-                    [weakSelf.productImages removeObject:imageView];
-                }
-            }
-            if (![imgStr isKindOfClass:[NSNull class]]) {
-                [weakSelf getImage:imgStr withIndex:j];
-            }
+            [tempLinks addObject:imgStr];
         }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [autoScrollView updateNetworkImagesLink:tempLinks];
+        });
+        
     } failureBlock:^(NSError *error, NSString *responseString) {
         ;
     }];
+    
+    currentPlaySlider = playView.playSlider;
+    currentPlaySlider.maximumValue = 1.0;
+    currentPlaySlider.minimumValue = 0.0;
+    currentPlaySlider.value = 0.0;
+    
+    self.musicInfoTable.scrollEnabled = NO;
+    descriptionArray = @[@"时长",@"比特率",@"采样率",@"录入时间",@"下载次数",@"用户"];
+    if (self.voiceItem) {
+        contentArray  = [self objectPropertyValueToArray:self.voiceItem];
+    }else
+    {
+        //No music info
+        [self showAlertViewWithMessage:@"读取音乐文件错误"];
+    }
+    isDowning = NO;
+    isPlayLocalFile = NO;
+    isPlayStreamFile= NO;
+    isPlaying = NO;
+    currentPlayFileLength = nil;
+    myDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
     
 }
 
--(void)getImage:(NSString *)imgStr withIndex:(NSInteger )index
-{
-    __weak MyUploadDetailViewController * weakSelf = self;
-    
-    
-    [[HttpService sharedInstance]getMusicImageWithResoucePath:imgStr CompletedBlock:^(id object) {
-        if (object) {
-            UIImageView * imageView = nil;
-            
-            if ([object isKindOfClass:[UIImage class]]) {
-                imageView = [[UIImageView alloc]initWithImage:object];
-                NSInteger count = weakSelf.productImages.count-1;
-                NSLog(@"index:%d",index);
-                if (index <= count) {
-                    [weakSelf.productImages replaceObjectAtIndex:index withObject:imageView];
-                }else
-                {
-                    [weakSelf.productImages addObject:imageView];
-                }
-            }
-            [self updateAutoScrollViewItem];
-        }
-    } failureBlock:^(NSError *error, NSString *responseString) {
-        ;
-    }];
-}
 
 -(NSArray *)objectPropertyValueToArray:(id)object
 {
@@ -484,43 +444,8 @@ static NSString * cellIdentifier = @"cellIdentifier";
     
 }
 
--(void)downloadUpperImage
-{
-    NSMutableArray * imageArray = [NSMutableArray array];
-    NSInteger last = [self.productImages count] - [upperDataSource count];
-    if (last >=0) {
-        for (int i = [upperDataSource count]-1;i < last ; ++i) {
-            UIImageView * imageView = [self.productImages objectAtIndex:i];
-            [self.productImages removeObject:imageView];
-        }
-    }
-    
-    for (int i =0 ;i<[upperDataSource count];i++) {
-//        UIImageView * info = [[UIImageView alloc]initWithImage:image];
-//        info.tag = tagNum;
-//        
-//        NSInteger count = weakSelf.autoScrollviewDataSource.count;
-//        if (i < count) {
-//            [weakSelf.autoScrollviewDataSource replaceObjectAtIndex:i withObject:info];
-//        }else
-//        {
-//            [weakSelf.autoScrollviewDataSource addObject:info];
-//        }
-        
-        [self updateAutoScrollViewItem];
-    }
-}
 
--(void)updateAutoScrollViewItem
-{
-    __weak MyUploadDetailViewController * weakSelf = self;
-    autoScrollView.totalPagesCount = ^NSInteger(void){
-        return [weakSelf.productImages count];
-    };
-    autoScrollView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
-        return weakSelf.productImages[pageIndex];
-    };
-}
+
 #pragma  mark - Audio Notification
 -(void)updateProcessingLocation:(NSNotification *)noti
 {

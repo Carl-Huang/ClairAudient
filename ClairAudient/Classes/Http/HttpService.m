@@ -73,8 +73,6 @@
     {
         return nil;
     }
-    
-//    NSArray * properties = [[self class] propertiesName:class];
     NSMutableArray * models = [NSMutableArray array];
     for (NSDictionary * info in responseObject) {
         id model = [self mapModel:info withClass:class];
@@ -378,4 +376,34 @@
     }];
 }
 
+-(void)getCommentWithParams:(NSDictionary *)params completionBlock:(void (^)(id))success failureBlock:(void (^)(NSError *, NSString *))failure
+{
+    [self post:[self mergeURL:GetCommentByVlId] withParams:params completionBlock:^(id obj) {
+        if ([obj count]) {
+            
+            NSMutableArray * models = [NSMutableArray array];
+                
+                MusicComment * model  = [[MusicComment alloc] init];
+                NSArray * properties = [[self class] propertiesName:[MusicComment class]];
+                for(NSString * property in properties)
+                {
+                   
+                    id value = [obj valueForKey:property];
+                    if(![value isKindOfClass:[NSNull class]])
+                    {
+                        if(![value isKindOfClass:[NSString class]])
+                        {
+                            if ([property isEqualToString:@"items"]) {
+                                model.items = value;
+                            }else
+                            [model setValue:[value stringValue] forKey:property];
+                        }
+                    }
+                }
+                
+                [models addObject:model];
+                model = nil;
+            }
+    } failureBlock:failure];
+}
 @end

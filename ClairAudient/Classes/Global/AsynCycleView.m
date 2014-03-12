@@ -12,46 +12,66 @@
 
 @interface AsynCycleView()
 {
+    pthread_mutex_t imagesLock;
     CycleScrollView * autoScrollView;
+    
+    CGRect cycleViewFrame;
+    NSInteger nPlaceholderImages;
+    UIView * cycleViewParentView;
 }
 @property (strong ,nonatomic) NSMutableArray * placeHolderImages;
 @property (strong ,nonatomic) NSMutableArray * networkImages;
-@property (strong ,nonatomic) UIImageView * placeHoderImage;
+@property (strong ,nonatomic) UIImage * placeHoderImage;
 @end
 @implementation AsynCycleView
 @synthesize placeHolderImages,networkImages;
 
+
 -(id)initAsynCycleViewWithFrame:(CGRect)rect
-               placeHolderImage:(UIImageView *)image
+               placeHolderImage:(UIImage *)image
                  placeHolderNum:(NSInteger)numOfPlaceHoderImages
-   replaceWithNetworkImagesLink:(NSArray *)networkImages
                           addTo:(UIView *)parentView
 {
     self = [super init];
     if (self) {
-        __weak AsynCycleView * weakSelf =self;
         _placeHoderImage = image;
-        for (int i =0; i<numOfPlaceHoderImages; ++i) {
-            if (placeHolderImages) {
-                placeHolderImages = [NSMutableArray array];
-            }
-            [placeHolderImages addObject:image];
-        }
-        
-        autoScrollView = [[CycleScrollView alloc] initWithFrame:rect animationDuration:2];
-        autoScrollView.backgroundColor = [UIColor clearColor];
-        autoScrollView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
-            return weakSelf.placeHolderImages[pageIndex];
-        };
-        autoScrollView.totalPagesCount = ^NSInteger(void){
-            return [weakSelf.placeHolderImages count];
-        };
-        autoScrollView.TapActionBlock = ^(NSInteger pageIndex){
-            NSLog(@"点击了第%ld个",(long)pageIndex);
-        };
-        [parentView addSubview:autoScrollView];
+        nPlaceholderImages = numOfPlaceHoderImages;
+        cycleViewParentView = parentView;
+        cycleViewFrame = rect;
     }
     return self;
+}
+
+-(void)initializationInterface
+{
+    __weak AsynCycleView * weakSelf =self;
+
+    for (int i =0; i<nPlaceholderImages; ++i) {
+        if (placeHolderImages == nil) {
+            placeHolderImages = [NSMutableArray array];
+        }
+        UIImageView * tempImageView = [[UIImageView alloc]initWithImage:_placeHoderImage];
+        [placeHolderImages addObject:tempImageView];
+        tempImageView = nil;
+    }
+    
+    autoScrollView = [[CycleScrollView alloc] initWithFrame:cycleViewFrame animationDuration:2];
+    autoScrollView.backgroundColor = [UIColor clearColor];
+    autoScrollView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
+        return weakSelf.placeHolderImages[pageIndex];
+    };
+    autoScrollView.totalPagesCount = ^NSInteger(void){
+        return [weakSelf.placeHolderImages count];
+    };
+    autoScrollView.TapActionBlock = ^(NSInteger pageIndex){
+        NSLog(@"点击了第%ld个",(long)pageIndex);
+    };
+    
+    [cycleViewParentView addSubview:autoScrollView];
+    cycleViewParentView = nil;
+    
+    pthread_mutex_init(&imagesLock,NULL);
+
 }
 
 -(void)updateNetworkImagesLink:(NSArray *)links
@@ -72,7 +92,9 @@
     __weak AsynCycleView * weakSelf =self;
     if ([links count ] > [weakSelf.placeHolderImages count]) {
         for (int i = [weakSelf.placeHolderImages count]; i < [links count]; i ++) {
-            [weakSelf.placeHolderImages addObject:_placeHoderImage];
+            UIImageView * tempImageView = [[UIImageView alloc]initWithImage:_placeHoderImage];
+            [weakSelf.placeHolderImages addObject:tempImageView];
+            tempImageView = nil;
         }
     }else
     {
@@ -80,8 +102,7 @@
             [weakSelf.placeHolderImages removeObjectAtIndex:i];
         }
     }
-    
-    networkImages = [placeHolderImages mutableCopy];
+//    networkImages = [placeHolderImages mutableCopy];
 }
 
 -(void)getImage:(NSString *)imgStr withIndex:(NSInteger)index
@@ -90,15 +111,17 @@
     
     [[HttpService sharedInstance]getImageWithResourcePath:imgStr completedBlock:^(id object) {
         if (object) {
+            pthread_mutex_lock(&imagesLock);
+            
             UIImageView * imageView = nil;
             if ([object isKindOfClass:[UIImage class]]) {
                 imageView = [[UIImageView alloc]initWithImage:object];
-                [weakSelf.networkImages replaceObjectAtIndex:index withObject:imageView];
-                
-                
+                [weakSelf.placeHolderImages replaceObjectAtIndex:index withObject:imageView];
                 [weakSelf updateAutoScrollViewItem];
-            
+                
             }
+            pthread_mutex_unlock(&imagesLock);
+            
         }
     } failureBlock:^(NSError * error) {
         ;
@@ -107,16 +130,24 @@
 
 -(void)updateAutoScrollViewItem
 {
-    self.placeHolderImages = [self.networkImages mutableCopy];
-    
-    __weak AsynCycleView * weakSelf = self;
-    autoScrollView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
-        return weakSelf.placeHolderImages[pageIndex];
-    };
-    autoScrollView.totalPagesCount = ^NSInteger(void){
-        return [weakSelf.placeHolderImages count];
-    };
-    
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
+//        if (self.placeHolderImages) {
+//            self.placeHolderImages = nil;
+//        }
+        __weak AsynCycleView * weakSelf = self;
+        
+        
+        autoScrollView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
+            return weakSelf.placeHolderImages[pageIndex];
+        };
+        autoScrollView.totalPagesCount = ^NSInteger(void){
+            return [weakSelf.placeHolderImages count];
+        };
+    });
+}
+-(void)cleanAsynCycleView
+{
+    [autoScrollView stopTimer];
+    autoScrollView = nil;
 }
 @end

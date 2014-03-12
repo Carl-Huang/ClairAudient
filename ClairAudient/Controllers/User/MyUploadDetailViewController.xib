@@ -8,11 +8,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyUploadDetailViewController">
             <connections>
                 <outlet property="bgView" destination="vzQ-wt-4kJ" id="jiL-6K-HgX"/>
-                <outlet property="commentTextView" destination="cQ4-gW-jK0" id="8qX-Nl-kwn"/>
+                <outlet property="containerView" destination="EMq-kz-dU7" id="1gE-iT-W3q"/>
                 <outlet property="contentScrollView" destination="1Ys-B9-bfm" id="9HZ-LH-hVP"/>
                 <outlet property="musicInfoTable" destination="N9O-DL-gxh" id="tYI-bf-8R4"/>
-                <outlet property="scrollAdView" destination="qQX-QV-2Pc" id="coG-k8-muj"/>
-                <outlet property="shareContentView" destination="PWu-HH-Dxn" id="UWp-S3-pMu"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -29,17 +27,17 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="507"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <view contentMode="scaleToFill" id="qQX-QV-2Pc">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="132"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.03529411927" green="0.94117653369999998" blue="0.93725496529999996" alpha="1" colorSpace="deviceRGB"/>
-                        </view>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="beijign.png" id="nDc-Am-glF">
-                            <rect key="frame" x="0.0" y="140" width="320" height="252"/>
+                            <rect key="frame" x="0.0" y="140" width="320" height="275"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="N9O-DL-gxh">
-                            <rect key="frame" x="20" y="147" width="280" height="241"/>
+                        <view contentMode="scaleToFill" id="EMq-kz-dU7">
+                            <rect key="frame" x="0.0" y="-4" width="320" height="143"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="35" sectionHeaderHeight="22" sectionFooterHeight="22" id="N9O-DL-gxh">
+                            <rect key="frame" x="20" y="150" width="280" height="245"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <connections>
@@ -47,25 +45,6 @@
                                 <outlet property="delegate" destination="-1" id="VAk-zV-IKO"/>
                             </connections>
                         </tableView>
-                        <view contentMode="scaleToFill" id="PWu-HH-Dxn">
-                            <rect key="frame" x="20" y="400" width="280" height="37"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        </view>
-                        <view contentMode="scaleToFill" id="mPS-B1-THy">
-                            <rect key="frame" x="20" y="460" width="280" height="195"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="全球因故撒旦法撒旦法是两地分居阿克苏打飞机卡机独立开发姐啊；款到即发；卡机的；发卡机的是；副科级啊；SD卡房间爱；ksdfjasdfj啊的就发可敬的；了开发姐啊；dk发对方姐啊打姐夫；akdjf打发；快递费就；啊款到即发；la" id="cQ4-gW-jK0">
-                                    <rect key="frame" x="10" y="-5" width="260" height="195"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                </textView>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </scrollView>

@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *contentScrollView;
 @property (weak, nonatomic) IBOutlet UIImageView *bgView;
 
+@property (weak, nonatomic) IBOutlet UIView *containerView;
 
 @property (strong ,nonatomic) Voice * voiceItem;
 @end

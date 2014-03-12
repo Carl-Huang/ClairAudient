@@ -24,4 +24,5 @@
 #define GetMainImagesAction                         @"GetMainImagesAction"
 #define WelcomeImageAction                          @"WelcomeImageAction"
 #define GetAdAction                                 @"GetAdAction"
+#define GetCommentByVlId                            @"GetCommentByVlId"
 #endif

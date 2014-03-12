@@ -13,3 +13,4 @@
 #import "VoiceComment.h"
 #import "IntegralRankUser.h"
 #import "CustomiseImageObj.h"
+#import "MusicComment.h"

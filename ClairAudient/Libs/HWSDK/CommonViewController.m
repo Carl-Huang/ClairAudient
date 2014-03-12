@@ -56,7 +56,7 @@
 -(void)setBackground_viewWillAppear:(BOOL)aninmation
 {
     [self setBackground_viewWillAppear:YES];
-
+    NSLog(@"%@",self);
     objc_property_t property = class_getProperty([self class], "bgView");
     if (property) {
         NSString * propertyName = [NSString stringWithUTF8String:property_getName(property)];

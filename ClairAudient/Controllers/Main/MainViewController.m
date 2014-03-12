@@ -13,6 +13,7 @@
 #import "CycleScrollView.h"
 #import "ControlCenter.h"
 #import "HttpService.h"
+#import "AsynCycleView.h"
 #import "User.h"
 
 
@@ -21,14 +22,14 @@
     BOOL isDownloadImage;
     UIImageView * placeHolderImage;
     AVAudioPlayer * player;
+    
 }
-@property (strong ,nonatomic)CycleScrollView * autoScrollView;
-@property (strong ,nonatomic)NSMutableArray * productImages;
+@property (strong ,nonatomic)AsynCycleView * autoScrollView;
 @property (strong ,nonatomic)NSMutableArray * customiseImages;
 @end
 
 @implementation MainViewController
-@synthesize autoScrollView,productImages,customiseImages;
+@synthesize autoScrollView,customiseImages;
 
 #pragma mark - Life Cycle
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -48,33 +49,17 @@
     [self.navigationController setNavigationBarHidden:YES];
     [self loadStartImage];
     
-    productImages      = [NSMutableArray array];
     customiseImages    = [NSMutableArray array];
     [self getAdvertisementImage];
     [self downloadCustomiseImage];
     
     CGRect rect = self.adScrollView.bounds;
-    autoScrollView = [[CycleScrollView alloc] initWithFrame:rect animationDuration:2];
-    autoScrollView.backgroundColor = [UIColor clearColor];
-    
-    
     //Placehoder Image
     placeHolderImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"first_2.png"]];
     [placeHolderImage setFrame:rect];
-    [productImages addObject:placeHolderImage];
-    
-    
-    __weak MainViewController * weakSelf =self;
-    autoScrollView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
-        return weakSelf.productImages[pageIndex];
-    };
-    autoScrollView.totalPagesCount = ^NSInteger(void){
-        return [weakSelf.productImages count];
-    };
-    autoScrollView.TapActionBlock = ^(NSInteger pageIndex){
-        NSLog(@"点击了第%ld个",(long)pageIndex);
-    };
-    [self.adScrollView addSubview:autoScrollView];
+
+    autoScrollView =  [[AsynCycleView alloc]initAsynCycleViewWithFrame:rect placeHolderImage:[UIImage imageNamed:@"first_2.png"] placeHolderNum:3 addTo:self.adScrollView];
+    [autoScrollView initializationInterface];
     
     isDownloadImage = NO;
     int randNum = rand() % 6;
@@ -86,6 +71,14 @@
     player = [[AVAudioPlayer alloc]initWithContentsOfURL:fileURL error:nil];
     [player play];
     
+    [self.view bringSubviewToFront:_startPageContainer];
+    
+    
+    [[HttpService sharedInstance]getCommentWithParams:@{@"vlId":@"378"} completionBlock:^(id object) {
+        ;
+    } failureBlock:^(NSError *error, NSString *responseString) {
+        ;
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -159,20 +152,6 @@
     [_startPageContainer setHidden:YES];
 }
 
-#pragma mark - Private Methods
--(void)updateAutoScrollViewItem
-{
-    __weak MainViewController * weakSelf = self;
-    autoScrollView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
-        return weakSelf.productImages[pageIndex];
-    };
-    autoScrollView.totalPagesCount = ^NSInteger(void){
-        return [weakSelf.productImages count];
-    };
-    
-   
-}
-
 - (void)testAPI
 {
     [[HttpService sharedInstance] findCatalog:@{@"parentId":@"0"} completionBlock:^(id obj) {
@@ -230,47 +209,15 @@
     __weak MainViewController * weakSelf = self;
     [[HttpService sharedInstance]getAdvertisementImageWithCompletedBlock:^(id object) {
         if ([object count]) {
-            for (int i = [weakSelf.productImages count]; i < [object count]; i ++) {
-                [weakSelf.productImages addObject:placeHolderImage];
-            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [autoScrollView updateNetworkImagesLink:object];
+            });
             
-            for (int i =0; i < [object count]; i++) {
-                NSString * imgStr = [object objectAtIndex:i];
-                //获取图片
-                NSInteger last = [self.productImages count] - [object count];
-                if (last >=0) {
-                    for (int i = [object count]-1;i < last ; ++i) {
-                        [weakSelf.productImages removeObjectAtIndex:i];
-                    }
-                }
-                if (![imgStr isKindOfClass:[NSNull class]]) {
-                    [weakSelf getImage:imgStr withIndex:i];
-                }
-            }
         }
     } failureBlock:^(NSError *error, NSString *responseString) {
         ;
     }];
 
-}
-
--(void)getImage:(NSString *)imgStr withIndex:(NSInteger)index
-{
-    __weak MainViewController * weakSelf = self;
-
-    [[HttpService sharedInstance]getImageWithResourcePath:imgStr completedBlock:^(id object) {
-        if (object) {
-            UIImageView * imageView = nil;
-
-            if ([object isKindOfClass:[UIImage class]]) {
-                imageView = [[UIImageView alloc]initWithImage:object];
-                [weakSelf.productImages replaceObjectAtIndex:index withObject:imageView];
-            }
-            [self updateAutoScrollViewItem];
-        }
-    } failureBlock:^(NSError * error) {
-        ;
-    }];
 }
 
 -(void)downloadCustomiseImage

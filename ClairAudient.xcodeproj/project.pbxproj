@@ -13,6 +13,15 @@
 		4E0DC75418CFFAD000E4E6ED /* commentBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E0DC75118CFFAD000E4E6ED /* commentBg.png */; };
 		4E0DC75518CFFAD000E4E6ED /* shareBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E0DC75218CFFAD000E4E6ED /* shareBg.png */; };
 		4E0DC75818CFFC4400E4E6ED /* AsynCycleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0DC75718CFFC4400E4E6ED /* AsynCycleView.m */; };
+		4E0DC76518D0539E00E4E6ED /* NSBubbleData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0DC75B18D0539E00E4E6ED /* NSBubbleData.m */; };
+		4E0DC76618D0539E00E4E6ED /* UIBubbleHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0DC75D18D0539E00E4E6ED /* UIBubbleHeaderTableViewCell.m */; };
+		4E0DC76718D0539E00E4E6ED /* UIBubbleTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0DC75F18D0539E00E4E6ED /* UIBubbleTableView.m */; };
+		4E0DC76818D0539E00E4E6ED /* UIBubbleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0DC76118D0539E00E4E6ED /* UIBubbleTableViewCell.m */; };
+		4E0DC76918D0539E00E4E6ED /* UIBubbleTypingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0DC76418D0539E00E4E6ED /* UIBubbleTypingTableViewCell.m */; };
+		4E0DC76C18D053BD00E4E6ED /* CommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0DC76B18D053BD00E4E6ED /* CommentView.m */; };
+		4E0DC76E18D053CB00E4E6ED /* CommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E0DC76D18D053CB00E4E6ED /* CommentView.xib */; };
+		4E0DC77018D054C400E4E6ED /* tijiaoBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E0DC76F18D054C400E4E6ED /* tijiaoBtn.png */; };
+		4E0DC77318D05B7F00E4E6ED /* MusicComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0DC77218D05B7F00E4E6ED /* MusicComment.m */; };
 		4E117966188F5F6200FB619F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E117965188F5F6200FB619F /* AVFoundation.framework */; };
 		4E11796A188F627F00FB619F /* MusicCutter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E117969188F627F00FB619F /* MusicCutter.m */; };
 		4E11796D188F6DA000FB619F /* TSLibraryImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E11796C188F6DA000FB619F /* TSLibraryImport.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -555,6 +564,23 @@
 		4E0DC75218CFFAD000E4E6ED /* shareBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shareBg.png; path = Common/shareBg.png; sourceTree = "<group>"; };
 		4E0DC75618CFFC4400E4E6ED /* AsynCycleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsynCycleView.h; sourceTree = "<group>"; };
 		4E0DC75718CFFC4400E4E6ED /* AsynCycleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsynCycleView.m; sourceTree = "<group>"; };
+		4E0DC75A18D0539E00E4E6ED /* NSBubbleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSBubbleData.h; sourceTree = "<group>"; };
+		4E0DC75B18D0539E00E4E6ED /* NSBubbleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSBubbleData.m; sourceTree = "<group>"; };
+		4E0DC75C18D0539E00E4E6ED /* UIBubbleHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleHeaderTableViewCell.h; sourceTree = "<group>"; };
+		4E0DC75D18D0539E00E4E6ED /* UIBubbleHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleHeaderTableViewCell.m; sourceTree = "<group>"; };
+		4E0DC75E18D0539E00E4E6ED /* UIBubbleTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTableView.h; sourceTree = "<group>"; };
+		4E0DC75F18D0539E00E4E6ED /* UIBubbleTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleTableView.m; sourceTree = "<group>"; };
+		4E0DC76018D0539E00E4E6ED /* UIBubbleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTableViewCell.h; sourceTree = "<group>"; };
+		4E0DC76118D0539E00E4E6ED /* UIBubbleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleTableViewCell.m; sourceTree = "<group>"; };
+		4E0DC76218D0539E00E4E6ED /* UIBubbleTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTableViewDataSource.h; sourceTree = "<group>"; };
+		4E0DC76318D0539E00E4E6ED /* UIBubbleTypingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTypingTableViewCell.h; sourceTree = "<group>"; };
+		4E0DC76418D0539E00E4E6ED /* UIBubbleTypingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleTypingTableViewCell.m; sourceTree = "<group>"; };
+		4E0DC76A18D053BD00E4E6ED /* CommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentView.h; sourceTree = "<group>"; };
+		4E0DC76B18D053BD00E4E6ED /* CommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentView.m; sourceTree = "<group>"; };
+		4E0DC76D18D053CB00E4E6ED /* CommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentView.xib; sourceTree = "<group>"; };
+		4E0DC76F18D054C400E4E6ED /* tijiaoBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tijiaoBtn.png; path = Common/tijiaoBtn.png; sourceTree = "<group>"; };
+		4E0DC77118D05B7F00E4E6ED /* MusicComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicComment.h; sourceTree = "<group>"; };
+		4E0DC77218D05B7F00E4E6ED /* MusicComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicComment.m; sourceTree = "<group>"; };
 		4E1132F218CDD3A2005AB34B /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		4E117965188F5F6200FB619F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4E117968188F627F00FB619F /* MusicCutter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicCutter.h; sourceTree = "<group>"; };
@@ -1288,6 +1314,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E0DC75918D0539E00E4E6ED /* BubbleView */ = {
+			isa = PBXGroup;
+			children = (
+				4E0DC75A18D0539E00E4E6ED /* NSBubbleData.h */,
+				4E0DC75B18D0539E00E4E6ED /* NSBubbleData.m */,
+				4E0DC75C18D0539E00E4E6ED /* UIBubbleHeaderTableViewCell.h */,
+				4E0DC75D18D0539E00E4E6ED /* UIBubbleHeaderTableViewCell.m */,
+				4E0DC75E18D0539E00E4E6ED /* UIBubbleTableView.h */,
+				4E0DC75F18D0539E00E4E6ED /* UIBubbleTableView.m */,
+				4E0DC76018D0539E00E4E6ED /* UIBubbleTableViewCell.h */,
+				4E0DC76118D0539E00E4E6ED /* UIBubbleTableViewCell.m */,
+				4E0DC76218D0539E00E4E6ED /* UIBubbleTableViewDataSource.h */,
+				4E0DC76318D0539E00E4E6ED /* UIBubbleTypingTableViewCell.h */,
+				4E0DC76418D0539E00E4E6ED /* UIBubbleTypingTableViewCell.m */,
+			);
+			path = BubbleView;
+			sourceTree = "<group>";
+		};
 		4E117967188F627F00FB619F /* Audio Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -1682,6 +1726,9 @@
 				4EFE1F6F18CC11530099BD93 /* CopyMusicView.xib */,
 				4EE3AE3318CF3E3000D09F79 /* BorswerMusicTable.h */,
 				4EE3AE3418CF3E3000D09F79 /* BorswerMusicTable.m */,
+				4E0DC76A18D053BD00E4E6ED /* CommentView.h */,
+				4E0DC76B18D053BD00E4E6ED /* CommentView.m */,
+				4E0DC76D18D053CB00E4E6ED /* CommentView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1738,6 +1785,8 @@
 				4E2A13791891257600D8CB65 /* RecordMusicInfo.m */,
 				4EFE1F7418CC65ED0099BD93 /* CustomiseImageObj.h */,
 				4EFE1F7518CC65ED0099BD93 /* CustomiseImageObj.m */,
+				4E0DC77118D05B7F00E4E6ED /* MusicComment.h */,
+				4E0DC77218D05B7F00E4E6ED /* MusicComment.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1914,6 +1963,7 @@
 		C3FEAF4F1871C294008EADAA /* 2x */ = {
 			isa = PBXGroup;
 			children = (
+				4E0DC76F18D054C400E4E6ED /* tijiaoBtn.png */,
 				4E0DC75018CFFAD000E4E6ED /* beijign.png */,
 				4E0DC75118CFFAD000E4E6ED /* commentBg.png */,
 				4E0DC75218CFFAD000E4E6ED /* shareBg.png */,
@@ -2172,6 +2222,7 @@
 		C3FEB0901871C2A8008EADAA /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				4E0DC75918D0539E00E4E6ED /* BubbleView */,
 				4EAF2A0D18A9FE90007A8F70 /* ShareSDK */,
 				C39BBE491893DF5C00FC8F72 /* TSPopover */,
 				4E96B571188EABC4008EA56F /* EZAudio */,
@@ -2650,6 +2701,7 @@
 				C3164CB21874555D00301ACA /* FoundMusic_cd@2x.png in Resources */,
 				C39A97AB189247AE00F41CBB /* catalog_icon_ipng@2x.png in Resources */,
 				C39A97B5189247AE00F41CBB /* catalog_section_gpng@2x.png in Resources */,
+				4E0DC77018D054C400E4E6ED /* tijiaoBtn.png in Resources */,
 				C3164CDB1874555D00301ACA /* MusicFans_four@2x.png in Resources */,
 				C3164CDF1874555D00301ACA /* MusicFans_ij@2x.png in Resources */,
 				C3164CEF1874555D00301ACA /* MusicFans_xvd@2x.png in Resources */,
@@ -2778,6 +2830,7 @@
 				C3164CBC1874555D00301ACA /* FoundMusic_j@2x.png in Resources */,
 				C3D4FCC9187D679E001A7223 /* DownloadRankCell.xib in Resources */,
 				4E0DC75418CFFAD000E4E6ED /* commentBg.png in Resources */,
+				4E0DC76E18D053CB00E4E6ED /* CommentView.xib in Resources */,
 				4ED17526189268AC000EC483 /* AudioPlotViewController.xib in Resources */,
 				C3FEB0811871C294008EADAA /* user_2@2x.png in Resources */,
 				C3FEAFF91871C294008EADAA /* hunyin_16@2x.png in Resources */,
@@ -2936,6 +2989,7 @@
 				C3456CFD18883C17009329D2 /* TMSoundEffectCell.m in Sources */,
 				C341171B188B8B080070EAB4 /* HttpService.m in Sources */,
 				C326CDBB187C5EDB006DD97C /* DownloadRankViewController.m in Sources */,
+				4E0DC76818D0539E00E4E6ED /* UIBubbleTableViewCell.m in Sources */,
 				C32F40081882873A00681953 /* MessageInviteViewController.m in Sources */,
 				C3FEB0B21871C801008EADAA /* CommonViewController.m in Sources */,
 				C32D4FA9187F953C0090730B /* TMQuiltViewController.m in Sources */,
@@ -2978,6 +3032,7 @@
 				C3FEB0BC1871C801008EADAA /* VersionManager.m in Sources */,
 				C3411730188C2C2B0070EAB4 /* VoiceComment.m in Sources */,
 				C34C3401188AB430009CD20B /* RecordListViewController.mm in Sources */,
+				4E0DC76718D0539E00E4E6ED /* UIBubbleTableView.m in Sources */,
 				C32749A0187A5ED400CF7A4A /* HelpViewController.m in Sources */,
 				4EFE1F6E18CC11310099BD93 /* CopyMusicView.m in Sources */,
 				C3FEB0B51871C801008EADAA /* NSDate+Utils.m in Sources */,
@@ -2997,13 +3052,17 @@
 				C3FEB0C71871CA19008EADAA /* MainViewController.m in Sources */,
 				C3FEB0B61871C801008EADAA /* NSString+MD5_32.m in Sources */,
 				4E96B58D188EABC4008EA56F /* EZAudioFile.m in Sources */,
+				4E0DC76618D0539E00E4E6ED /* UIBubbleHeaderTableViewCell.m in Sources */,
 				C34C3405188AB967009CD20B /* RecordListCell.m in Sources */,
 				4E96B590188EABC4008EA56F /* EZAudioPlotGLKViewController.m in Sources */,
 				C3FEB0B71871C801008EADAA /* NSString+Utils.m in Sources */,
+				4E0DC76518D0539E00E4E6ED /* NSBubbleData.m in Sources */,
 				4E11796D188F6DA000FB619F /* TSLibraryImport.m in Sources */,
 				C32F4021188287EE00681953 /* MyProductionViewController.mm in Sources */,
+				4E0DC77318D05B7F00E4E6ED /* MusicComment.m in Sources */,
 				4E96B58F188EABC4008EA56F /* EZAudioPlotGL.m in Sources */,
 				C32F4003188286EB00681953 /* LoginSuccessViewController.m in Sources */,
+				4E0DC76918D0539E00E4E6ED /* UIBubbleTypingTableViewCell.m in Sources */,
 				C32D4F9E187F8DCD0090730B /* SoundCatalogViewController.m in Sources */,
 				4E2A13711890BFF600D8CB65 /* PersistentStore.m in Sources */,
 				C326CDA7187C5E00006DD97C /* IntegralChampionViewController.m in Sources */,
@@ -3016,6 +3075,7 @@
 				C3B53E46188C3000004EA4A7 /* IntegralRankUser.m in Sources */,
 				4ED17525189268AC000EC483 /* AudioPlotViewController.m in Sources */,
 				4E96B594188EABC4008EA56F /* EZRecorder.m in Sources */,
+				4E0DC76C18D053BD00E4E6ED /* CommentView.m in Sources */,
 				C3FEB0D11871CA5E008EADAA /* SettingViewController.m in Sources */,
 				C32D4FA7187F953C0090730B /* TMQuiltView.m in Sources */,
 				4EB7C4EB18B6FC2800BCF0E8 /* MixingCatalogViewController.m in Sources */,

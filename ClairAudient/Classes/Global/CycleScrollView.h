@@ -38,4 +38,5 @@
 
 -(void)startTimer;
 -(void)stopTimer;
+-(void)refreshContentAtIndex:(NSInteger)index withObject:(UIImageView *)imageView;
 @end
