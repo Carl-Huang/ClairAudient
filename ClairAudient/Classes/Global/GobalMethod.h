@@ -33,6 +33,8 @@ typedef enum _ANCHOR
 
 +(NSString *)timeIntervalToDate:(long long)interval;
 
++(NSString *)getCurrentDateString;
+
 +(BOOL)removeItemAtPath:(NSString *)path;
 
 +(NSString *)getExportPath:(NSString *)fileName;

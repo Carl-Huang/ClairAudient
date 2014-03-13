@@ -18,6 +18,8 @@
 @property (weak, nonatomic) UIViewController * parentController;
 
 @property (strong ,nonatomic) NSString * musicEncodeStr;
+@property (strong ,nonatomic) NSDictionary * musicInfo;
+
 - (IBAction)parentBtnAction:(id)sender;
 - (IBAction)childrenBtnAction:(id)sender;
 - (IBAction)sureBtnAction:(id)sender;

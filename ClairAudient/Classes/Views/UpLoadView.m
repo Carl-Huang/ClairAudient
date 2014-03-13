@@ -11,14 +11,13 @@
 #import "HttpService.h"
 #import "Catalog.h"
 #import "MBProgressHUD.h"
+#import "GobalMethod.h"
+#import "User.h"
 
 @interface UpLoadView()<UITextViewDelegate,UITextFieldDelegate>
 {
     PopupTagViewController * popUpTable;
     PopupTagViewController * childPopUpTable;
-
-    
-    
 }
 @property (assign ,nonatomic) BOOL isResetChildrenDataSource;
 @property (strong ,nonatomic) NSArray * parentCatalog;
@@ -175,18 +174,37 @@
 }
 
 - (IBAction)sureBtnAction:(id)sender {
+    
+    if ([_desTextView.text length]==0) {
+
+        return;
+    }
+    if ([_nameLabel.text length]==0) {
+        return;
+    }
+    
+    
     if (_musicEncodeStr) {
-        [MBProgressHUD showHUDAddedTo:self animated:YES];
-        __weak UpLoadView * weakSelf = self;
+        @autoreleasepool {
+            [MBProgressHUD showHUDAddedTo:self animated:YES];
+            __weak UpLoadView * weakSelf = self;
+            
+            NSString * musicName = [[self.musicInfo valueForKey:@"Title"]stringByAppendingString:@".mp3"];
+            NSString * uploadTime = [GobalMethod getCurrentDateString];
+            User *user = [User userFromLocal];
+            NSString * user_id = user.hw_id;
+            user = nil;
+            NSDictionary * params = @{@"voiceLibrary": @{@"bit_rate": @"8-bit",@"vl_name":_nameLabel.text,@"explain":_desTextView.text,@"url":musicName,@"upload_time":uploadTime,@"sampling_rate":@"8000HZ",@"time":@"0",@"priority":@"0",@"parent_id":currentSelectedParentID,@"user_id":user_id,@"id":@"0",@"download_num":@"0",@"vlt_id":currentSelectedChildID,@"content":_musicEncodeStr}};
+            
+            [[HttpService sharedInstance]uploadVoice:params completionBlock:^(BOOL isSuccess) {
+                ;
+                [MBProgressHUD hideHUDForView:weakSelf animated:YES];
+            } failureBlock:^(NSError *error, NSString *responseString) {
+                [MBProgressHUD hideHUDForView:weakSelf animated:YES];
+            }];
+            params = nil;
+        }
         
-        NSDictionary * params = @{@"voiceLibrary": @{@"bit_rate": @"",@"vl_name":@"",@"explain":@"",@"url":@"",@"upload_time":@"",@"sampling_rate":@"",@"time":@"",@"priority":@"",@"user_id":@"",@"id":@"",@"download_num":@"",@"vlt_id":@"",@"content":_musicEncodeStr}};
-        
-        [[HttpService sharedInstance]uploadVoice:params completionBlock:^(BOOL isSuccess) {
-            ;
-            [MBProgressHUD hideHUDForView:weakSelf animated:YES];
-        } failureBlock:^(NSError *error, NSString *responseString) {
-            [MBProgressHUD hideHUDForView:weakSelf animated:YES];
-        }];
     }
     
 }

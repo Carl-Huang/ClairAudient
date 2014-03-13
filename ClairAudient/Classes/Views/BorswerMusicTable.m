@@ -196,6 +196,7 @@
     if (rawData) {
         NSString * encodeStr =    [rawData base64EncodedString];
         [uploadView setMusicEncodeStr:encodeStr];
+        [uploadView setMusicInfo:@{@"Title": [info valueForKey:@"title"],@"musicLength":[info valueForKey:@"length"]}];
         encodeStr = nil;
         [myDelegate.window addSubview:uploadView];
     }else
