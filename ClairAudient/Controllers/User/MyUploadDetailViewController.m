@@ -69,6 +69,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = self.voiceItem.vl_name;
     [self setLeftAndRightBarItem];
     [self initializationInterface];
     
@@ -79,7 +80,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
     }];
     
     __weak MyUploadDetailViewController * weakSelf = self;
-    [[HttpService sharedInstance]getCommentWithParams:@{@"vlId":@"378"} completionBlock:^(id object) {
+    [[HttpService sharedInstance]getCommentWithParams:@{@"vlId":self.voiceItem.hw_id} completionBlock:^(id object) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if ([object count]) {
                 CommentView * commentView = [[[NSBundle mainBundle]loadNibNamed:@"CommentView" owner:self options:nil]objectAtIndex:0];
@@ -388,12 +389,11 @@ static NSString * cellIdentifier = @"cellIdentifier";
                         [GobalMethod localNotificationBody:[NSString stringWithFormat:@"%@下载完成",weakSelf.voiceItem.vl_name]];
 
                         isDowning = NO;
-                        CGFloat musicLength = [GobalMethod getMusicLength:[NSURL fileURLWithPath:exportFilePath]];
                         DownloadMusicInfo * info = [DownloadMusicInfo MR_createEntity];
                         info.title = weakSelf.voiceItem.vl_name;
                         info.makeTime = [GobalMethod getMakeTime];
                         info.localPath= exportFilePath;
-                        info.length   = [NSString stringWithFormat:@"%0.2f",musicLength];
+                        info.length   = [GobalMethod getMusicLength:[NSURL fileURLWithPath:exportFilePath]];
                         info.isFavorite = @"0";
                         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
                     });
@@ -432,12 +432,11 @@ static NSString * cellIdentifier = @"cellIdentifier";
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [weakSelf showAlertViewWithMessage:@"下载完成"];
                         block (nil,nil);
-                        CGFloat musicLength = [GobalMethod getMusicLength:[NSURL fileURLWithPath:exportFilePath]];
                         DownloadMusicInfo * info = [DownloadMusicInfo MR_createEntity];
                         info.title    = [musicObj valueForKey:@"Name"];
                         info.makeTime = [GobalMethod getMakeTime];
                         info.localPath= exportFilePath;
-                        info.length   = [NSString stringWithFormat:@"%0.2f",musicLength];
+                        info.length   = [GobalMethod getMusicLength:[NSURL fileURLWithPath:exportFilePath]];
                         info.isFavorite = @"0";
                         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
                         
@@ -491,10 +490,10 @@ static NSString * cellIdentifier = @"cellIdentifier";
 {
     return 6;
 }
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return playView.frame.size.height;
-}
+//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    return playView.frame.size.height;
+//}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -509,15 +508,15 @@ static NSString * cellIdentifier = @"cellIdentifier";
     return cell;
 }
 
--(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    if (!headerView) {
-        headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 280, playView.frame.size.height)];
-        [headerView addSubview:playView];
-        [headerView setBackgroundColor:[UIColor clearColor]];
-    }
-    return headerView;
-}
+//-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    if (!headerView) {
+//        headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 280, playView.frame.size.height)];
+//        [headerView addSubview:playView];
+//        [headerView setBackgroundColor:[UIColor clearColor]];
+//    }
+//    return headerView;
+//}
 
 #pragma mark - UIAlertView Deleagte
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *sortBtn_3;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) Catalog * parentCatalog;
+@property (assign ,nonatomic) BOOL isMutiMixing;
+
 @property (weak, nonatomic) IBOutlet UIImageView *bgView;
 
 

@@ -64,12 +64,13 @@
     [self initUI];
     currentSelectedCatalog = nil;
     isDowning = NO;
+    _isMutiMixing = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self dismissPopoverController];
 }
 
@@ -147,21 +148,21 @@
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [GobalMethod localNotificationBody:[NSString stringWithFormat:@"%@下载完成",[musicObj valueForKey:@"Name"]]];
                         block (nil,nil);
-                        CGFloat musicLength = [GobalMethod getMusicLength:[NSURL fileURLWithPath:exportFilePath]];
                         DownloadMusicInfo * info = [DownloadMusicInfo MR_createEntity];
                         info.title    = [musicObj valueForKey:@"Name"];
                         info.makeTime = [GobalMethod getMakeTime];
                         info.localPath= exportFilePath;
-                        info.length   = [NSString stringWithFormat:@"%0.2f",musicLength];
+                        info.length   = [GobalMethod getMusicLength:[NSURL fileURLWithPath:exportFilePath]];
                         info.isFavorite = @"0";
                         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
                         
                         //下载完后，去到编辑页面
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            MixingViewController * viewController = [[MixingViewController alloc]initWithNibName:@"MixingViewController" bundle:nil];
-                            [viewController setMusicInfo:@{@"Title": [musicObj valueForKey:@"Name"],@"musicTime":[NSString stringWithFormat:@"%0.2f",musicLength],@"musicURL":exportFilePath}];
-                            [self.navigationController pushViewController:viewController animated:YES];
-                            viewController = nil;
+                            
+//                            MixingViewController * viewController = [[MixingViewController alloc]initWithNibName:@"MixingViewController" bundle:nil];
+//                            [viewController setMusicInfo:@{@"Title": [musicObj valueForKey:@"Name"],@"musicTime":[NSString stringWithFormat:@"%0.2f",0.2],@"musicURL":exportFilePath}];
+//                            [self.navigationController pushViewController:viewController animated:YES];
+//                            viewController = nil;
                         });
                         
                     });

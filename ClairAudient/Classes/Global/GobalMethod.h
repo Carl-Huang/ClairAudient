@@ -42,7 +42,7 @@ typedef enum _ANCHOR
 +(NSString *)getDocumentPath:(NSString *)fileName;
 
 /*                 Audio                  */
-+(CGFloat)getMusicLength:(NSURL *)url;
++(NSString *)getMusicLength:(NSURL *)url;
 +(CGFloat)getAudioFileLength:(NSURL *)fileURL;
 
 /**

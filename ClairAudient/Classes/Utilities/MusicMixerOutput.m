@@ -408,6 +408,7 @@
     }
     
 reterr:
+    completedBlock(nil,[NSError errorWithDomain:@"不支持格式" code:1000 userInfo:nil]);
     if (buffer1)
         free(buffer1);
     
@@ -425,7 +426,7 @@ reterr:
     
     if (outputAudioFileRef)
         ExtAudioFileDispose(outputAudioFileRef);
-    completedBlock(nil,nil);
+    
     return err;
 }
 

@@ -52,6 +52,7 @@
             [list addObject:propertyName];
         }
     }
+    free(properties);
     return list;
 }
 

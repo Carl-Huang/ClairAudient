@@ -19,6 +19,7 @@
 #import "MixingOnlineBtn.h"
 #import "StreamPlayer.h"
 #import "GobalMethod.h"
+#import "MyUploadDetailViewController.h"
 #define Section_Height 48.0f
 #define Cell_Height 44.0f
 @interface SoundCatalogViewController ()<SortPopoverViewControllerDelegate>
@@ -348,7 +349,11 @@
     Catalog * catalog = [_catalogs objectAtIndex:indexPath.section];
     NSArray * voices = [_catalogSoundsInfo objectForKey:catalog.vlt_name];
     Voice * voice = [voices objectAtIndex:indexPath.row];
-    [ControlCenter showVoiceVC:voice];
+    
+    MyUploadDetailViewController * viewController = [[MyUploadDetailViewController alloc]initWithNibName:@"MyUploadDetailViewController" bundle:nil];
+    [viewController setVoiceItem:voice];
+    [self.navigationController pushViewController:viewController animated:YES];
+    viewController = nil;
 }
 
 

@@ -42,7 +42,7 @@
     [super viewDidLoad];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     __weak MutiMixingViewController * weakSelf = self;
-    plotViewUp = [[AudioPlotView alloc]initWithFrame:CGRectMake(0, 80, 320, 130)];
+    plotViewUp = [[AudioPlotView alloc]initWithFrame:CGRectMake(0, 60, 320, 130)];
     currentEditMusicInfo = [[NSUserDefaults standardUserDefaults]dictionaryForKey:@"currentEditingMusic"];
     [plotViewUp setLocationBlock:^(NSDictionary * locationInfo)
      {
@@ -55,17 +55,20 @@
         [plotViewUp setupAudioPlotViewWitnNimber:[[currentEditMusicInfo valueForKey:@"count"] integerValue] type:OutputTypeDefautl musicPath:[currentEditMusicInfo valueForKey:@"musicURL"] withCompletedBlock:^(BOOL isFinish) {
             if (isFinish) {
                 //初始化第二张频谱图
-                plotViewDown = [[AudioPlotView alloc]initWithFrame:CGRectMake(0, 80+plotViewUp.frame.size.height, 320, 130)];
-                [plotViewDown setLocationBlock:^(NSDictionary * locationInfo)
-                 {
-                     NSLog(@"%@",locationInfo);
-                     [weakSelf updateInterfaceWithDownnInfo:locationInfo];
-                 }];
-                [plotViewDown setupAudioPlotViewWitnNimber:1 type:OutputTypeHelper musicPath:[weakSelf.mutiMixingInfo valueForKey:@"musicURL"] withCompletedBlock:^(BOOL isFinish) {
-                    [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-                }];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    plotViewDown = [[AudioPlotView alloc]initWithFrame:CGRectMake(0, 60+plotViewUp.frame.size.height, 320, 130)];
+                    [plotViewDown setLocationBlock:^(NSDictionary * locationInfo)
+                     {
+                         NSLog(@"%@",locationInfo);
+                         [weakSelf updateInterfaceWithDownnInfo:locationInfo];
+                     }];
+                    [plotViewDown setupAudioPlotViewWitnNimber:1 type:OutputTypeHelper musicPath:[weakSelf.mutiMixingInfo valueForKey:@"musicURL"] withCompletedBlock:^(BOOL isFinish) {
+                        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+                    }];
+                    
+                    [self.contentView addSubview:plotViewDown];
+                });
                 
-                [self.contentView addSubview:plotViewDown];
             }
         }];
         [self.contentView addSubview:plotViewUp];
@@ -82,6 +85,17 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    if (plotViewUp) {
+        plotViewUp = nil;
+    }
+    
+    if (plotViewDown) {
+        plotViewDown = nil;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -148,24 +162,31 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [MusicMixerOutput mixAudio:sourceA andAudio:sourceB toFile:tempFilePath preferedSampleRate:10000 withCompletedBlock:^(id object, NSError *error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-                //转换caf to mp3 格式
-                weakSelf.audioManager = [AudioManager shareAudioManager];
-                [weakSelf.audioManager audio_PCMtoMP3WithSourceFile:tempFilePath destinationFile:destinationFilePath withSampleRate:10000];
-                
-                //保存信息到本地
-                EditMusicInfo * info = [EditMusicInfo MR_createEntity];
-                info.localPath = destinationFilePath;
-                info.makeTime = [GobalMethod getMakeTime];
-                info.length = [NSString stringWithFormat:@"%0.2f",[GobalMethod getMusicLength:[NSURL fileURLWithPath:destinationFilePath]]];
-                [PersistentStore save];
-                
-                //删除caf 格式文件
-                [[NSFileManager defaultManager]removeItemAtPath:tempFilePath error:nil];
-                
+            if (error) {
+                [self showAlertViewWithMessage:@"不支持音乐格式"];
                 [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-            });
+            }else
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    //转换caf to mp3 格式
+                    weakSelf.audioManager = [AudioManager shareAudioManager];
+                    [weakSelf.audioManager audio_PCMtoMP3WithSourceFile:tempFilePath destinationFile:destinationFilePath withSampleRate:10000];
+                    
+                    //保存信息到本地
+                    EditMusicInfo * info = [EditMusicInfo MR_createEntity];
+                    info.localPath = destinationFilePath;
+                    info.makeTime = [GobalMethod getMakeTime];
+                    info.length = [GobalMethod getMusicLength:[NSURL fileURLWithPath:destinationFilePath]];
+                    [PersistentStore save];
+                    
+                    //删除caf 格式文件
+                    [[NSFileManager defaultManager]removeItemAtPath:tempFilePath error:nil];
+                    
+                    [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+                });
+            }
+            
         }];
     });
 }

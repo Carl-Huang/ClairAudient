@@ -86,8 +86,14 @@
         currentSelectedItemSlider.maximumValue = myDelegate.audioTotalFrame;
         [currentSelectedItemSlider addTarget:self action:@selector(updateCurrentPlayMusicPosition:) forControlEvents:UIControlEventTouchUpInside];
         currentSelectedItemSlider.continuous = NO;
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateProcessingLocation:) name:CurrentPlayFilePostionInfo object:nil];
+       
     }
+//    [myDelegate playItemWithURL:inputFileURL withMusicInfo:nil withPlaylist:nil];
+//    currentSelectedItemSlider.maximumValue = myDelegate.audioTotalFrame;
+//    [currentSelectedItemSlider addTarget:self action:@selector(updateCurrentPlayMusicPosition:) forControlEvents:UIControlEventTouchUpInside];
+//    currentSelectedItemSlider.continuous = NO;
+     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateProcessingLocation:) name:CurrentPlayFilePostionInfo object:nil];
+    
 }
 
 #pragma  mark - Audio Notification
@@ -104,6 +110,7 @@
 {
     UISlider * slider = (UISlider*)sender;
     if (slider.touchInside) {
+        NSLog(@"seeking");
         [myDelegate seekToPostion:slider.value];
     }
 }
@@ -135,7 +142,7 @@
     cell.recordTimeLabel.text   =[GobalMethod customiseTimeFormat:[object valueForKey:@"makeTime"]];
     
     NSURL * musicURL = [NSURL fileURLWithPath:[object valueForKey:@"localPath"]];
-    cell.playTimeLabel.text     = [NSString stringWithFormat:@"%0.2f",[GobalMethod getMusicLength:musicURL]];
+    cell.playTimeLabel.text     = [GobalMethod getMusicLength:musicURL];
     
     cell.delegate               = self;
     cell.musicInfo              = object;

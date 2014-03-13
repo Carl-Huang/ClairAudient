@@ -44,12 +44,12 @@
 }
 
 //获取音乐长度
-+(CGFloat)getMusicLength:(NSURL *)url
++(NSString *)getMusicLength:(NSURL *)url
 {
     AVURLAsset* audioAsset =[AVURLAsset assetWithURL:url];
     CMTime audioDuration = audioAsset.duration;
-    float audioDurationMinute =CMTimeGetSeconds(audioDuration)/60.0f;
-    return audioDurationMinute;
+     NSString * sec = [GobalMethod convertSecondToMinute:CMTimeGetSeconds(audioDuration)];
+    return sec;
 }
 
 +(NSString *)getMakeTime;

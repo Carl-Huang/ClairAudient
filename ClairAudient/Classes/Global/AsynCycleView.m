@@ -9,6 +9,7 @@
 #import "AsynCycleView.h"
 #import "CycleScrollView.h"
 #import "HttpService.h"
+#include <pthread.h>
 
 @interface AsynCycleView()
 {
@@ -106,7 +107,6 @@
     autoScrollView.totalPagesCount = ^NSInteger(void){
         return [weakSelf.placeHolderImages count];
     };
-//    networkImages = [placeHolderImages mutableCopy];
 }
 
 -(void)getImage:(NSString *)imgStr withIndex:(NSInteger)index
@@ -125,8 +125,11 @@
                     NSLog(@"replace");
                     UIImageView * imageView = nil;
                     imageView = [[UIImageView alloc]initWithImage:object];
-                    [weakSelf.placeHolderImages replaceObjectAtIndex:index withObject:imageView];
-                    [weakSelf updateAutoScrollViewItem];
+                    if (imageView) {
+                        [weakSelf.placeHolderImages replaceObjectAtIndex:index withObject:imageView];
+                        [weakSelf updateAutoScrollViewItem];
+                    }
+                    
                     imageView = nil;
                 });
                 

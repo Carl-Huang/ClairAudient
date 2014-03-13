@@ -184,22 +184,16 @@
     [self.audioFile getWaveformDataWithCompletionBlock:^(float *waveformData, UInt32 length) {
         [self.audioPlot updateBuffer:waveformData withBufferSize:length];
         dispatch_async(dispatch_get_main_queue(), ^{
-            dispatch_group_t group = dispatch_group_create();
-            
-            dispatch_group_async(group,dispatch_get_main_queue(), ^ {
-                if (number > 1) {
-                    [self addPlotViewWithNumber:number completed:^(BOOL isCompleted) {
-                        if (isCompleted) {
-                            block(YES);
-                        }
-                    }];
-                }else
-                {
-                    block (YES);
-                }
-            });
-            dispatch_group_notify(group,dispatch_get_main_queue(), ^ {
-            });
+            if (number > 1) {
+                [self addPlotViewWithNumber:number completed:^(BOOL isCompleted) {
+                    if (isCompleted) {
+                        block(YES);
+                    }
+                }];
+            }else
+            {
+                block (YES);
+            }
         });
         
     }];
