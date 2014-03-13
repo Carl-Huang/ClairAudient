@@ -27,4 +27,5 @@
 #define GetCommentByVlId                            @"GetCommentByVlId"
 #define FacebackAction                              @"FacebackAction"
 #define CommitPinLun                                @"CommitPinLun"
+#define UploadAction                                @"UploadAction"
 #endif

@@ -13,6 +13,8 @@
 #import "PersistentStore.h"
 #import "MixingViewController.h"
 #import "OSHelper.h"
+#import "UpLoadView.h"
+#import "Base64.h"
 
 @interface BorswerMusicTable()<ItemDidSelectedDelegate,UITableViewDataSource,UITableViewDelegate>
 {
@@ -20,6 +22,7 @@
     UIButton * currentPlayItemControlBtn;
     
     AppDelegate * myDelegate;
+    UpLoadView * uploadView;
 }
 @end
 
@@ -56,6 +59,9 @@
     }
     _parentController = parent;
     myDelegate = [[UIApplication sharedApplication]delegate];
+    
+    uploadView = [[[NSBundle mainBundle]loadNibNamed:@"UpLoadView" owner:self options:nil]objectAtIndex:0];
+    uploadView.parentController = parent;
 }
 
 -(void)stopPlayer
@@ -183,12 +189,24 @@
 
 -(void)shareItem:(id)object
 {
-
+    //上传
+    //base64 编码
+    id  info = object;
+    NSData * rawData = [[NSData alloc]initWithContentsOfFile:[info valueForKey:@"localPath"]];
+    if (rawData) {
+        NSString * encodeStr =    [rawData base64EncodedString];
+        [uploadView setMusicEncodeStr:encodeStr];
+        encodeStr = nil;
+        [myDelegate.window addSubview:uploadView];
+    }else
+    {
+        //
+    }
 }
 
 -(void)addToFavorite:(id)object
 {
-    
+    //分享
 }
 
 -(void)editItem:(id)object

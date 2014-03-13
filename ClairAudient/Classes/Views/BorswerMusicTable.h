@@ -13,7 +13,7 @@
 @property (strong ,nonatomic) NSArray * borswerDataSource;
 @property (assign ,nonatomic) CGFloat cell_Height;
 @property (assign ,nonatomic) Class   type;
-@property (strong ,nonatomic) id info;
+//@property (strong ,nonatomic) id info;
 
 @property (weak ,nonatomic) UIViewController * parentController;
 

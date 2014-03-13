@@ -69,11 +69,6 @@
  */
 - (void)searchVocie:(NSDictionary *)params completionBlock:(void (^)(id object))success failureBlock:(void (^)(NSError * error,NSString * responseString))failure;
 
-/**
- @desc 上传音频
- */
-- (void)uploadVoice:(NSDictionary *)params completionBlock:(void (^)(id object))success failureBlock:(void (^)(NSError * error,NSString * responseString))failure;
-
 
 /**
  @desc 获取功能首页最上面的广告图片
@@ -112,4 +107,10 @@
  @desc 评论音乐
  */
 -(void)commentOnMusicWithParams:(NSDictionary *)params completionBlock:(void (^)(BOOL isSuccess))success failureBlock:(void (^)(NSError *, NSString *))failure;
+
+/**
+ @desc 上传音频
+ */
+- (void)uploadVoice:(NSDictionary *)params completionBlock:(void (^)(BOOL isSuccess))success failureBlock:(void (^)(NSError * error,NSString * responseString))failure;
+
 @end

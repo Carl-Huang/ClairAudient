@@ -55,6 +55,10 @@
 		4E37255C18C0306700AAB235 /* AudioFloatPointReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E37255618C0306700AAB235 /* AudioFloatPointReader.m */; };
 		4E37255D18C0306700AAB235 /* AsynEncodeAudioRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E37255818C0306700AAB235 /* AsynEncodeAudioRecord.m */; };
 		4E37255E18C0306700AAB235 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E37255B18C0306700AAB235 /* libmp3lame.a */; };
+		4E52D07C18D176110094F136 /* UpLoadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E52D07B18D176110094F136 /* UpLoadView.m */; };
+		4E52D07E18D1769B0094F136 /* UpLoadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E52D07D18D1769B0094F136 /* UpLoadView.xib */; };
+		4E52D08218D17A040094F136 /* PopupTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E52D08018D17A040094F136 /* PopupTagViewController.m */; };
+		4E52D08318D17A040094F136 /* PopupTagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E52D08118D17A040094F136 /* PopupTagViewController.xib */; };
 		4E58621718B5E510004D80B6 /* NSTimer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E58621618B5E510004D80B6 /* NSTimer+Addition.m */; };
 		4E96B56C188EA003008EA56F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E96B56B188EA003008EA56F /* MediaPlayer.framework */; };
 		4E96B56E188EAB88008EA56F /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E96B56D188EAB88008EA56F /* GLKit.framework */; };
@@ -657,6 +661,12 @@
 		4E37255818C0306700AAB235 /* AsynEncodeAudioRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsynEncodeAudioRecord.m; sourceTree = "<group>"; };
 		4E37255A18C0306700AAB235 /* lame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lame.h; sourceTree = "<group>"; };
 		4E37255B18C0306700AAB235 /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmp3lame.a; sourceTree = "<group>"; };
+		4E52D07A18D176110094F136 /* UpLoadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpLoadView.h; sourceTree = "<group>"; };
+		4E52D07B18D176110094F136 /* UpLoadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpLoadView.m; sourceTree = "<group>"; };
+		4E52D07D18D1769B0094F136 /* UpLoadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpLoadView.xib; sourceTree = "<group>"; };
+		4E52D07F18D17A040094F136 /* PopupTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupTagViewController.h; sourceTree = "<group>"; };
+		4E52D08018D17A040094F136 /* PopupTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupTagViewController.m; sourceTree = "<group>"; };
+		4E52D08118D17A040094F136 /* PopupTagViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopupTagViewController.xib; sourceTree = "<group>"; };
 		4E58621518B5E510004D80B6 /* NSTimer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Addition.h"; sourceTree = "<group>"; };
 		4E58621618B5E510004D80B6 /* NSTimer+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Addition.m"; sourceTree = "<group>"; };
 		4E96B56B188EA003008EA56F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -1744,6 +1754,9 @@
 		C3164CF218746A9A00301ACA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4E52D07F18D17A040094F136 /* PopupTagViewController.h */,
+				4E52D08018D17A040094F136 /* PopupTagViewController.m */,
+				4E52D08118D17A040094F136 /* PopupTagViewController.xib */,
 				4EB7C4ED18B72BF700BCF0E8 /* MixingMusicOnlineCell.h */,
 				4EB7C4EE18B72BF700BCF0E8 /* MixingMusicOnlineCell.m */,
 				4EB7C4EF18B72BF700BCF0E8 /* MixingMusicOnlineCell.xib */,
@@ -1815,6 +1828,9 @@
 				4E0DC79E18D0B76B00E4E6ED /* CommentCell.h */,
 				4E0DC79F18D0B76B00E4E6ED /* CommentCell.m */,
 				4E0DC7A118D0B77A00E4E6ED /* CommentCell.xib */,
+				4E52D07A18D176110094F136 /* UpLoadView.h */,
+				4E52D07B18D176110094F136 /* UpLoadView.m */,
+				4E52D07D18D1769B0094F136 /* UpLoadView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2944,6 +2960,7 @@
 				C3164CE31874555D00301ACA /* MusicFans_one@2x.png in Resources */,
 				C3456CEF18877DCF009329D2 /* 2kuanf@2x.png in Resources */,
 				4EB43E6F18AB15CD004CCC85 /* MyUploadDetailCell.xib in Resources */,
+				4E52D07E18D1769B0094F136 /* UpLoadView.xib in Resources */,
 				C3FEAFFE1871C294008EADAA /* hunyin_20@2x.png in Resources */,
 				C3164CBC1874555D00301ACA /* FoundMusic_j@2x.png in Resources */,
 				C3D4FCC9187D679E001A7223 /* DownloadRankCell.xib in Resources */,
@@ -2966,6 +2983,7 @@
 				C3164CDC1874555D00301ACA /* MusicFans_gf@2x.png in Resources */,
 				C3FEB0741871C294008EADAA /* user_17@2x.png in Resources */,
 				C32F4022188287EE00681953 /* MyProductionViewController.xib in Resources */,
+				4E52D08318D17A040094F136 /* PopupTagViewController.xib in Resources */,
 				C3164CBF1874555D00301ACA /* FoundMusic_l@2x.png in Resources */,
 				C32F40131882878600681953 /* MyUploadViewController.xib in Resources */,
 				C3164CEC1874555D00301ACA /* MusicFans_twei@2x.png in Resources */,
@@ -3113,6 +3131,7 @@
 				4E37255318C02F3E00AAB235 /* MusicMixer.m in Sources */,
 				4EB7C4F018B72BF700BCF0E8 /* MixingMusicOnlineCell.m in Sources */,
 				C3FEB0D61871CAA2008EADAA /* MusicFansViewController.m in Sources */,
+				4E52D07C18D176110094F136 /* UpLoadView.m in Sources */,
 				C3456CFD18883C17009329D2 /* TMSoundEffectCell.m in Sources */,
 				C341171B188B8B080070EAB4 /* HttpService.m in Sources */,
 				C326CDBB187C5EDB006DD97C /* DownloadRankViewController.m in Sources */,
@@ -3130,6 +3149,7 @@
 				C3FEB0EB1871D2FC008EADAA /* ControlCenter.m in Sources */,
 				4E96B592188EABC4008EA56F /* EZOutput.m in Sources */,
 				4E0DC7A018D0B76B00E4E6ED /* CommentCell.m in Sources */,
+				4E52D08218D17A040094F136 /* PopupTagViewController.m in Sources */,
 				4EFE1F7618CC65ED0099BD93 /* CustomiseImageObj.m in Sources */,
 				4E2A136B1890BDEC00D8CB65 /* MusicInfo.m in Sources */,
 				C3411720188BC6710070EAB4 /* BaseModel.m in Sources */,

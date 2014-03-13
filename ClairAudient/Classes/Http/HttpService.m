@@ -80,6 +80,7 @@
         {
             [models addObject:model];
         }
+        model = nil;
     }
     
     return (NSArray *)models;
@@ -108,6 +109,7 @@
             }
         }
     }
+    properties = nil;
     return model;
 }
 
@@ -296,16 +298,6 @@
     }failureBlock:failure];
 }
 
-/**
- @desc 上传音频
- */
-- (void)uploadVoice:(NSDictionary *)params completionBlock:(void (^)(id object))success failureBlock:(void (^)(NSError * error,NSString * responseString))failure
-{
-    [self post:[self mergeURL:Upload_Voice] withParams:params completionBlock:^(id obj) {
-        
-    } failureBlock:failure];
-}
-
 -(void)getAdvertisementImageWithCompletedBlock:(void (^)(id object))success failureBlock:(void (^)(NSError *, NSString *))failure
 {
     [self post:[self mergeURL:GetMainImagesAction] withParams:nil completionBlock:^(id obj) {
@@ -459,4 +451,23 @@
         
     }];
 }
+
+/**
+ @desc 上传音频
+ */
+- (void)uploadVoice:(NSDictionary *)params completionBlock:(void (^)(BOOL isSuccess))success failureBlock:(void (^)(NSError * error,NSString * responseString))failure
+{
+    [self post:[self mergeURL:Upload_Voice]withParams:params completionBlock:^(id obj) {
+        ;
+    } failureBlock:^(NSError *error, NSString *responseString) {
+        if ([responseString isEqualToString:@"1"]) {
+            //上传成功
+            success(YES);
+        }else
+        {
+            failure(error,responseString);
+        }
+    }];
+}
+
 @end
