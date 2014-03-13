@@ -15,6 +15,7 @@
 #import "NSBubbleData.h"
 #import "CommentCell.h"
 #import "HttpService.h"
+#import "Voice.h"
 #import "User.h"
 
 static NSString * cellIdentifier = @"cellIdentifier";
@@ -37,6 +38,24 @@ static NSString * cellIdentifier = @"cellIdentifier";
 }
 
 - (IBAction)submitCommentActon:(id)sender {
+    User * user = [User userFromLocal];
+    if ([_commentTextview.text length]) {
+        if (user) {
+            NSInteger  interval = [[NSDate date]timeIntervalSinceNow];
+            NSString * intervalStr = [NSString stringWithFormat:@"%d",interval];
+            [[HttpService sharedInstance]commentOnMusicWithParams:@{@"content": _commentTextview.text,@"vl_id":self.object.vlt_id,@"user_id":user.hw_id,@"quote_content":@"",@"date":intervalStr,@"recive_name":@""} completionBlock:^(BOOL isSuccess) {
+                ;
+            } failureBlock:^(NSError * error, NSString * responsed) {
+                ;
+            }];
+        }
+    }else
+    {
+        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"评论内容不能为空" delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles:nil, nil];
+        [alertView show];
+        alertView = nil;
+    }
+    
 }
 
 -(void)configureBubbleView:(NSArray *)dataSource
@@ -74,6 +93,11 @@ static NSString * cellIdentifier = @"cellIdentifier";
             CGRect baiceRect = self.frame;
             baiceRect.size.height +=offset;
             self.frame = baiceRect;
+            
+            if (_block) {
+                _block(rect.size.height + self.tableViewContainer.frame.origin.y);
+                _block =  nil;
+            }
         }
         
         

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 @class UIBubbleTableView;
+@class Voice;
+
+typedef void(^UpdateContentHeightBlock) (NSInteger height);
+
 @interface CommentView : UIView
 
 @property (weak, nonatomic) IBOutlet UIButton *shareToTenceBtn;
@@ -17,7 +21,8 @@
 @property (weak, nonatomic) IBOutlet UITextView *commentTextview;
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 @property (weak, nonatomic) IBOutlet UIView *tableViewContainer;
-
+@property (strong ,nonatomic) UpdateContentHeightBlock block;
+@property (strong ,nonatomic) Voice * object;
 
 - (IBAction)submitCommentActon:(id)sender;
 

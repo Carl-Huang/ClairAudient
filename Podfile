@@ -5,7 +5,6 @@ target "ClairAudient" do
 pod 'SDWebImage', '~> 3.5.2'
 pod 'MagicalRecord', '~> 2.2'
 pod 'AFNetworking', '~> 2.0.3'
-pod 'BlocksKit', '~> 2.0.0'
 pod 'MBProgressHUD', '~> 0.8'
 end
 

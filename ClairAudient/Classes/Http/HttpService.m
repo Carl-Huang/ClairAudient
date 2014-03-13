@@ -447,4 +447,16 @@
     }];
 }
 
+-(void)commentOnMusicWithParams:(NSDictionary *)params completionBlock:(void (^)(BOOL isSuccess))success failureBlock:(void (^)(NSError *, NSString *))failure
+{
+    [self post:[self mergeURL:CommitPinLun] withParams:params completionBlock:^(id obj) {
+        
+    } failureBlock:^(NSError *error, NSString *responseString) {
+        if ([responseString isEqualToString:@"1"]) {
+            success(YES);
+        }else
+            success(NO);
+        
+    }];
+}
 @end

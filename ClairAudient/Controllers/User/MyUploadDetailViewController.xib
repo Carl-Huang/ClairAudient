@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyUploadDetailViewController">
@@ -10,6 +10,7 @@
                 <outlet property="bgView" destination="vzQ-wt-4kJ" id="jiL-6K-HgX"/>
                 <outlet property="containerView" destination="EMq-kz-dU7" id="1gE-iT-W3q"/>
                 <outlet property="contentScrollView" destination="1Ys-B9-bfm" id="9HZ-LH-hVP"/>
+                <outlet property="musicInfoBg" destination="nDc-Am-glF" id="POC-OS-8eY"/>
                 <outlet property="musicInfoTable" destination="N9O-DL-gxh" id="tYI-bf-8R4"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
@@ -28,7 +29,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="beijign.png" id="nDc-Am-glF">
-                            <rect key="frame" x="0.0" y="140" width="320" height="275"/>
+                            <rect key="frame" x="0.0" y="140" width="320" height="295"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <view contentMode="scaleToFill" id="EMq-kz-dU7">
@@ -36,8 +37,8 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="35" sectionHeaderHeight="22" sectionFooterHeight="22" id="N9O-DL-gxh">
-                            <rect key="frame" x="20" y="150" width="280" height="245"/>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="25" sectionHeaderHeight="22" sectionFooterHeight="22" id="N9O-DL-gxh">
+                            <rect key="frame" x="20" y="156" width="280" height="231"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <connections>

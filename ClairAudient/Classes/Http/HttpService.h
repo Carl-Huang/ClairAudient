@@ -107,4 +107,9 @@
  @desc 反馈
  */
 -(void)commentWithParams:(NSDictionary *)params completionBlock:(void (^)(BOOL isSucccess))success failureBlock:(void (^)(NSError *, NSString *))failure;
+
+/**
+ @desc 评论音乐
+ */
+-(void)commentOnMusicWithParams:(NSDictionary *)params completionBlock:(void (^)(BOOL isSuccess))success failureBlock:(void (^)(NSError *, NSString *))failure;
 @end

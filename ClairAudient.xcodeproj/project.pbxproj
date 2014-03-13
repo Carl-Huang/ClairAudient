@@ -3334,7 +3334,10 @@
 			baseConfigurationReference = F0245F2CBA534CF1802E79A1 /* Pods-ClairAudient.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					"armv7,armv7s",
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -3367,7 +3370,7 @@
 					/Users/vedon/Documents/GitHub/ClairAudient/ClairAudient/Classes/Utilities/lame,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos7.0;
+				SDKROOT = iphoneos7.1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3377,7 +3380,10 @@
 			baseConfigurationReference = F0245F2CBA534CF1802E79A1 /* Pods-ClairAudient.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					"armv7,armv7s",
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -3410,7 +3416,7 @@
 					/Users/vedon/Documents/GitHub/ClairAudient/ClairAudient/Classes/Utilities/lame,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos7.0;
+				SDKROOT = iphoneos7.1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

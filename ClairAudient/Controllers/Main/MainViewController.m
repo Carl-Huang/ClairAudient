@@ -75,17 +75,6 @@
     [self.view bringSubviewToFront:_startPageContainer];
     
     
-//    [[HttpService sharedInstance]getCommentWithParams:@{@"vlId":@"378"} completionBlock:^(id object) {
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            if ([object count]) {
-//                CommentView * commentView = [[[NSBundle mainBundle]loadNibNamed:@"CommentView" owner:self options:nil]objectAtIndex:0];
-//                [commentView configureBubbleView:object];
-//                [self.view addSubview:commentView];
-//            }
-//        });
-//    } failureBlock:^(NSError *error, NSString *responseString) {
-//        ;
-//    }];
     
     
 }

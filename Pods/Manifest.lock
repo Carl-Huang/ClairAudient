@@ -17,21 +17,6 @@ PODS:
   - AFNetworking/Serialization (2.0.3)
   - AFNetworking/UIKit (2.0.3):
     - AFNetworking/NSURLConnection
-  - BlocksKit (2.0.0):
-    - BlocksKit/All
-  - BlocksKit/All (2.0.0):
-    - BlocksKit/Core
-    - BlocksKit/DynamicDelegate
-    - BlocksKit/MessageUI
-    - BlocksKit/UIKit
-  - BlocksKit/Core (2.0.0)
-  - BlocksKit/DynamicDelegate (2.0.0):
-    - libffi
-  - BlocksKit/MessageUI (2.0.0):
-    - BlocksKit/DynamicDelegate
-  - BlocksKit/UIKit (2.0.0):
-    - BlocksKit/DynamicDelegate
-  - libffi (3.0.13)
   - MagicalRecord (2.2):
     - MagicalRecord/Core
   - MagicalRecord/Core (2.2)
@@ -42,15 +27,12 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0.3)
-  - BlocksKit (~> 2.0.0)
   - MagicalRecord (~> 2.2)
   - MBProgressHUD (~> 0.8)
   - SDWebImage (~> 3.5.2)
 
 SPEC CHECKSUMS:
   AFNetworking: e499052cbf3d743e9bb727bb37adb9dc2547ba15
-  BlocksKit: b29ee3f28ba06a09f5c64987314ce5b75b2c3962
-  libffi: 64ef39353e747bb2b25e1026afd96a157bf9231c
   MagicalRecord: 95d49d74ef752cd52f6ad87bcb474817fc3978cf
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
   SDWebImage: fe7ce01ae4e0a884d168f59c9dd82d35baf8429e

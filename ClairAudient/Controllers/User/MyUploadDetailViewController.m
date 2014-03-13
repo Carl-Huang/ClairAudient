@@ -26,6 +26,7 @@
 #import "AppDelegate.h"
 #import "HttpService.h"
 #import "AsynCycleView.h"
+#import "CommentView.h"
 
 static NSString * cellIdentifier = @"cellIdentifier";
 @interface MyUploadDetailViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
@@ -77,7 +78,32 @@ static NSString * cellIdentifier = @"cellIdentifier";
         ;
     }];
     
-    
+    __weak MyUploadDetailViewController * weakSelf = self;
+    [[HttpService sharedInstance]getCommentWithParams:@{@"vlId":@"378"} completionBlock:^(id object) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([object count]) {
+                CommentView * commentView = [[[NSBundle mainBundle]loadNibNamed:@"CommentView" owner:self options:nil]objectAtIndex:0];
+                [commentView setBackgroundColor:[UIColor clearColor]];
+                [commentView setObject:weakSelf.voiceItem];
+                CGRect rect = commentView.frame;
+                rect.origin.y = 410;
+                commentView.frame = rect;
+                
+                [commentView setBlock:^(NSInteger height)
+                {
+                    CGSize size = weakSelf.contentScrollView.contentSize;
+                    size.height += height;
+                    [weakSelf.contentScrollView setContentSize:size];
+                }];
+                
+                [commentView configureBubbleView:object];
+                [weakSelf.contentScrollView addSubview:commentView];
+            }
+        });
+    } failureBlock:^(NSError *error, NSString *responseString) {
+        ;
+    }];
+
     //    __weak MyUploadDetailViewController * weakSelf = self;
 //    [GobalMethod getExportPath:[_voiceItem.vl_name stringByAppendingPathExtension:@"mp3"] completedBlock:^(BOOL isDownloaded, NSString *exportFilePath) {
 //        if (isDownloaded) {
@@ -182,7 +208,9 @@ static NSString * cellIdentifier = @"cellIdentifier";
     currentPlayFileLength = nil;
     myDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    
+//    beijign.png
+//    UIImage * strecthImage = [[UIImage imageNamed:@"beijign.png"]resizableImageWithCapInsets:UIEdgeInsetsMake(40, 5, 50, 5)];
+//    _musicInfoBg.image = strecthImage;
 }
 
 
