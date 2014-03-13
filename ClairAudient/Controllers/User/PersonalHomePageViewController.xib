@@ -12,6 +12,7 @@
                 <outlet property="jobField" destination="6Np-hD-4Ap" id="qt2-J6-w6N"/>
                 <outlet property="nameField" destination="5zi-Tf-Q9M" id="d4M-PK-PMN"/>
                 <outlet property="passwordField" destination="72m-9N-WQg" id="2i8-nN-YS0"/>
+                <outlet property="userPhoto" destination="AF7-Ws-5yq" id="KnU-Dk-OPa"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -146,6 +147,17 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2Ii-rq-yIC">
+                            <rect key="frame" x="12" y="9" width="265" height="130"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="choosePhotoAction:" destination="-1" eventType="touchUpInside" id="ZZa-Mb-DGf"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>

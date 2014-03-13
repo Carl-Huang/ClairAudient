@@ -14,5 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *birthdayField;
 @property (weak, nonatomic) IBOutlet UITextField *jobField;
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
+@property (weak, nonatomic) IBOutlet UIImageView *userPhoto;
+- (IBAction)choosePhotoAction:(id)sender;
 
 @end

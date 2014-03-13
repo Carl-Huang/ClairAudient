@@ -73,6 +73,16 @@
 		4E96B596188EABC4008EA56F /* CHANGELOG in Resources */ = {isa = PBXBuildFile; fileRef = 4E96B589188EABC4008EA56F /* CHANGELOG */; };
 		4E96B597188EABC4008EA56F /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 4E96B58A188EABC4008EA56F /* VERSION */; };
 		4E96B59A188EC7B0008EA56F /* TrachBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E96B599188EC7B0008EA56F /* TrachBtn.m */; };
+		4E97A22F18D13CDF00972BDE /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E97A22518D13CDF00972BDE /* 1.png */; };
+		4E97A23018D13CDF00972BDE /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E97A22618D13CDF00972BDE /* 2.png */; };
+		4E97A23118D13CDF00972BDE /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E97A22718D13CDF00972BDE /* 3.png */; };
+		4E97A23218D13CDF00972BDE /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E97A22818D13CDF00972BDE /* 4.png */; };
+		4E97A23318D13CDF00972BDE /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E97A22918D13CDF00972BDE /* 5.png */; };
+		4E97A23418D13CDF00972BDE /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E97A22A18D13CDF00972BDE /* 6.png */; };
+		4E97A23518D13CDF00972BDE /* 7.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E97A22B18D13CDF00972BDE /* 7.png */; };
+		4E97A23618D13CDF00972BDE /* 8.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E97A22C18D13CDF00972BDE /* 8.png */; };
+		4E97A23718D13CDF00972BDE /* 9.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E97A22D18D13CDF00972BDE /* 9.png */; };
+		4E97A23818D13CDF00972BDE /* 10.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E97A22E18D13CDF00972BDE /* 10.png */; };
 		4EAACB5318CA0C8300E380A7 /* MainViewController4inch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EAACB5218CA0C8300E380A7 /* MainViewController4inch.xib */; };
 		4EAC1DA818B0B46100C8DA2E /* GobalMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EAC1DA718B0B46100C8DA2E /* GobalMethod.m */; };
 		4EAF29FA18A9FA8D007A8F70 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EAF29F918A9FA8D007A8F70 /* SystemConfiguration.framework */; };
@@ -110,6 +120,9 @@
 		4EB126CF18B24FEE00DC9DE8 /* DownloadMusicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB126CE18B24FEE00DC9DE8 /* DownloadMusicInfo.m */; };
 		4EB20FA918A931BE007E5A8B /* EditListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB20FA718A931BE007E5A8B /* EditListCell.m */; };
 		4EB20FAA18A931BE007E5A8B /* EditListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EB20FA818A931BE007E5A8B /* EditListCell.xib */; };
+		4EB3E08318D1388600DB7B0B /* PhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB3E08118D1388600DB7B0B /* PhotoManager.m */; };
+		4EB3E08518D1389E00DB7B0B /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EB3E08418D1389E00DB7B0B /* AssetsLibrary.framework */; };
+		4EB3E08718D138A800DB7B0B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EB3E08618D138A800DB7B0B /* CoreMedia.framework */; };
 		4EB43E6D18AB15B6004CCC85 /* MyUploadDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB43E6C18AB15B6004CCC85 /* MyUploadDetailCell.m */; };
 		4EB43E6F18AB15CD004CCC85 /* MyUploadDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EB43E6E18AB15CD004CCC85 /* MyUploadDetailCell.xib */; };
 		4EB43E7218AB26BC004CCC85 /* PlayItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB43E7118AB26BC004CCC85 /* PlayItemView.m */; };
@@ -675,6 +688,16 @@
 		4E96B58A188EABC4008EA56F /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
 		4E96B598188EC7B0008EA56F /* TrachBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrachBtn.h; sourceTree = "<group>"; };
 		4E96B599188EC7B0008EA56F /* TrachBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrachBtn.m; sourceTree = "<group>"; };
+		4E97A22518D13CDF00972BDE /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		4E97A22618D13CDF00972BDE /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		4E97A22718D13CDF00972BDE /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		4E97A22818D13CDF00972BDE /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
+		4E97A22918D13CDF00972BDE /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
+		4E97A22A18D13CDF00972BDE /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
+		4E97A22B18D13CDF00972BDE /* 7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7.png; sourceTree = "<group>"; };
+		4E97A22C18D13CDF00972BDE /* 8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8.png; sourceTree = "<group>"; };
+		4E97A22D18D13CDF00972BDE /* 9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 9.png; sourceTree = "<group>"; };
+		4E97A22E18D13CDF00972BDE /* 10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 10.png; sourceTree = "<group>"; };
 		4EAACB5218CA0C8300E380A7 /* MainViewController4inch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController4inch.xib; sourceTree = "<group>"; };
 		4EAC1DA618B0B46100C8DA2E /* GobalMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GobalMethod.h; sourceTree = "<group>"; };
 		4EAC1DA718B0B46100C8DA2E /* GobalMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GobalMethod.m; sourceTree = "<group>"; };
@@ -725,6 +748,10 @@
 		4EB20FA618A931BE007E5A8B /* EditListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditListCell.h; sourceTree = "<group>"; };
 		4EB20FA718A931BE007E5A8B /* EditListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditListCell.m; sourceTree = "<group>"; };
 		4EB20FA818A931BE007E5A8B /* EditListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditListCell.xib; sourceTree = "<group>"; };
+		4EB3E08118D1388600DB7B0B /* PhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoManager.m; sourceTree = "<group>"; };
+		4EB3E08218D1388600DB7B0B /* PhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoManager.h; sourceTree = "<group>"; };
+		4EB3E08418D1389E00DB7B0B /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		4EB3E08618D138A800DB7B0B /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		4EB43E6B18AB15B6004CCC85 /* MyUploadDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUploadDetailCell.h; sourceTree = "<group>"; };
 		4EB43E6C18AB15B6004CCC85 /* MyUploadDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUploadDetailCell.m; sourceTree = "<group>"; };
 		4EB43E6E18AB15CD004CCC85 /* MyUploadDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyUploadDetailCell.xib; sourceTree = "<group>"; };
@@ -1291,6 +1318,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EB3E08718D138A800DB7B0B /* CoreMedia.framework in Frameworks */,
+				4EB3E08518D1389E00DB7B0B /* AssetsLibrary.framework in Frameworks */,
 				4EAF2A5118A9FE90007A8F70 /* ShareSDKiPhoneAppRecommendShareViewUI.framework in Frameworks */,
 				4EAF2A0918A9FE78007A8F70 /* libz.1.2.5.dylib in Frameworks */,
 				4EAF2A0818A9FE6E007A8F70 /* libicucore.dylib in Frameworks */,
@@ -1941,6 +1970,8 @@
 		C3FEAF1E1871C156008EADAA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4EB3E08618D138A800DB7B0B /* CoreMedia.framework */,
+				4EB3E08418D1389E00DB7B0B /* AssetsLibrary.framework */,
 				4EAF2A0518A9FB2E007A8F70 /* libz.1.2.5.dylib */,
 				4EAF2A0318A9FB25007A8F70 /* libcupolicy.dylib */,
 				4EAF2A0118A9FB16007A8F70 /* libsqlite3.dylib */,
@@ -2055,6 +2086,16 @@
 		C3FEAF511871C294008EADAA /* hunyin */ = {
 			isa = PBXGroup;
 			children = (
+				4E97A22518D13CDF00972BDE /* 1.png */,
+				4E97A22618D13CDF00972BDE /* 2.png */,
+				4E97A22718D13CDF00972BDE /* 3.png */,
+				4E97A22818D13CDF00972BDE /* 4.png */,
+				4E97A22918D13CDF00972BDE /* 5.png */,
+				4E97A22A18D13CDF00972BDE /* 6.png */,
+				4E97A22B18D13CDF00972BDE /* 7.png */,
+				4E97A22C18D13CDF00972BDE /* 8.png */,
+				4E97A22D18D13CDF00972BDE /* 9.png */,
+				4E97A22E18D13CDF00972BDE /* 10.png */,
 				4EB43E7518AB284D004CCC85 /* arrow-down.png */,
 				4EEA197E18AA72540062D118 /* testImage.png */,
 				C3B395C51875519800592C92 /* back@2x.png */,
@@ -2490,6 +2531,8 @@
 		C3FEB0E81871D2BB008EADAA /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				4EB3E08118D1388600DB7B0B /* PhotoManager.m */,
+				4EB3E08218D1388600DB7B0B /* PhotoManager.h */,
 				4EB43E7718AB39AA004CCC85 /* AudioPlayer */,
 				4EAF2A0A18A9FE83007A8F70 /* ShareManager.h */,
 				4EAF2A0B18A9FE83007A8F70 /* ShareManager.m */,
@@ -2609,6 +2652,7 @@
 				C3FEB0581871C294008EADAA /* setting_12@2x.png in Resources */,
 				C3FEB0801871C294008EADAA /* user_29@2x.png in Resources */,
 				C3FEB07A1871C294008EADAA /* user_23@2x.png in Resources */,
+				4E97A23718D13CDF00972BDE /* 9.png in Resources */,
 				4EB43E8918AB39AA004CCC85 /* stop.png in Resources */,
 				C3FEB0511871C294008EADAA /* record_6@2x.png in Resources */,
 				C3164CC31874555D00301ACA /* FoundMusic_mn@2x.png in Resources */,
@@ -2681,6 +2725,7 @@
 				4EB7C4EC18B6FC2800BCF0E8 /* MixingCatalogViewController.xib in Resources */,
 				C3164CB61874555D00301ACA /* FoundMusic_f@2x.png in Resources */,
 				C3FEB0691871C294008EADAA /* setting_8@2x.png in Resources */,
+				4E97A22F18D13CDF00972BDE /* 1.png in Resources */,
 				C39A97A5189247AE00F41CBB /* catalog_icon_cpng@2x.png in Resources */,
 				C3D4FCBF187D0DF2001A7223 /* CatalogRankCell.xib in Resources */,
 				C3FEB0331871C294008EADAA /* record_15@2x.png in Resources */,
@@ -2694,6 +2739,7 @@
 				C3164CC71874555D00301ACA /* FoundMusic_p@2x.png in Resources */,
 				4E0DC79818D0B59F00E4E6ED /* typingSomeone@2x.png in Resources */,
 				C3FEAF2A1871C156008EADAA /* InfoPlist.strings in Resources */,
+				4E97A23818D13CDF00972BDE /* 10.png in Resources */,
 				C3FEB0201871C294008EADAA /* hunyin_5@2x.png in Resources */,
 				4EAF2A4F18A9FE90007A8F70 /* ShareSDKiPadSimpleShareViewUI.bundle in Resources */,
 				C3164CBA1874555D00301ACA /* FoundMusic_hi@2x.png in Resources */,
@@ -2734,6 +2780,7 @@
 				C32D4FB3187FAB4F0090730B /* SoundCatalogCell.xib in Resources */,
 				C3FEB0451871C294008EADAA /* record_32@2x.png in Resources */,
 				C3FEB0431871C294008EADAA /* record_30@2x.png in Resources */,
+				4E97A23518D13CDF00972BDE /* 7.png in Resources */,
 				C3FEB0C81871CA19008EADAA /* MainViewController.xib in Resources */,
 				C3FEB0421871C294008EADAA /* record_2@2x.png in Resources */,
 				C3164CE11874555D00301ACA /* MusicFans_kjk@2x.png in Resources */,
@@ -2759,6 +2806,7 @@
 				C3FEB0381871C294008EADAA /* record_20@2x.png in Resources */,
 				C3FEB0731871C294008EADAA /* user_16@2x.png in Resources */,
 				C3164CB71874555D00301ACA /* FoundMusic_fd@2x.png in Resources */,
+				4E97A23018D13CDF00972BDE /* 2.png in Resources */,
 				C3FEB01C1871C294008EADAA /* hunyin_49@2x.png in Resources */,
 				C3164CEA1874555D00301ACA /* MusicFans_ten@2x.png in Resources */,
 				C3164CB21874555D00301ACA /* FoundMusic_cd@2x.png in Resources */,
@@ -2812,6 +2860,7 @@
 				C3FEB01D1871C294008EADAA /* hunyin_4@2x.png in Resources */,
 				C3FEB02E1871C294008EADAA /* record_10@2x.png in Resources */,
 				4EAACB5318CA0C8300E380A7 /* MainViewController4inch.xib in Resources */,
+				4E97A23418D13CDF00972BDE /* 6.png in Resources */,
 				C3FEAFF81871C294008EADAA /* hunyin_15@2x.png in Resources */,
 				C3FEAFF71871C294008EADAA /* hunyin_14@2x.png in Resources */,
 				C3FEB0301871C294008EADAA /* record_12@2x.png in Resources */,
@@ -2873,6 +2922,7 @@
 				C39A97B7189247AE00F41CBB /* catalog_section_ipng@2x.png in Resources */,
 				C3164CE21874555D00301ACA /* MusicFans_nine@2x.png in Resources */,
 				C39A97A7189247AE00F41CBB /* catalog_icon_epng@2x.png in Resources */,
+				4E97A23618D13CDF00972BDE /* 8.png in Resources */,
 				C3FEB0E11871CAF4008EADAA /* MixingMusicListViewController.xib in Resources */,
 				C3FEB0291871C294008EADAA /* first_6@2x.png in Resources */,
 				C3FEB0391871C294008EADAA /* record_21@2x.png in Resources */,
@@ -2905,6 +2955,8 @@
 				C3FEB06C1871C294008EADAA /* setting_设置 主题设置.png in Resources */,
 				C3FEB0021871C294008EADAA /* hunyin_24@2x.png in Resources */,
 				C3D4FCBA187D0C3A001A7223 /* CatalogRankSectionHeader.xib in Resources */,
+				4E97A23118D13CDF00972BDE /* 3.png in Resources */,
+				4E97A23218D13CDF00972BDE /* 4.png in Resources */,
 				C3FEB0681871C294008EADAA /* setting_7@2x.png in Resources */,
 				C3FEB0001871C294008EADAA /* hunyin_22@2x.png in Resources */,
 				4EAF2A4918A9FE90007A8F70 /* WeiboSDK.bundle in Resources */,
@@ -2933,6 +2985,7 @@
 				C3FEB0831871C294008EADAA /* user_31@2x.png in Resources */,
 				C3164CC61874555D00301ACA /* FoundMusic_op@2x.png in Resources */,
 				C32F4018188287B600681953 /* MyDownloadViewController.xib in Resources */,
+				4E97A23318D13CDF00972BDE /* 5.png in Resources */,
 				4EAF2A4618A9FE90007A8F70 /* RennSDK.bundle in Resources */,
 				C34C340C188AE6F7009CD20B /* ShareViewController.xib in Resources */,
 				C3FEB03A1871C294008EADAA /* record_22@2x.png in Resources */,
@@ -3104,6 +3157,7 @@
 				C34C33FC188A8038009CD20B /* MixingViewController.m in Sources */,
 				C3456CE018877077009329D2 /* MyUploadCell.m in Sources */,
 				C3FEB0BC1871C801008EADAA /* VersionManager.m in Sources */,
+				4EB3E08318D1388600DB7B0B /* PhotoManager.m in Sources */,
 				C3411730188C2C2B0070EAB4 /* VoiceComment.m in Sources */,
 				C34C3401188AB430009CD20B /* RecordListViewController.mm in Sources */,
 				C32749A0187A5ED400CF7A4A /* HelpViewController.m in Sources */,

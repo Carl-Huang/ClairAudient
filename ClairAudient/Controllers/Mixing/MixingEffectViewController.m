@@ -79,7 +79,7 @@
     [self.view addSubview:_quiltView];
     //[_quiltView reloadData];
     
-    if (![OSHelper isReachable]) {
+    if ([OSHelper isReachable]) {
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [[HttpService sharedInstance] findCatalog:@{@"parentId":@"0"} completionBlock:^(id obj) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];

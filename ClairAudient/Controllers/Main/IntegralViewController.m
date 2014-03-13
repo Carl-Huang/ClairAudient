@@ -63,4 +63,8 @@
 {
     [ControlCenter showAboutScoreVC];
 }
+
+- (IBAction)makeCallActoin:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://055188888888"]];
+}
 @end

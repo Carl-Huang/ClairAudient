@@ -14,5 +14,6 @@
 @property (strong ,nonatomic) User * userInfo;
 - (IBAction)showAboutScoreVC:(id)sender;
 
+- (IBAction)makeCallActoin:(id)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *bgView;
 @end

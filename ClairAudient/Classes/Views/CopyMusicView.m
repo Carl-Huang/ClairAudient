@@ -42,7 +42,9 @@
             }
         }
         [btn setFrame:CGRectMake(orignalX+(btnWidth + 16)*(i - rowCount * 5), orignalY+(20+btnHeight)*rowCount, btnWidth, btnHeight)];
-        [btn setBackgroundImage:[UIImage imageNamed:@"FoundMusic_cd.png"] forState:UIControlStateNormal];
+        
+        NSString * imageName = [NSString stringWithFormat:@"%d.png",i+1];
+        [btn setBackgroundImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(clickBtnAction:) forControlEvents:UIControlEventTouchUpInside];
         btn.tag = i;
         

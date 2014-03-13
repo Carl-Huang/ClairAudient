@@ -9,6 +9,8 @@
 #import "PersonalHomePageViewController.h"
 #import "UIViewController+CustomBarItemPosition.h"
 #import "User.h"
+#import "PhotoManager.h"
+#import "AppDelegate.h"
 @interface PersonalHomePageViewController ()
 @property (nonatomic,strong) User * user;
 @end
@@ -53,4 +55,17 @@
     }
 }
 
+- (IBAction)choosePhotoAction:(id)sender {
+    AppDelegate * myDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    __weak PersonalHomePageViewController * weakSelf = self;
+    [[PhotoManager shareManager]setConfigureBlock:^(UIImage * image)
+     {
+         
+         dispatch_async(dispatch_get_main_queue(), ^{
+             weakSelf.userPhoto.image = image;
+         });
+         
+     }];
+    [self presentViewController:[PhotoManager shareManager].camera animated:YES completion:nil];
+}
 @end

@@ -111,7 +111,6 @@
             [viewController setMusicInfo:musicInfo];
             [self.navigationController pushViewController:viewController animated:YES];
             viewController = nil;
-            
         }else
         {
             NSURL* assetURL         = (NSURL *)[musicInfo valueForKey:@"musicURL"];

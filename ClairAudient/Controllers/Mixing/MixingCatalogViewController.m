@@ -124,6 +124,8 @@
 
 -(void)startDownloadMusicWithObj:(NSDictionary *)musicObj completedBlock:(void (^)(NSError * error,NSDictionary * info))block;
 {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     NSString * url = [musicObj valueForKey:@"URL"];
     NSURLRequest * request = [NSURLRequest requestWithURL:[GobalMethod getMusicUrl:url]];
     NSString * fileExtention = [url pathExtension];
@@ -133,6 +135,7 @@
         __weak MixingCatalogViewController * weakSelf = self;
         
         [GobalMethod getExportPath:fileName completedBlock:^(BOOL isDownloaded, NSString *exportFilePath) {
+            [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
             if (isDownloaded) {
                 [self showAlertViewWithMessage:@"已经下载"];
             }else
@@ -153,6 +156,14 @@
                         info.isFavorite = @"0";
                         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
                         
+                        //下载完后，去到编辑页面
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            MixingViewController * viewController = [[MixingViewController alloc]initWithNibName:@"MixingViewController" bundle:nil];
+                            [viewController setMusicInfo:@{@"Title": [musicObj valueForKey:@"Name"],@"musicTime":[NSString stringWithFormat:@"%0.2f",musicLength],@"musicURL":exportFilePath}];
+                            [self.navigationController pushViewController:viewController animated:YES];
+                            viewController = nil;
+                        });
+                        
                     });
                 };
                 downloadOperation.outputStream = [NSOutputStream outputStreamToFileAtPath:exportFilePath append:NO];
@@ -163,6 +174,7 @@
     }else
     {
         //文件路径错误
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }
 }
 
