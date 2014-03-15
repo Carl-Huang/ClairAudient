@@ -83,6 +83,74 @@
 }
 
 
++(void)MixingAudioFile:(NSString *)sourceA withFile:(NSString *)sourceB destinatedPath:(NSString *)compositionPath  withCompletedBlock:(void (^)(NSError * error,BOOL isFinish))block
+{
+    AVMutableComposition * composition = [AVMutableComposition composition];
+    AVMutableCompositionTrack * compoitionTrack = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+    
+    AVURLAsset * originalAsset  = [[AVURLAsset alloc]initWithURL:[NSURL fileURLWithPath:sourceB] options:nil];
+    AVURLAsset * newAsset       = [[AVURLAsset alloc]initWithURL:[NSURL fileURLWithPath:sourceA] options:nil];
+    
+    AVAssetTrack * originalAudioTrack = [[originalAsset tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0];
+    AVAssetTrack * newAssetAudioTrack = [[newAsset tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0];
+    
+    NSError * error = nil;
+    CMTimeRange timeRange = CMTimeRangeMake(kCMTimeZero, originalAsset.duration);
+    [compoitionTrack insertTimeRange:timeRange
+                             ofTrack:originalAudioTrack
+                              atTime:kCMTimeZero
+                               error:&error];
+    
+    if (error)
+    {
+        block(error,NO);
+    }
+
+    
+    CMTimeRange newAssetTimeRange = CMTimeRangeMake(kCMTimeZero, newAsset.duration);
+    [compoitionTrack insertTimeRange:newAssetTimeRange
+                                 ofTrack:newAssetAudioTrack
+                                  atTime:kCMTimeZero
+                                   error:&error];
+    
+    if (error)
+    {
+        block(error,NO);
+    }
+    
+    AVAssetExportSession* exportSession = [AVAssetExportSession
+                                           exportSessionWithAsset:composition
+                                           presetName:AVAssetExportPresetPassthrough];
+    
+    NSURL * file = [NSURL fileURLWithPath:compositionPath];
+    exportSession.outputURL = file;
+    exportSession.outputFileType = @"com.apple.quicktime-movie";
+    [exportSession exportAsynchronouslyWithCompletionHandler:^{
+        
+        // exported successfully?
+        switch (exportSession.status)
+        {
+            case AVAssetExportSessionStatusFailed:
+                break;
+            case AVAssetExportSessionStatusCompleted:
+            {
+                block(nil,YES);
+            }
+                
+                // you should now have the appended audio file
+                break;
+            case AVAssetExportSessionStatusWaiting:
+                break;
+            default:
+                break;
+        }
+        
+    }];
+    
+    originalAsset   = nil;
+    newAsset        = nil;
+}
+
 + (OSStatus)mixAudio:(NSString *)audioPath1
             andAudio:(NSString *)audioPath2
               toFile:(NSString *)outputPath
@@ -259,8 +327,8 @@
     // Enable converter when writing to the output file by setting the client
     // data format to the pcm converter we created earlier.
     
-//    err = ExtAudioFileSetProperty(outputAudioFileRef, kExtAudioFileProperty_ClientDataFormat,
-//                                  sizeof(outputFileFormat), &outputFileFormat);
+    //    err = ExtAudioFileSetProperty(outputAudioFileRef, kExtAudioFileProperty_ClientDataFormat,
+    //                                  sizeof(outputFileFormat), &outputFileFormat);
     if (err)
     {
         goto reterr;
@@ -406,9 +474,16 @@
             goto reterr;
         }
     }
+
     
 reterr:
-    completedBlock(nil,[NSError errorWithDomain:@"不支持格式" code:1000 userInfo:nil]);
+    if (err != 0) {
+        completedBlock(nil,[NSError errorWithDomain:@"不支持格式" code:1000 userInfo:nil]);
+    }else
+    {
+        completedBlock(nil,nil);
+    }
+    
     if (buffer1)
         free(buffer1);
     

@@ -269,6 +269,7 @@
     // Normal plot
     glPushMatrix();
     self.baseEffect.transform.modelviewMatrix = GLKMatrix4MakeXRotation(0);
+      //TODO:crash here
     glDrawArrays(_drawingType, 0, _bufferPlotGraphSize);
     glPopMatrix();
     

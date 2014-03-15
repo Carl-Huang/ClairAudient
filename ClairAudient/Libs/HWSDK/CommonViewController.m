@@ -96,11 +96,14 @@
 {
     return NO;
 }
-
+#ifdef IOS7_SDK_AVAILABLE
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
+    
     return UIStatusBarStyleLightContent;
 }
+#endif
+
 
 - (void)didReceiveMemoryWarning
 {

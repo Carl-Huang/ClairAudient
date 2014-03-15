@@ -15,7 +15,9 @@
 /*
  其他
  */
-
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
+#define IOS7_SDK_AVAILABLE 1
+#endif
 
 
 #import <Availability.h>

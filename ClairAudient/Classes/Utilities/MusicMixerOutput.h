@@ -18,4 +18,6 @@
   withCompletedBlock:(void (^)(id object ,NSError * error))completedBlock;
 
 +(void)appendAudioFile:(NSString *)filePath toFile:(NSString *)appendedFile compositionPath:(NSString *)compositionPath compositionTimes:(NSInteger)times withCompletedBlock:(void (^)(NSError * error,BOOL isFinish))block;
+
++(void)MixingAudioFile:(NSString *)sourceA withFile:(NSString *)sourceB destinatedPath:(NSString *)compositionPath  withCompletedBlock:(void (^)(NSError * error,BOOL isFinish))block;
 @end

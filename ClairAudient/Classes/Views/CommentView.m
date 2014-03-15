@@ -66,9 +66,12 @@ static NSString * cellIdentifier = @"cellIdentifier";
     _contentTable.dataSource = self;
     [_contentTable setBackgroundColor:[UIColor clearColor]];
     [_contentTable setBackgroundView:nil];
+    
+#ifdef IOS7_SDK_AVAILABLE
     if ([OSHelper iOS7]) {
         _contentTable.separatorInset = UIEdgeInsetsZero;
     }
+#endif
     _contentTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     UINib *cellNib = [UINib nibWithNibName:@"CommentCell" bundle:[NSBundle bundleForClass:[CommentCell class]]];

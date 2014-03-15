@@ -18,6 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIImageView *musicInfoBg;
+@property (weak, nonatomic) IBOutlet UIView *playViewContainer;
 
 @property (strong ,nonatomic) Voice * voiceItem;
 @end

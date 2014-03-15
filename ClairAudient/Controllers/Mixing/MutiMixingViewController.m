@@ -20,6 +20,7 @@
     AudioPlotView * plotViewDown;
     
     NSDictionary * currentEditMusicInfo;
+    dispatch_queue_t  serialQueue;
 
 }
 @property (strong ,nonatomic)    AudioManager * audioManager;
@@ -40,6 +41,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    serialQueue = dispatch_queue_create("com.audioSerialQueue", DISPATCH_QUEUE_SERIAL);
+    
+    
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     __weak MutiMixingViewController * weakSelf = self;
     plotViewUp = [[AudioPlotView alloc]initWithFrame:CGRectMake(0, 60, 320, 130)];
@@ -153,7 +157,7 @@
     
     
     NSString * mixingFileName = [GobalMethod userCurrentTimeAsFileName];
-    mixingFileName = [mixingFileName stringByAppendingPathExtension:@"mp3"];
+    mixingFileName = [mixingFileName stringByAppendingPathExtension:@"mov"];
     NSString *destinationFilePath = [GobalMethod getExportPath:mixingFileName];
     
     NSString *sourceA = [currentEditMusicInfo valueForKey:@"musicURL"];
@@ -161,13 +165,24 @@
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+//        [MusicMixerOutput MixingAudioFile:sourceA withFile:sourceB destinatedPath:destinationFilePath withCompletedBlock:^(NSError *error, BOOL isFinish) {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+//            });
+//            if (error) {
+//                NSLog(@"%@",error.description);
+//            }
+//        }];
+        
+        
         [MusicMixerOutput mixAudio:sourceA andAudio:sourceB toFile:tempFilePath preferedSampleRate:10000 withCompletedBlock:^(id object, NSError *error) {
-            if (error) {
-                [self showAlertViewWithMessage:@"不支持音乐格式"];
-                [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-            }else
-            {
-                dispatch_async(dispatch_get_main_queue(), ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (error) {
+                    [self showAlertViewWithMessage:@"不支持音乐格式"];
+                    [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+                }else
+                {
                     
                     //转换caf to mp3 格式
                     weakSelf.audioManager = [AudioManager shareAudioManager];
@@ -178,15 +193,16 @@
                     info.localPath = destinationFilePath;
                     info.makeTime = [GobalMethod getMakeTime];
                     info.length = [GobalMethod getMusicLength:[NSURL fileURLWithPath:destinationFilePath]];
+                    info.title = [GobalMethod userCurrentTimeAsFileName];
                     [PersistentStore save];
                     
                     //删除caf 格式文件
                     [[NSFileManager defaultManager]removeItemAtPath:tempFilePath error:nil];
                     
                     [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-                });
-            }
-            
+                   
+                }
+            });
         }];
     });
 }

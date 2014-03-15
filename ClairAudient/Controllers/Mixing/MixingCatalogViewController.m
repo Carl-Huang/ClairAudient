@@ -437,7 +437,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     NSArray * views = [[NSBundle mainBundle] loadNibNamed:@"SoundCatalogSectionHeader" owner:nil options:nil];
-    UIView * view = [views firstObject];
+    UIView * view = [views objectAtIndex:0];
     view.tag = section;
     UILabel * label = (UILabel *)[view viewWithTag:1001];
     UIImageView * imageView = (UIImageView *)[view viewWithTag:1002];

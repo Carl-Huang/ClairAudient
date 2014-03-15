@@ -116,18 +116,26 @@
     [super didReceiveMemoryWarning];
 }
 
+-(void)dealloc
+{
+    NSLog(@"Plotview deallic");
+    if (plotView) {
+        plotView = nil;
+    }
+}
 
 #pragma mark - Private Method
 -(void)updateInterfaceWithInfo:(NSDictionary*)info
 {
-    NSNumber * start = [info valueForKey:@"startLocation"];
-    NSNumber * end   = [info valueForKey:@"endLocation"];
-    self.startTime.text = [NSString stringWithFormat:@"%0.2f",start.floatValue];
-    self.endTime.text   = [NSString stringWithFormat:@"%0.2f",end.floatValue];
-    
-    CGFloat cutLength = end.floatValue - start.floatValue;
-    self.cutLength.text = [NSString stringWithFormat:@"%0.2f",cutLength];
-    
+    @autoreleasepool {
+        NSNumber * start = [info valueForKey:@"startLocation"];
+        NSNumber * end   = [info valueForKey:@"endLocation"];
+        self.startTime.text = [NSString stringWithFormat:@"%0.2f",start.floatValue];
+        self.endTime.text   = [NSString stringWithFormat:@"%0.2f",end.floatValue];
+        
+        CGFloat cutLength = end.floatValue - start.floatValue;
+        self.cutLength.text = [NSString stringWithFormat:@"%0.2f",cutLength];
+    }
 }
 
 -(NSString *)getTimeAsFileName
@@ -158,6 +166,13 @@
 
 -(void)newPlotViewWithNumber:(NSInteger )number
 {
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [plotView configureSnapShotImage:number completed:^(BOOL isCompleted) {
+//            ;
+//        }];
+//    });
+    
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         if (plotView) {
             [plotView removeFromSuperview];
@@ -214,7 +229,6 @@
             }
         }];
     });
-
 }
 
 #pragma mark - Outlet Action
@@ -309,7 +323,7 @@
      }];
     AppDelegate * myDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     [myDelegate.window addSubview:copyView];
-   
+    copyView = nil;
     
 }
 

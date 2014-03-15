@@ -159,9 +159,11 @@ static NSString * cellIdentifier = @"cellIdentifier";
     self.contentScrollView.scrollEnabled = YES;
     
     [self.musicInfoTable setBackgroundView:nil];
+#ifdef IOS7_SDK_AVAILABLE
     if ([OSHelper iOS7]) {
         self.musicInfoTable.separatorInset = UIEdgeInsetsZero;
     }
+#endif
     self.musicInfoTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     UINib * cellNib = [UINib nibWithNibName:@"MyUploadDetailCell" bundle:[NSBundle bundleForClass:[MyUploadDetailCell class]]];
@@ -172,6 +174,8 @@ static NSString * cellIdentifier = @"cellIdentifier";
     [playView.playBtn addTarget:self action:@selector(playMusic:) forControlEvents:UIControlEventTouchUpInside];
     [playView.downloadBtn addTarget:self action:@selector(downloadMusic:) forControlEvents:UIControlEventTouchUpInside];
     playView.playTimeLable.text = @"";
+    [self.playViewContainer addSubview:playView];
+    
     
 
     [[HttpService sharedInstance]getMusicImageWithParams:@{@"vltId": @"2"} completionBlock:^(id object) {

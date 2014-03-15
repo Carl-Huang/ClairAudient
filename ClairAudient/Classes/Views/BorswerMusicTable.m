@@ -53,10 +53,12 @@
     [self setBackgroundView:nil];
     self.dataSource = self;
     self.delegate  = self;
-    
+#ifdef IOS7_SDK_AVAILABLE
     if ([OSHelper iOS7]) {
         self.separatorInset = UIEdgeInsetsZero;
     }
+#endif
+    
     _parentController = parent;
     myDelegate = [[UIApplication sharedApplication]delegate];
     
