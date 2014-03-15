@@ -34,12 +34,14 @@
   TPCircularBuffer _historyBuffer;
   
   CGPoint *_sampleData;
-  UInt32  _sampleLength;
+  
     
 }
+@property (assign ,nonatomic)UInt32  _sampleLength;
 @end
 
 @implementation EZAudioPlot
+@synthesize _sampleLength;
 @synthesize backgroundColor = _backgroundColor;
 @synthesize color           = _color;
 @synthesize gain            = _gain;
@@ -204,9 +206,8 @@
 #if TARGET_OS_IPHONE
 - (void)drawRect:(CGRect)rect
 {
-    UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, 0.0);
+
   CGContextRef ctx = UIGraphicsGetCurrentContext();
-   
   CGContextSaveGState(ctx);
   CGRect frame = self.bounds;
 #elif TARGET_OS_MAC
@@ -277,14 +278,73 @@
     }
     
 #if TARGET_OS_IPHONE
-    snapShotImage =  UIGraphicsGetImageFromCurrentImageContext();
+    
     CGContextRestoreGState(ctx);
-    UIGraphicsEndImageContext();
-      
 #elif TARGET_OS_MAC
     [[NSGraphicsContext currentContext] restoreGraphicsState];
 #endif
-  }
+}
+    
+- (UIImage *)getDrawImage:(CGRect)rect
+    {
+        UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, 1.0);
+        CGContextRef ctx = UIGraphicsGetCurrentContext();
+        CGRect frame = self.bounds;
+        
+        // Set the background color
+        [(UIColor*)self.backgroundColor set];
+        UIRectFill(frame);
+        // Set the waveform line color
+        [(UIColor*)self.color set];
+
+
+        if(_sampleLength > 0) {
+            CGMutablePathRef halfPath = CGPathCreateMutable();
+            CGPathAddLines(halfPath,
+                           NULL,
+                           _sampleData,
+                           _sampleLength);
+            
+            CGMutablePathRef path = CGPathCreateMutable();
+            
+            double xscale = (frame.size.width) / (float)_sampleLength;
+            double halfHeight = floor( frame.size.height / 2.0 );
+            
+            // iOS drawing origin is flipped by default so make sure we account for that
+            int deviceOriginFlipped = -1;
+                
+            CGAffineTransform xf = CGAffineTransformIdentity;
+            xf = CGAffineTransformTranslate( xf, frame.origin.x , halfHeight + frame.origin.y );
+            xf = CGAffineTransformScale( xf, xscale, deviceOriginFlipped*halfHeight );
+            CGPathAddPath( path, &xf, halfPath );
+            
+            if( self.shouldMirror ){
+                xf = CGAffineTransformIdentity;
+                xf = CGAffineTransformTranslate( xf, frame.origin.x , halfHeight + frame.origin.y);
+                xf = CGAffineTransformScale( xf, xscale, -deviceOriginFlipped*(halfHeight));
+                CGPathAddPath( path, &xf, halfPath );
+            }
+            CGPathRelease( halfPath );
+            
+            // Now, path contains the full waveform path.
+            CGContextAddPath(ctx, path);
+            
+            // Make this color customizable
+            if( self.shouldFill ){
+                CGContextFillPath(ctx);
+            }
+            else {
+                CGContextStrokePath(ctx);
+            }
+            CGPathRelease(path);
+        }
+            
+
+        snapShotImage =  UIGraphicsGetImageFromCurrentImageContext();
+        
+        UIGraphicsEndImageContext();
+        return snapShotImage;
+}
     
 -(void)dealloc {
   free(_sampleData);

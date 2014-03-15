@@ -48,4 +48,6 @@
  */
 @interface EZAudioPlot : EZPlot
 @property (strong ,nonatomic) UIImage * snapShotImage;
+
+- (UIImage *)getDrawImage:(CGRect)rect;
 @end

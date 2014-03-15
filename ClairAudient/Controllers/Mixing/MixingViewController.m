@@ -81,7 +81,10 @@
     plotView = [[AudioPlotView alloc]initWithFrame:rect];
     [plotView setupAudioPlotViewWitnNimber:1 type:OutputTypeDefautl musicPath:edittingMusicFile withCompletedBlock:^(BOOL isFinish) {
         if (isFinish) {
-            [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+            });
+            
         }
     }];
     
@@ -166,44 +169,12 @@
 
 -(void)newPlotViewWithNumber:(NSInteger )number
 {
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        [plotView configureSnapShotImage:number completed:^(BOOL isCompleted) {
-//            ;
-//        }];
-//    });
-    
-    
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (plotView) {
-            [plotView removeFromSuperview];
-            plotView  =  nil;
-        }
-        CGRect rect = CGRectMake(0, 60, 320, 245);
-        if ([OSHelper iOS7]) {
-            rect.origin.y +=20;
-        }
-        plotView = [[AudioPlotView alloc]initWithFrame:rect];
-        
-        __weak MixingViewController * weakSelf = self;
-        [plotView setupAudioPlotViewWitnNimber:number type:OutputTypeDefautl musicPath:edittingMusicFile withCompletedBlock:^(BOOL isFinish) {
-            if (isFinish) {
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-            }
+        [plotView configureSnapShotImage:number completed:^(BOOL isCompleted) {
+            ;
         }];
-        
-        [plotView setLocationBlock:^(NSDictionary * locationInfo)
-         {
-             [weakSelf updateInterfaceWithInfo:locationInfo];
-         }];
-        self.endTime.text   = [NSString stringWithFormat:@"%0.2f",[plotView getMusicLength]];
-        self.cutLength.text = self.endTime.text;
-        
-        NSDictionary * currentEditMusicInfo = @{@"music": edittingMusicFile,@"count":[NSNumber numberWithInteger:number]};
-        [[NSUserDefaults standardUserDefaults]setObject:currentEditMusicInfo forKey:@"currentEditingMusic"];
-        [[NSUserDefaults standardUserDefaults]synchronize];
-        [self.view addSubview:plotView];
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     });
+  
 }
 
 -(void)synthesizeNewAudioFileWithNumber:(NSInteger)copyNumber

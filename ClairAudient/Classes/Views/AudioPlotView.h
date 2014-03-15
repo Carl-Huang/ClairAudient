@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, OutputType)
 @interface AudioPlotView : UIView
 @property (strong ,nonatomic) NSDictionary      * musicInfo;
 @property (strong ,nonatomic) GetMusicLocationInfo locationBlock;
-@property (strong ,nonatomic) UIImageView       * snapShotImage;
+@property (strong ,nonatomic) UIImage       * snapShotImage;
 /**
  初始化PlotView: Number 为复制的歌曲数量   
  type:有两种类型，因为只设置了两个单例来控制输出的数据 
@@ -35,6 +35,9 @@ typedef NS_ENUM(NSInteger, OutputType)
 -(void)fastForward:(NSInteger)sec;
 -(void)backForward:(NSInteger)sec;
 -(CGFloat)getMusicLength;
+
+-(void)configureSnapShotImage:(NSInteger)number completed:(void (^)(BOOL isCompleted))completedBlock;
+
 /**
  The key in locationInfo : startLocation,endLocation
  */
