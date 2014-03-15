@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *endTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lengthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *musicObject;
+@property (weak, nonatomic) IBOutlet UIButton *playBtn;
 
 
 

@@ -78,13 +78,14 @@
     if ([OSHelper iOS7]) {
         rect.origin.y +=20;
     }
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     plotView = [[AudioPlotView alloc]initWithFrame:rect];
     [plotView setupAudioPlotViewWitnNimber:1 type:OutputTypeDefautl musicPath:edittingMusicFile withCompletedBlock:^(BOOL isFinish) {
         if (isFinish) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
             });
-            
         }
     }];
     
@@ -96,7 +97,7 @@
     self.endTime.text   = [NSString stringWithFormat:@"%0.2f",[plotView getMusicLength]];
     self.cutLength.text = self.endTime.text;
     [self.view addSubview:plotView];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     
     isCopyMusic = NO;
     

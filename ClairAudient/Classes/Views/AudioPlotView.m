@@ -131,6 +131,7 @@
     [self.audioFile getWaveformDataWithCompletionBlock:^(float *waveformData, UInt32 length) {
         [weakSelf.audioPlot updateBuffer:waveformData withBufferSize:length];
         weakSelf.snapShotImage = [weakSelf.audioPlot getDrawImage:weakSelf.audioPlot.frame];
+        block(YES);
     }];
 
     rect.origin.x = PlotViewOffset;
@@ -264,7 +265,7 @@
     
     [self addSubview:self.contentScrollView];
     isAccessHalf = NO;
-    block(YES);
+
 }
 
 -(void)cleanContentView

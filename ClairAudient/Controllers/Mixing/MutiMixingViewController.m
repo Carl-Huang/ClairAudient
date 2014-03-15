@@ -84,6 +84,8 @@
     CGRect rect = self.controlBtnView.frame;
     rect.origin.x = plotViewUp.frame.size.height * 2;
     self.controlBtnView.frame = rect;
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updatePlayBtnStatus) name:PlotViewDidStartPlay object:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -106,6 +108,18 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
+-(void)updatePlayBtnStatus
+{
+    [self.playBtn setSelected:YES];
+    [plotViewUp play];
+    [plotViewDown play];
 }
 #pragma mark - Private Method
 -(void)updateInterfaceWithUpperInfo:(NSDictionary*)info

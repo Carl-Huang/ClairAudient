@@ -12,6 +12,7 @@
                 <outlet property="endTimeLabel" destination="5gb-Uy-ePr" id="RAt-sn-sZz"/>
                 <outlet property="lengthLabel" destination="3Od-D6-4bS" id="vSb-y8-qNU"/>
                 <outlet property="musicObject" destination="UN0-7x-jH2" id="kYY-8P-ebr"/>
+                <outlet property="playBtn" destination="IhL-Y8-Ujo" id="Li5-dH-3xv"/>
                 <outlet property="startTimeLabel" destination="5La-Fk-6At" id="755-zu-a7z"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
