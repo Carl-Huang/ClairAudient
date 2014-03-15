@@ -206,32 +206,38 @@
 
     [self.startBtn setBlock:^(CGFloat offset,CGFloat currentOffsetX)
      {
-         CGRect rect         = weakSelf.maskView.frame;
-         CGFloat offsetWidth = weakSelf.endBtn.frame.origin.x -currentOffsetX;
-         if (offsetWidth < 0) {
-             rect.size.width = 0;
-         }else
-         {
-             rect.size.width     = offsetWidth;
+         @autoreleasepool {
+             CGRect rect         = weakSelf.maskView.frame;
+             CGFloat offsetWidth = weakSelf.endBtn.frame.origin.x -currentOffsetX;
+             if (offsetWidth < 0) {
+                 rect.size.width = 0;
+             }else
+             {
+                 rect.size.width     = offsetWidth;
+             }
+             rect.origin.x           = offset + weakSelf.startBtn.frame.size.width / 2.0;
+             weakSelf.maskView.frame = rect;
+             weakSelf.startLocation  = offset;
          }
-         rect.origin.x           = offset + weakSelf.startBtn.frame.size.width / 2.0;
-         weakSelf.maskView.frame = rect;
-         weakSelf.startLocation  = offset;
+        
      }];
     
     [self.endBtn setBlock:^(CGFloat offset,CGFloat currentOffsetX)
      {
-         CGRect rect        = weakSelf.maskView.frame;
-         CGFloat offsetWidth = currentOffsetX - weakSelf.startBtn.frame.origin.x ;
-         if (offsetWidth < 0) {
-             rect.size.width = 0;
-         }else
-         {
-             rect.size.width = offsetWidth;
+         @autoreleasepool {
+             CGRect rect        = weakSelf.maskView.frame;
+             CGFloat offsetWidth = currentOffsetX - weakSelf.startBtn.frame.origin.x ;
+             if (offsetWidth < 0) {
+                 rect.size.width = 0;
+             }else
+             {
+                 rect.size.width = offsetWidth;
+             }
+             weakSelf.maskView.frame= rect;
+             weakSelf.endLocation = offset;
+
          }
-         weakSelf.maskView.frame= rect;
-         weakSelf.endLocation = offset;
-     }];
+    }];
 
     
     timeline =  [[UIView alloc]initWithFrame:CGRectMake(PlotViewOffset, 0, 0.5, rect.size.height)];
@@ -273,16 +279,21 @@
     _maskView = nil;
     
     [_startBtn removeFromSuperview];
+    _startBtn.block = nil;
     _startBtn = nil;
     
     [_endBtn removeFromSuperview];
+    _endBtn.block = nil;
     _endBtn = nil;
+    
+    _contentScrollView = nil;
     
     _audioFile = nil;
     _audioPlot = nil;
 }
 -(void)dealloc
 {
+    NSLog(@"Clean plotView stuff");
     [self stop];
     [self cleanContentView];
 
@@ -485,6 +496,7 @@
     AVURLAsset* audioAsset =[AVURLAsset assetWithURL:url];
     CMTime audioDuration = audioAsset.duration;
     float audioDurationSeconds =CMTimeGetSeconds(audioDuration)/60.0f;
+    audioAsset = nil;
     return audioDurationSeconds;
 }
 
@@ -546,47 +558,6 @@
     }
 }
 
--(void)addPlotViewWithNumber:(NSInteger)count completed:(void (^)(BOOL isCompleted))completedBlock
-{
-    @autoreleasepool {
-        CGRect rect = self.audioPlot.frame;
-        rect.origin.x = rect.size.width * count +PlotViewOffset;
-        
-        tempPlotView = [[EZAudioPlot alloc]initWithFrame:rect];
-        tempPlotView.backgroundColor = PlotViewBackgroundColor;
-        tempPlotView.color           = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
-        tempPlotView.plotType        = EZPlotTypeBuffer;
-        tempPlotView.shouldFill      = YES;
-        tempPlotView.shouldMirror    = YES;
-        self.eof                     = NO;
-        
-        EZAudioFile *tempAudioFile  = [EZAudioFile audioFileWithURL:[NSURL fileURLWithPath:edittingMusicFile]];
-        
-        
-        // Plot the whole waveform
-        tempPlotView.plotType        = EZPlotTypeBuffer;
-        tempPlotView.shouldFill      = YES;
-        tempPlotView.shouldMirror    = YES;
-        [tempPlotView setNeedsDisplay];
-        __weak AudioPlotView * weakSelf = self;
-        [tempAudioFile getWaveformDataWithCompletionBlock:^(float *waveformData, UInt32 length) {
-            [tempPlotView updateBuffer:waveformData withBufferSize:length];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                weakSelf.snapShotImage = [[UIImageView alloc]initWithImage:tempPlotView.snapShotImage];
-                [weakSelf configureSnapShotImage:count completed:^(BOOL isCompleted) {
-                    if (isCompleted) {
-                        completedBlock(YES);
-                    }
-                }];
-            });
-            
-        }];
-        
-        [self.contentScrollView addSubview:tempPlotView];
-        tempPlotView.alpha = 0.5;
-        tempAudioFile = nil;
-    }
-}
 
 -(void)configureSnapShotImage:(NSInteger)number completed:(void (^)(BOOL isCompleted))completedBlock
 {
@@ -610,32 +581,6 @@
     CGFloat relativePosition = sec/(roundDownRectWidth * self.snapShotImageCount);
     CGFloat minute = relativePosition * musicLength;
     return minute;
-}
-
-
-
-#pragma mark - AudioPlot
--(void)openFileWithFilePathURL:(NSURL*)filePathURL {
-    
-    // Stop playback
-    [[EZOutput sharedOutput] stopPlayback];
-    self.audioFile                 = [EZAudioFile audioFileWithURL:filePathURL];
-    self.audioFile.audioFileDelegate = self;
-    self.eof                       = NO;
-    
-    totalLengthOfTheFile = (float)self.audioFile.totalFrames;
-    
-    // Plot the whole waveform
-    self.audioPlot.plotType        = EZPlotTypeBuffer;
-    self.audioPlot.shouldFill      = YES;
-    self.audioPlot.shouldMirror    = YES;
-    
-    __weak AudioPlotView * weakSelf = self;
-    [self.audioFile getWaveformDataWithCompletionBlock:^(float *waveformData, UInt32 length) {
-        [weakSelf.audioPlot updateBuffer:waveformData withBufferSize:length];
-         weakSelf.snapShotImage = [weakSelf.audioPlot getDrawImage:weakSelf.audioPlot.frame];
-    }];
-    
 }
 
 -(void)seekToFrame:(id)sender {

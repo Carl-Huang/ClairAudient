@@ -182,6 +182,7 @@
       if( availableBytes == kCircularBufferSizeTemp*sizeof(float) ){
         TPCircularBufferConsume(&_historyBuffer,kCircularBufferSizeTemp*sizeof(float));
       }
+        
     }
     else {
       NSLog(@"Failed to copy bytes to circular buffer 1");
@@ -347,6 +348,7 @@
 }
     
 -(void)dealloc {
+    TPCircularBufferClear(&_historyBuffer);
   free(_sampleData);
 }
 

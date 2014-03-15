@@ -90,7 +90,7 @@
     
     [plotView setLocationBlock:^(NSDictionary * locationInfo)
      {
-         NSLog(@"%@",locationInfo);
+//         NSLog(@"%@",locationInfo);
          [weakSelf updateInterfaceWithInfo:locationInfo];
      }];
     self.endTime.text   = [NSString stringWithFormat:@"%0.2f",[plotView getMusicLength]];

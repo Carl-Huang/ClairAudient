@@ -60,8 +60,10 @@
     }
 }
 
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+-(void)dealloc
 {
-  
+    if (self.block) {
+        _block = nil;
+    }
 }
 @end
