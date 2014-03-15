@@ -35,4 +35,5 @@
 
 
 - (IBAction)addMixingMusicAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *playBtn;
 @end

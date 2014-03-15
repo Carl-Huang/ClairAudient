@@ -12,6 +12,7 @@
                 <outlet property="cutLength" destination="8dG-ws-TRR" id="f8l-yj-w8a"/>
                 <outlet property="endTime" destination="oDy-th-GEo" id="DED-vl-7nv"/>
                 <outlet property="littleTitleLabel" destination="S0p-Vc-5XH" id="GRy-AF-fYi"/>
+                <outlet property="playBtn" destination="IHw-os-ube" id="mbv-LV-VJq"/>
                 <outlet property="startTime" destination="pfv-EU-EI9" id="9OD-Y5-0Wg"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>

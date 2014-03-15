@@ -21,6 +21,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "MusicCutter.h"
 #import "MBProgressHUD.h"
+#import "Macro.h"
 
 
 @interface AudioPlotView ()<EZAudioFileDelegate,EZOutputDataSource>
@@ -41,7 +42,6 @@
 }
 
 @property (strong, nonatomic) EZAudioPlot   *audioPlot;
-@property (strong, nonatomic) EZAudioPlot   * tempPlotView ;
 @property (strong, nonatomic) UIView        *timeLabelView;
 @property (strong, nonatomic) UIView        *maskView;
 @property (strong, nonatomic) UIView        *timeLineView;
@@ -65,7 +65,7 @@
 
 @implementation AudioPlotView
 @synthesize currentPositionOfFile,currentPositionOfTimeLine;
-@synthesize musicLength,waveLength,startLocation,endLocation,cuttedMusicLength,snapShotImage,tempPlotView;
+@synthesize musicLength,waveLength,startLocation,endLocation,cuttedMusicLength,snapShotImage;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -514,13 +514,16 @@
     NSLog(@"position :%f totalLengthOfTheFile:%f ",position,totalLengthOfTheFile);
     
     
-//    CGFloat position        = point.x / waveLength * totalLengthOfTheFile;
-//    NSLog(@"position :%f totalLengthOfTheFile:%f ",position,totalLengthOfTheFile);
     self.currentPage = roundDownPosition / roundDownRectWidth;
     self.currentPositionOfTimeLine  = point.x;
     self.currentPositionOfFile      = position;
     [self seekToPostionWithValue:position];
-    [self play];
+    
+    if (![self isPlaying]) {
+        [self play];
+        [[NSNotificationCenter defaultCenter]postNotificationName:PlotViewDidStartPlay object:nil];
+    }
+    
 }
 
 -(void)seekToPostionWithValue:(CGFloat)offset

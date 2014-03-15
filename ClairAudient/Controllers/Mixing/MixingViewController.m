@@ -99,6 +99,8 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     isCopyMusic = NO;
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updatePlayBtnStatus) name:PlotViewDidStartPlay object:nil];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -125,9 +127,15 @@
     if (plotView) {
         plotView = nil;
     }
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 #pragma mark - Private Method
+-(void)updatePlayBtnStatus
+{
+    [self.playBtn setSelected:YES];
+}
+
 -(void)updateInterfaceWithInfo:(NSDictionary*)info
 {
     @autoreleasepool {
