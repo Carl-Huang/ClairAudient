@@ -40,7 +40,7 @@
 
 - (IBAction)addToFavoriteAction:(id)sender {
     if ([self.delegate respondsToSelector:@selector(addToFavorite:)]) {
-        [self.delegate addToFavorite:self.musicInfo];
+        [self.delegate addToFavorite:@{@"MusicInfo": self.musicInfo,@"Sender":sender}];
     }
 }
 

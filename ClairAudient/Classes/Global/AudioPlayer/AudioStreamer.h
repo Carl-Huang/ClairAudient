@@ -107,6 +107,8 @@ extern NSString * const ASPresentAlertWithTitleNotification;
 extern NSString * const ASUpdateMetadataNotification;
 #endif
 
+typedef void (^FileLengthBlock)(CGFloat);
+
 @interface AudioStreamer : NSObject
 {
 #if TARGET_OS_IPHONE
@@ -192,6 +194,8 @@ extern NSString * const ASUpdateMetadataNotification;
 @property (readonly) UInt32 numberOfChannels;
 @property (assign, getter=isMeteringEnabled) BOOL meteringEnabled;
 @property (readonly) BOOL vbr;
+@property (strong ,nonatomic) FileLengthBlock fileLengthBlock;
+
 
 - (id)initWithURL:(NSURL *)aURL;
 - (void)start;

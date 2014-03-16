@@ -12,6 +12,7 @@
 #import "HttpService.h"
 #import "MBProgressHUD.h"
 #import "Voice.h"
+#import "MyUploadDetailViewController.h"
 #define Cell_Height 50.0f
 @interface DownloadRankViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong) NSArray * sortImages;
@@ -114,7 +115,11 @@
 #pragma mark - UITableViewDelegate Methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    Voice * voice = [_dataSource objectAtIndex:indexPath.row];
+    MyUploadDetailViewController * viewController = [[MyUploadDetailViewController alloc]initWithNibName:@"MyUploadDetailViewController" bundle:nil];
+    [viewController setVoiceItem:voice];
+    [self push:viewController];
+    viewController = nil;
 }
 
 

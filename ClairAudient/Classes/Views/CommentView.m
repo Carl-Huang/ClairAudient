@@ -17,6 +17,8 @@
 #import "HttpService.h"
 #import "Voice.h"
 #import "User.h"
+#import "ShareManager.h"
+
 
 static NSString * cellIdentifier = @"cellIdentifier";
 @interface CommentView ()<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate>
@@ -112,6 +114,24 @@ static NSString * cellIdentifier = @"cellIdentifier";
 
 
     [self.tableViewContainer addSubview:_contentTable];
+}
+
+
+#pragma mark - Outlet Action
+- (IBAction)shareToTencAction:(id)sender {
+    [[ShareManager shareManager]shareToTencentWeiboWithTitle:@"TencentWeibo" content:@"shareToWeiboActioin" image:nil];
+}
+
+- (IBAction)shareToWeiboActioin:(id)sender {
+    [[ShareManager shareManager]shareToSinaWeiboWithTitle:@"sinaWEibo" content:@"hell" image:nil];
+}
+
+- (IBAction)shareToWeixinAction:(id)sender {
+    [[ShareManager shareManager]shareToWeiXinContentWithTitle:@"weixin" content:@"hello weixin" image:nil];
+}
+
+- (IBAction)shareToRenRenAction:(id)sender {
+    [[ShareManager shareManager]shareToRenRenWithTitle:@"renren" content:@"hell" image:nil];
 }
 
 

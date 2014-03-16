@@ -112,7 +112,7 @@
 #pragma mark - UITableViewDelegate Methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [ControlCenter showChampionHomePageVC];
+//    [ControlCenter showChampionHomePageVC];
 }
 
 @end

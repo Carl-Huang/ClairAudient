@@ -65,6 +65,8 @@
 		4E8D2D5C18D592DD00F6C586 /* volumeBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E8D2D5918D592DD00F6C586 /* volumeBg.png */; };
 		4E8D2D5F18D592F000F6C586 /* VolumeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8D2D5E18D592F000F6C586 /* VolumeView.m */; };
 		4E8D2D6118D592FC00F6C586 /* VolumeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E8D2D6018D592FC00F6C586 /* VolumeView.xib */; };
+		4E8D2D6318D5D3A300F6C586 /* sliderLine.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E8D2D6218D5D3A300F6C586 /* sliderLine.png */; };
+		4E8D2D6518D5D7C800F6C586 /* sliderLine2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E8D2D6418D5D7C800F6C586 /* sliderLine2.png */; };
 		4E96B56C188EA003008EA56F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E96B56B188EA003008EA56F /* MediaPlayer.framework */; };
 		4E96B56E188EAB88008EA56F /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E96B56D188EAB88008EA56F /* GLKit.framework */; };
 		4E96B570188EAB90008EA56F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E96B56F188EAB90008EA56F /* AudioToolbox.framework */; };
@@ -680,6 +682,8 @@
 		4E8D2D5D18D592F000F6C586 /* VolumeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumeView.h; sourceTree = "<group>"; };
 		4E8D2D5E18D592F000F6C586 /* VolumeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeView.m; sourceTree = "<group>"; };
 		4E8D2D6018D592FC00F6C586 /* VolumeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VolumeView.xib; sourceTree = "<group>"; };
+		4E8D2D6218D5D3A300F6C586 /* sliderLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderLine.png; sourceTree = "<group>"; };
+		4E8D2D6418D5D7C800F6C586 /* sliderLine2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sliderLine2.png; path = Common/record/sliderLine2.png; sourceTree = "<group>"; };
 		4E96B56B188EA003008EA56F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		4E96B56D188EAB88008EA56F /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		4E96B56F188EAB90008EA56F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -2083,6 +2087,7 @@
 		C3FEAF4F1871C294008EADAA /* 2x */ = {
 			isa = PBXGroup;
 			children = (
+				4E8D2D6418D5D7C800F6C586 /* sliderLine2.png */,
 				4E0DC76F18D054C400E4E6ED /* tijiaoBtn.png */,
 				4E0DC75018CFFAD000E4E6ED /* beijign.png */,
 				4E0DC75118CFFAD000E4E6ED /* commentBg.png */,
@@ -2203,6 +2208,7 @@
 		C3FEAF8F1871C294008EADAA /* record */ = {
 			isa = PBXGroup;
 			children = (
+				4E8D2D6218D5D3A300F6C586 /* sliderLine.png */,
 				4E8D2D5718D592DD00F6C586 /* silent.png */,
 				4E8D2D5818D592DD00F6C586 /* sound.png */,
 				4E8D2D5918D592DD00F6C586 /* volumeBg.png */,
@@ -2936,6 +2942,7 @@
 				C326CDA8187C5E00006DD97C /* IntegralChampionViewController.xib in Resources */,
 				4E0DC75318CFFAD000E4E6ED /* beijign.png in Resources */,
 				C3FEB0821871C294008EADAA /* user_30@2x.png in Resources */,
+				4E8D2D6318D5D3A300F6C586 /* sliderLine.png in Resources */,
 				C3FEB0031871C294008EADAA /* hunyin_25@2x.png in Resources */,
 				C3164CD41874555D00301ACA /* FoundMusic_z@2x.png in Resources */,
 				C3FEB02D1871C294008EADAA /* first_@2x.png in Resources */,
@@ -2998,6 +3005,7 @@
 				C3FEB0681871C294008EADAA /* setting_7@2x.png in Resources */,
 				C3FEB0001871C294008EADAA /* hunyin_22@2x.png in Resources */,
 				4EAF2A4918A9FE90007A8F70 /* WeiboSDK.bundle in Resources */,
+				4E8D2D6518D5D7C800F6C586 /* sliderLine2.png in Resources */,
 				4ED175311892B570000EC483 /* MixingEffectViewController.xib in Resources */,
 				C3FEB0D71871CAA2008EADAA /* MusicFansViewController.xib in Resources */,
 				C3FEAF321871C156008EADAA /* Images.xcassets in Resources */,
@@ -3303,7 +3311,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "armv7,armv7s";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -3343,7 +3351,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "armv7,armv7s";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -3378,7 +3386,7 @@
 			baseConfigurationReference = F0245F2CBA534CF1802E79A1 /* Pods-ClairAudient.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "armv7,armv7s";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -3423,7 +3431,7 @@
 			baseConfigurationReference = F0245F2CBA534CF1802E79A1 /* Pods-ClairAudient.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "armv7,armv7s";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";

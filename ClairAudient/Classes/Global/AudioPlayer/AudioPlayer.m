@@ -44,7 +44,10 @@
     if (!streamer) {
         
         self.streamer = [[AudioStreamer alloc] initWithURL:self.url];
-        
+        [streamer setFileLengthBlock:^(CGFloat length)
+        {
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"StreamPlayFileLength" object:[NSString stringWithFormat:@"%0.2f",length]];
+        }];
         // set up display updater
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                     [self methodSignatureForSelector:@selector(updateProgress)]];    
@@ -90,7 +93,7 @@
 {
     if (streamer.progress <= streamer.duration ) {
         if (self.block) {
-            
+
              self.block(streamer.progress/streamer.duration,[streamer isIdle]);
         }
        
@@ -99,12 +102,16 @@
 //        [button setProgress:0.0f];
         if (self.block) {
             self.block(0,YES);
+            self.block = nil;
         }
         
     }
 }
 
-
+-(CGFloat)getStreamFileDuration
+{
+    return streamer.duration;
+}
 /*
  *  observe the notification listener when loading an audio
  */

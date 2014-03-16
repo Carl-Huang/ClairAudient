@@ -1130,6 +1130,7 @@ cleanup:
 		if (packetDuration && processedPacketsCount > BitRateEstimationMinPackets)
 		{
 			double averagePacketByteSize = processedPacketsSizeTotal / processedPacketsCount;
+            
 			return 8.0 * averagePacketByteSize / packetDuration;
 		}
         
@@ -1137,12 +1138,14 @@ cleanup:
 		{
 			return (double)bitRate;
 		}
+        
 	}
 	else
 	{
 		bitRate = 8.0 * asbd.mSampleRate * asbd.mBytesPerPacket * asbd.mFramesPerPacket;
 		return bitRate;
 	}
+
 	return 0;
 }
 
@@ -1161,8 +1164,22 @@ cleanup:
 	{
 		return 0.0;
 	}
-	
-	return (fileLength - dataOffset) / (calculatedBitRate * 0.125);
+	CGFloat length = (fileLength - dataOffset) / (calculatedBitRate * 0.125);
+//    if (calculatedBitRate != ~0) {
+//        if (_fileLengthBlock) {
+//            
+//            CGFloat duration = (fileLength) / (bitRate * 0.125);
+//            _fileLengthBlock(duration);
+//        }
+//    }
+    if (length > 1) {
+        if (_fileLengthBlock) {
+            _fileLengthBlock(length);
+        }
+    }
+    
+    
+	return length;
 }
 
 
@@ -1434,6 +1451,7 @@ cleanup:
 			{
 				fileLength = [[httpHeaders objectForKey:@"Content-Length"] integerValue];
 			}
+            
 		}
         
 		if (!audioFileStream)

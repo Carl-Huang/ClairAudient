@@ -27,4 +27,11 @@ typedef void(^UpdateContentHeightBlock) (NSInteger height);
 - (IBAction)submitCommentActon:(id)sender;
 
 -(void)configureBubbleView:(NSArray *)dataSource;
+
+
+- (IBAction)shareToTencAction:(id)sender;
+- (IBAction)shareToWeiboActioin:(id)sender;
+- (IBAction)shareToWeixinAction:(id)sender;
+- (IBAction)shareToRenRenAction:(id)sender;
+
 @end

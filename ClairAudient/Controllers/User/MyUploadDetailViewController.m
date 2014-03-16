@@ -48,6 +48,9 @@ static NSString * cellIdentifier = @"cellIdentifier";
     AppDelegate * myDelegate;
     NSArray * upperDataSource;
     UIImageView * placeHolderImage;
+    
+    BOOL isGetFileLength;
+    NSString * fileLength;
 }
 @property (strong ,nonatomic) UISlider * currentPlaySlider;
 @property (strong ,nonatomic) UIButton * currentControllBtn;
@@ -104,20 +107,10 @@ static NSString * cellIdentifier = @"cellIdentifier";
     } failureBlock:^(NSError *error, NSString *responseString) {
         ;
     }];
-
-    //    __weak MyUploadDetailViewController * weakSelf = self;
-//    [GobalMethod getExportPath:[_voiceItem.vl_name stringByAppendingPathExtension:@"mp3"] completedBlock:^(BOOL isDownloaded, NSString *exportFilePath) {
-//        if (isDownloaded) {
-//            isPlayLocalFile = YES;
-//            [weakSelf startLocalPlayerWithPath:exportFilePath];
-//        }else
-//        {
-//            isPlayStreamFile = YES;
-//            [weakSelf startStreamPlayer];
-//        }
-//    }];
     
-    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetFileLength:) name:@"StreamPlayFileLength" object:nil];
+    isGetFileLength = NO;
+    fileLength = @"";
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -146,6 +139,20 @@ static NSString * cellIdentifier = @"cellIdentifier";
 }
 
 #pragma mark - Private Method
+-(void)didGetFileLength:(NSNotification *)noti
+{
+    
+    if (!isGetFileLength) {
+        isGetFileLength = YES;
+         NSLog(@"%@",noti.object);
+        fileLength = noti.object;
+        [self.musicInfoTable reloadData];
+        
+    }
+   
+    
+}
+
 -(void)initializationInterface
 {
     CGRect rect = self.containerView.bounds;
@@ -173,7 +180,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
     playView = [[[NSBundle mainBundle]loadNibNamed:@"PlayItemView" owner:self options:nil]objectAtIndex:0];
     [playView.playBtn addTarget:self action:@selector(playMusic:) forControlEvents:UIControlEventTouchUpInside];
     [playView.downloadBtn addTarget:self action:@selector(downloadMusic:) forControlEvents:UIControlEventTouchUpInside];
-    playView.playTimeLable.text = @"";
+//    playView.playTimeLable.text = @"";
     [self.playViewContainer addSubview:playView];
     
     
@@ -318,17 +325,19 @@ static NSString * cellIdentifier = @"cellIdentifier";
     }
     __weak MyUploadDetailViewController * weakSelf = self;
     streamPlayer = [[AudioPlayer alloc]init];
+    
     [streamPlayer setBlock:^(double processOffset,BOOL isFinished)
      {
          
          if (processOffset > 0) {
-             NSLog(@"%f",processOffset);
              @try {
+                 
                  if (isFinished) {
                      weakSelf.playView.playSlider.value = 0.0;
                      weakSelf.currentControllBtn.selected = NO;
                  }else
                  {
+                     
                      weakSelf.playView.playSlider.value = processOffset;
                  }
              }
@@ -507,7 +516,13 @@ static NSString * cellIdentifier = @"cellIdentifier";
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MyUploadDetailCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    [cell configureCellWithDescription:[descriptionArray objectAtIndex:indexPath.row] content:[contentArray objectAtIndex:indexPath.row]];
+    
+    if ([[descriptionArray objectAtIndex:indexPath.row] isEqualToString:@"时长"]) {
+        [cell configureCellWithDescription:[descriptionArray objectAtIndex:indexPath.row] content:[GobalMethod convertSecondToMinute:fileLength.floatValue]];
+    }else
+    {
+        [cell configureCellWithDescription:[descriptionArray objectAtIndex:indexPath.row] content:[contentArray objectAtIndex:indexPath.row]];
+    }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }

@@ -23,10 +23,8 @@ static ShareManager * shareManager;
 }
 
 
-- (void)shareToSinaWeiboWithTitle:(NSString *)title content:(NSString *)shareContent image:(UIImage *)shareImage
+-(void)shareWithType:(ShareType)type WithTitle:(NSString *)title content:(NSString *)shareContent image:(UIImage *)shareImage
 {
-    //创建分享内容
-    
     id<ISSContent> publishContent = [ShareSDK content:shareContent
                                        defaultContent:@""
                                                 image:[ShareSDK jpegImageWithImage:shareImage quality:1]
@@ -71,8 +69,20 @@ static ShareManager * shareManager;
                              }];
 }
 
+- (void)shareToSinaWeiboWithTitle:(NSString *)title content:(NSString *)shareContent image:(UIImage *)shareImage
+{
+    [self shareWithType:ShareTypeSinaWeibo WithTitle:title content:shareContent image:shareImage];
+}
+
+- (void)shareToRenRenWithTitle:(NSString *)title content:(NSString *)shareContent image:(UIImage *)shareImage
+{
+    [self shareWithType:ShareTypeRenren WithTitle:title content:shareContent image:shareImage];
+}
+
 - (void)shareToWeiXinContentWithTitle:(NSString *)title content:(NSString *)shareContent image:(UIImage *)shareImage
 {
+    
+//    [self shareWithType:ShareTypeWeixiSession WithTitle:title content:shareContent image:shareImage];
     id<ISSContent> content = [ShareSDK content:shareContent
                                 defaultContent:nil
                                          image:[ShareSDK jpegImageWithImage:shareImage quality:1]
@@ -117,54 +127,12 @@ static ShareManager * shareManager;
 - (void)shareToQQSpaceWithTitle:(NSString *)title content:(NSString *)shareContent image:(UIImage *)shareImage
 {
 
-    id<ISSContent> publishContent = [ShareSDK content:shareContent
-                                       defaultContent:@""
-                                                image:[ShareSDK jpegImageWithImage:shareImage quality:1]
-                                                title:title
-                                                  url:@"http://www.sharesdk.cn"
-                                          description:nil
-                                            mediaType:SSPublishContentMediaTypeText];
-    
+    [self shareWithType:(ShareTypeQQSpace) WithTitle:title content:shareContent image:shareImage];
+}
 
-    
-    id<ISSAuthOptions> authOptions = [ShareSDK authOptionsWithAutoAuth:YES
-                                                         allowCallback:YES
-                                                         authViewStyle:SSAuthViewStyleFullScreenPopup
-                                                          viewDelegate:nil
-                                               authManagerViewDelegate:nil];
-    //在授权页面中添加关注官方微博
-    [authOptions setFollowAccounts:[NSDictionary dictionaryWithObjectsAndKeys:
-                                    [ShareSDK userFieldWithType:SSUserFieldTypeName value:@"ShareSDK"],
-                                    SHARE_TYPE_NUMBER(ShareTypeSinaWeibo),
-                                    [ShareSDK userFieldWithType:SSUserFieldTypeName value:@"ShareSDK"],
-                                    SHARE_TYPE_NUMBER(ShareTypeTencentWeibo),
-                                    nil]];
-    
-    //显示分享菜单
-    [ShareSDK showShareViewWithType:ShareTypeQQSpace
-                          container:nil
-                            content:publishContent
-                      statusBarTips:YES
-                        authOptions:authOptions
-                       shareOptions:[ShareSDK defaultShareOptionsWithTitle:nil
-                                                           oneKeyShareList:[NSArray defaultOneKeyShareList]
-                                                            qqButtonHidden:NO
-                                                     wxSessionButtonHidden:NO
-                                                    wxTimelineButtonHidden:NO
-                                                      showKeyboardOnAppear:NO
-                                                         shareViewDelegate:nil
-                                                       friendsViewDelegate:nil
-                                                     picViewerViewDelegate:nil]
-                             result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
-                                 
-                                 if (state == SSPublishContentStateSuccess)
-                                 {
-                                     NSLog(@"发表成功");
-                                 }
-                                 else if (state == SSPublishContentStateFail)
-                                 {
-                                     NSLog(@"发布失败!error code == %d, error code == %@", [error errorCode], [error errorDescription]);
-                                 }
-                             }];
+-(void)shareToTencentWeiboWithTitle:(NSString *)title content:(NSString *)shareContent image:(UIImage *)shareImage
+{
+    [self shareWithType:(ShareTypeTencentWeibo) WithTitle:title content:shareContent image:shareImage];
+
 }
 @end

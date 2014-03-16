@@ -13,6 +13,7 @@
 #import "MBProgressHUD.h"
 #import "Catalog.h"
 #import "Voice.h"
+#import "MyUploadDetailViewController.h"
 #define Cell_Height 50.0f
 #define Section_Height 90.0f
 @interface RecommendSoundViewController ()
@@ -193,7 +194,14 @@
 #pragma mark - UITableViewDelegate Methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    Catalog * catalog = [_catalogs objectAtIndex:indexPath.section];
+    NSArray * voices = [_catalogSoundsInfo objectForKey:catalog.vlt_name];
+    Voice * voice = [voices objectAtIndex:indexPath.row];
     
+    MyUploadDetailViewController * viewController = [[MyUploadDetailViewController alloc]initWithNibName:@"MyUploadDetailViewController" bundle:nil];
+    [viewController setVoiceItem:voice];
+    [self push:viewController];
+    viewController = nil;
 }
 
 
