@@ -79,7 +79,7 @@
 
     CGRect rect = _volumeContainerView.frame;
     maximumWidth = rect.size.width;
-
+    [_indicatorView setBackgroundColor:[UIColor whiteColor]];
 
     [self.beginRecordView setHidden:YES];
     
@@ -184,6 +184,8 @@
 #pragma mark - Outlet Action
 - (IBAction)startRecordAction:(id)sender {
     
+    [_indicatorView setBackgroundColor:[UIColor blackColor]];
+    
     recordMakeTime  = [GobalMethod getMakeTime];
     defaultFileName = [GobalMethod userCurrentTimeAsFileName];
     
@@ -220,7 +222,7 @@
 }
 
 - (IBAction)stopRecordAction:(id)sender {
-    
+    [_indicatorView setBackgroundColor:[UIColor whiteColor]];
 
     [asynEncodeRecorder stopPlayer];
     [self resetActionView:NO];
