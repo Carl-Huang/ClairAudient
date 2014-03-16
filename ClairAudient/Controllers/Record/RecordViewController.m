@@ -9,17 +9,13 @@
 #import "RecordViewController.h"
 #import "RecordMusicInfo.h"
 #import "MBProgressHUD.h"
-#import "AudioRecorder.h"
-#import "AudioManager.h"
-#import "AudioWriter.h"
 #import "GobalMethod.h"
+
 
 #import "AsynEncodeAudioRecord.h"
 
 @interface RecordViewController ()<UIAlertViewDelegate>
 {
-    AudioManager    * audioManager;
-    AudioRecorder   * recorder;
     
     NSTimer         * counter;
     NSInteger       hour;
@@ -34,12 +30,11 @@
     
     AsynEncodeAudioRecord * asynEncodeRecorder;
 }
-@property (strong ,nonatomic) AudioWriter * writer;
 @property (assign ,nonatomic) CGFloat maximumWidth;
 @end
 
 @implementation RecordViewController
-@synthesize writer,maximumWidth;
+@synthesize maximumWidth;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -54,41 +49,38 @@
 {
     [super viewDidLoad];
     
+    __weak RecordViewController * weakSelf = self;
     asynEncodeRecorder = [AsynEncodeAudioRecord shareAsynEncodeAudioRecord];
     [asynEncodeRecorder setDecibelBlock:^(CGFloat decibbel)
      {
          @autoreleasepool {
              dispatch_async(dispatch_get_main_queue(), ^{
-                 CGFloat absDecibel = abs(decibbel);
-                 NSLog(@"%f",absDecibel);
+                 @autoreleasepool {
+                     CGFloat absDecibel = abs(decibbel);
+                     CGRect rect = weakSelf.indicatorView.frame;
+                     if(absDecibel > weakSelf.maximumWidth)
+                     {
+                         weakSelf.maximumWidth = absDecibel;
+                     }
+                     rect.size.width = absDecibel/5 * weakSelf.maximumWidth ;
+                     weakSelf.indicatorView.frame = rect;
+                     
+//                     NSLog(@"%f",rect.size.width);
+                 }
+                
              });
          }
          
      }];
+    
+   
 
     
-    
-//    audioManager = [AudioManager shareAudioManager];
-//    recorder = [AudioRecorder shareAudioRecord];
-//    __weak RecordViewController * weakSelf = self;
-//    [recorder setMeterLevelBlock:^(CGFloat meter)
-//    {
-//        CGRect rect = weakSelf.indicatorView.frame;
-//        CGFloat  meterLevel = (CGFloat)abs(meter);
-//        if(meterLevel > weakSelf.maximumWidth)
-//        {
-//            weakSelf.maximumWidth = meterLevel;
-//        }
-//        rect.size.width = 2*meterLevel/weakSelf.maximumWidth * weakSelf.maximumWidth;
-//        weakSelf.indicatorView.frame = rect;
-//    }];
-//    
-    
-    
-    CGRect rect = _indicatorView.frame;
+
+    CGRect rect = _volumeContainerView.frame;
     maximumWidth = rect.size.width;
-    rect.size.width = 0;
-    _indicatorView.frame = rect;
+
+
     [self.beginRecordView setHidden:YES];
     
     
@@ -100,8 +92,6 @@
 {
     [super viewWillDisappear:YES];
     [asynEncodeRecorder stopPlayer];
-    
-//    [recorder cleanRecordResource];
 }
 
 - (void)didReceiveMemoryWarning
@@ -178,24 +168,6 @@
 }
 
 
--(NSString *)getDefaultFileName
-{
-    NSDate * currentDate = [NSDate date];
-    NSDateFormatter * format = [[NSDateFormatter alloc]init];
-    [format setDateFormat:@"yyyyMMddhhmmss"];
-    NSString * dateStr = [format stringFromDate:currentDate];
-    return dateStr;
-}
-
--(NSString *)getMakeTime;
-{
-    NSDate * currentDate = [NSDate date];
-    NSDateFormatter * format = [[NSDateFormatter alloc]init];
-    [format setDateFormat:@"yyyyMMddhhmmss"];
-    NSString * dateStr = [format stringFromDate:currentDate];
-    return dateStr;
-}
-
 //获取音乐长度
 -(CGFloat)getMusicLength:(NSURL *)url
 {
@@ -212,8 +184,9 @@
 #pragma mark - Outlet Action
 - (IBAction)startRecordAction:(id)sender {
     
-    recordMakeTime  = [self getMakeTime];
-    defaultFileName = [self getDefaultFileName];
+    recordMakeTime  = [GobalMethod getMakeTime];
+    defaultFileName = [GobalMethod userCurrentTimeAsFileName];
+    
     //录音的格式为caf 格式
     NSString * localRecordFileFullName = [defaultFileName stringByAppendingPathExtension:@"caf"];
     
@@ -227,13 +200,6 @@
     [asynEncodeRecorder initializationAudioRecrodWithFileExtension:@"mp3"];
     [asynEncodeRecorder playFile:recordFilePath];
     
-    
-    
-//    [recorder initRecordWithPath:recordFilePath];
-//    [recorder startRecord];
-
-
-    
     [self resetActionView:YES];
     [self timerStart];
     [self resetClocker];
@@ -245,13 +211,11 @@
         [self timerStop];
         
         [asynEncodeRecorder stopPlayer];
-//        [recorder pauseRecord];
     }else
     {
         [self timerStart];
         
         [asynEncodeRecorder startPlayer];
-//        [recorder startRecord];
     }
 }
 
@@ -259,22 +223,18 @@
     
 
     [asynEncodeRecorder stopPlayer];
-//    [recorder stopRecord];
     [self resetActionView:NO];
     [self timerStop];
     self.clocker.text = @"00:00:00";
    
     
-    //1）转换格式
+    //1）取得转换后的文件
     NSString * destinationFileName = [[self getDocumentDirectory] stringByAppendingPathComponent:[defaultFileName stringByAppendingPathExtension:@"mp3"]];
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    [audioManager audio_PCMtoMP3WithSourceFile:recordFilePath destinationFile:destinationFileName withSampleRate:44100];
-//    [MBProgressHUD hideHUDForView:self.view animated:YES];
     
     //2）保存录音文件信息
     RecordMusicInfo * recordFile = [RecordMusicInfo MR_createEntity];
     recordFile.title    = defaultFileName;
-    recordFile.length   = [NSString stringWithFormat:@"%0.2f",[self getMusicLength:recordFileURL]];
+    recordFile.length   = [GobalMethod getMusicLength:[NSURL fileURLWithPath:recordFilePath]];
     recordFile.makeTime = recordMakeTime;
     recordFile.localPath= destinationFileName;
     [[NSManagedObjectContext MR_defaultContext]MR_saveOnlySelfAndWait];
@@ -282,10 +242,7 @@
     //3）删除录音文件
     [[NSFileManager defaultManager]removeItemAtPath:recordFilePath error:nil];
     
-    
-//    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"保存成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//    [alertView show];
-//    alertView = nil;
+
     RecordListViewController * viewController = [[RecordListViewController alloc]initWithNibName:@"RecordListViewController" bundle:nil];
     [self.navigationController pushViewController:viewController animated:YES];
     viewController = nil;
@@ -318,11 +275,9 @@
             break;
         case 1:
             //确定
-//            [audioManager pause];
-//            [recorder stopRecord];
+
             [asynEncodeRecorder stopPlayer];
             [[NSFileManager defaultManager]removeItemAtPath:recordFilePath error:nil];
-//            [self.writer stop];
             [self resetActionView:NO];
             break;
         default:

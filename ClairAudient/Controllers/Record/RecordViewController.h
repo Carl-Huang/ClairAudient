@@ -27,5 +27,6 @@
 @property (weak, nonatomic) IBOutlet UIView *indicatorView;
 @property (weak, nonatomic) IBOutlet UIImageView *bgView;
 
+@property (weak, nonatomic) IBOutlet UIView *volumeContainerView;
 
 @end

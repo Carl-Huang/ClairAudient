@@ -93,7 +93,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
     if( self.isRecording ){
         
         if (_decibelBlock) {
-            [self getTheDecibelFromAudioBufferList:bufferList numberOfFrames:bufferSize DBOffset:-84 lowPassFilter:0.2];
+            [self getTheDecibelFromAudioBufferList:bufferList numberOfFrames:bufferSize DBOffset:-83 lowPassFilter:0.2];
         }
         
         

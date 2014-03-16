@@ -151,6 +151,7 @@
 {
     return _floatReader.playing;
 }
+
 -(void)seekToPostion:(CGFloat)postion
 {
     [_floatReader seekToFilePostion:(SInt64)postion];
