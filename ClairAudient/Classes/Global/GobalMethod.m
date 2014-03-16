@@ -58,6 +58,7 @@
     NSDateFormatter * format = [[NSDateFormatter alloc]init];
     [format setDateFormat:@"yyyyMMddhhmmss"];
     NSString * dateStr = [format stringFromDate:currentDate];
+    format = nil;
     return dateStr;
 }
 
@@ -67,6 +68,7 @@
     NSDateFormatter * format = [[NSDateFormatter alloc]init];
     [format setDateFormat:@"yyyyMMddhhmmss"];
     NSString * tempFileName = [format stringFromDate:date];
+    format = nil;
     return tempFileName;
 }
 
@@ -88,6 +90,7 @@
     NSDateFormatter * customiseFormat  = [[NSDateFormatter alloc]init];
     [customiseFormat setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
     NSString * dateStr = [customiseFormat stringFromDate:date];
+    customiseFormat = nil;
     return dateStr;
 }
 
@@ -97,6 +100,7 @@
     NSDateFormatter * customiseFormat  = [[NSDateFormatter alloc]init];
     [customiseFormat setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
     NSString * dateStr = [customiseFormat stringFromDate:date];
+    customiseFormat = nil;
     return dateStr;
 
 }

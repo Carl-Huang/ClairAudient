@@ -179,17 +179,7 @@
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-//        [MusicMixerOutput MixingAudioFile:sourceA withFile:sourceB destinatedPath:destinationFilePath withCompletedBlock:^(NSError *error, BOOL isFinish) {
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-//            });
-//            if (error) {
-//                NSLog(@"%@",error.description);
-//            }
-//        }];
-        
-        
+
         [MusicMixerOutput mixAudio:sourceA andAudio:sourceB toFile:tempFilePath preferedSampleRate:10000 withCompletedBlock:^(id object, NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (error) {
@@ -210,9 +200,13 @@
                     info.title = [GobalMethod userCurrentTimeAsFileName];
                     [PersistentStore save];
                     
+                    
+                    
+                    NSString * renameFile = [[destinationFilePath stringByDeletingPathExtension]stringByAppendingString:@".mp3"];
+                    [[NSFileManager defaultManager]copyItemAtPath:destinationFilePath toPath:renameFile error:nil];
+                    
                     //删除caf 格式文件
                     [[NSFileManager defaultManager]removeItemAtPath:tempFilePath error:nil];
-                    
                     [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
                    
                 }

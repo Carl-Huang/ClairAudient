@@ -20,7 +20,6 @@
 #import "TrachBtn.h"
 #import <AVFoundation/AVFoundation.h>
 #import "MusicCutter.h"
-#import "MBProgressHUD.h"
 #import "Macro.h"
 
 
