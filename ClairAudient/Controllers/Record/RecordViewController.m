@@ -14,6 +14,8 @@
 #import "AudioWriter.h"
 #import "GobalMethod.h"
 
+#import "AsynEncodeAudioRecord.h"
+
 @interface RecordViewController ()<UIAlertViewDelegate>
 {
     AudioManager    * audioManager;
@@ -29,6 +31,8 @@
     NSString * recordFilePath;
     
     UIImage * stretchImage;
+    
+    AsynEncodeAudioRecord * asynEncodeRecorder;
 }
 @property (strong ,nonatomic) AudioWriter * writer;
 @property (assign ,nonatomic) CGFloat maximumWidth;
@@ -49,21 +53,36 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    audioManager = [AudioManager shareAudioManager];
-    recorder = [AudioRecorder shareAudioRecord];
-    __weak RecordViewController * weakSelf = self;
-    [recorder setMeterLevelBlock:^(CGFloat meter)
-    {
-        CGRect rect = weakSelf.indicatorView.frame;
-        CGFloat  meterLevel = (CGFloat)abs(meter);
-        if(meterLevel > weakSelf.maximumWidth)
-        {
-            weakSelf.maximumWidth = meterLevel;
-        }
-        rect.size.width = meterLevel/weakSelf.maximumWidth * weakSelf.maximumWidth;
-        weakSelf.indicatorView.frame = rect;
-    }];
     
+    asynEncodeRecorder = [AsynEncodeAudioRecord shareAsynEncodeAudioRecord];
+    [asynEncodeRecorder setDecibelBlock:^(CGFloat decibbel)
+     {
+         @autoreleasepool {
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 CGFloat absDecibel = abs(decibbel);
+                 NSLog(@"%f",absDecibel);
+             });
+         }
+         
+     }];
+
+    
+    
+//    audioManager = [AudioManager shareAudioManager];
+//    recorder = [AudioRecorder shareAudioRecord];
+//    __weak RecordViewController * weakSelf = self;
+//    [recorder setMeterLevelBlock:^(CGFloat meter)
+//    {
+//        CGRect rect = weakSelf.indicatorView.frame;
+//        CGFloat  meterLevel = (CGFloat)abs(meter);
+//        if(meterLevel > weakSelf.maximumWidth)
+//        {
+//            weakSelf.maximumWidth = meterLevel;
+//        }
+//        rect.size.width = 2*meterLevel/weakSelf.maximumWidth * weakSelf.maximumWidth;
+//        weakSelf.indicatorView.frame = rect;
+//    }];
+//    
     
     
     CGRect rect = _indicatorView.frame;
@@ -80,7 +99,9 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:YES];
-    [recorder cleanRecordResource];
+    [asynEncodeRecorder stopPlayer];
+    
+//    [recorder cleanRecordResource];
 }
 
 - (void)didReceiveMemoryWarning
@@ -203,40 +224,15 @@
         [[NSFileManager defaultManager]removeItemAtPath:recordFilePath error:nil];
     }
     
-    
-    [recorder initRecordWithPath:recordFilePath];
-    [recorder startRecord];
-    
+    [asynEncodeRecorder initializationAudioRecrodWithFileExtension:@"mp3"];
+    [asynEncodeRecorder playFile:recordFilePath];
     
     
-//    writer = [[AudioWriter alloc]
-//              initWithAudioFileURL:recordFileURL
-//              samplingRate:audioManager.samplingRate
-//              numChannels:audioManager.numInputChannels];
-//    __weak RecordViewController * weakSelf = self;
-//    __block CGFloat dbVal = 0.0f;
-//    audioManager.inputBlock = ^(float *data, UInt32 numFrames, UInt32 numChannels) {
-//        [weakSelf.writer writeNewAudio:data numFrames:numFrames numChannels:numChannels];
-//        vDSP_vsq(data, 1, data, 1, numFrames*numChannels);
-//        CGFloat meanVal = 0.0f;
-//        vDSP_meanv(data, 1, &meanVal, numFrames*numChannels);
-//        CGFloat one = 1.0;
-//        vDSP_vdbcon(&meanVal, 1, &one, &meanVal, 1, 1, 0);
-//        dbVal = dbVal + 0.2f*(meanVal - dbVal);
-//        if (isnan(dbVal)) {
-//            dbVal = 0.f;
-//        }
-//        CGFloat max = 0.f;
-//        CGFloat min = -60.f;
-//        
-//        CGFloat percentage = 1.f-dbVal/(min-max);
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            NSLog(@"%f",percentage);
-//        });
-//    };
-//    [audioManager play];
     
-    
+//    [recorder initRecordWithPath:recordFilePath];
+//    [recorder startRecord];
+
+
     
     [self resetActionView:YES];
     [self timerStart];
@@ -248,38 +244,28 @@
     if (btn.selected) {
         [self timerStop];
         
-//        [audioManager pause];
-//        [self.writer pause];
-        [recorder pauseRecord];
+        [asynEncodeRecorder stopPlayer];
+//        [recorder pauseRecord];
     }else
     {
         [self timerStart];
         
-//        [audioManager play];
-//        [self.writer record];
-        [recorder startRecord];
+        [asynEncodeRecorder startPlayer];
+//        [recorder startRecord];
     }
 }
 
 - (IBAction)stopRecordAction:(id)sender {
     
-    //清理工作
-//    [audioManager   pause];
-//    [self.writer    stop];
-//     self.writer = nil;
-    
-    [recorder stopRecord];
+
+    [asynEncodeRecorder stopPlayer];
     [self resetActionView:NO];
     [self timerStop];
     self.clocker.text = @"00:00:00";
-   
     
     //1）转换格式
     NSString * destinationFileName = [[self getDocumentDirectory] stringByAppendingPathComponent:[defaultFileName stringByAppendingPathExtension:@"mp3"]];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [audioManager audio_PCMtoMP3WithSourceFile:recordFilePath destinationFile:destinationFileName withSampleRate:44100];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-    
+
     //2）保存录音文件信息
     RecordMusicInfo * recordFile = [RecordMusicInfo MR_createEntity];
     recordFile.title    = defaultFileName;
@@ -290,11 +276,7 @@
     
     //3）删除录音文件
     [[NSFileManager defaultManager]removeItemAtPath:recordFilePath error:nil];
-    
-    
-//    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"保存成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//    [alertView show];
-//    alertView = nil;
+
     RecordListViewController * viewController = [[RecordListViewController alloc]initWithNibName:@"RecordListViewController" bundle:nil];
     [self.navigationController pushViewController:viewController animated:YES];
     viewController = nil;
@@ -327,8 +309,9 @@
             break;
         case 1:
             //确定
-            [audioManager pause];
-            [recorder stopRecord];
+//            [audioManager pause];
+//            [recorder stopRecord];
+            [asynEncodeRecorder stopPlayer];
             [[NSFileManager defaultManager]removeItemAtPath:recordFilePath error:nil];
 //            [self.writer stop];
             [self resetActionView:NO];

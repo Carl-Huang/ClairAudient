@@ -55,7 +55,7 @@
     recorder.meteringEnabled = YES;
     [recorder prepareToRecord];
 
-    meterTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(updateMeterLevel) userInfo:nil repeats:YES];
+    meterTimer = [NSTimer scheduledTimerWithTimeInterval:0.001 target:self selector:@selector(updateMeterLevel) userInfo:nil repeats:YES];
     isTimeStop = NO;
 }
 
