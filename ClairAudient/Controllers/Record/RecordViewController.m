@@ -259,13 +259,18 @@
     
 
     [asynEncodeRecorder stopPlayer];
+//    [recorder stopRecord];
     [self resetActionView:NO];
     [self timerStop];
     self.clocker.text = @"00:00:00";
+   
     
     //1）转换格式
     NSString * destinationFileName = [[self getDocumentDirectory] stringByAppendingPathComponent:[defaultFileName stringByAppendingPathExtension:@"mp3"]];
-
+//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    [audioManager audio_PCMtoMP3WithSourceFile:recordFilePath destinationFile:destinationFileName withSampleRate:44100];
+//    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
     //2）保存录音文件信息
     RecordMusicInfo * recordFile = [RecordMusicInfo MR_createEntity];
     recordFile.title    = defaultFileName;
@@ -276,7 +281,11 @@
     
     //3）删除录音文件
     [[NSFileManager defaultManager]removeItemAtPath:recordFilePath error:nil];
-
+    
+    
+//    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"保存成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//    [alertView show];
+//    alertView = nil;
     RecordListViewController * viewController = [[RecordListViewController alloc]initWithNibName:@"RecordListViewController" bundle:nil];
     [self.navigationController pushViewController:viewController animated:YES];
     viewController = nil;
