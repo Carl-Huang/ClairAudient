@@ -9,7 +9,12 @@
 #import "SettingViewController.h"
 #import "ControlCenter.h"
 #import "UIViewController+CustomBarItemPosition.h"
+#import "AccentTableViewController.h"
+
 @interface SettingViewController ()<UITableViewDataSource,UITableViewDelegate>
+{
+    AccentTableViewController * popUpTable;
+}
 @property (nonatomic,strong) NSArray * dataSource;
 @property (nonatomic,strong) NSDictionary * imageInfos;
 @end
@@ -41,6 +46,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)dealloc
+{
+    popUpTable = nil;
+}
+
 #pragma mark - Private Methods
 - (void)initUI
 {
@@ -59,6 +69,36 @@
     
     
 }
+
+-(void)showAccentTable:(id)sender
+{
+    UIButton * btn = (UIButton *)sender;
+    if (popUpTable == nil) {
+        popUpTable = [[AccentTableViewController alloc]initWithNibName:@"AccentTableViewController" bundle:nil];
+        
+        NSArray * array = @[@"普通话",@"合肥话",@"芜湖话",@"淮南话",@"安庆话",@"铜陵话",@"黄山话",@"池州话",@"宣城话",@"安话",@"宿州话",@"马鞍山话",@"徐州话",@"淮北话",@"阜阳话",@"毫州话"];
+        
+        [popUpTable setDataSource:array];
+        array = nil;
+        //设置位置
+        CGRect originalRect = popUpTable.view.frame;
+        originalRect.origin.x = btn.frame.origin.x + btn.frame.size.width/2.0 - originalRect.size.width/2;
+        originalRect.origin.y = btn.frame.origin.y + btn.frame.size.height;
+        originalRect.size.width = btn.frame.size.width;
+        [popUpTable.view setFrame:originalRect];
+        
+        [popUpTable setBlock:^(NSInteger index,NSString * title){
+            
+            [btn setTitle:title forState:UIControlStateNormal];
+        }];
+    }else
+    {
+        [self.view addSubview:popUpTable.view];
+    }
+   
+    
+}
+
 
 #pragma mark - UIButton Actions
 - (IBAction)pushBack:(id)sender
@@ -109,8 +149,11 @@
     {
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         [button setFrame:CGRectMake(0, 0, 70, 30)];
-        [button setImage:[UIImage imageNamed:@"setting_10"] forState:UIControlStateNormal];
+//        [button setImage:[UIImage imageNamed:@"setting_10"] forState:UIControlStateNormal];
+        [button setTitle:@"普通话" forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(showAccentTable:) forControlEvents:UIControlEventTouchUpInside];
         cell.accessoryView = button;
+        button = nil;
     }
     else if(indexPath.row == 1)
     {

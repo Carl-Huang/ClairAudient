@@ -39,6 +39,8 @@
 		4E11796A188F627F00FB619F /* MusicCutter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E117969188F627F00FB619F /* MusicCutter.m */; };
 		4E11796D188F6DA000FB619F /* TSLibraryImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E11796C188F6DA000FB619F /* TSLibraryImport.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4E12FC3C18D6D52E007AA33E /* CustomiseActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E12FC3B18D6D52E007AA33E /* CustomiseActionSheet.m */; };
+		4E12FC4018D6DB85007AA33E /* AccentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E12FC3E18D6DB85007AA33E /* AccentTableViewController.m */; };
+		4E12FC4118D6DB85007AA33E /* AccentTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E12FC3F18D6DB85007AA33E /* AccentTableViewController.xib */; };
 		4E1CDE0218900BA000C046ED /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1CDDFF18900BA000C046ED /* AudioManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4E1CDE0318900BA000C046ED /* AudioWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1CDE0118900BA000C046ED /* AudioWriter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4E1CDE05189012CB00C046ED /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1CDE04189012CB00C046ED /* CoreAudio.framework */; };
@@ -642,6 +644,9 @@
 		4E11796C188F6DA000FB619F /* TSLibraryImport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSLibraryImport.m; sourceTree = "<group>"; };
 		4E12FC3A18D6D52E007AA33E /* CustomiseActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomiseActionSheet.h; sourceTree = "<group>"; };
 		4E12FC3B18D6D52E007AA33E /* CustomiseActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomiseActionSheet.m; sourceTree = "<group>"; };
+		4E12FC3D18D6DB85007AA33E /* AccentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccentTableViewController.h; sourceTree = "<group>"; };
+		4E12FC3E18D6DB85007AA33E /* AccentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccentTableViewController.m; sourceTree = "<group>"; };
+		4E12FC3F18D6DB85007AA33E /* AccentTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccentTableViewController.xib; sourceTree = "<group>"; };
 		4E1CDDFE18900BA000C046ED /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
 		4E1CDDFF18900BA000C046ED /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
 		4E1CDE0018900BA000C046ED /* AudioWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioWriter.h; sourceTree = "<group>"; };
@@ -1772,6 +1777,9 @@
 		C3164CF218746A9A00301ACA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4E12FC3D18D6DB85007AA33E /* AccentTableViewController.h */,
+				4E12FC3E18D6DB85007AA33E /* AccentTableViewController.m */,
+				4E12FC3F18D6DB85007AA33E /* AccentTableViewController.xib */,
 				4E52D07F18D17A040094F136 /* PopupTagViewController.h */,
 				4E52D08018D17A040094F136 /* PopupTagViewController.m */,
 				4E52D08118D17A040094F136 /* PopupTagViewController.xib */,
@@ -2762,6 +2770,7 @@
 				C32F400E1882876A00681953 /* UserCenterViewController.xib in Resources */,
 				C3FEB0721871C294008EADAA /* user_15@2x.png in Resources */,
 				C3FEB0061871C294008EADAA /* hunyin_28@2x.png in Resources */,
+				4E12FC4118D6DB85007AA33E /* AccentTableViewController.xib in Resources */,
 				4EEA197D18AA5F070062D118 /* MyUploadDetailViewController.xib in Resources */,
 				C3164CD91874555D00301ACA /* MusicFans_eleven@2x.png in Resources */,
 				C3FEB0671871C294008EADAA /* setting_6@2x.png in Resources */,
@@ -3224,6 +3233,7 @@
 				4EB20FA918A931BE007E5A8B /* EditListCell.m in Sources */,
 				C3456CF31887CA1D009329D2 /* MixingMusicListCell.m in Sources */,
 				4EB7C4F418B72E8600BCF0E8 /* MixingOnlineBtn.m in Sources */,
+				4E12FC4018D6DB85007AA33E /* AccentTableViewController.m in Sources */,
 				C39BBE571893DF5C00FC8F72 /* TSPopoverPopoverView.m in Sources */,
 				4E11796A188F627F00FB619F /* MusicCutter.m in Sources */,
 				4EFF165118A7D134005E4802 /* NSString+Levenshtein.m in Sources */,
