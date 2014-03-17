@@ -310,4 +310,23 @@
     CGFloat totalTime = minute * 60 + second;
     return nil;
 }
+
++(void)saveImageToUserDefault:(UIImage *)image key:(NSString *)key
+{
+    NSData * imageData = UIImagePNGRepresentation(image);
+    [[NSUserDefaults standardUserDefaults]setObject:imageData forKey:key];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+}
+
++(UIImage *)getImageFromLocalWithKey:(NSString *)key
+{
+    NSData * imageData = [[NSUserDefaults standardUserDefaults]objectForKey:key];
+    UIImage * image = [UIImage imageWithData:imageData];
+    if (image) {
+        return image;
+    }else
+    {
+        return nil;
+    }
+}
 @end

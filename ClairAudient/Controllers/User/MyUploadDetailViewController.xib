@@ -30,7 +30,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="beijign.png" id="nDc-Am-glF">
-                            <rect key="frame" x="14" y="147" width="293" height="260"/>
+                            <rect key="frame" x="10" y="141" width="301" height="267"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <view contentMode="scaleToFill" id="EMq-kz-dU7">
@@ -39,7 +39,7 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="20" sectionHeaderHeight="22" sectionFooterHeight="22" id="N9O-DL-gxh">
-                            <rect key="frame" x="31" y="185" width="258" height="231"/>
+                            <rect key="frame" x="31" y="183" width="258" height="231"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <connections>
@@ -48,7 +48,7 @@
                             </connections>
                         </tableView>
                         <view contentMode="scaleToFill" id="wCR-lY-1Xd">
-                            <rect key="frame" x="32" y="147" width="256" height="38"/>
+                            <rect key="frame" x="32" y="145" width="256" height="38"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
@@ -63,7 +63,7 @@
         </view>
     </objects>
     <resources>
-        <image name="beijign.png" width="638" height="689"/>
+        <image name="beijign.png" width="640" height="695"/>
         <image name="hunyin_6.png" width="320" height="533"/>
     </resources>
 </document>

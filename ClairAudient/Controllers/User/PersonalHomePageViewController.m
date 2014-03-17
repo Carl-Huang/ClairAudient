@@ -11,6 +11,8 @@
 #import "User.h"
 #import "PhotoManager.h"
 #import "AppDelegate.h"
+#import "CustomiseActionSheet.h"
+#import "GobalMethod.h"
 @interface PersonalHomePageViewController ()
 @property (nonatomic,strong) User * user;
 @end
@@ -53,19 +55,48 @@
         _emailField.text = _user.email;
         
     }
+    UIImage * image= [GobalMethod getImageFromLocalWithKey:DefaultUserImage];
+    if (image) {
+        self.userPhoto.image = image;
+    }
 }
 
 - (IBAction)choosePhotoAction:(id)sender {
-    AppDelegate * myDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    
     __weak PersonalHomePageViewController * weakSelf = self;
     [[PhotoManager shareManager]setConfigureBlock:^(UIImage * image)
      {
          
          dispatch_async(dispatch_get_main_queue(), ^{
              weakSelf.userPhoto.image = image;
+
+             [GobalMethod saveImageToUserDefault:image key:DefaultUserImage];
+             
          });
          
      }];
-    [self presentViewController:[PhotoManager shareManager].camera animated:YES completion:nil];
+    
+    CustomiseActionSheet * synActionSheet = [[CustomiseActionSheet alloc] init];
+    synActionSheet.titles = [NSArray arrayWithObjects:@"拍照", @"从相册选择",@"取消", nil];
+    synActionSheet.destructiveButtonIndex = -1;
+    synActionSheet.cancelButtonIndex = 2;
+    NSUInteger result = [synActionSheet showInView:self.view];
+    if (result==0) {
+        //拍照
+        NSLog(@"From Camera");
+        [self presentViewController:[PhotoManager shareManager].camera animated:YES completion:nil];
+        
+    }else if(result ==1)
+    {
+        //从相册选择
+        NSLog(@"From Album");
+        [self presentViewController:[PhotoManager shareManager].pickingImageView animated:YES completion:nil];
+        
+    }else
+    {
+        NSLog(@"Cancel");
+    }
+    
+   
 }
 @end

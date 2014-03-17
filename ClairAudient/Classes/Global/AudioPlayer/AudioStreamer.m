@@ -1930,6 +1930,7 @@ cleanup:
 	
 	numberOfChannels = asbd.mChannelsPerFrame;
 	
+    
 	// create the audio queue
 	err = AudioQueueNewOutput(&asbd, MyAudioQueueOutputCallback, self, NULL, NULL, 0, &audioQueue);
 	if (err)
@@ -2183,6 +2184,9 @@ cleanup:
 			[self createQueue];
 		}
 	}
+    
+    //VBR:in telecommunications and computing, a non-constant sound or video encoding bitrate
+    //Constant Bit Rate in telecommunication, sound and music formats
     
 	// the following code assumes we're streaming VBR data. for CBR data, the second branch is used.
 	if (inPacketDescriptions)

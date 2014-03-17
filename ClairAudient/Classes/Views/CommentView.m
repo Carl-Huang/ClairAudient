@@ -46,10 +46,14 @@ static NSString * cellIdentifier = @"cellIdentifier";
             NSInteger  interval = [[NSDate date]timeIntervalSinceNow];
             NSString * intervalStr = [NSString stringWithFormat:@"%d",interval];
             [[HttpService sharedInstance]commentOnMusicWithParams:@{@"content": _commentTextview.text,@"vl_id":self.object.vlt_id,@"user_id":user.hw_id,@"quote_content":@"",@"date":intervalStr,@"recive_name":@""} completionBlock:^(BOOL isSuccess) {
-                ;
+//                [self showAlertViewWithMessage:@"评论成功"];
             } failureBlock:^(NSError * error, NSString * responsed) {
-                ;
+                [self showAlertViewWithMessage:@"评论失败"];
             }];
+            
+            [self showAlertViewWithMessage:@"评论成功"];
+            _commentTextview.text = @"";
+            [_commentTextview resignFirstResponder];
         }
     }else
     {
@@ -169,5 +173,28 @@ static NSString * cellIdentifier = @"cellIdentifier";
         return NO;
     }
     return YES;
+}
+
+//-(void)textViewDidBeginEditing:(UITextView *)textView
+//{
+//    [UIView animateWithDuration:0.3 animations:^{
+//        self.frame = CGRectOffset(self.frame, 0, -50);
+//    }];
+//}
+//
+//-(void)textViewDidEndEditing:(UITextView *)textView
+//{
+//    [UIView animateWithDuration:0.3 animations:^{
+//        self.frame = CGRectOffset(self.frame, 0, 50);
+//    }];
+//}
+
+- (void)showAlertViewWithMessage:(NSString *)message
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles:nil, nil];
+        [alertView show];
+        alertView = nil;
+    });
 }
 @end

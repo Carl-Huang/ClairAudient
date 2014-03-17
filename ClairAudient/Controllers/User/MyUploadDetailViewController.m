@@ -38,7 +38,6 @@ static NSString * cellIdentifier = @"cellIdentifier";
     UIView * headerView;
     
     AudioPlayer * streamPlayer;
-    NSString * currentPlayFileLength;
     NSThread * bufferingThread;
     BOOL isDowning;
     BOOL isPlayLocalFile;
@@ -50,15 +49,17 @@ static NSString * cellIdentifier = @"cellIdentifier";
     UIImageView * placeHolderImage;
     
     BOOL isGetFileLength;
-    NSString * fileLength;
+
 }
 @property (strong ,nonatomic) UISlider * currentPlaySlider;
 @property (strong ,nonatomic) UIButton * currentControllBtn;
 @property (strong ,nonatomic) PlayItemView * playView;
+@property (strong ,nonatomic) NSString * fileLength;
+@property (strong ,nonatomic) NSString * currentPlayFileLength;
 @end
 
 @implementation MyUploadDetailViewController
-@synthesize currentPlaySlider,playView,currentControllBtn;
+@synthesize currentPlaySlider,playView,currentControllBtn,fileLength,currentPlayFileLength;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -111,7 +112,9 @@ static NSString * cellIdentifier = @"cellIdentifier";
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didGetFileLength:) name:@"StreamPlayFileLength" object:nil];
     isGetFileLength = NO;
     fileLength = @"";
-    // Do any additional setup after loading the view from its nib.
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textViewBeginEdit) name:UITextViewTextDidBeginEditingNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textViewEndEdit) name:UITextViewTextDidEndEditingNotification object:nil];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -136,6 +139,20 @@ static NSString * cellIdentifier = @"cellIdentifier";
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
+-(void)textViewBeginEdit
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        self.contentScrollView.frame = CGRectOffset(self.contentScrollView.frame, 0, -120);
+    }];
+}
+
+-(void)textViewEndEdit
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        self.contentScrollView.frame = CGRectOffset(self.contentScrollView.frame, 0, 120);
+    }];
 }
 
 #pragma mark - Private Method
@@ -221,7 +238,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
     myDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
 //    beijign.png
-//    UIImage * strecthImage = [[UIImage imageNamed:@"beijign.png"]resizableImageWithCapInsets:UIEdgeInsetsMake(40, 5, 50, 5)];
+//    UIImage * strecthImage = [[UIImage imageNamed:@"beijign.png"]resizableImageWithCapInsets:UIEdgeInsetsMake(20, 0, 500, 0)];
 //    _musicInfoBg.image = strecthImage;
 }
 
@@ -321,8 +338,10 @@ static NSString * cellIdentifier = @"cellIdentifier";
 {
     if (streamPlayer) {
         [streamPlayer stop];
+        streamPlayer.block = nil;
         streamPlayer = nil;
     }
+    
     __weak MyUploadDetailViewController * weakSelf = self;
     streamPlayer = [[AudioPlayer alloc]init];
     
@@ -339,6 +358,12 @@ static NSString * cellIdentifier = @"cellIdentifier";
                  {
                      
                      weakSelf.playView.playSlider.value = processOffset;
+                     if (weakSelf.fileLength) {
+                         
+                         CGFloat time = weakSelf.fileLength.floatValue* processOffset;
+                         weakSelf.playView.playTimeLable.text =[NSString stringWithFormat:@"%@/%@",[GobalMethod convertSecondToMinute:weakSelf.fileLength.floatValue],[GobalMethod convertSecondToMinute:time]];
+                     }
+                    
                  }
              }
              @catch (NSException *exception) {
@@ -349,7 +374,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
              }
          }
      }];
-    [streamPlayer stop];
+
     NSURL * musciURL = [GobalMethod getMusicUrl:self.voiceItem.url];
     if (musciURL) {
         
@@ -489,7 +514,6 @@ static NSString * cellIdentifier = @"cellIdentifier";
 #pragma  mark - Audio Notification
 -(void)updateProcessingLocation:(NSNotification *)noti
 {
-    
     
     if (!self.playView.playSlider.touchInside) {
         dispatch_async(dispatch_get_main_queue(), ^{

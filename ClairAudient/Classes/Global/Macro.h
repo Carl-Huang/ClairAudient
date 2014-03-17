@@ -8,7 +8,9 @@
 
 #ifndef ClairAudient_Macro_h
 #define ClairAudient_Macro_h
-#define VoccPrefix     @"http://s1.vocc.cc/"
-#define CurrentPlayFilePostionInfo @"CurrentPlayFilePostionInfo"
+#define VoccPrefix                  @"http://s1.vocc.cc/"
+#define CurrentPlayFilePostionInfo  @"CurrentPlayFilePostionInfo"
 #define PlotViewDidStartPlay        @"PlotViewDidStartPlay"
+
+#define DefaultUserImage            @"defaultuserImage"
 #endif

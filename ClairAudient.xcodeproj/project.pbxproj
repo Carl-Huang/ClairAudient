@@ -38,6 +38,7 @@
 		4E117966188F5F6200FB619F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E117965188F5F6200FB619F /* AVFoundation.framework */; };
 		4E11796A188F627F00FB619F /* MusicCutter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E117969188F627F00FB619F /* MusicCutter.m */; };
 		4E11796D188F6DA000FB619F /* TSLibraryImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E11796C188F6DA000FB619F /* TSLibraryImport.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4E12FC3C18D6D52E007AA33E /* CustomiseActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E12FC3B18D6D52E007AA33E /* CustomiseActionSheet.m */; };
 		4E1CDE0218900BA000C046ED /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1CDDFF18900BA000C046ED /* AudioManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4E1CDE0318900BA000C046ED /* AudioWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1CDE0118900BA000C046ED /* AudioWriter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4E1CDE05189012CB00C046ED /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1CDE04189012CB00C046ED /* CoreAudio.framework */; };
@@ -639,6 +640,8 @@
 		4E117969188F627F00FB619F /* MusicCutter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicCutter.m; sourceTree = "<group>"; };
 		4E11796B188F6DA000FB619F /* TSLibraryImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSLibraryImport.h; sourceTree = "<group>"; };
 		4E11796C188F6DA000FB619F /* TSLibraryImport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSLibraryImport.m; sourceTree = "<group>"; };
+		4E12FC3A18D6D52E007AA33E /* CustomiseActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomiseActionSheet.h; sourceTree = "<group>"; };
+		4E12FC3B18D6D52E007AA33E /* CustomiseActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomiseActionSheet.m; sourceTree = "<group>"; };
 		4E1CDDFE18900BA000C046ED /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
 		4E1CDDFF18900BA000C046ED /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
 		4E1CDE0018900BA000C046ED /* AudioWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioWriter.h; sourceTree = "<group>"; };
@@ -2570,6 +2573,8 @@
 		C3FEB0E81871D2BB008EADAA /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				4E12FC3A18D6D52E007AA33E /* CustomiseActionSheet.h */,
+				4E12FC3B18D6D52E007AA33E /* CustomiseActionSheet.m */,
 				4EB3E08118D1388600DB7B0B /* PhotoManager.m */,
 				4EB3E08218D1388600DB7B0B /* PhotoManager.h */,
 				4EB43E7718AB39AA004CCC85 /* AudioPlayer */,
@@ -3254,6 +3259,7 @@
 				4E0DC76C18D053BD00E4E6ED /* CommentView.m in Sources */,
 				C3FEB0D11871CA5E008EADAA /* SettingViewController.m in Sources */,
 				C32D4FA7187F953C0090730B /* TMQuiltView.m in Sources */,
+				4E12FC3C18D6D52E007AA33E /* CustomiseActionSheet.m in Sources */,
 				4EB7C4EB18B6FC2800BCF0E8 /* MixingCatalogViewController.m in Sources */,
 				C3D4FCC7187D6786001A7223 /* DownloadRankCell.m in Sources */,
 				4ED1752018925CC2000EC483 /* MutiMixingViewController.m in Sources */,

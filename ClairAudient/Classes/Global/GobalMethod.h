@@ -55,4 +55,8 @@ typedef enum _ANCHOR
 
 +(NSString *)convertSecondToMinute:(CGFloat)time;
 +(NSString *)convertMinuteToSecond:(CGFloat)time;
+
+
++(void)saveImageToUserDefault:(UIImage *)image key:(NSString *)key;
++(UIImage *)getImageFromLocalWithKey:(NSString *)key;
 @end

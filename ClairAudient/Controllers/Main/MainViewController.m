@@ -229,8 +229,11 @@
                 [[SDWebImageManager sharedManager]downloadWithURL:[NSURL URLWithString:str] options:SDWebImageCacheMemoryOnly progress:^(NSUInteger receivedSize, long long expectedSize) {
                     ;
                 } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
-                    [weakSelf.customiseImages addObject:@{@"image_type": obj.image_type,@"common_image":image}];
-                    [weakSelf updateInterface];
+                    if (image) {
+                        [weakSelf.customiseImages addObject:@{@"image_type": obj.image_type,@"common_image":image}];
+                        [weakSelf updateInterface];
+                    }
+                    
                 }];
             }
             
