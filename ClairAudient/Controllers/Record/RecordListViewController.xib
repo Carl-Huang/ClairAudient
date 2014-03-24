@@ -29,10 +29,10 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="tTG-LE-8OE">
-                            <rect key="frame" x="10" y="9" width="30" height="25"/>
+                            <rect key="frame" x="10" y="5" width="37" height="31"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" image="back.png">
+                            <state key="normal" image="setting_.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -51,10 +51,10 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="BST-0W-p4h">
-                            <rect key="frame" x="269" y="6" width="36" height="28"/>
+                            <rect key="frame" x="269" y="2" width="40" height="34"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" image="record_12.png">
+                            <state key="normal" image="setting_4.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -72,10 +72,10 @@
         </view>
     </objects>
     <resources>
-        <image name="back.png" width="30" height="25"/>
         <image name="hunyin_3.png" width="31" height="27"/>
         <image name="hunyin_6.png" width="320" height="533"/>
         <image name="record_.png" width="320" height="59"/>
-        <image name="record_12.png" width="36" height="28"/>
+        <image name="setting_.png" width="40" height="37"/>
+        <image name="setting_4.png" width="40" height="37"/>
     </resources>
 </document>

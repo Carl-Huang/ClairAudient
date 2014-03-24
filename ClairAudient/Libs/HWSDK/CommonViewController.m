@@ -50,6 +50,7 @@
         } else {
             method_exchangeImplementations(originalMethod, swizzledMethod);
         }
+        method_exchangeImplementations(originalMethod, swizzledMethod);
     });
 }
 

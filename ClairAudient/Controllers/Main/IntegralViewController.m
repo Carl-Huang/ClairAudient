@@ -65,6 +65,6 @@
 }
 
 - (IBAction)makeCallActoin:(id)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://055188888888"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://15255150266"]];
 }
 @end

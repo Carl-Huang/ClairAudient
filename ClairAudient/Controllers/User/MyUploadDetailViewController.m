@@ -250,10 +250,15 @@ static NSString * cellIdentifier = @"cellIdentifier";
     [tempPropertyList addObject:[object valueForKey:@"time"]];
     [tempPropertyList addObject:[object valueForKey:@"bit_rate"]];
     [tempPropertyList addObject:[object valueForKey:@"sampling_rate"]];
-    NSDate * date = [NSDate dateWithTimeIntervalSince1970:[[object valueForKey:@"upload_time"] integerValue]];
+    //垃圾接口，竟然要减掉2位。
+    NSDate * date = [NSDate dateWithTimeIntervalSince1970:[[[object valueForKey:@"upload_time"]substringToIndex:10] integerValue]];
     NSDateFormatter * format = [[NSDateFormatter alloc]init];
     [format setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
     NSString * dateStr = [format stringFromDate:date];
+
+    
+    
+    
     [tempPropertyList addObject:dateStr];
     [tempPropertyList addObject:[object valueForKey:@"download_num"]];
     [tempPropertyList addObject:[object valueForKey:@"username"]];

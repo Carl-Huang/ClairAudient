@@ -10,7 +10,6 @@
 #import "EZAudioPlotGL.h"
 @class TrachBtn;
 @interface MixingViewController : CommonViewController
-
 @property (strong ,nonatomic) NSDictionary * musicInfo;
 
 #pragma mark - Outlet

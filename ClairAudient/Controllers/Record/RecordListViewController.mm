@@ -12,7 +12,7 @@
 #import "RecordMusicInfo.h"
 #import "PersistentStore.h"
 #import "BorswerMusicTable.h"
-
+#import "MainViewController.h"
 #define Cell_Height 90.0f
 @interface RecordListViewController ()
 {
@@ -84,7 +84,15 @@
 
 - (IBAction)rightItemAction:(id)sender
 {
-    
+    [self gotoRootViewController];
 }
-
+-(void)gotoRootViewController
+{
+    NSArray * viewControllers = self.navigationController.viewControllers;
+    for (UIViewController * vc in viewControllers) {
+        if ([vc isKindOfClass:[MainViewController class]]) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+    }
+}
 @end

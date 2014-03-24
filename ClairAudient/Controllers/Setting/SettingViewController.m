@@ -11,7 +11,7 @@
 #import "UIViewController+CustomBarItemPosition.h"
 #import "AccentTableViewController.h"
 
-@interface SettingViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface SettingViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 {
     AccentTableViewController * popUpTable;
 }
@@ -193,6 +193,31 @@
     }else if (indexPath.row == 4)
     {
         [User deleteUserInfo];
+        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"退出成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        alertView = nil;
+    }
+}
+
+-(void)gotoRootViewController
+{
+    NSArray * viewControllers = self.navigationController.viewControllers;
+    for (UIViewController * vc in viewControllers) {
+        if ([vc isKindOfClass:[MainViewController class]]) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            [self gotoRootViewController];
+            break;
+            
+        default:
+            break;
     }
 }
 @end

@@ -17,13 +17,14 @@
 #import "Base64.h"
 #import <ShareSDK/ShareSDK.h>
 
-@interface BorswerMusicTable()<ItemDidSelectedDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface BorswerMusicTable()<ItemDidSelectedDelegate,UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 {
     UISlider * currentSelectedItemSlider;
     UIButton * currentPlayItemControlBtn;
     
     AppDelegate * myDelegate;
     UpLoadView * uploadView;
+    id deletedObj;
 }
 @end
 
@@ -403,6 +404,37 @@
 
 -(void)deleteItem:(id)object
 {
+    deletedObj = object;
+    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:[object valueForKey:@"title"] message:@"确定要删除吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alertView show];
+    alertView = nil;
+    
+    
+}
+
+-(void)updateDataSource
+{
+    borswerDataSource = [PersistentStore getAllObjectWithType:_type];
+    [self reloadData];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            ;
+            break;
+        case 1:
+            [self deleteSelectedObj:deletedObj];
+            break;
+        default:
+            break;
+    }
+}
+
+
+-(void)deleteSelectedObj:(id)object
+{
     if ([GobalMethod removeItemAtPath:[object valueForKey:@"localPath"]]) {
         NSLog(@"删除本地文件成功");
     }else
@@ -415,12 +447,4 @@
         [self updateDataSource];
     }
 }
-
--(void)updateDataSource
-{
-    borswerDataSource = [PersistentStore getAllObjectWithType:_type];
-    [self reloadData];
-}
-
-
 @end

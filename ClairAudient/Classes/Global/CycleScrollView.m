@@ -62,6 +62,8 @@
         self.scrollView.delegate = self;
         self.scrollView.contentOffset = CGPointMake(CGRectGetWidth(self.scrollView.frame), 0);
         self.scrollView.pagingEnabled = YES;
+        self.scrollView.showsHorizontalScrollIndicator = NO;
+        self.scrollView.showsVerticalScrollIndicator = NO;
         [self addSubview:self.scrollView];
         self.currentPageIndex = 0;
         
@@ -79,10 +81,6 @@
 
 -(void)stopTimer
 {
-//    if ([self.animationTimer isValid]) {
-//        [self.animationTimer invalidate];
-//        self.animationTimer = nil;
-//    }
     [self.animationTimer pauseTimer];
 }
 
@@ -122,7 +120,7 @@
         _scrollView.scrollEnabled = NO;
     }
     
-
+    
     
 }
 
@@ -171,14 +169,14 @@
     int contentOffsetX = scrollView.contentOffset.x;
     if(contentOffsetX >= (2 * CGRectGetWidth(scrollView.frame))) {
         self.currentPageIndex = [self getValidNextPageIndexWithPageIndex:self.currentPageIndex + 1];
-         _pageController.currentPage = self.currentPageIndex;
-//        NSLog(@"next，当前页:%d",self.currentPageIndex);
+        _pageController.currentPage = self.currentPageIndex;
+        //        NSLog(@"next，当前页:%d",self.currentPageIndex);
         [self configContentViews];
     }
     if(contentOffsetX <= 0) {
         self.currentPageIndex = [self getValidNextPageIndexWithPageIndex:self.currentPageIndex - 1];
         _pageController.currentPage = self.currentPageIndex;
-//        NSLog(@"previous，当前页:%d",self.currentPageIndex);
+        //        NSLog(@"previous，当前页:%d",self.currentPageIndex);
         [self configContentViews];
     }
 }
@@ -188,16 +186,18 @@
     if (_totalPageCount != 1) {
         [scrollView setContentOffset:CGPointMake(CGRectGetWidth(scrollView.frame), 0) animated:YES];
     }
-
+    
 }
 
 - (void)animationTimerDidFired:(NSTimer *)timer
 {
-    if (_totalPageCount != 1) {
-        CGPoint newOffset = CGPointMake(self.scrollView.contentOffset.x + CGRectGetWidth(self.scrollView.frame), self.scrollView.contentOffset.y);
-        [self.scrollView setContentOffset:newOffset animated:YES];
-    }
-
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (_totalPageCount != 1) {
+            CGPoint newOffset = CGPointMake(self.scrollView.contentOffset.x + CGRectGetWidth(self.scrollView.frame), self.scrollView.contentOffset.y);
+            [self.scrollView setContentOffset:newOffset animated:YES];
+        }
+    });
+    
 }
 
 - (void)contentViewTapAction:(UITapGestureRecognizer *)tap
@@ -214,12 +214,12 @@
     }
 }
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect
+ {
+ // Drawing code
+ }
+ */
 
 @end

@@ -12,8 +12,10 @@
 #import "HttpService.h"
 #import "MBProgressHUD.h"
 
-@interface HelpViewController ()<UIAlertViewDelegate>
-
+@interface HelpViewController ()<UIAlertViewDelegate,UITextViewDelegate>
+{
+    BOOL isEdit;
+}
 @end
 
 @implementation HelpViewController
@@ -31,6 +33,8 @@
 {
     [super viewDidLoad];
     [self initUI];
+    isEdit = NO;
+    _contentView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,28 +53,33 @@
 
 - (IBAction)submitCommentAction:(id)sender {
     User * user = [User userFromLocal];
-    
-    if (user) {
-        __weak HelpViewController * weakSelf = self;
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        [[HttpService sharedInstance]commentWithParams:@{@"content": _contentView.text,@"userID":user.hw_id} completionBlock:^(BOOL isSuccess) {
-            [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-            if (isSuccess) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"反馈成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                    [alertView show];
-                    alertView = nil;
+    if ([_contentView.text length ] == 0 || !isEdit) {
+        [self showAlertViewWithMessage:@"反馈内容不能为空"];
+    }else
+    {
+        if (user) {
+            __weak HelpViewController * weakSelf = self;
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            [[HttpService sharedInstance]commentWithParams:@{@"content": _contentView.text,@"userID":user.hw_id} completionBlock:^(BOOL isSuccess) {
+                [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+                if (isSuccess) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"反馈成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                        [alertView show];
+                        alertView = nil;
+                        
+                    });
+                }else
+                {
+                    [self showAlertViewWithMessage:@"反馈失败"];
+                }
                 
-                });
-            }else
-            {
-                [self showAlertViewWithMessage:@"反馈失败"];
-            }
-            
-        } failureBlock:^(NSError *error, NSString *responseString) {
-            [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-        }];
+            } failureBlock:^(NSError *error, NSString *responseString) {
+                [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+            }];
+        }
     }
+    
    
 }
 
@@ -84,5 +93,11 @@
         default:
             break;
     }
+}
+
+-(void)textViewDidBeginEditing:(UITextView *)textView
+{
+    isEdit = YES;
+    textView.text = @"";
 }
 @end
