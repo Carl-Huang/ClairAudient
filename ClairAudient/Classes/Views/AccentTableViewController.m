@@ -36,8 +36,8 @@ static NSString * cellIdentifier = @"cellIdentifier";
     self.contentTable.backgroundColor = [UIColor clearColor];
     self.contentTable.scrollEnabled = YES;
     
-    UIImage * bgImage = [UIImage imageNamed:@"标签框"];
-    [self.bgImageView setImage:bgImage];
+//    UIImage * bgImage = [UIImage imageNamed:@"标签框"];
+//    [self.bgImageView setImage:bgImage];
     // Do any additional setup after loading the view from its nib.
 }
 

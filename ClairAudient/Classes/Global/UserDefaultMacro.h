@@ -11,4 +11,6 @@
 
 #define StartImage  @"StartImage"
 #define ThemeImage  @"ThemeImage"
+
+#define DefaultAccent @"DefaultAccent"
 #endif

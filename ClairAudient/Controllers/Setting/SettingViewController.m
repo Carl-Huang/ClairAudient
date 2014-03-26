@@ -10,7 +10,8 @@
 #import "ControlCenter.h"
 #import "UIViewController+CustomBarItemPosition.h"
 #import "AccentTableViewController.h"
-
+#import "UserDefaultMacro.h"
+#import "DrawDownBtn.h"
 @interface SettingViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 {
     AccentTableViewController * popUpTable;
@@ -84,11 +85,11 @@
         CGRect originalRect = popUpTable.view.frame;
         originalRect.origin.x = btn.frame.origin.x + btn.frame.size.width/2.0 - originalRect.size.width/2;
         originalRect.origin.y = btn.frame.origin.y + btn.frame.size.height;
-        originalRect.size.width = btn.frame.size.width;
+//        originalRect.size.width = btn.frame.size.width;
         [popUpTable.view setFrame:originalRect];
         
         [popUpTable setBlock:^(NSInteger index,NSString * title){
-            
+            [[NSUserDefaults standardUserDefaults]setObject:title forKey:DefaultAccent];
             [btn setTitle:title forState:UIControlStateNormal];
         }];
     }else
@@ -147,10 +148,14 @@
     imageView.image = [UIImage imageNamed:@"setting_9"];
     if(indexPath.row == 0)
     {
-        UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button setFrame:CGRectMake(0, 0, 70, 30)];
-//        [button setImage:[UIImage imageNamed:@"setting_10"] forState:UIControlStateNormal];
-        [button setTitle:@"普通话" forState:UIControlStateNormal];
+        DrawDownBtn * button = [[[NSBundle mainBundle]loadNibNamed:@"DrawDownBtn" owner:self options:nil]objectAtIndex:0];
+        [button setBackgroundColor:[UIColor whiteColor]];
+
+        NSString * accent = [[NSUserDefaults standardUserDefaults]objectForKey:DefaultAccent];
+        if (accent == nil) {
+            accent = @"普通话";
+        }
+        [button setTitle:accent forState:UIControlStateNormal];
         [button addTarget:self action:@selector(showAccentTable:) forControlEvents:UIControlEventTouchUpInside];
         cell.accessoryView = button;
         button = nil;
