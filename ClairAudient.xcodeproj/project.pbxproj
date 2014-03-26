@@ -181,6 +181,11 @@
 		4EBF35D218E31D5300E77783 /* xiala@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EBF35D118E31D5300E77783 /* xiala@2x.png */; };
 		4EBF35D518E31DB900E77783 /* DrawDownBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF35D418E31DB800E77783 /* DrawDownBtn.m */; };
 		4EBF35D718E31DD500E77783 /* DrawDownBtn.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EBF35D618E31DD500E77783 /* DrawDownBtn.xib */; };
+		4EBF35DE18E3220A00E77783 /* uploadBgview@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EBF35D918E3220A00E77783 /* uploadBgview@2x.png */; };
+		4EBF35DF18E3220A00E77783 /* uploaddakuang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EBF35DA18E3220A00E77783 /* uploaddakuang@2x.png */; };
+		4EBF35E018E3220A00E77783 /* uploadkuang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EBF35DB18E3220A00E77783 /* uploadkuang@2x.png */; };
+		4EBF35E118E3220A00E77783 /* uploadqueding@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EBF35DC18E3220A00E77783 /* uploadqueding@2x.png */; };
+		4EBF35E218E3220A00E77783 /* uploadquxiao.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EBF35DD18E3220A00E77783 /* uploadquxiao.png */; };
 		4ED1751A18925322000EC483 /* AudioPlotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1751918925322000EC483 /* AudioPlotView.m */; };
 		4ED1752018925CC2000EC483 /* MutiMixingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1751E18925CC2000EC483 /* MutiMixingViewController.m */; };
 		4ED1752118925CC2000EC483 /* MutiMixingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ED1751F18925CC2000EC483 /* MutiMixingViewController.xib */; };
@@ -860,6 +865,11 @@
 		4EBF35D318E31DB800E77783 /* DrawDownBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawDownBtn.h; sourceTree = "<group>"; };
 		4EBF35D418E31DB800E77783 /* DrawDownBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawDownBtn.m; sourceTree = "<group>"; };
 		4EBF35D618E31DD500E77783 /* DrawDownBtn.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawDownBtn.xib; sourceTree = "<group>"; };
+		4EBF35D918E3220A00E77783 /* uploadBgview@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uploadBgview@2x.png"; sourceTree = "<group>"; };
+		4EBF35DA18E3220A00E77783 /* uploaddakuang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uploaddakuang@2x.png"; sourceTree = "<group>"; };
+		4EBF35DB18E3220A00E77783 /* uploadkuang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uploadkuang@2x.png"; sourceTree = "<group>"; };
+		4EBF35DC18E3220A00E77783 /* uploadqueding@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uploadqueding@2x.png"; sourceTree = "<group>"; };
+		4EBF35DD18E3220A00E77783 /* uploadquxiao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uploadquxiao.png; sourceTree = "<group>"; };
 		4ED1751818925322000EC483 /* AudioPlotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlotView.h; sourceTree = "<group>"; };
 		4ED1751918925322000EC483 /* AudioPlotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlotView.m; sourceTree = "<group>"; };
 		4ED1751D18925CC2000EC483 /* MutiMixingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutiMixingViewController.h; sourceTree = "<group>"; };
@@ -1712,6 +1722,18 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		4EBF35D818E3220A00E77783 /* Upload */ = {
+			isa = PBXGroup;
+			children = (
+				4EBF35D918E3220A00E77783 /* uploadBgview@2x.png */,
+				4EBF35DA18E3220A00E77783 /* uploaddakuang@2x.png */,
+				4EBF35DB18E3220A00E77783 /* uploadkuang@2x.png */,
+				4EBF35DC18E3220A00E77783 /* uploadqueding@2x.png */,
+				4EBF35DD18E3220A00E77783 /* uploadquxiao.png */,
+			);
+			path = Upload;
+			sourceTree = "<group>";
+		};
 		4EFF164E18A7D134005E4802 /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -2171,6 +2193,7 @@
 		C3FEAF501871C294008EADAA /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				4EBF35D818E3220A00E77783 /* Upload */,
 				C3486CC518866B1E00EB7AD0 /* 积分切图 */,
 				C3164C681874555D00301ACA /* foundmusic */,
 				C3164C911874555D00301ACA /* musicfans */,
@@ -2775,6 +2798,7 @@
 				C39A97BE189265A200F41CBB /* VoiceViewController.xib in Resources */,
 				C3FEB04E1871C294008EADAA /* record_40@2x.png in Resources */,
 				C326CDB2187C5E7B006DD97C /* ChampionHomePageViewController.xib in Resources */,
+				4EBF35E218E3220A00E77783 /* uploadquxiao.png in Resources */,
 				C3FEB0661871C294008EADAA /* setting_5@2x.png in Resources */,
 				C3486CD018866B1E00EB7AD0 /* youjiantou@2x.png in Resources */,
 				C3FEB0371871C294008EADAA /* record_19@2x.png in Resources */,
@@ -2852,6 +2876,7 @@
 				C3FEB02C1871C294008EADAA /* first_9@2x.png in Resources */,
 				C3164CC71874555D00301ACA /* FoundMusic_p@2x.png in Resources */,
 				4E0DC79818D0B59F00E4E6ED /* typingSomeone@2x.png in Resources */,
+				4EBF35E118E3220A00E77783 /* uploadqueding@2x.png in Resources */,
 				C3FEAF2A1871C156008EADAA /* InfoPlist.strings in Resources */,
 				4E97A23818D13CDF00972BDE /* 10.png in Resources */,
 				C3FEB0201871C294008EADAA /* hunyin_5@2x.png in Resources */,
@@ -3110,6 +3135,7 @@
 				C39A97B6189247AE00F41CBB /* catalog_section_hpng@2x.png in Resources */,
 				C3FEB0141871C294008EADAA /* hunyin_41@2x.png in Resources */,
 				C3FEB06E1871C294008EADAA /* user_11@2x.png in Resources */,
+				4EBF35DE18E3220A00E77783 /* uploadBgview@2x.png in Resources */,
 				C3FEAFFD1871C294008EADAA /* hunyin_1@2x.png in Resources */,
 				C39A97A6189247AE00F41CBB /* catalog_icon_dpng@2x.png in Resources */,
 				C3FEB0561871C294008EADAA /* setting_10@2x.png in Resources */,
@@ -3137,6 +3163,8 @@
 				C3164CD01874555D00301ACA /* FoundMusic_v@2x.png in Resources */,
 				4EB66AED18CD9C0600CE2212 /* 绿野仙踪@2x.png in Resources */,
 				C3FEB0131871C294008EADAA /* hunyin_40@2x.png in Resources */,
+				4EBF35E018E3220A00E77783 /* uploadkuang@2x.png in Resources */,
+				4EBF35DF18E3220A00E77783 /* uploaddakuang@2x.png in Resources */,
 				C3FEB04F1871C294008EADAA /* record_4@2x.png in Resources */,
 				C34C33FD188A8038009CD20B /* MixingViewController.xib in Resources */,
 				C3164CC91874555D00301ACA /* FoundMusic_qw@2x.png in Resources */,
