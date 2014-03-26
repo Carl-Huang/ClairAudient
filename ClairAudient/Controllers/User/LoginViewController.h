@@ -11,6 +11,11 @@
 @interface LoginViewController : CommonViewController<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UITextField *mobileField;
+@property (weak, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet UIButton *rememberBtn;
+
+- (IBAction)rememberPWDAction:(id)sender;
+
 - (IBAction)backAction:(id)sender;
 - (IBAction)loginAction:(id)sender;
 - (IBAction)registerAction:(id)sender;

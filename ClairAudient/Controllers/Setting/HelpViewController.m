@@ -47,7 +47,7 @@
 #pragma mark - Private Methods
 - (void)initUI
 {
-    self.title = @"帮助与反馈";
+    self.title = @"用户反馈";
     [self setLeftAndRightBarItem];
 }
 

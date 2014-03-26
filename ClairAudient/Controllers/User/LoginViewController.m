@@ -11,9 +11,14 @@
 #import "HttpService.h"
 #import "MBProgressHUD.h"
 #import "User.h"
+#import "UserInfo.h"
+#import "PersistentStore.h"
 
-@interface LoginViewController ()
-
+@interface LoginViewController ()<UITextFieldDelegate>
+{
+    CGRect originalRect;
+    BOOL isRememberUser;
+}
 @end
 
 @implementation LoginViewController
@@ -30,7 +35,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _passwordField.delegate = self;
+    _mobileField.delegate = self;
+
+    isRememberUser = [[NSUserDefaults standardUserDefaults]boolForKey:@"isRememberUser"];
+    if (isRememberUser) {
+        [_rememberBtn setSelected:YES];
+        UserInfo * userInfo = [PersistentStore getLastObjectWithType:[UserInfo class]];
+        if (userInfo) {
+            _mobileField.text = userInfo.name;
+            _passwordField.text = userInfo.pwd;
+        }
+        
+        
+    }
     // Do any additional setup after loading the view from its nib.
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    originalRect = _contentView.frame;
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,11 +65,23 @@
 }
 
 #pragma mark - Action Methods
+- (IBAction)rememberPWDAction:(id)sender {
+    [_rememberBtn setSelected:!_rememberBtn.selected];
+    if (_rememberBtn.selected) {
+        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"isRememberUser"];
+        isRememberUser = YES;
+    }else
+    {
+        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"isRememberUser"];
+        isRememberUser =  NO;
+    }
+    
+}
+
 - (IBAction)backAction:(id)sender
 {
     [self popVIewController];
     
-   
 }
 
 - (IBAction)loginAction:(id)sender
@@ -70,6 +107,18 @@
         if(object)
         {
             [User saveToLocal:object];
+            if (isRememberUser) {
+                NSArray * array = [PersistentStore getAllObjectWithType:[UserInfo class]];
+                for (UserInfo * obj in array) {
+                    [PersistentStore deleteObje:obj];
+                }
+                
+                UserInfo * userInfo = [UserInfo MR_createEntity];
+                userInfo.name = _mobileField.text;
+                userInfo.pwd = _passwordField.text;
+                [PersistentStore save];
+            }
+        
             [ControlCenter showLoginSuccessVC];
         }
         
@@ -95,5 +144,28 @@
 - (IBAction)registerAction:(id)sender
 {
     [ControlCenter showRegisterVC];
+}
+
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (CGRectEqualToRect(originalRect, _contentView.frame)) {
+        [UIView animateWithDuration:0.3 animations:^{
+            _contentView.frame = CGRectOffset(_contentView.frame, 0, -60);
+        }];
+    }
+    
+}
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if ([string isEqualToString:@"\n"]) {
+        [textField resignFirstResponder];
+        [UIView animateWithDuration:0.3 animations:^{
+            _contentView.frame = CGRectOffset(_contentView.frame, 0, 60);
+        }];
+        return NO;
+    }
+    return  YES;
 }
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13B42" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="DownloadMusicInfo" representedClassName="DownloadMusicInfo" syncable="YES">
         <attribute name="isFavorite" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="length" optional="YES" attributeType="String" syncable="YES"/>
@@ -30,10 +30,15 @@
         <attribute name="makeTime" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="UserInfo" representedClassName="UserInfo" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pwd" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="DownloadMusicInfo" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="EditMusicInfo" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="MusicInfo" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="RecordMusicInfo" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="DownloadMusicInfo" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="EditMusicInfo" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="MusicInfo" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="RecordMusicInfo" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="UserInfo" positionX="0" positionY="45" width="128" height="75"/>
     </elements>
 </model>

@@ -63,12 +63,13 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </imageView>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IhL-Y8-Ujo">
-                                    <rect key="frame" x="138" y="6" width="42" height="43"/>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IhL-Y8-Ujo">
+                                    <rect key="frame" x="138" y="6" width="43" height="48"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" backgroundImage="hunyin_12.png">
+                                    <state key="normal" image="zanting.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <state key="selected" image="hunyin_12.png"/>
                                     <connections>
                                         <action selector="playAction:" destination="-1" eventType="touchUpInside" id="Jke-uz-C6S"/>
                                     </connections>
@@ -164,5 +165,6 @@
         <image name="hunyin_7.png" width="38" height="38"/>
         <image name="record_.png" width="320" height="59"/>
         <image name="record_5.png" width="320" height="67"/>
+        <image name="zanting.png" width="43" height="48"/>
     </resources>
 </document>

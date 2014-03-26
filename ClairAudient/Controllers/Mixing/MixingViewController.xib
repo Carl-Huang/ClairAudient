@@ -89,14 +89,14 @@
                             <rect key="frame" x="0.0" y="302" width="319" height="154"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="IHw-os-ube">
-                                    <rect key="frame" x="80" y="6" width="41" height="45"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="IHw-os-ube">
+                                    <rect key="frame" x="78" y="9" width="41" height="41"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" backgroundImage="hunyin_12.png">
+                                    <state key="normal" image="zanting.png">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
-                                    <state key="selected" backgroundImage="hunyin_12.png"/>
+                                    <state key="selected" image="hunyin_12.png"/>
                                     <connections>
                                         <action selector="playMusic:" destination="-1" eventType="touchUpInside" id="bLz-0W-bmL"/>
                                     </connections>
@@ -197,5 +197,6 @@
         <image name="hunyin_7.png" width="38" height="38"/>
         <image name="hunyin_8.png" width="38" height="38"/>
         <image name="record_.png" width="320" height="59"/>
+        <image name="zanting.png" width="43" height="48"/>
     </resources>
 </document>

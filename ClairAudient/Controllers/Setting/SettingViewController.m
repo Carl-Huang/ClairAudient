@@ -25,7 +25,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _dataSource = @[@"乡音模式",@"关于积分",@"个性主题",@"帮助与反馈",@"退出登陆"];
+        _dataSource = @[@"乡音模式",@"关于积分",@"个性主题",@"用户反馈",@"帮助",@"退出登陆"];
         _imageInfos = @{@"乡音模式":@"setting_3",@"关于积分":@"setting_5",@"个性主题":@"setting_6",@"帮助与反馈":@"setting_7",@"退出登陆":@"setting_8"};
     }
     return self;
@@ -166,8 +166,11 @@
     else if(indexPath.row == 3)
     {
         cell.accessoryView = imageView;
+    }else if (indexPath.row == 4)
+    {
+        cell.accessoryView = imageView;
     }
-    else if (indexPath.row == 4)
+    else if (indexPath.row == 5)
     {
         cell.accessoryView = nil;
     }
@@ -191,6 +194,10 @@
     {
         [ControlCenter showHelpVC];
     }else if (indexPath.row == 4)
+    {
+        //帮助
+    }
+    else if (indexPath.row == 5)
     {
         [User deleteUserInfo];
         UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"退出成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];

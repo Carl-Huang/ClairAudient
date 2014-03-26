@@ -163,7 +163,10 @@
     UILabel * label = (UILabel *)[view viewWithTag:1001];
     UIImageView * imageView = (UIImageView *)[view viewWithTag:1002];
     UIImageView * bgImageView = (UIImageView *)[view viewWithTag:1003];
-    bgImageView.image = [UIImage imageNamed:[_sectionImages objectAtIndex:section]];
+    
+    
+    NSString * imageName = [NSString stringWithFormat:@"classify%d.png",section+1];
+    bgImageView.image = [UIImage imageNamed:imageName];
     Catalog * catalog = [_catalogs objectAtIndex:section];
     if(catalog == self.selectedCatalog)
     {

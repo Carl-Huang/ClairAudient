@@ -20,10 +20,10 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="AZT-33-zvf">
-                    <rect key="frame" x="34" y="45" width="145" height="165"/>
+                    <rect key="frame" x="41" y="61" width="130" height="149"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" image="user_12.png">
+                    <state key="normal" image="wodezjhuye.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -83,10 +83,10 @@
     </objects>
     <resources>
         <image name="back.png" width="30" height="25"/>
-        <image name="user_12.png" width="165" height="188"/>
         <image name="user_13.png" width="165" height="188"/>
         <image name="user_14.png" width="165" height="188"/>
         <image name="user_15.png" width="165" height="188"/>
         <image name="user_9.png" width="320" height="533"/>
+        <image name="wodezjhuye.png" width="143" height="163"/>
     </resources>
 </document>
