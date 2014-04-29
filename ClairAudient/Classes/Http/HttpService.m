@@ -470,4 +470,19 @@
     }];
 }
 
+-(void)registerWithParams:(NSDictionary *)params completionBlock:(void (^)(BOOL))success failureBlock:(void (^)(NSError *, NSString *))failure
+{
+    [self post:[self mergeURL:RegistAction]withParams:params completionBlock:^(id obj) {
+        ;
+    } failureBlock:^(NSError *error, NSString *responseString) {
+        if ([responseString isEqualToString:@"1"]) {
+            //上传成功
+            success(YES);
+        }else
+        {
+            failure(error,responseString);
+        }
+    }];
+}
+
 @end

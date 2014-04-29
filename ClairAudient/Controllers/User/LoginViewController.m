@@ -29,6 +29,7 @@
     if (self) {
         // Custom initialization
     }
+    
     return self;
 }
 
@@ -39,16 +40,28 @@
     _mobileField.delegate = self;
 
     isRememberUser = [[NSUserDefaults standardUserDefaults]boolForKey:@"isRememberUser"];
-    if (isRememberUser) {
-        [_rememberBtn setSelected:YES];
-        UserInfo * userInfo = [PersistentStore getLastObjectWithType:[UserInfo class]];
-        if (userInfo) {
-            _mobileField.text = userInfo.name;
-            _passwordField.text = userInfo.pwd;
+    
+    if(_info)
+    {
+        /*
+          NSDictionary * params = @{@"userName":_nameField.text,@"passWord":_pswField.text,@"findQuestion":_questionField.text,@"findAnswer":_answerField.text,@"email":_emailField.text};
+         */
+        _mobileField.text = [_info valueForKey:@"userName"];
+        _passwordField.text = [_info valueForKey:@"passWord"];
+    }else
+    {
+        if (isRememberUser) {
+            [_rememberBtn setSelected:YES];
+            UserInfo * userInfo = [PersistentStore getLastObjectWithType:[UserInfo class]];
+            if (userInfo) {
+                _mobileField.text = userInfo.name;
+                _passwordField.text = userInfo.pwd;
+            }
         }
-        
-        
     }
+    
+    
+    
     // Do any additional setup after loading the view from its nib.
 }
 

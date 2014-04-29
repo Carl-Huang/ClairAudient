@@ -35,6 +35,7 @@
 		4E0DC79D18D0B59F00E4E6ED /* UIBubbleTypingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0DC78E18D0B59F00E4E6ED /* UIBubbleTypingTableViewCell.m */; };
 		4E0DC7A018D0B76B00E4E6ED /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0DC79F18D0B76B00E4E6ED /* CommentCell.m */; };
 		4E0DC7A218D0B77A00E4E6ED /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E0DC7A118D0B77A00E4E6ED /* CommentCell.xib */; };
+		4E10DFD518FC0B600057C500 /* UIImage+RoundCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E10DFD418FC0B600057C500 /* UIImage+RoundCorner.m */; };
 		4E117966188F5F6200FB619F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E117965188F5F6200FB619F /* AVFoundation.framework */; };
 		4E11796A188F627F00FB619F /* MusicCutter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E117969188F627F00FB619F /* MusicCutter.m */; };
 		4E11796D188F6DA000FB619F /* TSLibraryImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E11796C188F6DA000FB619F /* TSLibraryImport.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -137,6 +138,25 @@
 		4EB3E08318D1388600DB7B0B /* PhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB3E08118D1388600DB7B0B /* PhotoManager.m */; };
 		4EB3E08518D1389E00DB7B0B /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EB3E08418D1389E00DB7B0B /* AssetsLibrary.framework */; };
 		4EB3E08718D138A800DB7B0B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EB3E08618D138A800DB7B0B /* CoreMedia.framework */; };
+		4EB409CE190F40CC000950D7 /* 亳州话.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EB409BD190F40CC000950D7 /* 亳州话.mp3 */; };
+		4EB409CF190F40CC000950D7 /* 六安话.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EB409BE190F40CC000950D7 /* 六安话.mp3 */; };
+		4EB409D0190F40CC000950D7 /* 合肥话.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EB409BF190F40CC000950D7 /* 合肥话.mp3 */; };
+		4EB409D1190F40CC000950D7 /* 安庆话.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EB409C0190F40CC000950D7 /* 安庆话.mp3 */; };
+		4EB409D2190F40CC000950D7 /* 宣城话.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EB409C1190F40CC000950D7 /* 宣城话.mp3 */; };
+		4EB409D3190F40CC000950D7 /* 宿州话.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EB409C2190F40CC000950D7 /* 宿州话.mp3 */; };
+		4EB409D4190F40CC000950D7 /* 普通话.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EB409C3190F40CC000950D7 /* 普通话.mp3 */; };
+		4EB409D5190F40CC000950D7 /* 池州话.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EB409C4190F40CC000950D7 /* 池州话.mp3 */; };
+		4EB409D6190F40CC000950D7 /* 淮北话.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EB409C5190F40CC000950D7 /* 淮北话.mp3 */; };
+		4EB409D7190F40CC000950D7 /* 淮南话.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EB409C6190F40CC000950D7 /* 淮南话.mp3 */; };
+		4EB409D8190F40CC000950D7 /* 滁州话.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EB409C7190F40CC000950D7 /* 滁州话.mp3 */; };
+		4EB409D9190F40CC000950D7 /* 芜湖话.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EB409C8190F40CC000950D7 /* 芜湖话.mp3 */; };
+		4EB409DA190F40CC000950D7 /* 蚌埠话.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EB409C9190F40CC000950D7 /* 蚌埠话.mp3 */; };
+		4EB409DB190F40CC000950D7 /* 铜陵话.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EB409CA190F40CC000950D7 /* 铜陵话.mp3 */; };
+		4EB409DC190F40CC000950D7 /* 阜阳话.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EB409CB190F40CC000950D7 /* 阜阳话.mp3 */; };
+		4EB409DD190F40CC000950D7 /* 马鞍山话.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EB409CC190F40CC000950D7 /* 马鞍山话.mp3 */; };
+		4EB409DE190F40CC000950D7 /* 黄山话.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EB409CD190F40CC000950D7 /* 黄山话.mp3 */; };
+		4EB409E2190F4477000950D7 /* HelpingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB409E0190F4477000950D7 /* HelpingViewController.m */; };
+		4EB409E3190F4477000950D7 /* HelpingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EB409E1190F4477000950D7 /* HelpingViewController.xib */; };
 		4EB43E6D18AB15B6004CCC85 /* MyUploadDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB43E6C18AB15B6004CCC85 /* MyUploadDetailCell.m */; };
 		4EB43E6F18AB15CD004CCC85 /* MyUploadDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EB43E6E18AB15CD004CCC85 /* MyUploadDetailCell.xib */; };
 		4EB43E7218AB26BC004CCC85 /* PlayItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB43E7118AB26BC004CCC85 /* PlayItemView.m */; };
@@ -659,6 +679,8 @@
 		4E0DC79E18D0B76B00E4E6ED /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
 		4E0DC79F18D0B76B00E4E6ED /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		4E0DC7A118D0B77A00E4E6ED /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
+		4E10DFD318FC0B600057C500 /* UIImage+RoundCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundCorner.h"; sourceTree = "<group>"; };
+		4E10DFD418FC0B600057C500 /* UIImage+RoundCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundCorner.m"; sourceTree = "<group>"; };
 		4E1132F218CDD3A2005AB34B /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		4E117965188F5F6200FB619F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4E117968188F627F00FB619F /* MusicCutter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicCutter.h; sourceTree = "<group>"; };
@@ -808,6 +830,26 @@
 		4EB3E08218D1388600DB7B0B /* PhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoManager.h; sourceTree = "<group>"; };
 		4EB3E08418D1389E00DB7B0B /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		4EB3E08618D138A800DB7B0B /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		4EB409BD190F40CC000950D7 /* 亳州话.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "亳州话.mp3"; sourceTree = "<group>"; };
+		4EB409BE190F40CC000950D7 /* 六安话.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "六安话.mp3"; sourceTree = "<group>"; };
+		4EB409BF190F40CC000950D7 /* 合肥话.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "合肥话.mp3"; sourceTree = "<group>"; };
+		4EB409C0190F40CC000950D7 /* 安庆话.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "安庆话.mp3"; sourceTree = "<group>"; };
+		4EB409C1190F40CC000950D7 /* 宣城话.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "宣城话.mp3"; sourceTree = "<group>"; };
+		4EB409C2190F40CC000950D7 /* 宿州话.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "宿州话.mp3"; sourceTree = "<group>"; };
+		4EB409C3190F40CC000950D7 /* 普通话.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "普通话.mp3"; sourceTree = "<group>"; };
+		4EB409C4190F40CC000950D7 /* 池州话.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "池州话.mp3"; sourceTree = "<group>"; };
+		4EB409C5190F40CC000950D7 /* 淮北话.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "淮北话.mp3"; sourceTree = "<group>"; };
+		4EB409C6190F40CC000950D7 /* 淮南话.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "淮南话.mp3"; sourceTree = "<group>"; };
+		4EB409C7190F40CC000950D7 /* 滁州话.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "滁州话.mp3"; sourceTree = "<group>"; };
+		4EB409C8190F40CC000950D7 /* 芜湖话.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "芜湖话.mp3"; sourceTree = "<group>"; };
+		4EB409C9190F40CC000950D7 /* 蚌埠话.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "蚌埠话.mp3"; sourceTree = "<group>"; };
+		4EB409CA190F40CC000950D7 /* 铜陵话.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "铜陵话.mp3"; sourceTree = "<group>"; };
+		4EB409CB190F40CC000950D7 /* 阜阳话.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "阜阳话.mp3"; sourceTree = "<group>"; };
+		4EB409CC190F40CC000950D7 /* 马鞍山话.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "马鞍山话.mp3"; sourceTree = "<group>"; };
+		4EB409CD190F40CC000950D7 /* 黄山话.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "黄山话.mp3"; sourceTree = "<group>"; };
+		4EB409DF190F4477000950D7 /* HelpingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpingViewController.h; sourceTree = "<group>"; };
+		4EB409E0190F4477000950D7 /* HelpingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpingViewController.m; sourceTree = "<group>"; };
+		4EB409E1190F4477000950D7 /* HelpingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpingViewController.xib; sourceTree = "<group>"; };
 		4EB43E6B18AB15B6004CCC85 /* MyUploadDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUploadDetailCell.h; sourceTree = "<group>"; };
 		4EB43E6C18AB15B6004CCC85 /* MyUploadDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUploadDetailCell.m; sourceTree = "<group>"; };
 		4EB43E6E18AB15CD004CCC85 /* MyUploadDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyUploadDetailCell.xib; sourceTree = "<group>"; };
@@ -1695,6 +1737,30 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		4EB409BC190F40CC000950D7 /* 方言 */ = {
+			isa = PBXGroup;
+			children = (
+				4EB409BD190F40CC000950D7 /* 亳州话.mp3 */,
+				4EB409BE190F40CC000950D7 /* 六安话.mp3 */,
+				4EB409BF190F40CC000950D7 /* 合肥话.mp3 */,
+				4EB409C0190F40CC000950D7 /* 安庆话.mp3 */,
+				4EB409C1190F40CC000950D7 /* 宣城话.mp3 */,
+				4EB409C2190F40CC000950D7 /* 宿州话.mp3 */,
+				4EB409C3190F40CC000950D7 /* 普通话.mp3 */,
+				4EB409C4190F40CC000950D7 /* 池州话.mp3 */,
+				4EB409C5190F40CC000950D7 /* 淮北话.mp3 */,
+				4EB409C6190F40CC000950D7 /* 淮南话.mp3 */,
+				4EB409C7190F40CC000950D7 /* 滁州话.mp3 */,
+				4EB409C8190F40CC000950D7 /* 芜湖话.mp3 */,
+				4EB409C9190F40CC000950D7 /* 蚌埠话.mp3 */,
+				4EB409CA190F40CC000950D7 /* 铜陵话.mp3 */,
+				4EB409CB190F40CC000950D7 /* 阜阳话.mp3 */,
+				4EB409CC190F40CC000950D7 /* 马鞍山话.mp3 */,
+				4EB409CD190F40CC000950D7 /* 黄山话.mp3 */,
+			);
+			path = "方言";
+			sourceTree = "<group>";
+		};
 		4EB43E7718AB39AA004CCC85 /* AudioPlayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -1741,6 +1807,8 @@
 				4E58621618B5E510004D80B6 /* NSTimer+Addition.m */,
 				4EFF164F18A7D134005E4802 /* NSString+Levenshtein.h */,
 				4EFF165018A7D134005E4802 /* NSString+Levenshtein.m */,
+				4E10DFD318FC0B600057C500 /* UIImage+RoundCorner.h */,
+				4E10DFD418FC0B600057C500 /* UIImage+RoundCorner.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -2165,6 +2233,7 @@
 		C3FEAF4E1871C294008EADAA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4EB409BC190F40CC000950D7 /* 方言 */,
 				4E96B568188E9CBA008EA56F /* 歌曲 */,
 				C3FEAF4F1871C294008EADAA /* 2x */,
 			);
@@ -2603,6 +2672,9 @@
 		C3FEB0C21871C9AA008EADAA /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				4EB409DF190F4477000950D7 /* HelpingViewController.h */,
+				4EB409E0190F4477000950D7 /* HelpingViewController.m */,
+				4EB409E1190F4477000950D7 /* HelpingViewController.xib */,
 				C3FEB0CE1871CA5E008EADAA /* SettingViewController.h */,
 				C3FEB0CF1871CA5E008EADAA /* SettingViewController.m */,
 				C3FEB0D01871CA5E008EADAA /* SettingViewController.xib */,
@@ -2775,6 +2847,7 @@
 				C3FEB0711871C294008EADAA /* user_14@2x.png in Resources */,
 				C3FEB0461871C294008EADAA /* record_33@2x.png in Resources */,
 				C3FEAFFB1871C294008EADAA /* hunyin_18@2x.png in Resources */,
+				4EB409D6190F40CC000950D7 /* 淮北话.mp3 in Resources */,
 				C3FEB0471871C294008EADAA /* record_34@2x.png in Resources */,
 				C3FEAFF31871C294008EADAA /* sliderEnd.png in Resources */,
 				C3FEB0011871C294008EADAA /* hunyin_23@2x.png in Resources */,
@@ -2819,6 +2892,7 @@
 				C3FEB0271871C294008EADAA /* first_4@2x.png in Resources */,
 				C3FEB0351871C294008EADAA /* record_17@2x.png in Resources */,
 				C3FEB0161871C294008EADAA /* hunyin_43@2x.png in Resources */,
+				4EB409CE190F40CC000950D7 /* 亳州话.mp3 in Resources */,
 				C3FEB0551871C294008EADAA /* record_@2x.png in Resources */,
 				C32F40091882873A00681953 /* MessageInviteViewController.xib in Resources */,
 				C3FEB0641871C294008EADAA /* setting_3@2x.png in Resources */,
@@ -2901,6 +2975,7 @@
 				C3FEB03B1871C294008EADAA /* record_23@2x.png in Resources */,
 				C3164CC51874555D00301ACA /* FoundMusic_o@2x.png in Resources */,
 				4E0DC79018D0B59F00E4E6ED /* bubbleMine@2x.png in Resources */,
+				4EB409DE190F40CC000950D7 /* 黄山话.mp3 in Resources */,
 				C327499C187A5EBD00CF7A4A /* ThemeViewController.xib in Resources */,
 				C3164CCA1874555D00301ACA /* FoundMusic_r@2x.png in Resources */,
 				C3FEB05D1871C294008EADAA /* setting_17@2x.png in Resources */,
@@ -2922,8 +2997,10 @@
 				C3FEB0431871C294008EADAA /* record_30@2x.png in Resources */,
 				4E97A23518D13CDF00972BDE /* 7.png in Resources */,
 				C3FEB0C81871CA19008EADAA /* MainViewController.xib in Resources */,
+				4EB409D7190F40CC000950D7 /* 淮南话.mp3 in Resources */,
 				C3FEB0421871C294008EADAA /* record_2@2x.png in Resources */,
 				C3164CE11874555D00301ACA /* MusicFans_kjk@2x.png in Resources */,
+				4EB409DB190F40CC000950D7 /* 铜陵话.mp3 in Resources */,
 				C3FEB0601871C294008EADAA /* setting_21@2x.png in Resources */,
 				C3FEB03C1871C294008EADAA /* record_24@2x.png in Resources */,
 				4EE3AE2F18CF3BC600D09F79 /* def2.mp3 in Resources */,
@@ -2959,12 +3036,14 @@
 				C3164CDF1874555D00301ACA /* MusicFans_ij@2x.png in Resources */,
 				C3164CEF1874555D00301ACA /* MusicFans_xvd@2x.png in Resources */,
 				C3164CE01874555D00301ACA /* MusicFans_jka@2x.png in Resources */,
+				4EB409D5190F40CC000950D7 /* 池州话.mp3 in Resources */,
 				C3FEB0631871C294008EADAA /* setting_2@2x.png in Resources */,
 				C3456CE218877089009329D2 /* MyUploadCell.xib in Resources */,
 				C3FEB0771871C294008EADAA /* user_20@2x.png in Resources */,
 				C3164CAE1874555D00301ACA /* FoundMusic_a@2x.png in Resources */,
 				C3FEB04D1871C294008EADAA /* record_3@2x.png in Resources */,
 				C3FEB07D1871C294008EADAA /* user_26@2x.png in Resources */,
+				4EB409D9190F40CC000950D7 /* 芜湖话.mp3 in Resources */,
 				4E8D2D5A18D592DD00F6C586 /* silent.png in Resources */,
 				C39A97B8189247AE00F41CBB /* catalog_section_jpng@2x.png in Resources */,
 				C3FEB03D1871C294008EADAA /* record_25@2x.png in Resources */,
@@ -3007,6 +3086,7 @@
 				4E97A23418D13CDF00972BDE /* 6.png in Resources */,
 				C3FEAFF81871C294008EADAA /* hunyin_15@2x.png in Resources */,
 				C3FEAFF71871C294008EADAA /* hunyin_14@2x.png in Resources */,
+				4EB409D3190F40CC000950D7 /* 宿州话.mp3 in Resources */,
 				C3FEB0301871C294008EADAA /* record_12@2x.png in Resources */,
 				C3FEB0761871C294008EADAA /* user_19@2x.png in Resources */,
 				C3FEB00F1871C294008EADAA /* hunyin_37@2x.png in Resources */,
@@ -3017,6 +3097,7 @@
 				4EE3AE3018CF3BC600D09F79 /* def3.mp3 in Resources */,
 				C351B69A187E3E0F00630408 /* MusicFans_hkbg@2x.png in Resources */,
 				C3FEB0491871C294008EADAA /* record_36@2x.png in Resources */,
+				4EB409DD190F40CC000950D7 /* 马鞍山话.mp3 in Resources */,
 				C3164CAD1874555D00301ACA /* FoundMusic_@2x.png in Resources */,
 				C3FEB0281871C294008EADAA /* first_5@2x.png in Resources */,
 				4EB43E7418AB26D4004CCC85 /* PlayItemView.xib in Resources */,
@@ -3028,6 +3109,7 @@
 				4E0DC79118D0B59F00E4E6ED /* bubbleSomeone.png in Resources */,
 				C3FEAFF61871C294008EADAA /* hunyin_13@2x.png in Resources */,
 				C3FEB0881871C294008EADAA /* user_7@2x.png in Resources */,
+				4EB409E3190F4477000950D7 /* HelpingViewController.xib in Resources */,
 				4E96B597188EABC4008EA56F /* VERSION in Resources */,
 				C3164CE91874555D00301ACA /* MusicFans_six@2x.png in Resources */,
 				4EBF35C318E314B700E77783 /* classify6@2x.png in Resources */,
@@ -3076,6 +3158,7 @@
 				4E97A23618D13CDF00972BDE /* 8.png in Resources */,
 				4EBF35CE18E314F500E77783 /* classify5@2x.png in Resources */,
 				C3FEB0E11871CAF4008EADAA /* MixingMusicListViewController.xib in Resources */,
+				4EB409CF190F40CC000950D7 /* 六安话.mp3 in Resources */,
 				C3FEB0291871C294008EADAA /* first_6@2x.png in Resources */,
 				C3FEB0391871C294008EADAA /* record_21@2x.png in Resources */,
 				4EAF2A5718AA03B5007A8F70 /* MinimumTrackImage.png in Resources */,
@@ -3096,6 +3179,7 @@
 				C3FEAFFC1871C294008EADAA /* hunyin_19@2x.png in Resources */,
 				C3164CE31874555D00301ACA /* MusicFans_one@2x.png in Resources */,
 				C3456CEF18877DCF009329D2 /* 2kuanf@2x.png in Resources */,
+				4EB409D1190F40CC000950D7 /* 安庆话.mp3 in Resources */,
 				4EB43E6F18AB15CD004CCC85 /* MyUploadDetailCell.xib in Resources */,
 				4E52D07E18D1769B0094F136 /* UpLoadView.xib in Resources */,
 				C3FEAFFE1871C294008EADAA /* hunyin_20@2x.png in Resources */,
@@ -3113,6 +3197,7 @@
 				C3D4FCBA187D0C3A001A7223 /* CatalogRankSectionHeader.xib in Resources */,
 				4E97A23118D13CDF00972BDE /* 3.png in Resources */,
 				4E97A23218D13CDF00972BDE /* 4.png in Resources */,
+				4EB409D0190F40CC000950D7 /* 合肥话.mp3 in Resources */,
 				C3FEB0681871C294008EADAA /* setting_7@2x.png in Resources */,
 				C3FEB0001871C294008EADAA /* hunyin_22@2x.png in Resources */,
 				4EAF2A4918A9FE90007A8F70 /* WeiboSDK.bundle in Resources */,
@@ -3123,7 +3208,9 @@
 				C3164CDC1874555D00301ACA /* MusicFans_gf@2x.png in Resources */,
 				C3FEB0741871C294008EADAA /* user_17@2x.png in Resources */,
 				C32F4022188287EE00681953 /* MyProductionViewController.xib in Resources */,
+				4EB409D4190F40CC000950D7 /* 普通话.mp3 in Resources */,
 				4E52D08318D17A040094F136 /* PopupTagViewController.xib in Resources */,
+				4EB409DA190F40CC000950D7 /* 蚌埠话.mp3 in Resources */,
 				C3164CBF1874555D00301ACA /* FoundMusic_l@2x.png in Resources */,
 				C32F40131882878600681953 /* MyUploadViewController.xib in Resources */,
 				C3164CEC1874555D00301ACA /* MusicFans_twei@2x.png in Resources */,
@@ -3135,6 +3222,7 @@
 				C39A97B6189247AE00F41CBB /* catalog_section_hpng@2x.png in Resources */,
 				C3FEB0141871C294008EADAA /* hunyin_41@2x.png in Resources */,
 				C3FEB06E1871C294008EADAA /* user_11@2x.png in Resources */,
+				4EB409DC190F40CC000950D7 /* 阜阳话.mp3 in Resources */,
 				4EBF35DE18E3220A00E77783 /* uploadBgview@2x.png in Resources */,
 				C3FEAFFD1871C294008EADAA /* hunyin_1@2x.png in Resources */,
 				C39A97A6189247AE00F41CBB /* catalog_icon_dpng@2x.png in Resources */,
@@ -3147,6 +3235,7 @@
 				4EBF35C518E314B700E77783 /* classify8@2x.png in Resources */,
 				4EBF35B218E30F0200E77783 /* wodezjhuye@2x.png in Resources */,
 				4E97A23318D13CDF00972BDE /* 5.png in Resources */,
+				4EB409D2190F40CC000950D7 /* 宣城话.mp3 in Resources */,
 				4EAF2A4618A9FE90007A8F70 /* RennSDK.bundle in Resources */,
 				C34C340C188AE6F7009CD20B /* ShareViewController.xib in Resources */,
 				C3FEB03A1871C294008EADAA /* record_22@2x.png in Resources */,
@@ -3165,6 +3254,7 @@
 				C3FEB0131871C294008EADAA /* hunyin_40@2x.png in Resources */,
 				4EBF35E018E3220A00E77783 /* uploadkuang@2x.png in Resources */,
 				4EBF35DF18E3220A00E77783 /* uploaddakuang@2x.png in Resources */,
+				4EB409D8190F40CC000950D7 /* 滁州话.mp3 in Resources */,
 				C3FEB04F1871C294008EADAA /* record_4@2x.png in Resources */,
 				C34C33FD188A8038009CD20B /* MixingViewController.xib in Resources */,
 				C3164CC91874555D00301ACA /* FoundMusic_qw@2x.png in Resources */,
@@ -3281,6 +3371,7 @@
 				C3456CFD18883C17009329D2 /* TMSoundEffectCell.m in Sources */,
 				C341171B188B8B080070EAB4 /* HttpService.m in Sources */,
 				C326CDBB187C5EDB006DD97C /* DownloadRankViewController.m in Sources */,
+				4EB409E2190F4477000950D7 /* HelpingViewController.m in Sources */,
 				C32F40081882873A00681953 /* MessageInviteViewController.m in Sources */,
 				C3FEB0B21871C801008EADAA /* CommonViewController.m in Sources */,
 				C32D4FA9187F953C0090730B /* TMQuiltViewController.m in Sources */,
@@ -3375,6 +3466,7 @@
 				C32D4FA7187F953C0090730B /* TMQuiltView.m in Sources */,
 				4E12FC3C18D6D52E007AA33E /* CustomiseActionSheet.m in Sources */,
 				4EB7C4EB18B6FC2800BCF0E8 /* MixingCatalogViewController.m in Sources */,
+				4E10DFD518FC0B600057C500 /* UIImage+RoundCorner.m in Sources */,
 				C3D4FCC7187D6786001A7223 /* DownloadRankCell.m in Sources */,
 				4ED1752018925CC2000EC483 /* MutiMixingViewController.m in Sources */,
 			);

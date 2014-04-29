@@ -6,19 +6,19 @@
 //  Copyright (c) 2014年 helloworld. All rights reserved.
 //
 
-#import "HelpViewController.h"
+#import "HelpingViewController.h"
 #import "UIViewController+CustomBarItemPosition.h"
 #import "User.h"
 #import "HttpService.h"
 #import "MBProgressHUD.h"
 
-@interface HelpViewController ()<UIAlertViewDelegate,UITextViewDelegate>
+@interface HelpingViewController ()<UIAlertViewDelegate,UITextViewDelegate>
 {
     BOOL isEdit;
 }
 @end
 
-@implementation HelpViewController
+@implementation HelpingViewController
 #pragma mark - Life Cycle
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -59,7 +59,7 @@
     {
         if (user) {
             [_contentView resignFirstResponder];
-            __weak HelpViewController * weakSelf = self;
+            __weak HelpingViewController * weakSelf = self;
             [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             [[HttpService sharedInstance]commentWithParams:@{@"content": _contentView.text,@"userID":user.hw_id} completionBlock:^(BOOL isSuccess) {
                 [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];

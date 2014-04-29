@@ -17,6 +17,7 @@
 #import "User.h"
 
 #import "CommentView.h"
+#import "UIImage+RoundCorner.h"
 
 @interface MainViewController ()
 {
@@ -67,15 +68,16 @@
     if (randNum == 0) {
         randNum =1;
     }
-    NSString * fileName = [NSString stringWithFormat:@"def%d",randNum];
-    NSURL * fileURL = [NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:fileName ofType:@"mp3"]];
+    
+    
+    NSString * accent = [[NSUserDefaults standardUserDefaults]objectForKey:DefaultAccent];
+    
+//    NSString * fileName = [NSString stringWithFormat:@"def%d",randNum];
+    NSURL * fileURL = [NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:accent ofType:@"mp3"]];
     player = [[AVAudioPlayer alloc]initWithContentsOfURL:fileURL error:nil];
     [player play];
     
     [self.view bringSubviewToFront:_startPageContainer];
-    
-    
-    
     
 }
 
@@ -247,18 +249,21 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         for (NSDictionary * dic in customiseImages) {
+            UIImage * tempImage = dic[@"common_image"];
+            UIImage * roundImage = [tempImage roundedCornerImageWithCornerRadius:5];
+            
             if ([dic[@"image_type"]isEqualToString:@"积分图片"]) {
-                [_jifenBtn setBackgroundImage:dic[@"common_image"] forState:UIControlStateNormal];
+               
+                [_jifenBtn setBackgroundImage:roundImage forState:UIControlStateNormal];
             }else if([dic[@"image_type"]isEqualToString:@"寻音图片"])
             {
-                [_xunyinBtn setBackgroundImage:dic[@"common_image"] forState:UIControlStateNormal];
+                
+                [_xunyinBtn setBackgroundImage:roundImage forState:UIControlStateNormal];
             }else if([dic[@"image_type"]isEqualToString:@"欢迎图片"])
             {
                 //save the startImage to local
-                UIImage * image = dic[@"common_image"];
                 
-                
-                [[NSUserDefaults standardUserDefaults]setObject:UIImagePNGRepresentation(image) forKey:StartImage];
+                [[NSUserDefaults standardUserDefaults]setObject:UIImagePNGRepresentation(roundImage) forKey:StartImage];
                 [[NSUserDefaults standardUserDefaults]synchronize];
             }
             

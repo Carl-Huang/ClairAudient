@@ -28,4 +28,5 @@
 #define FacebackAction                              @"FacebackAction"
 #define CommitPinLun                                @"CommitPinLun"
 #define UploadAction                                @"UploadAction"
+#define RegistAction                                @"RegistAction"
 #endif

@@ -30,6 +30,7 @@
 
     #import "Macro.h"
     #import <UIKit/UIKit.h>
+    #import"MBProgressHUD.h"
     #import <Foundation/Foundation.h>
     #import "HWSDK.h"
 #endif

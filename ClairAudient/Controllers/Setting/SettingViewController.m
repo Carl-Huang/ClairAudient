@@ -12,6 +12,7 @@
 #import "AccentTableViewController.h"
 #import "UserDefaultMacro.h"
 #import "DrawDownBtn.h"
+#import "HelpingViewController.h"
 @interface SettingViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 {
     AccentTableViewController * popUpTable;
@@ -77,7 +78,7 @@
     if (popUpTable == nil) {
         popUpTable = [[AccentTableViewController alloc]initWithNibName:@"AccentTableViewController" bundle:nil];
         
-        NSArray * array = @[@"普通话",@"合肥话",@"芜湖话",@"淮南话",@"安庆话",@"铜陵话",@"黄山话",@"池州话",@"宣城话",@"安话",@"宿州话",@"马鞍山话",@"徐州话",@"淮北话",@"阜阳话",@"毫州话"];
+        NSArray * array = @[@"普通话",@"合肥话",@"芜湖话",@"淮南话",@"安庆话",@"铜陵话",@"黄山话",@"池州话",@"宣城话",@"安庆话",@"宿州话",@"马鞍山话",@"徐州话",@"淮北话",@"阜阳话",@"毫州话"];
         
         [popUpTable setDataSource:array];
         array = nil;
@@ -201,6 +202,9 @@
     }else if (indexPath.row == 4)
     {
         //帮助
+        HelpingViewController * viewController = [[HelpingViewController alloc]initWithNibName:@"HelpingViewController" bundle:nil];
+        [self push:viewController];
+        viewController = nil;
     }
     else if (indexPath.row == 5)
     {

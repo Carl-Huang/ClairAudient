@@ -21,16 +21,55 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="setting_13.png" id="xxg-U1-qh1">
-                    <rect key="frame" x="20" y="20" width="280" height="200"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" id="ISp-c1-bEf">
-                    <rect key="frame" x="37" y="27" width="251" height="183"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <rect key="frame" x="10" y="20" width="300" height="400"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <attributedString key="attributedText">
-                        <fragment content="衷心感谢您的反馈意见，我们会进一步完善。">
+                        <fragment>
+                            <string key="content">顺风耳软件操作说明
+
+1.打开软件，播放欢迎声音，启动界面，加载数据完成，点击进入按钮
+
+2.录制：
+  （1）点击录制按钮进入录音界面
+  （2）点击中间的录制按钮,开始录制，点击右边的列表按钮，进入录制文件列表
+  （3）录音过程中，可以暂停、终止或删除
+  （4）录音文件列表：
+       播放按钮进行试听
+       右边开始第一个按钮上传，第二个分享，第三个剪辑，第四个删除
+  （5）剪辑界面：
+　　  头部三个按钮：
+　　  返回键：返回至上级页面
+　　  加号键功能：添加混音音效
+　　  对号键功能：保存
+　　　中间部分的波形展示：两个滑竿移动后选择音乐的播放或剪切时间　　
+　　  底部偏上4个按钮：
+　　  左进：回起始点
+　　  播放：播放音乐
+　　  右进：回终点
+　　  变音功能：编辑声音
+　　
+3.寻音：进入声音列表界面后
+  头部三个按钮的功能分别是对音乐文件进行排序，筛选
+
+4.混音：同录音的剪辑功能
+  不同处：变音处改为复制，即复制原始文件到剪辑界面
+  
+  点击加号后，进入选择音效的界面
+  分为：本地音乐和网络音效
+  
+  本地音乐直接将音乐文件加入剪辑界面
+  网络音效需下载后才能添加，此过程在点击网络列表文件的加号按钮后，有询问是否下载的提示，点击时自动完成下载并添加
+  
+  将两种音乐文件全部添加到剪辑界面后，可以混合播放，也可单首播放，点击对号按钮，进行后台混音，混音完成 ，直接跳转至我的制作界面
+
+5.音迷，积分略
+
+6.设置：
+  乡音模式：选择模式列表，选中后在下次重启程序时播放对应的欢迎声音
+  更换主题：点击想要的主题样式
+　　</string>
                             <attributes>
                                 <color key="NSColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <font key="NSFont" size="14" name="STHeitiSC-Light"/>
@@ -40,17 +79,6 @@
                     </attributedString>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5a3-eT-yic">
-                    <rect key="frame" x="164" y="228" width="124" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" image="setting_14.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="submitCommentAction:" destination="-1" eventType="touchUpInside" id="QgQ-ZS-RIW"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -59,7 +87,5 @@
     </objects>
     <resources>
         <image name="setting_12.png" width="320" height="477"/>
-        <image name="setting_13.png" width="320" height="196"/>
-        <image name="setting_14.png" width="124" height="44"/>
     </resources>
 </document>

@@ -176,7 +176,7 @@
     {
         imageView.image = [UIImage imageNamed:@"MusicFans_jka"];
     }
-    label.text = catalog.vlt_name;
+    label.text = @"";
     UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapSection:)];
     [view addGestureRecognizer:tapGesture];
     view.userInteractionEnabled = YES;
