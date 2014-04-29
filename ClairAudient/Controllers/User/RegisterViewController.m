@@ -10,6 +10,7 @@
 #import "ControlCenter.h"
 #import "HttpService.h"
 #import "LoginViewController.h"
+#import "VipRegisterViewController.h"
 @interface RegisterViewController ()
 
 @end
@@ -60,14 +61,17 @@
         [self showAlertViewWithMessage:@"密码不一致"];
     }
     
-    
+    NSDictionary * params = @{@"userName":_nameField.text,@"passWord":_pswField.text,@"findQuestion":_questionField.text,@"findAnswer":_answerField.text,@"email":_emailField.text};
     if(_vipBtn.selected)
     {
-        [ControlCenter showVipRegisterVC];
+        VipRegisterViewController * viewController = [[VipRegisterViewController alloc]initWithNibName:@"VipRegisterViewController" bundle:nil];
+        [viewController setInfo:params];
+        [self push:viewController];
+        viewController = nil;
     }else
         
     {
-        NSDictionary * params = @{@"userName":_nameField.text,@"passWord":_pswField.text,@"findQuestion":_questionField.text,@"findAnswer":_answerField.text,@"email":_emailField.text};
+        
         __weak RegisterViewController * weakSelf = self;
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [[HttpService sharedInstance]registerWithParams:params completionBlock:^(BOOL isSuccess) {

@@ -21,7 +21,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *addressField;
 @property (weak, nonatomic) IBOutlet UITextField *codeField;
 @property (weak, nonatomic) IBOutlet UITextField *birthdayField;
+
+@property (strong ,nonatomic)NSDictionary * info;
 - (IBAction)backAction:(id)sender;
 - (IBAction)selectBoyAction:(id)sender;
 - (IBAction)selectGirlAction:(id)sender;
+- (IBAction)regiBtnAction:(id)sender;
 @end
