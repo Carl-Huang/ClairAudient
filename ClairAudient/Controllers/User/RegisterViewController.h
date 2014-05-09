@@ -21,5 +21,6 @@
 - (IBAction)backAction:(id)sender;
 - (IBAction)selectNormalAction:(id)sender;
 - (IBAction)selectionVipAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UIScrollView *contentScrollView;
 
 @end

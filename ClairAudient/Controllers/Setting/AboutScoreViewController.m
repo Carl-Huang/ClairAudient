@@ -27,6 +27,7 @@
 {
     [super viewDidLoad];
     [self initUI];
+
 }
 
 - (void)didReceiveMemoryWarning

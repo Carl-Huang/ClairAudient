@@ -11,5 +11,6 @@
 @interface AboutScoreViewController : CommonViewController
 @property (weak, nonatomic) IBOutlet UIImageView *bgView;
 
+@property (weak, nonatomic) IBOutlet UITextView *contentView;
 
 @end

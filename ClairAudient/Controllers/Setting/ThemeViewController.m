@@ -39,7 +39,7 @@
 #pragma mark - Private Methods
 - (void)initUI
 {
-    self.title = @"关于积分";
+    self.title = @"设置";
     [self setLeftAndRightBarItem];
 }
 

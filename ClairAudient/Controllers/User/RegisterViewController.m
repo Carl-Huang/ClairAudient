@@ -11,7 +11,7 @@
 #import "HttpService.h"
 #import "LoginViewController.h"
 #import "VipRegisterViewController.h"
-@interface RegisterViewController ()
+@interface RegisterViewController ()<UITextFieldDelegate>
 
 @end
 
@@ -29,6 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [_contentScrollView setContentSize:CGSizeMake(320, 700)];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -52,16 +53,17 @@
      @property (weak, nonatomic) IBOutlet UITextField *pswField;
      @property (weak, nonatomic) IBOutlet UITextField *nameField;
      */
-    if ([_emailField.text length] == 0 ||[_answerField.text length] == 0||[_questionField.text length] == 0||[_repeatPswField.text length] == 0||[_pswField.text length] == 0||[_nameField.text length]) {
+    if ([_emailField.text length] == 0 ||[_answerField.text length] == 0||[_questionField.text length] == 0||[_pswField.text length] == 0||[_nameField.text length]==0) {
         [self showAlertViewWithMessage:@"还有信息没有填哦，亲"];
         return;
     }
     
     if (![_pswField.text isEqualToString:_repeatPswField.text]) {
         [self showAlertViewWithMessage:@"密码不一致"];
+        return ;
     }
     
-    NSDictionary * params = @{@"userName":_nameField.text,@"passWord":_pswField.text,@"findQuestion":_questionField.text,@"findAnswer":_answerField.text,@"email":_emailField.text};
+    NSDictionary * params = @{@"userName":_nameField.text,@"passWord":_pswField.text,@"findQuestion":_questionField.text,@"findAnswer":_answerField.text,@"email":_emailField.text,@"integral":@"4",@"role":@"4",@"workYears":@"4",@"id":@"0"};
     if(_vipBtn.selected)
     {
         VipRegisterViewController * viewController = [[VipRegisterViewController alloc]initWithNibName:@"VipRegisterViewController" bundle:nil];
@@ -74,7 +76,7 @@
         
         __weak RegisterViewController * weakSelf = self;
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        [[HttpService sharedInstance]registerWithParams:params completionBlock:^(BOOL isSuccess) {
+        [[HttpService sharedInstance]registerWithParams:@{@"user":params} completionBlock:^(BOOL isSuccess) {
             [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
             if(isSuccess)
             {
@@ -112,5 +114,14 @@
     [viewController setInfo:dic];
     [self push:viewController];
     viewController = nil;
+}
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if([string isEqualToString:@"\n"])
+    {
+        [textField resignFirstResponder];
+        return NO;
+    }
+    return  YES;
 }
 @end

@@ -9,7 +9,7 @@
 #import "AFHttp.h"
 #import "ActionMacro.h"
 
-#define URL_PREFIX @"http://app.hfapp.cn/soundValley/"
+#define URL_PREFIX @"http://220.178.111.60:81/soundValley/"
 
 @interface HttpService : AFHttp
 

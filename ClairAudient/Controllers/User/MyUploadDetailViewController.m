@@ -401,7 +401,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
 -(void)downloadMusic:(id)sender
 {
     if (!isDowning) {
-        UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:_voiceItem.vl_name message:@"是否下载该声音" delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"确定", nil];
+        UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:_voiceItem.vl_name message:@"是否下载该声音" delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"是", nil];
         [alertView show];
         alertView = nil;
     }else
