@@ -8,7 +8,12 @@
 
 #ifndef ClairAudient_Macro_h
 #define ClairAudient_Macro_h
-#define VoccPrefix                  @"http://s1.vocc.cc/"
+
+/*
+ 以voice_data开头的用http://app.hfapp.cn/soundValley这个前缀
+ */
+#define SoundValleyPrefix           @"http://220.178.111.60:81/soundValley/"
+#define VoccPrefix                  @"http://s1.vocc.org.cn/"
 #define CurrentPlayFilePostionInfo  @"CurrentPlayFilePostionInfo"
 #define PlotViewDidStartPlay        @"PlotViewDidStartPlay"
 

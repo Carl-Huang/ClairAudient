@@ -27,8 +27,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _dataSource = @[@"乡音模式",@"关于积分",@"个性主题",@"用户反馈",@"帮助",@"退出登陆"];
-        _imageInfos = @{@"乡音模式":@"setting_3",@"关于积分":@"setting_5",@"个性主题":@"setting_6",@"用户反馈":@"q_icon_help_feedback",@"帮助":@"q_icon_help_feedback",@"帮助与反馈":@"setting_7",@"退出登陆":@"setting_8"};
+        _dataSource = @[@"乡音模式",@"关于积分",@"更换主题",@"用户反馈",@"帮助",@"退出登陆"];
+        _imageInfos = @{@"乡音模式":@"setting_3",@"关于积分":@"setting_5",@"更换主题":@"setting_6",@"用户反馈":@"q_icon_help_feedback",@"帮助":@"q_icon_help_feedback",@"帮助与反馈":@"setting_7",@"退出登陆":@"setting_8"};
     }
     return self;
 }

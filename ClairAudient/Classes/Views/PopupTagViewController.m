@@ -34,10 +34,11 @@ static NSString * cellIdentifier = @"cellIdentifier";
 #endif
     self.contentTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.contentTable.backgroundColor = [UIColor clearColor];
+    [self.contentTable setBackgroundView:nil];
     self.contentTable.scrollEnabled = YES;
     
-    UIImage * bgImage = [UIImage imageNamed:@"标签框"];
-    [self.bgImageView setImage:bgImage];
+//    UIImage * bgImage = [UIImage imageNamed:@"标签框"];
+//    [self.bgImageView setImage:bgImage];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -65,8 +66,8 @@ static NSString * cellIdentifier = @"cellIdentifier";
     }
     [cell setBackgroundColor:[UIColor clearColor]];
     cell.textLabel.text = [dataSource objectAtIndex:indexPath.row];
-    cell.textLabel.font = [UIFont systemFontOfSize:12];
-    cell.textLabel.textColor = [UIColor blackColor];
+    cell.textLabel.font = [UIFont systemFontOfSize:14];
+    cell.textLabel.textColor = [UIColor whiteColor];
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;

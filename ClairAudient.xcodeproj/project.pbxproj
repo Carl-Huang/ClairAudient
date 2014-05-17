@@ -445,6 +445,7 @@
 		4EB409DE190F40CC000950D7 /* 黄山话.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EB409CD190F40CC000950D7 /* 黄山话.mp3 */; };
 		4EB409E2190F4477000950D7 /* HelpingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB409E0190F4477000950D7 /* HelpingViewController.m */; };
 		4EB409E3190F4477000950D7 /* HelpingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EB409E1190F4477000950D7 /* HelpingViewController.xib */; };
+		4EB42CD7192760B700A377D3 /* uploadBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EB42CD6192760B700A377D3 /* uploadBg.png */; };
 		4EB43E6D18AB15B6004CCC85 /* MyUploadDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB43E6C18AB15B6004CCC85 /* MyUploadDetailCell.m */; };
 		4EB43E6F18AB15CD004CCC85 /* MyUploadDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EB43E6E18AB15CD004CCC85 /* MyUploadDetailCell.xib */; };
 		4EB43E7218AB26BC004CCC85 /* PlayItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB43E7118AB26BC004CCC85 /* PlayItemView.m */; };
@@ -1144,6 +1145,7 @@
 		4EB409DF190F4477000950D7 /* HelpingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpingViewController.h; sourceTree = "<group>"; };
 		4EB409E0190F4477000950D7 /* HelpingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpingViewController.m; sourceTree = "<group>"; };
 		4EB409E1190F4477000950D7 /* HelpingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpingViewController.xib; sourceTree = "<group>"; };
+		4EB42CD6192760B700A377D3 /* uploadBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uploadBg.png; sourceTree = "<group>"; };
 		4EB43E6B18AB15B6004CCC85 /* MyUploadDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUploadDetailCell.h; sourceTree = "<group>"; };
 		4EB43E6C18AB15B6004CCC85 /* MyUploadDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUploadDetailCell.m; sourceTree = "<group>"; };
 		4EB43E6E18AB15CD004CCC85 /* MyUploadDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyUploadDetailCell.xib; sourceTree = "<group>"; };
@@ -1380,7 +1382,7 @@
 		C3D4FCC5187D6786001A7223 /* DownloadRankCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadRankCell.h; sourceTree = "<group>"; };
 		C3D4FCC6187D6786001A7223 /* DownloadRankCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadRankCell.m; sourceTree = "<group>"; };
 		C3D4FCC8187D679E001A7223 /* DownloadRankCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadRankCell.xib; sourceTree = "<group>"; };
-		C3FEAF1C1871C156008EADAA /* ClairAudient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClairAudient.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3FEAF1C1871C156008EADAA /* 顺风耳.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "顺风耳.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3FEAF1F1871C156008EADAA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C3FEAF211871C156008EADAA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		C3FEAF231871C156008EADAA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -1651,6 +1653,7 @@
 		4EAE8511191BCFAD000F744B /* Upload */ = {
 			isa = PBXGroup;
 			children = (
+				4EB42CD6192760B700A377D3 /* uploadBg.png */,
 				4EAE8512191BCFAD000F744B /* uploadBgview@2x.png */,
 				4EAE8513191BCFAD000F744B /* uploaddakuang@2x.png */,
 				4EAE8514191BCFAD000F744B /* uploadkuang@2x.png */,
@@ -2383,7 +2386,7 @@
 		C3FEAF1D1871C156008EADAA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C3FEAF1C1871C156008EADAA /* ClairAudient.app */,
+				C3FEAF1C1871C156008EADAA /* 顺风耳.app */,
 				C3FEAF371871C156008EADAA /* ClairAudientTests.xctest */,
 			);
 			name = Products;
@@ -2796,7 +2799,7 @@
 			);
 			name = ClairAudient;
 			productName = ClairAudient;
-			productReference = C3FEAF1C1871C156008EADAA /* ClairAudient.app */;
+			productReference = C3FEAF1C1871C156008EADAA /* 顺风耳.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C3FEAF361871C156008EADAA /* ClairAudientTests */ = {
@@ -3079,6 +3082,7 @@
 				4EB4AC9D18B33AAB008A4DDC /* MyDownloadCell.xib in Resources */,
 				4EAE86FF191BCFAE000F744B /* MusicFans_seven@2x.png in Resources */,
 				4EAE86C6191BCFAE000F744B /* first_8@2x.png in Resources */,
+				4EB42CD7192760B700A377D3 /* uploadBg.png in Resources */,
 				4EB20FAA18A931BE007E5A8B /* EditListCell.xib in Resources */,
 				4EAE876C191BCFAE000F744B /* user_31@2x.png in Resources */,
 				4E8D2D6118D592FC00F6C586 /* VolumeView.xib in Resources */,
@@ -3655,7 +3659,7 @@
 					/Users/vedon/Documents/GitHub/ClairAudient/ClairAudient/Classes/Utilities/lame,
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "顺风耳";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -3700,7 +3704,7 @@
 					/Users/vedon/Documents/GitHub/ClairAudient/ClairAudient/Classes/Utilities/lame,
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "顺风耳";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;

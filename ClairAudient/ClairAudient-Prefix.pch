@@ -8,10 +8,7 @@
 
 //数据库处理相关
 #import "CoreData+MagicalRecord.h"
-/*
- 以voice_data开头的用http://app.hfapp.cn/soundValley这个前缀
- */
-#define SoundValleyPrefix @"http://app.hfapp.cn/soundValley/"
+
 /*
  其他
  */

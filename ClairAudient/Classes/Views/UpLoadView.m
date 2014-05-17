@@ -18,6 +18,9 @@
 {
     PopupTagViewController * popUpTable;
     PopupTagViewController * childPopUpTable;
+    
+    BOOL isAddPopupTable;
+    BOOL isAddChildPopUpTable;
 }
 @property (assign ,nonatomic) BOOL isResetChildrenDataSource;
 @property (strong ,nonatomic) NSArray * parentCatalog;
@@ -50,6 +53,8 @@
     [super awakeFromNib];
     _desTextView.delegate = self;
     _nameLabel.delegate = self;
+    isAddPopupTable = NO;
+    isAddChildPopUpTable = NO;
     currentSelectedParentID = @"-1";
 }
 
@@ -80,13 +85,32 @@
             [weakSelf.parentBtn setTitle:title forState:UIControlStateNormal];
             Catalog * object = [weakSelf.parentCatalog objectAtIndex:index];
             weakSelf.currentSelectedParentID = object.vlt_id;
+            isAddPopupTable = NO;
         }];
-        [self addSubview:popUpTable.view];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self addSubview:popUpTable.view];
+            if (isAddChildPopUpTable&&childPopUpTable ) {
+                [childPopUpTable.view removeFromSuperview];
+            }
+        });
     }else
     {
-        [self addSubview:popUpTable.view];
+        if (!isAddPopupTable) {
+            isAddPopupTable = YES;
+            [self addSubview:popUpTable.view];
+            if (isAddChildPopUpTable&&childPopUpTable ) {
+                [childPopUpTable.view removeFromSuperview];
+            }
+        }else
+        {
+            isAddPopupTable = NO;
+            [popUpTable.view removeFromSuperview];
+        }
+    
     }
 }
+
 
 -(void)showChildrenPopupview
 {
@@ -113,7 +137,7 @@
             [weakSelf.childrenBtn setTitle:title forState:UIControlStateNormal];
             Catalog * object = [weakSelf.parentCatalog objectAtIndex:index];
             weakSelf.currentSelectedChildID = object.vlt_id;
-            
+            isAddChildPopUpTable = NO;
         }];
         [self addSubview:childPopUpTable.view];
     }else
@@ -125,7 +149,16 @@
         }
         [childPopUpTable updateDateSource:array];
         array = nil;
-        [self addSubview:childPopUpTable.view];
+        
+        
+        if (!isAddChildPopUpTable) {
+            isAddChildPopUpTable = YES;
+            [self addSubview:childPopUpTable.view];
+        }else
+        {
+            isAddChildPopUpTable = NO;
+            [childPopUpTable.view removeFromSuperview];
+        }
     }
 
 }
@@ -145,6 +178,7 @@
 
     }else
     {
+        
         [self showParentCatalog];
     }
     
@@ -176,10 +210,11 @@
 - (IBAction)sureBtnAction:(id)sender {
     
     if ([_desTextView.text length]==0) {
-
+        [self showAlertViewWithMessage:@"说明文字不能为空"];
         return;
     }
     if ([_nameLabel.text length]==0) {
+        [self showAlertViewWithMessage:@"名称不能为空"];
         return;
     }
     
@@ -194,12 +229,19 @@
             User *user = [User userFromLocal];
             NSString * user_id = user.hw_id;
             user = nil;
-            NSDictionary * params = @{@"voiceLibrary": @{@"bit_rate": @"8-bit",@"vl_name":_nameLabel.text,@"explain":_desTextView.text,@"url":musicName,@"upload_time":uploadTime,@"sampling_rate":@"8000HZ",@"time":@"0",@"priority":@"0",@"parent_id":currentSelectedParentID,@"user_id":user_id,@"id":@"0",@"download_num":@"0",@"vlt_id":currentSelectedChildID,@"content":_musicEncodeStr}};
+            NSDictionary * params = @{@"voiceLibrary": @{@"bit_rate": @"8-bit",@"vl_name":_nameLabel.text,@"explain":_desTextView.text,@"url":musicName,@"upload_time":uploadTime,@"sampling_rate":@"8000HZ",@"time":@"0",@"priority":@"0",@"parent_id":currentSelectedParentID,@"user_id":user_id,@"id":@"0",@"download_num":@"0",@"vlt_id":currentSelectedChildID,@"content":@"123"}};
             
             [[HttpService sharedInstance]uploadVoice:params completionBlock:^(BOOL isSuccess) {
-                ;
+                if (isSuccess) {
+                    [weakSelf showAlertViewWithMessage:@"上传成功"];
+                }else
+                {
+                    [weakSelf showAlertViewWithMessage:@"上传失败"];
+                }
+                
                 [MBProgressHUD hideHUDForView:weakSelf animated:YES];
             } failureBlock:^(NSError *error, NSString *responseString) {
+                [weakSelf showAlertViewWithMessage:@"上传失败"];
                 [MBProgressHUD hideHUDForView:weakSelf animated:YES];
             }];
             params = nil;
@@ -247,5 +289,14 @@
         return NO;
     }
     return  YES;
+}
+
+- (void)showAlertViewWithMessage:(NSString *)message
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles:nil, nil];
+        [alertView show];
+        alertView = nil;
+    });
 }
 @end
