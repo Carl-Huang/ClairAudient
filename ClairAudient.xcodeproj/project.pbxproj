@@ -487,6 +487,23 @@
 		4ED175311892B570000EC483 /* MixingEffectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ED1752F1892B570000EC483 /* MixingEffectViewController.xib */; };
 		4ED175351892B8F3000EC483 /* LocalMusicViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4ED175331892B8F3000EC483 /* LocalMusicViewController.mm */; };
 		4ED175361892B8F3000EC483 /* LocalMusicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ED175341892B8F3000EC483 /* LocalMusicViewController.xib */; };
+		4ED8A2B31932361200E8CBE5 /* SoundMaker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4ED8A2B21932361200E8CBE5 /* SoundMaker.mm */; };
+		4ED8A2D11932366A00E8CBE5 /* AAFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4ED8A2B51932366A00E8CBE5 /* AAFilter.cpp */; };
+		4ED8A2D21932366A00E8CBE5 /* BPMDetect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4ED8A2B71932366A00E8CBE5 /* BPMDetect.cpp */; };
+		4ED8A2D31932366A00E8CBE5 /* cpu_detect_x86.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4ED8A2BA1932366A00E8CBE5 /* cpu_detect_x86.cpp */; };
+		4ED8A2D41932366A00E8CBE5 /* FIFOSampleBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4ED8A2BB1932366A00E8CBE5 /* FIFOSampleBuffer.cpp */; };
+		4ED8A2D51932366A00E8CBE5 /* FIRFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4ED8A2BE1932366A00E8CBE5 /* FIRFilter.cpp */; };
+		4ED8A2D61932366A00E8CBE5 /* InterpolateCubic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4ED8A2C01932366A00E8CBE5 /* InterpolateCubic.cpp */; };
+		4ED8A2D71932366A00E8CBE5 /* InterpolateLinear.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4ED8A2C21932366A00E8CBE5 /* InterpolateLinear.cpp */; };
+		4ED8A2D81932366A00E8CBE5 /* InterpolateShannon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4ED8A2C41932366A00E8CBE5 /* InterpolateShannon.cpp */; };
+		4ED8A2D91932366A00E8CBE5 /* mmx_optimized.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4ED8A2C61932366A00E8CBE5 /* mmx_optimized.cpp */; };
+		4ED8A2DA1932366A00E8CBE5 /* PeakFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4ED8A2C71932366A00E8CBE5 /* PeakFinder.cpp */; };
+		4ED8A2DB1932366A00E8CBE5 /* RateTransposer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4ED8A2C91932366A00E8CBE5 /* RateTransposer.cpp */; };
+		4ED8A2DC1932366A00E8CBE5 /* SoundTouch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4ED8A2CB1932366A00E8CBE5 /* SoundTouch.cpp */; };
+		4ED8A2DD1932366A00E8CBE5 /* sse_optimized.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4ED8A2CD1932366A00E8CBE5 /* sse_optimized.cpp */; };
+		4ED8A2DE1932366A00E8CBE5 /* TDStretch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4ED8A2CF1932366A00E8CBE5 /* TDStretch.cpp */; };
+		4ED8A2E119323AF300E8CBE5 /* SoundMakerView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4ED8A2E019323AF300E8CBE5 /* SoundMakerView.mm */; };
+		4ED8A2E319323B0B00E8CBE5 /* SoundMakerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ED8A2E219323B0B00E8CBE5 /* SoundMakerView.xib */; };
 		4EE3AE2E18CF3BC600D09F79 /* def1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EE3AE2918CF3BC600D09F79 /* def1.mp3 */; };
 		4EE3AE2F18CF3BC600D09F79 /* def2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EE3AE2A18CF3BC600D09F79 /* def2.mp3 */; };
 		4EE3AE3018CF3BC600D09F79 /* def3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EE3AE2B18CF3BC600D09F79 /* def3.mp3 */; };
@@ -1206,6 +1223,39 @@
 		4ED175321892B8F3000EC483 /* LocalMusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalMusicViewController.h; sourceTree = "<group>"; };
 		4ED175331892B8F3000EC483 /* LocalMusicViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LocalMusicViewController.mm; sourceTree = "<group>"; };
 		4ED175341892B8F3000EC483 /* LocalMusicViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocalMusicViewController.xib; sourceTree = "<group>"; };
+		4ED8A2B11932361200E8CBE5 /* SoundMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundMaker.h; sourceTree = "<group>"; };
+		4ED8A2B21932361200E8CBE5 /* SoundMaker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SoundMaker.mm; sourceTree = "<group>"; };
+		4ED8A2B51932366A00E8CBE5 /* AAFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AAFilter.cpp; sourceTree = "<group>"; };
+		4ED8A2B61932366A00E8CBE5 /* AAFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAFilter.h; sourceTree = "<group>"; };
+		4ED8A2B71932366A00E8CBE5 /* BPMDetect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BPMDetect.cpp; sourceTree = "<group>"; };
+		4ED8A2B81932366A00E8CBE5 /* BPMDetect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMDetect.h; sourceTree = "<group>"; };
+		4ED8A2B91932366A00E8CBE5 /* cpu_detect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cpu_detect.h; sourceTree = "<group>"; };
+		4ED8A2BA1932366A00E8CBE5 /* cpu_detect_x86.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cpu_detect_x86.cpp; sourceTree = "<group>"; };
+		4ED8A2BB1932366A00E8CBE5 /* FIFOSampleBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FIFOSampleBuffer.cpp; sourceTree = "<group>"; };
+		4ED8A2BC1932366A00E8CBE5 /* FIFOSampleBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIFOSampleBuffer.h; sourceTree = "<group>"; };
+		4ED8A2BD1932366A00E8CBE5 /* FIFOSamplePipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIFOSamplePipe.h; sourceTree = "<group>"; };
+		4ED8A2BE1932366A00E8CBE5 /* FIRFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FIRFilter.cpp; sourceTree = "<group>"; };
+		4ED8A2BF1932366A00E8CBE5 /* FIRFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIRFilter.h; sourceTree = "<group>"; };
+		4ED8A2C01932366A00E8CBE5 /* InterpolateCubic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InterpolateCubic.cpp; sourceTree = "<group>"; };
+		4ED8A2C11932366A00E8CBE5 /* InterpolateCubic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterpolateCubic.h; sourceTree = "<group>"; };
+		4ED8A2C21932366A00E8CBE5 /* InterpolateLinear.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InterpolateLinear.cpp; sourceTree = "<group>"; };
+		4ED8A2C31932366A00E8CBE5 /* InterpolateLinear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterpolateLinear.h; sourceTree = "<group>"; };
+		4ED8A2C41932366A00E8CBE5 /* InterpolateShannon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InterpolateShannon.cpp; sourceTree = "<group>"; };
+		4ED8A2C51932366A00E8CBE5 /* InterpolateShannon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterpolateShannon.h; sourceTree = "<group>"; };
+		4ED8A2C61932366A00E8CBE5 /* mmx_optimized.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mmx_optimized.cpp; sourceTree = "<group>"; };
+		4ED8A2C71932366A00E8CBE5 /* PeakFinder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PeakFinder.cpp; sourceTree = "<group>"; };
+		4ED8A2C81932366A00E8CBE5 /* PeakFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeakFinder.h; sourceTree = "<group>"; };
+		4ED8A2C91932366A00E8CBE5 /* RateTransposer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RateTransposer.cpp; sourceTree = "<group>"; };
+		4ED8A2CA1932366A00E8CBE5 /* RateTransposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RateTransposer.h; sourceTree = "<group>"; };
+		4ED8A2CB1932366A00E8CBE5 /* SoundTouch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundTouch.cpp; sourceTree = "<group>"; };
+		4ED8A2CC1932366A00E8CBE5 /* SoundTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundTouch.h; sourceTree = "<group>"; };
+		4ED8A2CD1932366A00E8CBE5 /* sse_optimized.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sse_optimized.cpp; sourceTree = "<group>"; };
+		4ED8A2CE1932366A00E8CBE5 /* STTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STTypes.h; sourceTree = "<group>"; };
+		4ED8A2CF1932366A00E8CBE5 /* TDStretch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDStretch.cpp; sourceTree = "<group>"; };
+		4ED8A2D01932366A00E8CBE5 /* TDStretch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDStretch.h; sourceTree = "<group>"; };
+		4ED8A2DF19323AF200E8CBE5 /* SoundMakerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundMakerView.h; sourceTree = "<group>"; };
+		4ED8A2E019323AF300E8CBE5 /* SoundMakerView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SoundMakerView.mm; sourceTree = "<group>"; };
+		4ED8A2E219323B0B00E8CBE5 /* SoundMakerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SoundMakerView.xib; sourceTree = "<group>"; };
 		4EE3AE2918CF3BC600D09F79 /* def1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = def1.mp3; sourceTree = "<group>"; };
 		4EE3AE2A18CF3BC600D09F79 /* def2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = def2.mp3; sourceTree = "<group>"; };
 		4EE3AE2B18CF3BC600D09F79 /* def3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = def3.mp3; sourceTree = "<group>"; };
@@ -1555,6 +1605,8 @@
 		4E117967188F627F00FB619F /* Audio Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				4ED8A2B11932361200E8CBE5 /* SoundMaker.h */,
+				4ED8A2B21932361200E8CBE5 /* SoundMaker.mm */,
 				4E37255518C0306700AAB235 /* AudioFloatPointReader.h */,
 				4E37255618C0306700AAB235 /* AudioFloatPointReader.m */,
 				4E37255718C0306700AAB235 /* AsynEncodeAudioRecord.h */,
@@ -2186,6 +2238,41 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		4ED8A2B41932366A00E8CBE5 /* SoundTouch */ = {
+			isa = PBXGroup;
+			children = (
+				4ED8A2B51932366A00E8CBE5 /* AAFilter.cpp */,
+				4ED8A2B61932366A00E8CBE5 /* AAFilter.h */,
+				4ED8A2B71932366A00E8CBE5 /* BPMDetect.cpp */,
+				4ED8A2B81932366A00E8CBE5 /* BPMDetect.h */,
+				4ED8A2B91932366A00E8CBE5 /* cpu_detect.h */,
+				4ED8A2BA1932366A00E8CBE5 /* cpu_detect_x86.cpp */,
+				4ED8A2BB1932366A00E8CBE5 /* FIFOSampleBuffer.cpp */,
+				4ED8A2BC1932366A00E8CBE5 /* FIFOSampleBuffer.h */,
+				4ED8A2BD1932366A00E8CBE5 /* FIFOSamplePipe.h */,
+				4ED8A2BE1932366A00E8CBE5 /* FIRFilter.cpp */,
+				4ED8A2BF1932366A00E8CBE5 /* FIRFilter.h */,
+				4ED8A2C01932366A00E8CBE5 /* InterpolateCubic.cpp */,
+				4ED8A2C11932366A00E8CBE5 /* InterpolateCubic.h */,
+				4ED8A2C21932366A00E8CBE5 /* InterpolateLinear.cpp */,
+				4ED8A2C31932366A00E8CBE5 /* InterpolateLinear.h */,
+				4ED8A2C41932366A00E8CBE5 /* InterpolateShannon.cpp */,
+				4ED8A2C51932366A00E8CBE5 /* InterpolateShannon.h */,
+				4ED8A2C61932366A00E8CBE5 /* mmx_optimized.cpp */,
+				4ED8A2C71932366A00E8CBE5 /* PeakFinder.cpp */,
+				4ED8A2C81932366A00E8CBE5 /* PeakFinder.h */,
+				4ED8A2C91932366A00E8CBE5 /* RateTransposer.cpp */,
+				4ED8A2CA1932366A00E8CBE5 /* RateTransposer.h */,
+				4ED8A2CB1932366A00E8CBE5 /* SoundTouch.cpp */,
+				4ED8A2CC1932366A00E8CBE5 /* SoundTouch.h */,
+				4ED8A2CD1932366A00E8CBE5 /* sse_optimized.cpp */,
+				4ED8A2CE1932366A00E8CBE5 /* STTypes.h */,
+				4ED8A2CF1932366A00E8CBE5 /* TDStretch.cpp */,
+				4ED8A2D01932366A00E8CBE5 /* TDStretch.h */,
+			);
+			path = SoundTouch;
+			sourceTree = "<group>";
+		};
 		4EFF164E18A7D134005E4802 /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -2288,6 +2375,9 @@
 				4EBF35D318E31DB800E77783 /* DrawDownBtn.h */,
 				4EBF35D418E31DB800E77783 /* DrawDownBtn.m */,
 				4EBF35D618E31DD500E77783 /* DrawDownBtn.xib */,
+				4ED8A2DF19323AF200E8CBE5 /* SoundMakerView.h */,
+				4ED8A2E019323AF300E8CBE5 /* SoundMakerView.mm */,
+				4ED8A2E219323B0B00E8CBE5 /* SoundMakerView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2516,6 +2606,7 @@
 		C3FEB08E1871C2A8008EADAA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				4ED8A2B41932366A00E8CBE5 /* SoundTouch */,
 				4EFF164E18A7D134005E4802 /* Category */,
 				4E117967188F627F00FB619F /* Audio Utilities */,
 				C341171D188BC6580070EAB4 /* Models */,
@@ -2943,6 +3034,7 @@
 				4EAE870A191BCFAE000F744B /* sdf@2x.png in Resources */,
 				4EAE872B191BCFAE000F744B /* record_3@2x.png in Resources */,
 				4EAE869A191BCFAE000F744B /* hunyin_24@2x.png in Resources */,
+				4ED8A2E319323B0B00E8CBE5 /* SoundMakerView.xib in Resources */,
 				4EAE876A191BCFAE000F744B /* user_2@2x.png in Resources */,
 				4EAE86E2191BCFAE000F744B /* classify1@2x.png in Resources */,
 				4EAE8658191BCFAE000F744B /* FoundMusic_a@2x.png in Resources */,
@@ -3354,6 +3446,7 @@
 				4EEA197C18AA5F070062D118 /* MyUploadDetailViewController.m in Sources */,
 				C3FEAF2C1871C156008EADAA /* main.m in Sources */,
 				4ED175351892B8F3000EC483 /* LocalMusicViewController.mm in Sources */,
+				4ED8A2B31932361200E8CBE5 /* SoundMaker.mm in Sources */,
 				C351B690187E37FE00630408 /* RecommendSoundCell.m in Sources */,
 				4ED1752C18928A76000EC483 /* EZOutputHelper.m in Sources */,
 				C32D4FAC187F9A470090730B /* TMCustomCell.m in Sources */,
@@ -3365,10 +3458,13 @@
 				C39BBE591893DF5C00FC8F72 /* UIBarButtonItem+WEPopover.m in Sources */,
 				C3FEB0B81871C801008EADAA /* OSHelper.m in Sources */,
 				C39A97C21892CC6B00F41CBB /* SearchResultViewController.m in Sources */,
+				4ED8A2D11932366A00E8CBE5 /* AAFilter.cpp in Sources */,
 				C3456CEA18877A3B009329D2 /* MyProductionCell.m in Sources */,
 				4E0DC79D18D0B59F00E4E6ED /* UIBubbleTypingTableViewCell.m in Sources */,
+				4ED8A2DB1932366A00E8CBE5 /* RateTransposer.cpp in Sources */,
 				C32F400D1882876A00681953 /* UserCenterViewController.m in Sources */,
 				4EFF165418A7D19C005E4802 /* AutoCompletedOperation.m in Sources */,
+				4ED8A2DD1932366A00E8CBE5 /* sse_optimized.cpp in Sources */,
 				C32F401C188287D300681953 /* PersonalHomePageViewController.m in Sources */,
 				C3FEB0B41871C801008EADAA /* IO.m in Sources */,
 				4EB6FAC518A8F67300482613 /* CycleScrollView.m in Sources */,
@@ -3381,15 +3477,18 @@
 				4E0DC77618D09BF400E4E6ED /* MusicCommentItem.m in Sources */,
 				C39BBE481893DE4E00FC8F72 /* SortPopoverViewController.m in Sources */,
 				4E0DC79C18D0B59F00E4E6ED /* UIBubbleTableViewCell.m in Sources */,
+				4ED8A2E119323AF300E8CBE5 /* SoundMakerView.mm in Sources */,
 				4EF30A9918CF59D000376FFA /* StreamPlayer.m in Sources */,
 				C326CDAC187C5E44006DD97C /* CatalogRankViewController.m in Sources */,
 				C34C340B188AE6F7009CD20B /* ShareViewController.m in Sources */,
 				C3274996187A5E8200CF7A4A /* AboutScoreViewController.m in Sources */,
 				C341172A188BEF7D0070EAB4 /* Voice.m in Sources */,
 				4E96B58C188EABC4008EA56F /* EZAudio.m in Sources */,
+				4ED8A2D81932366A00E8CBE5 /* InterpolateShannon.cpp in Sources */,
 				C3FEB0BB1871C801008EADAA /* UIViewController+BarItem.m in Sources */,
 				C3D4FCC4187D6194001A7223 /* IntegralChampionCell.m in Sources */,
 				4E0DC79A18D0B59F00E4E6ED /* UIBubbleHeaderTableViewCell.m in Sources */,
+				4ED8A2D71932366A00E8CBE5 /* InterpolateLinear.cpp in Sources */,
 				C32F4017188287B600681953 /* MyDownloadViewController.mm in Sources */,
 				4E2A13651890BC6300D8CB65 /* ClairDataSource.xcdatamodeld in Sources */,
 				4E37255318C02F3E00AAB235 /* MusicMixer.m in Sources */,
@@ -3397,6 +3496,7 @@
 				C3FEB0D61871CAA2008EADAA /* MusicFansViewController.m in Sources */,
 				4E52D07C18D176110094F136 /* UpLoadView.m in Sources */,
 				C3456CFD18883C17009329D2 /* TMSoundEffectCell.m in Sources */,
+				4ED8A2D31932366A00E8CBE5 /* cpu_detect_x86.cpp in Sources */,
 				C341171B188B8B080070EAB4 /* HttpService.m in Sources */,
 				C326CDBB187C5EDB006DD97C /* DownloadRankViewController.m in Sources */,
 				4EB409E2190F4477000950D7 /* HelpingViewController.m in Sources */,
@@ -3409,6 +3509,7 @@
 				C3D4FCB8187CFD64001A7223 /* UIViewController+CustomBarItemPosition.m in Sources */,
 				C3456CF91887D2BC009329D2 /* SoundEffectViewController.m in Sources */,
 				4EB43E8418AB39AA004CCC85 /* AudioPlayer.m in Sources */,
+				4ED8A2DC1932366A00E8CBE5 /* SoundTouch.cpp in Sources */,
 				4E58621718B5E510004D80B6 /* NSTimer+Addition.m in Sources */,
 				4ED1751A18925322000EC483 /* AudioPlotView.m in Sources */,
 				C3FEB0EB1871D2FC008EADAA /* ControlCenter.m in Sources */,
@@ -3424,6 +3525,7 @@
 				4E1CDE0318900BA000C046ED /* AudioWriter.m in Sources */,
 				4EB7C4F718B7414800BCF0E8 /* UIDevice+Hardware.m in Sources */,
 				C39BBE561893DF5C00FC8F72 /* TSPopoverController.m in Sources */,
+				4ED8A2D41932366A00E8CBE5 /* FIFOSampleBuffer.cpp in Sources */,
 				C341171A188B8B080070EAB4 /* AFHttp.m in Sources */,
 				4EB43E6D18AB15B6004CCC85 /* MyUploadDetailCell.m in Sources */,
 				4E2A13811891474800D8CB65 /* AudioRecorder.m in Sources */,
@@ -3432,6 +3534,8 @@
 				4E96B59A188EC7B0008EA56F /* TrachBtn.m in Sources */,
 				4E96B593188EABC4008EA56F /* EZPlot.m in Sources */,
 				4EB126CF18B24FEE00DC9DE8 /* DownloadMusicInfo.m in Sources */,
+				4ED8A2D21932366A00E8CBE5 /* BPMDetect.cpp in Sources */,
+				4ED8A2D51932366A00E8CBE5 /* FIRFilter.cpp in Sources */,
 				C3D4FCBD187D0DD1001A7223 /* CatalogRankCell.m in Sources */,
 				4E079C30189B557900B0BB5F /* MusicMixerOutput.m in Sources */,
 				C3FEB0B91871C801008EADAA /* UIColor+Utils.m in Sources */,
@@ -3452,9 +3556,11 @@
 				4E37255D18C0306700AAB235 /* AsynEncodeAudioRecord.m in Sources */,
 				C3411727188BEC5A0070EAB4 /* Catalog.m in Sources */,
 				C3FEB0E01871CAF4008EADAA /* MixingMusicListViewController.m in Sources */,
+				4ED8A2D61932366A00E8CBE5 /* InterpolateCubic.cpp in Sources */,
 				4EB20FA918A931BE007E5A8B /* EditListCell.m in Sources */,
 				C3456CF31887CA1D009329D2 /* MixingMusicListCell.m in Sources */,
 				4EB7C4F418B72E8600BCF0E8 /* MixingOnlineBtn.m in Sources */,
+				4ED8A2DA1932366A00E8CBE5 /* PeakFinder.cpp in Sources */,
 				4E12FC4018D6DB85007AA33E /* AccentTableViewController.m in Sources */,
 				C39BBE571893DF5C00FC8F72 /* TSPopoverPopoverView.m in Sources */,
 				4E11796A188F627F00FB619F /* MusicCutter.m in Sources */,
@@ -3483,8 +3589,10 @@
 				4EAF2A0C18A9FE83007A8F70 /* ShareManager.m in Sources */,
 				C3FEB0CC1871CA45008EADAA /* LoginViewController.m in Sources */,
 				C39BBE551893DF5C00FC8F72 /* TSActionSheet.m in Sources */,
+				4ED8A2D91932366A00E8CBE5 /* mmx_optimized.cpp in Sources */,
 				4E37255C18C0306700AAB235 /* AudioFloatPointReader.m in Sources */,
 				4E0DC79918D0B59F00E4E6ED /* NSBubbleData.m in Sources */,
+				4ED8A2DE1932366A00E8CBE5 /* TDStretch.cpp in Sources */,
 				C3B53E46188C3000004EA4A7 /* IntegralRankUser.m in Sources */,
 				4EBF35D518E31DB900E77783 /* DrawDownBtn.m in Sources */,
 				4ED17525189268AC000EC483 /* AudioPlotViewController.m in Sources */,

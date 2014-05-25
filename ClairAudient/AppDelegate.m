@@ -82,6 +82,10 @@
 
 - (void)custonNavigationBar
 {
+//    [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleBlackTranslucent];
+//    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+//    self.navigationController.toolbar.barStyle = UIBarStyleBlackTranslucent;
+
     if([OSHelper iOS7])
     {
         [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"ios7_setting_bar"] forBarMetrics:UIBarMetricsDefault];

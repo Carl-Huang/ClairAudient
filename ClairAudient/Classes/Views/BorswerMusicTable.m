@@ -70,6 +70,7 @@
     
     uploadView = [[[NSBundle mainBundle]loadNibNamed:@"UpLoadView" owner:self options:nil]objectAtIndex:0];
     uploadView.parentController = parent;
+    _isUserSoundMaker = NO;
 }
 
 -(void)stopPlayer
@@ -394,8 +395,8 @@
 -(void)editItem:(id)object
 {
     MixingViewController * viewController = [[MixingViewController alloc]initWithNibName:@"MixingViewController" bundle:nil];
-    
     [viewController setMusicInfo:@{@"Title":[object valueForKey:@"title"],@"musicURL":[object valueForKey:@"localPath"]}];
+    [viewController setIsUseSoundMaker:_isUserSoundMaker];
     [_parentController.navigationController pushViewController:viewController animated:YES];
     viewController = nil;
     

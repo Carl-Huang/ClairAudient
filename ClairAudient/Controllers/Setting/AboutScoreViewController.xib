@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
@@ -28,7 +28,7 @@
                     <rect key="frame" x="20" y="7" width="280" height="389"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <mutableString key="text">积分规则说明
+                    <string key="text">积分规则说明
 1.安装客户端并使用，初始积分10
 2.新注册用户奖励积分50
 3.每日登录，增加积分1
@@ -37,7 +37,7 @@
 6.上传作品被下载，1积分/条
 7.任意一种方式分享一个文件，10积分/条（每天获得分享积分的上限为100积分；针对同一个文件的多次分享不给予额外积分）
 8.多次上传的积分可以累积，每日上传积分的上限为200分
-9.2000积分可兑换话费，2000分/10元（需联系客服兑换）</mutableString>
+9.2000积分可兑换话费，2000分/10元（需联系客服兑换）</string>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>

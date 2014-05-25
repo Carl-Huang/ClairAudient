@@ -63,9 +63,10 @@
                          weakSelf.maximumWidth = absDecibel;
                      }
                      rect.size.width = absDecibel/5 * weakSelf.maximumWidth ;
-                     weakSelf.indicatorView.frame = rect;
+                     [UIView animateWithDuration:10.3 animations:^{
+                         weakSelf.indicatorView.frame = rect;
+                     }];
                      
-//                     NSLog(@"%f",rect.size.width);
                  }
                 
              });

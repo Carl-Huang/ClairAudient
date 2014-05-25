@@ -72,6 +72,7 @@
     }
     borswerTable = [[BorswerMusicTable alloc]initWithFrame:CGRectMake(0,orginalY, 320, height)];
     [borswerTable initailzationDataSource:dataSource cellHeight:91.0f type:[RecordMusicInfo class] parentViewController:self];
+    [borswerTable setIsUserSoundMaker:YES];
     [self.view addSubview:borswerTable];
     
 }

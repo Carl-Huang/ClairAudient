@@ -11,6 +11,7 @@
 @class TrachBtn;
 @interface MixingViewController : CommonViewController
 @property (strong ,nonatomic) NSDictionary * musicInfo;
+@property (assign ,nonatomic) BOOL isUseSoundMaker;
 
 #pragma mark - Outlet
 @property (weak, nonatomic) IBOutlet UILabel *littleTitleLabel;

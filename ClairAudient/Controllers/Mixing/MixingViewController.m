@@ -23,6 +23,7 @@
 #import "GobalMethod.h"
 #import "CopyMusicView.h"
 #import "AppDelegate.h"
+#import "SoundMakerView.h"
 @interface MixingViewController ()
 
 {
@@ -47,6 +48,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        _isUseSoundMaker =  NO;
         // Custom initialization
     }
     return self;
@@ -291,19 +293,29 @@
 
 - (IBAction)copyMusicAction:(id)sender {
     
-    CopyMusicView * copyView = [[[NSBundle mainBundle]loadNibNamed:@"CopyMusicView" owner:self options:nil]objectAtIndex:0];
-    [copyView initalizationContainerViewContent];
-    __weak MixingViewController * weakSelf = self;
-    [copyView setBlock:^(NSInteger number)
-     {
-         dispatch_async(dispatch_get_main_queue(), ^{
-             [weakSelf synthesizeNewAudioFileWithNumber:number];
-         });
-         
-     }];
-    AppDelegate * myDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    [myDelegate.window addSubview:copyView];
-    copyView = nil;
+     AppDelegate * myDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    if (_isUseSoundMaker) {
+        SoundMakerView * makerView = [[[NSBundle mainBundle]loadNibNamed:@"SoundMakerView" owner:self options:nil]objectAtIndex:0];
+        makerView.audioFilePath = edittingMusicFile;
+        [myDelegate.window addSubview:makerView];
+        makerView = nil;
+    }else
+    {
+        CopyMusicView * copyView = [[[NSBundle mainBundle]loadNibNamed:@"CopyMusicView" owner:self options:nil]objectAtIndex:0];
+        [copyView initalizationContainerViewContent];
+        __weak MixingViewController * weakSelf = self;
+        [copyView setBlock:^(NSInteger number)
+         {
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 [weakSelf synthesizeNewAudioFileWithNumber:number];
+             });
+         }];
+       
+        [myDelegate.window addSubview:copyView];
+        copyView = nil;
+    }
+    
+    
     
 }
 

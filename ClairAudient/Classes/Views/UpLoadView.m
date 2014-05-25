@@ -14,7 +14,7 @@
 #import "GobalMethod.h"
 #import "User.h"
 
-@interface UpLoadView()<UITextViewDelegate,UITextFieldDelegate>
+@interface UpLoadView()<UITextViewDelegate,UITextFieldDelegate,UIAlertViewDelegate>
 {
     PopupTagViewController * popUpTable;
     PopupTagViewController * childPopUpTable;
@@ -233,7 +233,7 @@
             
             [[HttpService sharedInstance]uploadVoice:params completionBlock:^(BOOL isSuccess) {
                 if (isSuccess) {
-                    [weakSelf showAlertViewWithMessage:@"上传成功"];
+                    [weakSelf showAlertViewWithMessage:@"上传成功" withDelegate:self tag:1001];
                 }else
                 {
                     [weakSelf showAlertViewWithMessage:@"上传失败"];
@@ -298,5 +298,24 @@
         [alertView show];
         alertView = nil;
     });
+}
+
+- (void)showAlertViewWithMessage:(NSString *)message withDelegate:(id)delegate tag:(NSInteger)tag
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:delegate cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        alertView.tag = tag;
+        alertView = nil;
+    });
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 1001) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self removeFromSuperview];
+        });
+    }
 }
 @end

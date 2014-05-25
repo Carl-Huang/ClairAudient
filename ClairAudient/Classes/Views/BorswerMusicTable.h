@@ -16,7 +16,7 @@
 //@property (strong ,nonatomic) id info;
 
 @property (weak ,nonatomic) UIViewController * parentController;
-
+@property (assign ,nonatomic) BOOL isUserSoundMaker;
 -(void)initailzationDataSource:(NSArray *)data cellHeight:(CGFloat)cellHeight type:(Class)objectType parentViewController:(UIViewController *)parent;
 
 -(void)stopPlayer;

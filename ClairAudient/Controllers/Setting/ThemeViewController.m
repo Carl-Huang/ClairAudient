@@ -48,6 +48,16 @@
     [[NSUserDefaults standardUserDefaults]setObject:@"hunyin_6.png" forKey:ThemeImage];
     [[NSUserDefaults standardUserDefaults ]synchronize];
     [self.bgView setImage:[UIImage imageNamed:@"hunyin_6.png"]];
+    
+//    if([OSHelper iOS7])
+//    {
+//        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"ios7_setting_bar12"] forBarMetrics:UIBarMetricsDefault];
+//    }
+//    else
+//    {
+//        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"setting_bar123"] forBarMetrics:UIBarMetricsDefault];
+//    }
+    
 }
 
 - (IBAction)simpleTheme:(id)sender {
