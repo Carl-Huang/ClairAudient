@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *startTime;
 @property (weak, nonatomic) IBOutlet UILabel *endTime;
 @property (weak, nonatomic) IBOutlet UIImageView *bgView;
+@property (weak, nonatomic) IBOutlet UIButton *editControlBtn;
+@property (weak, nonatomic) IBOutlet UIButton *bianyinBtn;
 
 
 

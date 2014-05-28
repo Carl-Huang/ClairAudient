@@ -102,7 +102,9 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     isCopyMusic = NO;
-    
+
+    [_bianyinBtn setHidden:!_isUseSoundMaker];
+    [_editControlBtn setHidden:_isUseSoundMaker];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updatePlayBtnStatus) name:PlotViewDidStartPlay object:nil];
 }
 
