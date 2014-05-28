@@ -83,7 +83,7 @@
 
 -(void)playItemWithPath:(NSString *)localFilePath length:(NSString *)length
 {
-    
+
     NSURL *inputFileURL = [NSURL fileURLWithPath:localFilePath];
     if([inputFileURL.absoluteString isEqualToString:[myDelegate currentPlayFilePath]])
     {
@@ -97,10 +97,6 @@
         currentSelectedItemSlider.continuous = NO;
        
     }
-//    [myDelegate playItemWithURL:inputFileURL withMusicInfo:nil withPlaylist:nil];
-//    currentSelectedItemSlider.maximumValue = myDelegate.audioTotalFrame;
-//    [currentSelectedItemSlider addTarget:self action:@selector(updateCurrentPlayMusicPosition:) forControlEvents:UIControlEventTouchUpInside];
-//    currentSelectedItemSlider.continuous = NO;
      [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateProcessingLocation:) name:CurrentPlayFilePostionInfo object:nil];
     
 }
@@ -155,7 +151,6 @@
     
     cell.delegate               = self;
     cell.musicInfo              = object;
-    
     cell.playSlider.value = 0.0f;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     

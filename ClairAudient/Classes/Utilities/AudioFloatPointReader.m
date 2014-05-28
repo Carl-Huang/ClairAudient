@@ -29,7 +29,7 @@
     // Stop playback
     [[EZOutput sharedOutput] stopPlayback];
     AudioStreamBasicDescription bsd = _audioFile.fileFormat;
-    curentPlayFileURL      = filePath;
+    curentPlayFileURL      = filePath ;
     self.audioFile         = [EZAudioFile audioFileWithURL:filePath];
     _audioDuration         = (float)_audioFile.totalDuration;
     _totalFrame            = (float)_audioFile.totalFrames;
@@ -129,16 +129,16 @@ withNumberOfChannels:(UInt32)numberOfChannels {
     if( self.audioFile ){
         
         // Reached the end of the file
-        if( self.eof ){
-            // Here's what you do to loop the file
-            if (_isShouldPlayPlaylist) {
-                [self playNextSong];
-            }else
-            {
-                [self.audioFile seekToFrame:0];
-            }
-            self.eof = NO;
-        }
+//        if( self.eof ){
+//            // Here's what you do to loop the file
+//            if (_isShouldPlayPlaylist) {
+//                [self playNextSong];
+//            }else
+//            {
+//                [self.audioFile seekToFrame:0];
+//            }
+//            self.eof = NO;
+//        }
         
         // Allocate a buffer list to hold the file's data
         AudioBufferList *bufferList = [EZAudio audioBufferList];

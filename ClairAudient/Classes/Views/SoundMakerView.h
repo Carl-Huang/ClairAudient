@@ -13,6 +13,9 @@
 @property (weak, nonatomic) IBOutlet UISlider *tempoSlider;
 @property (weak, nonatomic) IBOutlet UISlider *pitchSlider;
 @property (weak, nonatomic) IBOutlet UISlider *rateSlider;
+@property (weak, nonatomic) IBOutlet UILabel *rateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *pitchLabel;
+@property (weak, nonatomic) IBOutlet UILabel *tempoLabel;
 
 @property (strong ,nonatomic) NSString * audioFilePath;
 
@@ -23,4 +26,5 @@
 - (IBAction)pitchSliderAction:(id)sender;
 - (IBAction)tempoSliderAction:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIView *containerView;
 @end

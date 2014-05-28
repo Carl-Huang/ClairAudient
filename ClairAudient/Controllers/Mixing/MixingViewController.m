@@ -215,10 +215,14 @@
 
 #pragma mark - Outlet Action
 - (IBAction)playMusic:(id)sender {
+    UIButton * btn = sender;
+    
     if (![plotView isPlaying]) {
         [plotView play];
+        [btn setSelected:NO];
     }else
     {
+        [btn setSelected:YES];
         [plotView pause];
     }
     

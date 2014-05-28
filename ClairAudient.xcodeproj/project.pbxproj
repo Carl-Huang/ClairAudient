@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		3A213A19BF144FE19FC80A52 /* libPods-ClairAudient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8746E38BC0442AC8598C419 /* libPods-ClairAudient.a */; };
+		4E03B1FF1936168400E54FA6 /* change_voice_success.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E03B1FA1936168400E54FA6 /* change_voice_success.png */; };
+		4E03B2001936168400E54FA6 /* change_voice_thumb.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E03B1FB1936168400E54FA6 /* change_voice_thumb.png */; };
+		4E03B2011936168400E54FA6 /* change_voice_trypaly.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E03B1FC1936168400E54FA6 /* change_voice_trypaly.png */; };
+		4E03B2021936168400E54FA6 /* seek_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E03B1FD1936168400E54FA6 /* seek_normal.png */; };
+		4E03B2031936168400E54FA6 /* seek_select.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E03B1FE1936168400E54FA6 /* seek_select.png */; };
 		4E079C30189B557900B0BB5F /* MusicMixerOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E079C2F189B557900B0BB5F /* MusicMixerOutput.m */; };
 		4E0DC75318CFFAD000E4E6ED /* beijign.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E0DC75018CFFAD000E4E6ED /* beijign.png */; };
 		4E0DC75418CFFAD000E4E6ED /* commentBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E0DC75118CFFAD000E4E6ED /* commentBg.png */; };
@@ -664,6 +669,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E03B1FA1936168400E54FA6 /* change_voice_success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = change_voice_success.png; sourceTree = "<group>"; };
+		4E03B1FB1936168400E54FA6 /* change_voice_thumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = change_voice_thumb.png; sourceTree = "<group>"; };
+		4E03B1FC1936168400E54FA6 /* change_voice_trypaly.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = change_voice_trypaly.png; sourceTree = "<group>"; };
+		4E03B1FD1936168400E54FA6 /* seek_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seek_normal.png; sourceTree = "<group>"; };
+		4E03B1FE1936168400E54FA6 /* seek_select.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seek_select.png; sourceTree = "<group>"; };
 		4E079C2E189B557900B0BB5F /* MusicMixerOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicMixerOutput.h; sourceTree = "<group>"; };
 		4E079C2F189B557900B0BB5F /* MusicMixerOutput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicMixerOutput.m; sourceTree = "<group>"; };
 		4E0DC75018CFFAD000E4E6ED /* beijign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = beijign.png; path = Common/beijign.png; sourceTree = "<group>"; };
@@ -1956,6 +1966,11 @@
 		4EAE85D9191BCFAD000F744B /* record */ = {
 			isa = PBXGroup;
 			children = (
+				4E03B1FA1936168400E54FA6 /* change_voice_success.png */,
+				4E03B1FB1936168400E54FA6 /* change_voice_thumb.png */,
+				4E03B1FC1936168400E54FA6 /* change_voice_trypaly.png */,
+				4E03B1FD1936168400E54FA6 /* seek_normal.png */,
+				4E03B1FE1936168400E54FA6 /* seek_select.png */,
 				4EAE85DA191BCFAD000F744B /* MinimumTrackImage.png */,
 				4EAE85DB191BCFAD000F744B /* record_10@2x.png */,
 				4EAE85DC191BCFAD000F744B /* record_11@2x.png */,
@@ -3030,6 +3045,7 @@
 				C32F40091882873A00681953 /* MessageInviteViewController.xib in Resources */,
 				4EAE86BC191BCFAE000F744B /* sliderEnd.png in Resources */,
 				4EAE8742191BCFAE000F744B /* setting_17@2x.png in Resources */,
+				4E03B2001936168400E54FA6 /* change_voice_thumb.png in Resources */,
 				4EAE86FA191BCFAE000F744B /* MusicFans_kjk@2x.png in Resources */,
 				4EAE870A191BCFAE000F744B /* sdf@2x.png in Resources */,
 				4EAE872B191BCFAE000F744B /* record_3@2x.png in Resources */,
@@ -3129,6 +3145,7 @@
 				4EAE86A2191BCFAE000F744B /* hunyin_31@2x.png in Resources */,
 				4EAE867C191BCFAE000F744B /* FoundMusic_x@2x.png in Resources */,
 				4EB409D7190F40CC000950D7 /* 淮南话.mp3 in Resources */,
+				4E03B2011936168400E54FA6 /* change_voice_trypaly.png in Resources */,
 				4EB409DB190F40CC000950D7 /* 铜陵话.mp3 in Resources */,
 				4EAE865E191BCFAE000F744B /* FoundMusic_e@2x.png in Resources */,
 				4EE3AE2F18CF3BC600D09F79 /* def2.mp3 in Resources */,
@@ -3186,6 +3203,7 @@
 				4EAE8691191BCFAE000F744B /* hunyin_16@2x.png in Resources */,
 				4EAE86EE191BCFAE000F744B /* MusicFans_cv@2x.png in Resources */,
 				4EAE8758191BCFAE000F744B /* user_12@2x.png in Resources */,
+				4E03B1FF1936168400E54FA6 /* change_voice_success.png in Resources */,
 				C32F401D188287D300681953 /* PersonalHomePageViewController.xib in Resources */,
 				C326CDBC187C5EDB006DD97C /* DownloadRankViewController.xib in Resources */,
 				4EAE8669191BCFAE000F744B /* FoundMusic_l@2x.png in Resources */,
@@ -3321,6 +3339,7 @@
 				4EAE8743191BCFAE000F744B /* setting_18@2x.png in Resources */,
 				4EAE8723191BCFAE000F744B /* record_32@2x.png in Resources */,
 				4EAE8711191BCFAE000F744B /* record_15@2x.png in Resources */,
+				4E03B2021936168400E54FA6 /* seek_normal.png in Resources */,
 				4EAE8720191BCFAE000F744B /* record_2@2x.png in Resources */,
 				4EAE8651191BCFAE000F744B /* duihuan@2x.png in Resources */,
 				C3D4FCBA187D0C3A001A7223 /* CatalogRankSectionHeader.xib in Resources */,
@@ -3371,6 +3390,7 @@
 				4EAE86AC191BCFAE000F744B /* hunyin_41@2x.png in Resources */,
 				4E0DC7A218D0B77A00E4E6ED /* CommentCell.xib in Resources */,
 				4EAE8662191BCFAE000F744B /* FoundMusic_g@2x.png in Resources */,
+				4E03B2031936168400E54FA6 /* seek_select.png in Resources */,
 				4EAE8756191BCFAE000F744B /* user_10@2x.png in Resources */,
 				4EAE873A191BCFAE000F744B /* ios7_setting_bar@2x.png in Resources */,
 				4EB66AED18CD9C0600CE2212 /* 绿野仙踪@2x.png in Resources */,

@@ -22,6 +22,9 @@
     [ControlCenter setNavigationTitleWhiteColor];
     
 //    UIImage *minImage =     [[UIImage imageNamed:@"sliderLine"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 20,0 , 20)];
+    
+//    UIImage *minImage =     [[UIImage imageNamed:@"sliderLine"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 4)];
+
     UIImage *minImage =     [UIImage imageNamed:@"sliderLine"];
     UIImage *maxImage =     [UIImage imageNamed:@"record_19"];
     UIImage *thumbImage =   [UIImage imageNamed:@"record_20"];

@@ -10,6 +10,7 @@
 #import "SoundMaker.h"
 #import "AppDelegate.h"
 #import "GobalMethod.h"
+#import "RecordMusicInfo.h"
 
 @interface SoundMakerView()
 {
@@ -18,6 +19,7 @@
     NSInteger tempoValue;
     
     NSString * desPath;
+    BOOL isAlreadyProcess;
 }
 @end
 @implementation SoundMakerView
@@ -27,9 +29,14 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        UIImage *minImage =     [UIImage imageNamed:@"sliderLine"];
-        UIImage *maxImage =     [UIImage imageNamed:@"record_19"];
-        UIImage *thumbImage =   [UIImage imageNamed:@"record_20"];
+        UIImage *minImage =     [[UIImage imageNamed:@"seek_select"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 4)];
+        UIImage *maxImage =     [UIImage imageNamed:@"seek_normal"];
+        UIImage *thumbImage =   [UIImage imageNamed:@"change_voice_thumb"];
+        
+        [[UISlider appearance] setMaximumTrackImage:maxImage forState:UIControlStateNormal];
+        [[UISlider appearance] setMinimumTrackImage:minImage forState:UIControlStateNormal];
+        [[UISlider appearance] setThumbImage:thumbImage forState:UIControlStateNormal];
+        [[UISlider appearance] setThumbImage:thumbImage forState:UIControlStateHighlighted];
         // Initialization code
         //背景
         [_rateSlider setMaximumTrackImage:maxImage forState:UIControlStateNormal];
@@ -54,59 +61,82 @@
 -(void)awakeFromNib
 {
     [super awakeFromNib];
-    UIImage *minImage =     [UIImage imageNamed:@"sliderLine"];
-    UIImage *maxImage =     [UIImage imageNamed:@"record_19"];
-    UIImage *thumbImage =   [UIImage imageNamed:@"record_20"];
-    // Initialization code
-    //背景
-    [_rateSlider setMaximumTrackImage:maxImage forState:UIControlStateNormal];
-    //拖动的显示条
-    [_rateSlider setMinimumTrackImage:minImage forState:UIControlStateNormal];
-    [_rateSlider setThumbImage:thumbImage forState:UIControlStateNormal];
+     UIImage *minImage =     [[UIImage imageNamed:@"seek_select"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 4)];
+    UIImage *maxImage =     [UIImage imageNamed:@"seek_normal"];
+    UIImage *thumbImage =   [UIImage imageNamed:@"change_voice_thumb"];
+
+    [[UISlider appearance] setMaximumTrackImage:maxImage forState:UIControlStateNormal];
+    [[UISlider appearance] setMinimumTrackImage:minImage forState:UIControlStateNormal];
+    [[UISlider appearance] setThumbImage:thumbImage forState:UIControlStateNormal];
+    [[UISlider appearance] setThumbImage:thumbImage forState:UIControlStateHighlighted];
     
-    [_tempoSlider setMaximumTrackImage:maxImage forState:UIControlStateNormal];
-    [_tempoSlider setMinimumTrackImage:minImage forState:UIControlStateNormal];
-    [_tempoSlider setThumbImage:thumbImage forState:UIControlStateNormal];
-    
-    [_pitchSlider setMaximumTrackImage:maxImage forState:UIControlStateNormal];
-    [_pitchSlider setMinimumTrackImage:minImage forState:UIControlStateNormal];
-    [_pitchSlider setThumbImage:thumbImage forState:UIControlStateNormal];
-    
+    self.containerView.layer.cornerRadius = 15;
+    isAlreadyProcess = NO;
+    _rateLabel.text = @"0";
+    _pitchLabel.text = @"0";
+    _tempoLabel.text = @"0";
     pitchValue = tempoValue = rateValue = 0;
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
-
 
 
 - (IBAction)listenBtnAciont:(id)sender {
-    [MBProgressHUD showHUDAddedTo:self animated:YES];
     
-    if (_audioFilePath) {
+    NSString * fileName = [_audioFilePath stringByDeletingPathExtension];
+    desPath = [fileName stringByAppendingString:@"_temp.caf"];
+    if (_audioFilePath&&!isAlreadyProcess) {
 
-        NSString * fileName = [_audioFilePath stringByDeletingPathExtension];
-        desPath = [fileName stringByAppendingString:@"_temp.caf"];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD showHUDAddedTo:self animated:YES];
+            SoundMaker * maker = [[SoundMaker alloc]init];
+            __weak __typeof(self) weakSelf = self;
+            [maker initalizationSoundTouchWithSampleRate:44100 Channels:1 TempoChange:tempoValue PitchSemiTones:pitchValue RateChange:rateValue processingAudioFile:_audioFilePath destPath:desPath completedBlock:^(BOOL isSuccess, NSError *error) {
+                if (isSuccess) {
+                    [weakSelf playItemWithPath:desPath length:[GobalMethod getMusicLength:[NSURL fileURLWithPath:desPath]]];
+                    isAlreadyProcess = YES;
+                }else
+                {
+                    [self showAlertViewWithMessage:@"不支持格式"];
+                }
+                [MBProgressHUD hideHUDForView:weakSelf animated:YES];
+            }];
+        });
         
-        SoundMaker * maker = [[SoundMaker alloc]init];
-        __weak __typeof(self) weakSelf = self;
-        [maker initalizationSoundTouchWithSampleRate:44100 Channels:1 TempoChange:tempoValue PitchSemiTones:pitchValue RateChange:rateValue processingAudioFile:_audioFilePath destPath:desPath completedBlock:^(BOOL isSuccess, NSError *error) {
-            if (isSuccess) {
-                [weakSelf playItemWithPath:desPath length:[GobalMethod getMusicLength:[NSURL fileURLWithPath:desPath]]];
-            }
-            [MBProgressHUD hideHUDForView:weakSelf animated:YES];
-        }];
-
+    }else
+    {
+        [self playItemWithPath:desPath length:[GobalMethod getMusicLength:[NSURL fileURLWithPath:desPath]]];
     }
     
 }
 
 - (IBAction)sureBtnAction:(id)sender {
+    
+    
+    [[NSFileManager defaultManager]removeItemAtPath:_audioFilePath error:nil];
+//    [[NSFileManager defaultManager]moveItemAtPath:desPath toPath:_audioFilePath error:nil];
+    
+    NSArray * array = [RecordMusicInfo MR_findByAttribute:@"localPath" withValue:_audioFilePath];
+    if ([array count]) {
+         RecordMusicInfo * recordItemInfo = [array objectAtIndex:0];
+        recordItemInfo.localPath = desPath;
+        [[NSManagedObjectContext MR_contextForCurrentThread]MR_saveOnlySelfWithCompletion:^(BOOL success, NSError *error) {
+            ;
+        }];
+    }
+   
+    
+    
+    
+    UIImage *minImage =     [UIImage imageNamed:@"sliderLine"];
+    UIImage *maxImage =     [UIImage imageNamed:@"record_19"];
+    UIImage *thumbImage =   [UIImage imageNamed:@"record_20"];
+    
+    [[UISlider appearance] setMaximumTrackImage:maxImage forState:UIControlStateNormal];
+    [[UISlider appearance] setMinimumTrackImage:minImage forState:UIControlStateNormal];
+    [[UISlider appearance] setThumbImage:thumbImage forState:UIControlStateNormal];
+    [[UISlider appearance] setThumbImage:thumbImage forState:UIControlStateHighlighted];
+    [self removeFromSuperview];
+    
+    
 }
 
 
@@ -116,16 +146,18 @@
     
     UISlider * slider = sender;
     rateValue = slider.value;
-    NSLog(@"%d",rateValue);
+    _rateLabel.text = [NSString stringWithFormat:@"%d",rateValue];
 }
 - (IBAction)pitchSliderAction:(id)sender {
     UISlider * slider = sender;
     pitchValue = slider.value;
+    _pitchLabel.text = [NSString stringWithFormat:@"%d",pitchValue];
 }
 
 - (IBAction)tempoSliderAction:(id)sender {
     UISlider * slider = sender;
     tempoValue = slider.value;
+    _tempoLabel.text = [NSString stringWithFormat:@"%d",tempoValue];
 }
 
 -(void)playItemWithPath:(NSString *)localFilePath length:(NSString *)length
@@ -142,5 +174,13 @@
 
     }
     
+}
+- (void)showAlertViewWithMessage:(NSString *)message
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles:nil, nil];
+        [alertView show];
+        alertView = nil;
+    });
 }
 @end
