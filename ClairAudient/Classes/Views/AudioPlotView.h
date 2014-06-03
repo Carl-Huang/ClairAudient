@@ -36,6 +36,8 @@ typedef NS_ENUM(NSInteger, OutputType)
 -(void)backForward:(NSInteger)sec;
 -(CGFloat)getMusicLength;
 
+-(void)cleanContentView;
+
 -(void)configureSnapShotImage:(NSInteger)number completed:(void (^)(BOOL isCompleted))completedBlock;
 
 /**

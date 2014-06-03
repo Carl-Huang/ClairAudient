@@ -269,23 +269,36 @@
 
 -(void)cleanContentView
 {
-    [_timeLabelView removeFromSuperview];
-    _timeLabelView = nil;
+    if (_timeLabelView) {
+        [_timeLabelView removeFromSuperview];
+        _timeLabelView = nil;
+    }
+
+    if (_timeLineView) {
+        [_timeLineView removeFromSuperview];
+        _timeLineView = nil;
+
+    }
     
-    [_timeLineView removeFromSuperview];
-    _timeLineView = nil;
+    if (_maskView) {
+        [_maskView removeFromSuperview];
+        _maskView = nil;
+    }
+   
+    if (_startBtn) {
+        [_startBtn removeFromSuperview];
+        _startBtn.block = nil;
+        _startBtn = nil;
+
+    }
     
-    [_maskView removeFromSuperview];
-    _maskView = nil;
+    if (_endBtn) {
+        [_endBtn removeFromSuperview];
+        _endBtn.block = nil;
+        _endBtn = nil;
+    }
     
-    [_startBtn removeFromSuperview];
-    _startBtn.block = nil;
-    _startBtn = nil;
-    
-    [_endBtn removeFromSuperview];
-    _endBtn.block = nil;
-    _endBtn = nil;
-    
+
     _contentScrollView = nil;
     
     _audioFile = nil;

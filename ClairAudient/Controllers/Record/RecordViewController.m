@@ -73,10 +73,6 @@
          }
          
      }];
-    
-   
-
-    
 
     CGRect rect = _volumeContainerView.frame;
     maximumWidth = rect.size.width;

@@ -24,6 +24,7 @@
 #import "CopyMusicView.h"
 #import "AppDelegate.h"
 #import "SoundMakerView.h"
+#import "RecordMusicInfo.h"
 @interface MixingViewController ()
 
 {
@@ -57,8 +58,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.bigTitleLabel.text     = [self.musicInfo valueForKey:@"Artist"];
-    self.littleTitleLabel.text  = [self.musicInfo valueForKey:@"Title"];
+    self.bigTitleLabel.text     = _recordFileInfo.artist;
+    self.littleTitleLabel.text  = _recordFileInfo.title;
 #if TARGET_IPHONE_SIMULATOR
     isSimulator = YES;
 #else
@@ -68,41 +69,19 @@
         edittingMusicFile = testFile;
     }else
     {
-        edittingMusicFile = [self.musicInfo valueForKey:@"musicURL"];;
+        edittingMusicFile = [_recordFileInfo valueForKey:@"localPath"];
     }
-    edittingMusicFile = [self.musicInfo valueForKey:@"musicURL"];;
+    edittingMusicFile = [_recordFileInfo valueForKey:@"localPath"];
+    
+
+    
+    
     NSDictionary * currentEditMusicInfo = @{@"musicURL": edittingMusicFile,@"count":@"1"};
     [[NSUserDefaults standardUserDefaults]setObject:currentEditMusicInfo forKey:@"currentEditingMusic"];
     [[NSUserDefaults standardUserDefaults]synchronize];
-    
-    __weak MixingViewController * weakSelf =self;
-    CGRect rect = CGRectMake(0, 60, 320, 245);
-    if ([OSHelper iOS7]) {
-        rect.origin.y +=20;
-    }
-    
-    
-    plotView = [[AudioPlotView alloc]initWithFrame:rect];
-    [plotView setupAudioPlotViewWitnNimber:1 type:OutputTypeDefautl musicPath:edittingMusicFile withCompletedBlock:^(BOOL isFinish) {
-        if (isFinish) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
-            });
-        }
-    }];
-    
-    [plotView setLocationBlock:^(NSDictionary * locationInfo)
-     {
-//         NSLog(@"%@",locationInfo);
-         [weakSelf updateInterfaceWithInfo:locationInfo];
-     }];
-    self.endTime.text   = [NSString stringWithFormat:@"%0.2f",[plotView getMusicLength]];
-    self.cutLength.text = self.endTime.text;
-    [self.view addSubview:plotView];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self addPlotView];
     
     isCopyMusic = NO;
-
     [_bianyinBtn setHidden:!_isUseSoundMaker];
     [_editControlBtn setHidden:_isUseSoundMaker];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updatePlayBtnStatus) name:PlotViewDidStartPlay object:nil];
@@ -110,9 +89,13 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    if ([plotView isPlaying]) {
-        [plotView stop];
+    if (plotView) {
+        if ([plotView isPlaying]) {
+            [plotView stop];
+        }
+        [plotView cleanContentView];
     }
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -136,6 +119,32 @@
 }
 
 #pragma mark - Private Method
+-(void)addPlotView
+{
+    __weak MixingViewController * weakSelf =self;
+    CGRect rect = CGRectMake(0, 60, 320, 245);
+    if ([OSHelper iOS7]) {
+        rect.origin.y +=20;
+    }
+    plotView = [[AudioPlotView alloc]initWithFrame:rect];
+    [plotView setupAudioPlotViewWitnNimber:1 type:OutputTypeDefautl musicPath:edittingMusicFile withCompletedBlock:^(BOOL isFinish) {
+        if (isFinish) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+            });
+        }
+    }];
+    
+    [plotView setLocationBlock:^(NSDictionary * locationInfo)
+     {
+         [weakSelf updateInterfaceWithInfo:locationInfo];
+     }];
+    self.endTime.text   = [NSString stringWithFormat:@"%0.2f",[plotView getMusicLength]];
+    self.cutLength.text = self.endTime.text;
+    [self.view addSubview:plotView];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+}
+
 -(void)updatePlayBtnStatus
 {
     [self.playBtn setSelected:YES];
@@ -254,10 +263,10 @@
                 if (status == AVAssetExportSessionStatusCompleted) {
                     //保存信息到数据库
                     EditMusicInfo * info    = [EditMusicInfo MR_createEntity];
-                    info.title              = [weakSelf.musicInfo valueForKey:@"Title"];;
-                    info.artist             = [weakSelf.musicInfo valueForKey:@"Artist"];
+                    info.title              = _recordFileInfo.title;;
+                    info.artist             = _recordFileInfo.artist;
                     info.makeTime           = [self getMakeTime];
-                    info.localPath      = localPath;
+                    info.localPath          = localPath;
                     info.length             = [NSString stringWithFormat:@"%0.2f",[self convertMinuteToSecond:musicLength]];
                     [[NSManagedObjectContext MR_defaultContext]MR_saveOnlySelfAndWait];
                     
@@ -303,8 +312,28 @@
     if (_isUseSoundMaker) {
         SoundMakerView * makerView = [[[NSBundle mainBundle]loadNibNamed:@"SoundMakerView" owner:self options:nil]objectAtIndex:0];
         makerView.audioFilePath = edittingMusicFile;
+        CompletedProcessingBlock  tempBlocl = ^( NSString * filePath,BOOL isProcess,BOOL error)
+        {
+            if (isProcess) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (plotView) {
+                        if ([plotView isPlaying]) {
+                            [plotView stop];
+                        }
+                        [plotView cleanContentView];
+                    }
+                    edittingMusicFile = filePath;
+                    [self addPlotView];
+                });
+            }
+        };
+        [makerView setProcessingBlock:tempBlocl];
+
         [myDelegate.window addSubview:makerView];
         makerView = nil;
+        
+        
+        
     }else
     {
         CopyMusicView * copyView = [[[NSBundle mainBundle]loadNibNamed:@"CopyMusicView" owner:self options:nil]objectAtIndex:0];

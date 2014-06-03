@@ -391,6 +391,7 @@
 {
     MixingViewController * viewController = [[MixingViewController alloc]initWithNibName:@"MixingViewController" bundle:nil];
     [viewController setMusicInfo:@{@"Title":[object valueForKey:@"title"],@"musicURL":[object valueForKey:@"localPath"]}];
+    [viewController setRecordFileInfo:object];
     [viewController setIsUseSoundMaker:_isUserSoundMaker];
     [_parentController.navigationController pushViewController:viewController animated:YES];
     viewController = nil;

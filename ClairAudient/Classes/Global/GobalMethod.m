@@ -43,7 +43,7 @@
     return url;
 }
 
-//获取音乐长度
+//获取音乐长度,以字符串形式输出
 +(NSString *)getMusicLength:(NSURL *)url
 {
     AVURLAsset* audioAsset =[AVURLAsset assetWithURL:url];

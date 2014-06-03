@@ -76,6 +76,18 @@
     _pitchLabel.text = @"0";
     _tempoLabel.text = @"0";
     pitchValue = tempoValue = rateValue = 0;
+    
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeSoundMakerView)];
+    [_soundMakerViewBg addGestureRecognizer:tap];
+    tap = Nil;
+    
+    
+
+    if ([OSHelper iPhone5]) {
+        CGRect rect  = _maskView.frame;
+        rect.size.height+=88;
+        _maskView.frame = rect;
+    }
 }
 
 
@@ -122,10 +134,16 @@
             ;
         }];
     }
-   
+    [self resetSiderInterface];
+   [self removeFromSuperview];
     
-    
-    
+    if (_processingBlock) {
+        _processingBlock(desPath,YES,nil);
+    }
+}
+
+-(void)resetSiderInterface
+{
     UIImage *minImage =     [UIImage imageNamed:@"sliderLine"];
     UIImage *maxImage =     [UIImage imageNamed:@"record_19"];
     UIImage *thumbImage =   [UIImage imageNamed:@"record_20"];
@@ -134,12 +152,8 @@
     [[UISlider appearance] setMinimumTrackImage:minImage forState:UIControlStateNormal];
     [[UISlider appearance] setThumbImage:thumbImage forState:UIControlStateNormal];
     [[UISlider appearance] setThumbImage:thumbImage forState:UIControlStateHighlighted];
-    [self removeFromSuperview];
-    
     
 }
-
-
 
 
 - (IBAction)rateSliderAction:(id)sender {
@@ -158,6 +172,15 @@
     UISlider * slider = sender;
     tempoValue = slider.value;
     _tempoLabel.text = [NSString stringWithFormat:@"%d",tempoValue];
+}
+
+-(void)removeSoundMakerView
+{
+    [self resetSiderInterface];
+    [self removeFromSuperview];
+    if (_processingBlock) {
+        _processingBlock(nil,NO,nil);
+    }
 }
 
 -(void)playItemWithPath:(NSString *)localFilePath length:(NSString *)length

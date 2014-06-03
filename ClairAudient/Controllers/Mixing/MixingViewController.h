@@ -9,7 +9,9 @@
 #import "CommonViewController.h"
 #import "EZAudioPlotGL.h"
 @class TrachBtn;
+@class RecordMusicInfo;
 @interface MixingViewController : CommonViewController
+@property (strong ,nonatomic) RecordMusicInfo * recordFileInfo;
 @property (strong ,nonatomic) NSDictionary * musicInfo;
 @property (assign ,nonatomic) BOOL isUseSoundMaker;
 
