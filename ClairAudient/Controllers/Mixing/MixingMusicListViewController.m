@@ -17,7 +17,7 @@
 #import "MusicInfo.h"
 #import "PersistentStore.h"
 #import "AutoCompletedOperation.h"
-
+#import "RecordMusicInfo.h"
 #define Cell_Height 65.0f
 @interface MixingMusicListViewController ()<UITextFieldDelegate,AutoCompleteOperationDelegate>
 {
@@ -105,10 +105,16 @@
 
 -(void)copyMusicToLocalAndPlay:(NSDictionary *)musicInfo
 {
+    RecordMusicInfo * info = [RecordMusicInfo MR_createEntity];
+    info.artist = [musicInfo valueForKey:@"Artist"];
+    info.title = [musicInfo valueForKey:@"Title"];
+    info.length = [musicInfo valueForKey:@"musicTime"];
+    info.localPath = [musicInfo valueForKey:@"musicURL"];
+    
     if ([self isValidMusicName:[musicInfo valueForKey:@"Title"]]) {
         if (isSimulator) {
             MixingViewController * viewController = [[MixingViewController alloc]initWithNibName:@"MixingViewController" bundle:nil];
-            [viewController setMusicInfo:musicInfo];
+            [viewController setRecordFileInfo:info];
             [self.navigationController pushViewController:viewController animated:YES];
             viewController = nil;
         }else
@@ -128,7 +134,7 @@
                         [tempMusicInfo setValue:currentLocationPath forKey:@"musicURL"];
                         
                         MixingViewController * viewController   = [[MixingViewController alloc]initWithNibName:@"MixingViewController" bundle:nil];
-                        [viewController setMusicInfo:tempMusicInfo];
+                        [viewController setRecordFileInfo:info];
                         [weakSelf.navigationController pushViewController:viewController animated:YES];
                         viewController = nil;
                         return;
