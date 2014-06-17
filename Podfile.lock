@@ -34,10 +34,10 @@ DEPENDENCIES:
   - SDWebImage (~> 3.5.2)
 
 SPEC CHECKSUMS:
-  AFNetworking: e499052cbf3d743e9bb727bb37adb9dc2547ba15
-  Base64nl: ca7e1d5ac232fddec4e32553feae81fb730ce3f2
-  MagicalRecord: 95d49d74ef752cd52f6ad87bcb474817fc3978cf
-  MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
-  SDWebImage: fe7ce01ae4e0a884d168f59c9dd82d35baf8429e
+  AFNetworking: a4d0e9a64de9242986620dafd1b3cee3b413ac5c
+  Base64nl: 98b890ea8e2131561ea6aa0f2039ef82c35d47bf
+  MagicalRecord: 2b471584fc9e3137f3d0a56967917baa4979e224
+  MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
+  SDWebImage: 35ff1fae2591257fa832ff1a640650620a9a1697
 
-COCOAPODS: 0.29.0
+COCOAPODS: 0.33.1
