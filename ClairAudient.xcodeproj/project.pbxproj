@@ -331,7 +331,6 @@
 		4EAE8735191BCFAE000F744B /* sliderLine.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EAE8604191BCFAE000F744B /* sliderLine.png */; };
 		4EAE8736191BCFAE000F744B /* sliderLine2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EAE8605191BCFAE000F744B /* sliderLine2.png */; };
 		4EAE8737191BCFAE000F744B /* sound.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EAE8606191BCFAE000F744B /* sound.png */; };
-		4EAE8738191BCFAE000F744B /* VolumeBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EAE8607191BCFAE000F744B /* VolumeBg.png */; };
 		4EAE8739191BCFAE000F744B /* duihuakuang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EAE8609191BCFAE000F744B /* duihuakuang@2x.png */; };
 		4EAE873A191BCFAE000F744B /* ios7_setting_bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EAE860A191BCFAE000F744B /* ios7_setting_bar@2x.png */; };
 		4EAE873B191BCFAE000F744B /* setting_10@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EAE860B191BCFAE000F744B /* setting_10@2x.png */; };
@@ -471,6 +470,7 @@
 		4EB66AEC18CD9C0600CE2212 /* 简约@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EB669D518CD9C0400CE2212 /* 简约@2x.png */; };
 		4EB66AED18CD9C0600CE2212 /* 绿野仙踪@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EB669D618CD9C0400CE2212 /* 绿野仙踪@2x.png */; };
 		4EB6FAC518A8F67300482613 /* CycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB6FAC418A8F67300482613 /* CycleScrollView.m */; };
+		4EB73C7219507096001CC7A3 /* volumeBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EB73C7119507096001CC7A3 /* volumeBackground.png */; };
 		4EB7C4EB18B6FC2800BCF0E8 /* MixingCatalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB7C4E918B6FC2800BCF0E8 /* MixingCatalogViewController.m */; };
 		4EB7C4EC18B6FC2800BCF0E8 /* MixingCatalogViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EB7C4EA18B6FC2800BCF0E8 /* MixingCatalogViewController.xib */; };
 		4EB7C4F018B72BF700BCF0E8 /* MixingMusicOnlineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB7C4EE18B72BF700BCF0E8 /* MixingMusicOnlineCell.m */; };
@@ -1040,7 +1040,6 @@
 		4EAE8604191BCFAE000F744B /* sliderLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderLine.png; sourceTree = "<group>"; };
 		4EAE8605191BCFAE000F744B /* sliderLine2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderLine2.png; sourceTree = "<group>"; };
 		4EAE8606191BCFAE000F744B /* sound.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sound.png; sourceTree = "<group>"; };
-		4EAE8607191BCFAE000F744B /* VolumeBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VolumeBg.png; sourceTree = "<group>"; };
 		4EAE8609191BCFAE000F744B /* duihuakuang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "duihuakuang@2x.png"; sourceTree = "<group>"; };
 		4EAE860A191BCFAE000F744B /* ios7_setting_bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7_setting_bar@2x.png"; sourceTree = "<group>"; };
 		4EAE860B191BCFAE000F744B /* setting_10@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting_10@2x.png"; sourceTree = "<group>"; };
@@ -1201,6 +1200,7 @@
 		4EB669D618CD9C0400CE2212 /* 绿野仙踪@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "绿野仙踪@2x.png"; path = "Common/绿野仙踪@2x.png"; sourceTree = "<group>"; };
 		4EB6FAC318A8F67300482613 /* CycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CycleScrollView.h; sourceTree = "<group>"; };
 		4EB6FAC418A8F67300482613 /* CycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CycleScrollView.m; sourceTree = "<group>"; };
+		4EB73C7119507096001CC7A3 /* volumeBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volumeBackground.png; sourceTree = "<group>"; };
 		4EB7C4E818B6FC2800BCF0E8 /* MixingCatalogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixingCatalogViewController.h; sourceTree = "<group>"; };
 		4EB7C4E918B6FC2800BCF0E8 /* MixingCatalogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixingCatalogViewController.m; sourceTree = "<group>"; };
 		4EB7C4EA18B6FC2800BCF0E8 /* MixingCatalogViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MixingCatalogViewController.xib; sourceTree = "<group>"; };
@@ -1968,6 +1968,7 @@
 		4EAE85D9191BCFAD000F744B /* record */ = {
 			isa = PBXGroup;
 			children = (
+				4EB73C7119507096001CC7A3 /* volumeBackground.png */,
 				4EAC4F6D1936483F00A6DF22 /* change_voice.png */,
 				4E03B1FA1936168400E54FA6 /* change_voice_success.png */,
 				4E03B1FB1936168400E54FA6 /* change_voice_thumb.png */,
@@ -2019,7 +2020,6 @@
 				4EAE8604191BCFAE000F744B /* sliderLine.png */,
 				4EAE8605191BCFAE000F744B /* sliderLine2.png */,
 				4EAE8606191BCFAE000F744B /* sound.png */,
-				4EAE8607191BCFAE000F744B /* VolumeBg.png */,
 			);
 			path = record;
 			sourceTree = "<group>";
@@ -2939,7 +2939,7 @@
 				ORGANIZATIONNAME = helloworld;
 				TargetAttributes = {
 					C3FEAF1B1871C156008EADAA = {
-						DevelopmentTeam = Y8CJPVFVEM;
+						DevelopmentTeam = BL57VX8BFS;
 					};
 					C3FEAF361871C156008EADAA = {
 						TestTargetID = C3FEAF1B1871C156008EADAA;
@@ -3158,6 +3158,7 @@
 				4EAE870E191BCFAE000F744B /* record_12@2x.png in Resources */,
 				4EAE869F191BCFAE000F744B /* hunyin_29@2x.png in Resources */,
 				4EAE86E3191BCFAE000F744B /* classify2@2x.png in Resources */,
+				4EB73C7219507096001CC7A3 /* volumeBackground.png in Resources */,
 				4EB43E8718AB39AA004CCC85 /* play.png in Resources */,
 				4EAE870B191BCFAE000F744B /* MinimumTrackImage.png in Resources */,
 				4E0DC79718D0B59F00E4E6ED /* typingSomeone.png in Resources */,
@@ -3376,7 +3377,6 @@
 				4EB409DC190F40CC000950D7 /* 阜阳话.mp3 in Resources */,
 				4EAE8767191BCFAE000F744B /* user_27@2x.png in Resources */,
 				4EAE869D191BCFAE000F744B /* hunyin_27@2x.png in Resources */,
-				4EAE8738191BCFAE000F744B /* VolumeBg.png in Resources */,
 				4EAE86D2191BCFAE000F744B /* catalog_icon_jpng@2x.png in Resources */,
 				4EAE8716191BCFAE000F744B /* record_20@2x.png in Resources */,
 				4EAE864A191BCFAE000F744B /* 114.png in Resources */,
@@ -3763,6 +3763,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/vedon/Documents/GitHub/ClairAudient/ClairAudient/Libs/ShareSDK/Connection,
@@ -3792,6 +3793,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "顺风耳";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -3808,6 +3810,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/vedon/Documents/GitHub/ClairAudient/ClairAudient/Libs/ShareSDK/Connection,
@@ -3837,6 +3840,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "顺风耳";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
