@@ -93,7 +93,6 @@
 		4EAACB5318CA0C8300E380A7 /* MainViewController4inch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EAACB5218CA0C8300E380A7 /* MainViewController4inch.xib */; };
 		4EAC1DA818B0B46100C8DA2E /* GobalMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EAC1DA718B0B46100C8DA2E /* GobalMethod.m */; };
 		4EAC4F6E1936483F00A6DF22 /* change_voice.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EAC4F6D1936483F00A6DF22 /* change_voice.png */; };
-		4EAE8649191BCFAE000F744B /* 77.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EAE850F191BCFAD000F744B /* 77.png */; };
 		4EAE864A191BCFAE000F744B /* 114.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EAE8510191BCFAD000F744B /* 114.png */; };
 		4EAE864B191BCFAE000F744B /* uploadBgview@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EAE8512191BCFAD000F744B /* uploadBgview@2x.png */; };
 		4EAE864C191BCFAE000F744B /* uploaddakuang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EAE8513191BCFAD000F744B /* uploaddakuang@2x.png */; };
@@ -803,7 +802,6 @@
 		4EAC1DA618B0B46100C8DA2E /* GobalMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GobalMethod.h; sourceTree = "<group>"; };
 		4EAC1DA718B0B46100C8DA2E /* GobalMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GobalMethod.m; sourceTree = "<group>"; };
 		4EAC4F6D1936483F00A6DF22 /* change_voice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = change_voice.png; sourceTree = "<group>"; };
-		4EAE850F191BCFAD000F744B /* 77.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 77.png; sourceTree = "<group>"; };
 		4EAE8510191BCFAD000F744B /* 114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 114.png; sourceTree = "<group>"; };
 		4EAE8512191BCFAD000F744B /* uploadBgview@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uploadBgview@2x.png"; sourceTree = "<group>"; };
 		4EAE8513191BCFAD000F744B /* uploaddakuang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uploaddakuang@2x.png"; sourceTree = "<group>"; };
@@ -2608,7 +2606,6 @@
 		C3FEAF501871C294008EADAA /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				4EAE850F191BCFAD000F744B /* 77.png */,
 				4EAE8510191BCFAD000F744B /* 114.png */,
 				4EAE8511191BCFAD000F744B /* Upload */,
 				4EAE8517191BCFAD000F744B /* 积分切图 */,
@@ -3109,7 +3106,6 @@
 				4EAE8765191BCFAE000F744B /* user_25@2x.png in Resources */,
 				C3FEAF2A1871C156008EADAA /* InfoPlist.strings in Resources */,
 				4EAF2A4F18A9FE90007A8F70 /* ShareSDKiPadSimpleShareViewUI.bundle in Resources */,
-				4EAE8649191BCFAE000F744B /* 77.png in Resources */,
 				C32D4F9F187F8DCD0090730B /* SoundCatalogViewController.xib in Resources */,
 				4EAE8771191BCFAE000F744B /* user_7@2x.png in Resources */,
 				C32F3FFA188286B500681953 /* RegisterViewController.xib in Resources */,
