@@ -65,13 +65,20 @@
 #else
     isSimulator = NO;
 #endif
-    if (isSimulator) {
-        edittingMusicFile = testFile;
+//    if (isSimulator) {
+//        edittingMusicFile = testFile;
+//    }else
+//    {
+//        edittingMusicFile = [_recordFileInfo valueForKey:@"localPath"];
+//    }
+    
+    if (_recordFileInfo) {
+        edittingMusicFile = [_recordFileInfo valueForKey:@"localPath"];
     }else
     {
-        edittingMusicFile = [_recordFileInfo valueForKey:@"localPath"];
+        edittingMusicFile = [_musicInfo valueForKey:@"musicURL"];
     }
-    edittingMusicFile = [_recordFileInfo valueForKey:@"localPath"];
+
 
     NSDictionary * currentEditMusicInfo = @{@"musicURL": edittingMusicFile,@"count":@"1"};
     [[NSUserDefaults standardUserDefaults]setObject:currentEditMusicInfo forKey:@"currentEditingMusic"];

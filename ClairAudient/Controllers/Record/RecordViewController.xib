@@ -83,7 +83,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VolumeBg.png" id="mLJ-hQ-k6d">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="volumeBackground.png" id="mLJ-hQ-k6d">
                                     <rect key="frame" x="-3" y="0.0" width="265" height="31"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
@@ -175,7 +175,6 @@
         </view>
     </objects>
     <resources>
-        <image name="VolumeBg.png" width="472" height="82"/>
         <image name="back.png" width="30" height="25"/>
         <image name="hunyin_6.png" width="320" height="533"/>
         <image name="luyin.png" width="320" height="281"/>
@@ -187,5 +186,6 @@
         <image name="record_4.png" width="43" height="43"/>
         <image name="record_5.png" width="320" height="67"/>
         <image name="record_9.png" width="76" height="67"/>
+        <image name="volumeBackground.png" width="472" height="82"/>
     </resources>
 </document>

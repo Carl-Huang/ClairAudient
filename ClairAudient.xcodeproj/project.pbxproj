@@ -471,6 +471,7 @@
 		4EB66AEC18CD9C0600CE2212 /* 简约@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EB669D518CD9C0400CE2212 /* 简约@2x.png */; };
 		4EB66AED18CD9C0600CE2212 /* 绿野仙踪@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EB669D618CD9C0400CE2212 /* 绿野仙踪@2x.png */; };
 		4EB6FAC518A8F67300482613 /* CycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB6FAC418A8F67300482613 /* CycleScrollView.m */; };
+		4EB73C7219507096001CC7A3 /* volumeBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EB73C7119507096001CC7A3 /* volumeBackground.png */; };
 		4EB7C4EB18B6FC2800BCF0E8 /* MixingCatalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB7C4E918B6FC2800BCF0E8 /* MixingCatalogViewController.m */; };
 		4EB7C4EC18B6FC2800BCF0E8 /* MixingCatalogViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EB7C4EA18B6FC2800BCF0E8 /* MixingCatalogViewController.xib */; };
 		4EB7C4F018B72BF700BCF0E8 /* MixingMusicOnlineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EB7C4EE18B72BF700BCF0E8 /* MixingMusicOnlineCell.m */; };
@@ -1201,6 +1202,7 @@
 		4EB669D618CD9C0400CE2212 /* 绿野仙踪@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "绿野仙踪@2x.png"; path = "Common/绿野仙踪@2x.png"; sourceTree = "<group>"; };
 		4EB6FAC318A8F67300482613 /* CycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CycleScrollView.h; sourceTree = "<group>"; };
 		4EB6FAC418A8F67300482613 /* CycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CycleScrollView.m; sourceTree = "<group>"; };
+		4EB73C7119507096001CC7A3 /* volumeBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volumeBackground.png; sourceTree = "<group>"; };
 		4EB7C4E818B6FC2800BCF0E8 /* MixingCatalogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixingCatalogViewController.h; sourceTree = "<group>"; };
 		4EB7C4E918B6FC2800BCF0E8 /* MixingCatalogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixingCatalogViewController.m; sourceTree = "<group>"; };
 		4EB7C4EA18B6FC2800BCF0E8 /* MixingCatalogViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MixingCatalogViewController.xib; sourceTree = "<group>"; };
@@ -1968,7 +1970,7 @@
 		4EAE85D9191BCFAD000F744B /* record */ = {
 			isa = PBXGroup;
 			children = (
-				4E6AD11B194DE68B00C4EBB9 /* volumeBg.png */,
+				4EB73C7119507096001CC7A3 /* volumeBackground.png */,
 				4EAC4F6D1936483F00A6DF22 /* change_voice.png */,
 				4E03B1FA1936168400E54FA6 /* change_voice_success.png */,
 				4E03B1FB1936168400E54FA6 /* change_voice_thumb.png */,
@@ -3158,6 +3160,7 @@
 				4EAE870E191BCFAE000F744B /* record_12@2x.png in Resources */,
 				4EAE869F191BCFAE000F744B /* hunyin_29@2x.png in Resources */,
 				4EAE86E3191BCFAE000F744B /* classify2@2x.png in Resources */,
+				4EB73C7219507096001CC7A3 /* volumeBackground.png in Resources */,
 				4EB43E8718AB39AA004CCC85 /* play.png in Resources */,
 				4EAE870B191BCFAE000F744B /* MinimumTrackImage.png in Resources */,
 				4E0DC79718D0B59F00E4E6ED /* typingSomeone.png in Resources */,
@@ -3763,6 +3766,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
+
+
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
